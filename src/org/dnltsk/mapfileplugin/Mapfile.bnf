@@ -15,30 +15,22 @@
     psiImplUtilClass="org.dnltsk.mapfileplugin.psi.impl.MapfilePsiImplUtil"
 
   tokens=[
-    OP_EQ="="
-    OP_IS="::="
-    OP_OR="|"
-    OP_OPT="?"
-    OP_ONEMORE="+"
-    OP_ZEROMORE="*"
-    OP_AND="&"
-    OP_NOT="!"
-    SEMICOLON=";"
-    LEFT_BRACE="{"
-    RIGHT_BRACE="}"
-    LEFT_BRACKET="["
-    RIGHT_BRACKET="]"
-    LEFT_PAREN="("
-    RIGHT_PAREN=")"
-    EXTERNAL_START="<<"
-    EXTERNAL_END=">>"
+    SEMI=';'
+    EQ='='
+    LP='('
+    RP=')'
 
     space='regexp:\s+'
-    id="regexp:\w+"
-    string="regexp:('([^'\\]|\\.)*'|\"([^\"\\]|\\\"|\\\'|\\)*\")"
-    number="regexp:\d+"
-    line_comment="regexp:#.*"
-    block_comment="regexp:/\*(.|\n)*\*/"
+    comment='regexp:#.*'
+    number='regexp:[+-]{0,1}\d+(\.\d*)?'
+    id='regexp:\p{Alpha}\w*'
+    string="regexp:('([^'\\]|\\.)*'|\"([^\"\\]|\\.)*\")"
+
+    op_1='+'
+    op_2='-'
+    op_3='*'
+    op_4='/'
+    op_5='!'
   ]
 }
 
@@ -139,3 +131,6 @@ private ToleranceAttr ::= 'TOLERANCE' number // double
 private UtfdataAttr ::= 'UTFDATA' string
 private UtfitemAttr ::= 'UTFITEM' string
 
+//
+// PRIMITIVE STUFF
+//

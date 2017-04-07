@@ -16,8 +16,7 @@ import java.util.Arrays;
 import static com.intellij.openapi.editor.colors.TextAttributesKey.createTextAttributesKey;
 
 public class MapfileSyntaxHighlighter extends SyntaxHighlighterBase {
-    public static final TextAttributesKey SEPARATOR =
-            createTextAttributesKey("MAPFILE_SEPARATOR", DefaultLanguageHighlighterColors.OPERATION_SIGN);
+
     public static final TextAttributesKey KEY =
             createTextAttributesKey("MAPFILE_KEY", DefaultLanguageHighlighterColors.KEYWORD);
     public static final TextAttributesKey VALUE =
@@ -28,7 +27,6 @@ public class MapfileSyntaxHighlighter extends SyntaxHighlighterBase {
             createTextAttributesKey("MAPFILE_BAD_CHARACTER", HighlighterColors.BAD_CHARACTER);
 
     private static final TextAttributesKey[] BAD_CHAR_KEYS = new TextAttributesKey[]{BAD_CHARACTER};
-    private static final TextAttributesKey[] SEPARATOR_KEYS = new TextAttributesKey[]{SEPARATOR};
     private static final TextAttributesKey[] KEY_KEYS = new TextAttributesKey[]{KEY};
     private static final TextAttributesKey[] VALUE_KEYS = new TextAttributesKey[]{VALUE};
     private static final TextAttributesKey[] COMMENT_KEYS = new TextAttributesKey[]{COMMENT};
@@ -47,7 +45,7 @@ public class MapfileSyntaxHighlighter extends SyntaxHighlighterBase {
             return KEY_KEYS;
         } else if (Arrays.asList(MapfileTypes.NUMBER, MapfileTypes.STRING).contains(tokenType)) {
             return VALUE_KEYS;
-        } else if (Arrays.asList(MapfileTypes.LINE_COMMENT).contains(tokenType)) {
+        } else if (Arrays.asList(MapfileTypes.COMMENT).contains(tokenType)) {
             return COMMENT_KEYS;
         } else if (tokenType.equals(TokenType.BAD_CHARACTER)) {
             return BAD_CHAR_KEYS;

@@ -16,10 +16,10 @@ public class MapfileColorSettingsPage  implements ColorSettingsPage {
 
     private static final AttributesDescriptor[] DESCRIPTORS = new AttributesDescriptor[]{
             new AttributesDescriptor("Key", MapfileSyntaxHighlighter.KEY),
-            new AttributesDescriptor("Separator", MapfileSyntaxHighlighter.SEPARATOR),
             new AttributesDescriptor("Value", MapfileSyntaxHighlighter.VALUE),
     };
-
+    int lo = 213;
+    int li = "213";
     @Nullable
     @Override
     public Icon getIcon() {
