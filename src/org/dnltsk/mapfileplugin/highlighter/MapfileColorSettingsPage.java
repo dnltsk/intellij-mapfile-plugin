@@ -15,13 +15,13 @@ import java.util.Map;
 public class MapfileColorSettingsPage  implements ColorSettingsPage {
 
     private static final AttributesDescriptor[] DESCRIPTORS = new AttributesDescriptor[]{
-            new AttributesDescriptor("Attributes", MapfileSyntaxHighlighter.ATTRIBUTES),
-            new AttributesDescriptor("Bad Character", MapfileSyntaxHighlighter.BAD_CHARACTER),
-            new AttributesDescriptor("Comment", MapfileSyntaxHighlighter.COMMENT),
-            new AttributesDescriptor("Core Attributes", MapfileSyntaxHighlighter.CORE_ATTRIBUTES),
-            new AttributesDescriptor("Number Values", MapfileSyntaxHighlighter.NUMBER_VALUE),
+            new AttributesDescriptor("Attributes (Core)", MapfileSyntaxHighlighter.CORE_ATTRIBUTE),
+            new AttributesDescriptor("Attributes (Others)", MapfileSyntaxHighlighter.ATTRIBUTES),
+            new AttributesDescriptor("Bad Characters", MapfileSyntaxHighlighter.BAD_CHARACTER),
+            new AttributesDescriptor("Comments", MapfileSyntaxHighlighter.COMMENT),
             new AttributesDescriptor("Object Keywords", MapfileSyntaxHighlighter.OBJECT_KEYWORD),
-            new AttributesDescriptor("String Values", MapfileSyntaxHighlighter.STRING_VALUE)
+            new AttributesDescriptor("Values (Number)", MapfileSyntaxHighlighter.NUMBER_VALUE),
+            new AttributesDescriptor("Values (String)", MapfileSyntaxHighlighter.STRING_VALUE)
     };
 
     @Nullable
