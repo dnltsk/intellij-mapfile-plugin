@@ -1,0 +1,20 @@
+MAP 
+    NAME "foo_1"
+    TITLE "BAR-1"
+    LAYER
+      NAME "inline_circles"
+      TYPE CIRCLE
+      STATUS ON
+      FEATURE
+        POINTS
+          74.01 -53.8
+          110.7 -22.16
+        END
+      END
+      CLASS
+        STYLE
+          COLOR 0 0 255
+        END
+      END
+    END
+END

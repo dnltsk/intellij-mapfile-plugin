@@ -1,0 +1,141 @@
+{
+    parserClass="org.dnltsk.mapfileplugin.parser.MapfileParser"
+
+    extends="com.intellij.extapi.psi.ASTWrapperPsiElement"
+
+    psiClassPrefix="Mapfile"
+    psiImplClassSuffix="Impl"
+    psiPackage="org.dnltsk.mapfileplugin.psi"
+    psiImplPackage="org.dnltsk.mapfileplugin.psi.impl"
+
+    elementTypeHolderClass="org.dnltsk.mapfileplugin.psi.MapfileTypes"
+    elementTypeClass="org.dnltsk.mapfileplugin.psi.MapfileElementType"
+    tokenTypeClass="org.dnltsk.mapfileplugin.psi.MapfileTokenType"
+
+    psiImplUtilClass="org.dnltsk.mapfileplugin.psi.impl.MapfilePsiImplUtil"
+
+  tokens=[
+    OP_EQ="="
+    OP_IS="::="
+    OP_OR="|"
+    OP_OPT="?"
+    OP_ONEMORE="+"
+    OP_ZEROMORE="*"
+    OP_AND="&"
+    OP_NOT="!"
+    SEMICOLON=";"
+    LEFT_BRACE="{"
+    RIGHT_BRACE="}"
+    LEFT_BRACKET="["
+    RIGHT_BRACKET="]"
+    LEFT_PAREN="("
+    RIGHT_PAREN=")"
+    EXTERNAL_START="<<"
+    EXTERNAL_END=">>"
+
+    space='regexp:\s+'
+    id="regexp:\w+"
+    string="regexp:('([^'\\]|\\.)*'|\"([^\"\\]|\\\"|\\\'|\\)*\")"
+    number="regexp:\d+"
+    line_comment="regexp:#.*"
+    block_comment="regexp:/\*(.|\n)*\*/"
+  ]
+}
+
+mapfile ::= (MapObject | LayerObject)
+
+private MapObject ::= MAP MapAttributes END
+private MapAttributes ::= ( NameAttr | TitleAttr | LayerObject ) MapAttributes *
+
+private LayerObject ::= LAYER LayerAttributes END
+private LayerAttributes ::=
+    (
+      ClassObject | ClusterObject | CompositeObject | FeatureObject | GridObject | JoinObject | MetadataObject
+      | ProjectionObject | ValidationObject
+
+      | ClassgroupAttr | ClassitemAttr | ConnectionAttr | ConnectiontypeAttr | DataAttr | DebugAttr | DumpAttr
+      | EncodingAttr | ExtentAttr | FilterAttr | FooterAttr | FilteritemAttr | GeomtransformAttr | GroupAttr
+      | HeaderAttr | LabelcacheAttr | LabelitemAttr | LabelmaxscaledenomAttr | LabelminscaledenomAttr
+      | LabelrequiresAttr | MaskAttr | MaxfeaturesAttr | MaxgeowidthAttr | MaxscaledenomAttr | MingeowidthAttr
+      | Minscaledenom | NameAttr | PluginAttr | PostlabelcacheAttr | ProcessingAttr | OffsiteAttr | SizeunitsAttr
+      | RequiresAttr | StatusAttr | StyleitemAttr | SymbolscaledenomAttr | TemplateAttr | TileindexAttr
+      | TileitemAttr | TilesrsAttr | TitleAttr | ToleranceunitsAttr | ToleranceAttr | TransformAttr | TypeAttr
+      | UnitsAttr | UtfdataAttr | UtfitemAttr
+
+    ) LayerAttributes *
+
+private ClassObject ::= CLASS END
+
+private ClusterObject ::= CLUSTER END
+
+private CompositeObject ::= COMPOSITE END
+
+private FeatureObject ::= FEATURE END
+
+private GridObject ::= GRID END
+
+private JoinObject ::= JOIN END
+
+private MetadataObject ::= METADATA END
+
+private ProjectionObject ::= PROJECTION END
+
+private ValidationObject ::= VALIDATION END
+
+//
+// COMPLEX ATTRIBUTES
+//
+private ConnectiontypeAttr ::= 'CONNECTIONTYPE' ('contour'|'kerneldensity'|'local'|'ogr'|'oraclespatial'|'plugin'|'postgis'|'sde'|'union'|'uvraster'|'wfs'|'wms')
+private DebugAttr ::= 'DEBUG' ('off'|'on'|0|1|2|3|4|5)
+private ExtentAttr ::= 'EXTENT' number number number number // double!
+private FilterAttr ::= 'FILTER' string // TODO: expression!
+private GeomtransformAttr ::= 'GEOMTRANSFORM' string // [<expression>|<Javascript file>]
+private LabelcacheAttr ::= 'LABELCACHE' ('on'|'off')
+private OffsiteAttr ::= 'OFFSITE' ( string | (number number number) )
+private SizeunitsAttr ::= 'SIZEUNITS' ('feet'|'inches'|'kilometers'|'meters'|'miles'|'nauticalmiles'|'pixels')
+private StatusAttr ::= 'STATUS' ('on'|'off'|'default')
+private StyleitemAttr ::= 'STYLEITEM' string // [<attribute>|auto|<javascript file>]
+private ToleranceunitsAttr ::= 'TOLERANCEUNITS' ('pixels'|'feet'|'inches'|'kilometers'|'meters'|'miles'|'nauticalmiles'|'dd')
+private TransformAttr ::= 'TRANSFORM' (true|false|'ul'|'uc'|'ur'|'cl'|'cc'|'cr'|'ll'|'lc'|'lr')
+private TypeAttr ::= 'TYPE' ('chart'|'circle'|'line'|'point'|'polygon'|'raster'|'query')
+private UnitsAttr ::= 'UNIT' ('dd'|'feet'|'inches'|'kilometers'|'meters'|'miles'|'nauticalmiles'|'percentages'|'pixels')
+
+
+//
+// SINGLE ATTRIBUTES
+//
+private NameAttr ::= 'NAME' string
+private TitleAttr ::= 'TITLE' string
+private ClassgroupAttr ::= 'CLASSGROUP' string
+private ClassitemAttr ::= 'CLASSITEM' string
+private ConnectionAttr ::= 'CONNECTION' string
+private DataAttr ::= 'DATA' string
+private DumpAttr ::= 'DUMP' (true|false)
+private EncodingAttr ::= 'ENCODING' string
+private FooterAttr ::= 'FOOTER' string //filename
+private FilteritemAttr ::= 'FILTERITEM' string
+private GroupAttr ::= 'GROUP' string
+private HeaderAttr ::= 'HEADER' string //filename
+private LabelitemAttr ::= 'LABELITEM' string
+private LabelmaxscaledenomAttr ::= 'LABELMAXSCALEDENOM' number // double
+private LabelminscaledenomAttr ::= 'LABELMINSCALEDENOM' number // double
+private LabelrequiresAttr ::= 'LABELREQUIRES' string // expression
+private MaskAttr ::= 'MASK' string // layername
+private MaxfeaturesAttr ::= 'MAXFEATURES' number
+private MaxgeowidthAttr ::= 'MAXGEOWIDTH' number //double
+private MaxscaledenomAttr ::= 'MAXSCALEDENOM' number //double
+private MingeowidthAttr ::= 'MINGEOWIDTH' number //double
+private Minscaledenom ::= 'MINSCALEDENOM' number //double
+private PluginAttr ::= 'PLUGIN' string // filename
+private PostlabelcacheAttr ::= 'POSTLABELCACHE' (true|false)
+private ProcessingAttr ::= 'PROCESSING' string
+private RequiresAttr ::= 'REQUIRES' string // expression
+private SymbolscaledenomAttr ::= 'SYMBOLSCALEDENOM' number // double
+private TemplateAttr ::= 'TEMPLATE' string // [file|url]
+private TileindexAttr ::= 'TILEINDEX' string // [filename|layername]
+private TileitemAttr ::= 'TILEITEM' string // [attribute]
+private TilesrsAttr ::= 'TILESRS' string // [attribute]
+private ToleranceAttr ::= 'TOLERANCE' number // double
+private UtfdataAttr ::= 'UTFDATA' string
+private UtfitemAttr ::= 'UTFITEM' string
+
