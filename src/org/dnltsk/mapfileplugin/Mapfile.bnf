@@ -77,59 +77,59 @@ private ValidationObject ::= VALIDATION END
 //
 // COMPLEX ATTRIBUTES
 //
-private ConnectiontypeAttr ::= 'CONNECTIONTYPE' ('contour'|'kerneldensity'|'local'|'ogr'|'oraclespatial'|'plugin'|'postgis'|'sde'|'union'|'uvraster'|'wfs'|'wms')
-private DebugAttr ::= 'DEBUG' ('off'|'on'|0|1|2|3|4|5)
-private ExtentAttr ::= 'EXTENT' number number number number // double!
-private FilterAttr ::= 'FILTER' string // TODO: expression!
-private GeomtransformAttr ::= 'GEOMTRANSFORM' string // [<expression>|<Javascript file>]
-private LabelcacheAttr ::= 'LABELCACHE' ('on'|'off')
-private OffsiteAttr ::= 'OFFSITE' ( string | (number number number) )
-private SizeunitsAttr ::= 'SIZEUNITS' ('feet'|'inches'|'kilometers'|'meters'|'miles'|'nauticalmiles'|'pixels')
-private StatusAttr ::= 'STATUS' ('on'|'off'|'default')
-private StyleitemAttr ::= 'STYLEITEM' string // [<attribute>|auto|<javascript file>]
-private ToleranceunitsAttr ::= 'TOLERANCEUNITS' ('pixels'|'feet'|'inches'|'kilometers'|'meters'|'miles'|'nauticalmiles'|'dd')
-private TransformAttr ::= 'TRANSFORM' (true|false|'ul'|'uc'|'ur'|'cl'|'cc'|'cr'|'ll'|'lc'|'lr')
-private TypeAttr ::= 'TYPE' ('chart'|'circle'|'line'|'point'|'polygon'|'raster'|'query')
-private UnitsAttr ::= 'UNIT' ('dd'|'feet'|'inches'|'kilometers'|'meters'|'miles'|'nauticalmiles'|'percentages'|'pixels')
+private ConnectiontypeAttr ::= CONNECTIONTYPE ('contour'|'kerneldensity'|'local'|'ogr'|'oraclespatial'|'plugin'|'postgis'|'sde'|'union'|'uvraster'|'wfs'|'wms')
+private DebugAttr ::= DEBUG ('off'|'on'|0|1|2|3|4|5)
+private ExtentAttr ::= EXTENT number number number number // double!
+private FilterAttr ::= FILTER string // TODO: expression!
+private GeomtransformAttr ::= GEOMTRANSFORM string // [<expression>|<Javascript file>]
+private LabelcacheAttr ::= LABELCACHE ('on'|'off')
+private OffsiteAttr ::= OFFSITE ( string | (number number number) )
+private SizeunitsAttr ::= SIZEUNITS ('feet'|'inches'|'kilometers'|'meters'|'miles'|'nauticalmiles'|'pixels')
+private StatusAttr ::= STATUS ('on'|'off'|'default')
+private StyleitemAttr ::= STYLEITEM string // [<attribute>|auto|<javascript file>]
+private ToleranceunitsAttr ::= TOLERANCEUNITS ('pixels'|'feet'|'inches'|'kilometers'|'meters'|'miles'|'nauticalmiles'|'dd')
+private TransformAttr ::= TRANSFORM (true|false|'ul'|'uc'|'ur'|'cl'|'cc'|'cr'|'ll'|'lc'|'lr')
+private TypeAttr ::= TYPE ('chart'|'circle'|'line'|'point'|'polygon'|'raster'|'query')
+private UnitsAttr ::= UNIT ('dd'|'feet'|'inches'|'kilometers'|'meters'|'miles'|'nauticalmiles'|'percentages'|'pixels')
 
 
 //
 // SINGLE ATTRIBUTES
 //
-private NameAttr ::= 'NAME' string
-private TitleAttr ::= 'TITLE' string
-private ClassgroupAttr ::= 'CLASSGROUP' string
-private ClassitemAttr ::= 'CLASSITEM' string
-private ConnectionAttr ::= 'CONNECTION' string
-private DataAttr ::= 'DATA' string
-private DumpAttr ::= 'DUMP' (true|false)
-private EncodingAttr ::= 'ENCODING' string
-private FooterAttr ::= 'FOOTER' string //filename
-private FilteritemAttr ::= 'FILTERITEM' string
-private GroupAttr ::= 'GROUP' string
-private HeaderAttr ::= 'HEADER' string //filename
-private LabelitemAttr ::= 'LABELITEM' string
-private LabelmaxscaledenomAttr ::= 'LABELMAXSCALEDENOM' number // double
-private LabelminscaledenomAttr ::= 'LABELMINSCALEDENOM' number // double
-private LabelrequiresAttr ::= 'LABELREQUIRES' string // expression
-private MaskAttr ::= 'MASK' string // layername
-private MaxfeaturesAttr ::= 'MAXFEATURES' number
-private MaxgeowidthAttr ::= 'MAXGEOWIDTH' number //double
-private MaxscaledenomAttr ::= 'MAXSCALEDENOM' number //double
-private MingeowidthAttr ::= 'MINGEOWIDTH' number //double
-private Minscaledenom ::= 'MINSCALEDENOM' number //double
-private PluginAttr ::= 'PLUGIN' string // filename
-private PostlabelcacheAttr ::= 'POSTLABELCACHE' (true|false)
-private ProcessingAttr ::= 'PROCESSING' string
-private RequiresAttr ::= 'REQUIRES' string // expression
-private SymbolscaledenomAttr ::= 'SYMBOLSCALEDENOM' number // double
-private TemplateAttr ::= 'TEMPLATE' string // [file|url]
-private TileindexAttr ::= 'TILEINDEX' string // [filename|layername]
-private TileitemAttr ::= 'TILEITEM' string // [attribute]
-private TilesrsAttr ::= 'TILESRS' string // [attribute]
-private ToleranceAttr ::= 'TOLERANCE' number // double
-private UtfdataAttr ::= 'UTFDATA' string
-private UtfitemAttr ::= 'UTFITEM' string
+private NameAttr ::= NAME string
+private TitleAttr ::= TITLE string
+private ClassgroupAttr ::= CLASSGROUP string
+private ClassitemAttr ::= CLASSITEM string
+private ConnectionAttr ::= CONNECTION string
+private DataAttr ::= DATA string
+private DumpAttr ::= DUMP (true|false)
+private EncodingAttr ::= ENCODING string
+private FooterAttr ::= FOOTER string //filename
+private FilteritemAttr ::= FILTERITEM string
+private GroupAttr ::= GROUP string
+private HeaderAttr ::= HEADER string //filename
+private LabelitemAttr ::= LABELITEM string
+private LabelmaxscaledenomAttr ::= LABELMAXSCALEDENOM number // double
+private LabelminscaledenomAttr ::= LABELMINSCALEDENOM number // double
+private LabelrequiresAttr ::= LABELREQUIRES string // expression
+private MaskAttr ::= MASK string // layername
+private MaxfeaturesAttr ::= MAXFEATURES number
+private MaxgeowidthAttr ::= MAXGEOWIDTH number //double
+private MaxscaledenomAttr ::= MAXSCALEDENOM number //double
+private MingeowidthAttr ::= MINGEOWIDTH number //double
+private Minscaledenom ::= MINSCALEDENOM number //double
+private PluginAttr ::= PLUGIN string // filename
+private PostlabelcacheAttr ::= POSTLABELCACHE (true|false)
+private ProcessingAttr ::= PROCESSING string
+private RequiresAttr ::= REQUIRES string // expression
+private SymbolscaledenomAttr ::= SYMBOLSCALEDENOM number // double
+private TemplateAttr ::= TEMPLATE string // [file|url]
+private TileindexAttr ::= TILEINDEX string // [filename|layername]
+private TileitemAttr ::= TILEITEM string // [attribute]
+private TilesrsAttr ::= TILESRS string // [attribute]
+private ToleranceAttr ::= TOLERANCE number // double
+private UtfdataAttr ::= UTFDATA string
+private UtfitemAttr ::= UTFITEM string
 
 //
 // PRIMITIVE STUFF

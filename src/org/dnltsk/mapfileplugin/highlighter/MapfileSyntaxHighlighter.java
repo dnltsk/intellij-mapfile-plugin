@@ -17,20 +17,20 @@ import static com.intellij.openapi.editor.colors.TextAttributesKey.createTextAtt
 
 public class MapfileSyntaxHighlighter extends SyntaxHighlighterBase {
 
-    public static final TextAttributesKey KEY =
-            createTextAttributesKey("MAPFILE_KEY", DefaultLanguageHighlighterColors.KEYWORD);
-    public static final TextAttributesKey VALUE =
-            createTextAttributesKey("MAPFILE_VALUE", DefaultLanguageHighlighterColors.STRING);
+    public static final TextAttributesKey OBJECT_KEYWORD =
+            createTextAttributesKey("MAPFILE_OBJECT_KEYWORD", DefaultLanguageHighlighterColors.KEYWORD);
+    public static final TextAttributesKey ATTRIBUTES =
+            createTextAttributesKey("MAPFILE_ATTRIBUTES", DefaultLanguageHighlighterColors.IDENTIFIER);
+    public static final TextAttributesKey CORE_ATTRIBUTES =
+            createTextAttributesKey("MAPFILE_CORE_ATTRIBUTES", DefaultLanguageHighlighterColors.CONSTANT);
+    public static final TextAttributesKey STRING_VALUE =
+            createTextAttributesKey("STRING_VALUE", DefaultLanguageHighlighterColors.STRING);
+    public static final TextAttributesKey NUMBER_VALUE =
+            createTextAttributesKey("NUMBER_VALUE", DefaultLanguageHighlighterColors.NUMBER);
     public static final TextAttributesKey COMMENT =
             createTextAttributesKey("MAPFILE_COMMENT", DefaultLanguageHighlighterColors.LINE_COMMENT);
     public static final TextAttributesKey BAD_CHARACTER =
             createTextAttributesKey("MAPFILE_BAD_CHARACTER", HighlighterColors.BAD_CHARACTER);
-
-    private static final TextAttributesKey[] BAD_CHAR_KEYS = new TextAttributesKey[]{BAD_CHARACTER};
-    private static final TextAttributesKey[] KEY_KEYS = new TextAttributesKey[]{KEY};
-    private static final TextAttributesKey[] VALUE_KEYS = new TextAttributesKey[]{VALUE};
-    private static final TextAttributesKey[] COMMENT_KEYS = new TextAttributesKey[]{COMMENT};
-    private static final TextAttributesKey[] EMPTY_KEYS = new TextAttributesKey[0];
 
     @NotNull
     @Override
@@ -41,16 +41,91 @@ public class MapfileSyntaxHighlighter extends SyntaxHighlighterBase {
     @NotNull
     @Override
     public TextAttributesKey[] getTokenHighlights(IElementType tokenType) {
-        if (Arrays.asList(MapfileTypes.END, MapfileTypes.MAP, MapfileTypes.LAYER).contains(tokenType)) {
-            return KEY_KEYS;
-        } else if (Arrays.asList(MapfileTypes.NUMBER, MapfileTypes.STRING).contains(tokenType)) {
-            return VALUE_KEYS;
-        } else if (Arrays.asList(MapfileTypes.COMMENT).contains(tokenType)) {
-            return COMMENT_KEYS;
+        if (Arrays.asList(
+                MapfileTypes.END,
+                MapfileTypes.MAP,
+                MapfileTypes.LAYER,
+                MapfileTypes.CLASS,
+                MapfileTypes.CLUSTER,
+                MapfileTypes.COMPOSITE,
+                MapfileTypes.FEATURE,
+                MapfileTypes.GRID,
+                MapfileTypes.JOIN,
+                MapfileTypes.METADATA,
+                MapfileTypes.PROJECTION,
+                MapfileTypes.VALIDATION,
+                MapfileTypes.TRUE,
+                MapfileTypes.FALSE).contains(tokenType)) {
+            return new TextAttributesKey[]{OBJECT_KEYWORD};
+
+        } else if (Arrays.asList(
+                MapfileTypes.NAME,
+                MapfileTypes.TITLE,
+                MapfileTypes.TYPE,
+                MapfileTypes.DATA,
+                MapfileTypes.CONNECTION).contains(tokenType)) {
+            return new TextAttributesKey[]{CORE_ATTRIBUTES};
+
+        } else if (Arrays.asList(
+                MapfileTypes.DEBUG,
+                MapfileTypes.EXTENT,
+                MapfileTypes.FILTER,
+                MapfileTypes.GEOMTRANSFORM,
+                MapfileTypes.LABELCACHE,
+                MapfileTypes.OFFSITE,
+                MapfileTypes.SIZEUNITS,
+                MapfileTypes.STATUS,
+                MapfileTypes.STYLEITEM,
+                MapfileTypes.TOLERANCEUNITS,
+                MapfileTypes.TRANSFORM,
+                MapfileTypes.UNIT,
+                MapfileTypes.CLASSGROUP,
+                MapfileTypes.CLASSITEM,
+                MapfileTypes.CONNECTIONTYPE,
+                MapfileTypes.DUMP,
+                MapfileTypes.ENCODING,
+                MapfileTypes.FOOTER,
+                MapfileTypes.FILTERITEM,
+                MapfileTypes.GROUP,
+                MapfileTypes.HEADER,
+                MapfileTypes.LABELITEM,
+                MapfileTypes.LABELMAXSCALEDENOM,
+                MapfileTypes.LABELMINSCALEDENOM,
+                MapfileTypes.LABELREQUIRES,
+                MapfileTypes.MASK,
+                MapfileTypes.MAXFEATURES,
+                MapfileTypes.MAXGEOWIDTH,
+                MapfileTypes.MAXSCALEDENOM,
+                MapfileTypes.MINGEOWIDTH,
+                MapfileTypes.MINSCALEDENOM,
+                MapfileTypes.PLUGIN,
+                MapfileTypes.POSTLABELCACHE,
+                MapfileTypes.PROCESSING,
+                MapfileTypes.REQUIRES,
+                MapfileTypes.SYMBOLSCALEDENOM,
+                MapfileTypes.TEMPLATE,
+                MapfileTypes.TILEINDEX,
+                MapfileTypes.TILEITEM,
+                MapfileTypes.TILESRS,
+                MapfileTypes.TOLERANCE,
+                MapfileTypes.UTFDATA,
+                MapfileTypes.UTFITEM).contains(tokenType)) {
+            return new TextAttributesKey[]{ATTRIBUTES};
+
+        } else if (MapfileTypes.STRING.equals(tokenType)) {
+            return new TextAttributesKey[]{STRING_VALUE};
+
+        } else if (MapfileTypes.NUMBER.equals(tokenType)) {
+            return new TextAttributesKey[]{NUMBER_VALUE};
+
+        } else if (MapfileTypes.COMMENT.equals(tokenType)) {
+            return new TextAttributesKey[]{COMMENT};
+
         } else if (tokenType.equals(TokenType.BAD_CHARACTER)) {
-            return BAD_CHAR_KEYS;
+            return new TextAttributesKey[]{BAD_CHARACTER};
+
         } else {
-            return EMPTY_KEYS;
+            return new TextAttributesKey[0];
         }
     }
 }
