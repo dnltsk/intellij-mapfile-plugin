@@ -39,28 +39,35 @@ public class MapfileColorSettingsPage  implements ColorSettingsPage {
     @NotNull
     @Override
     public String getDemoText() {
-        return "MAP \n" +
-                "    NAME 'name'\n" +
-                "    TITLE \"bar title\"\n" +
+        return "MAP\n" +
+                "    NAME \"sample\"\n" +
+                "    STATUS ON\n" +
+                "    SIZE 600 400\n" +
+                "    SYMBOLSET \"../etc/symbols.txt\"\n" +
+                "    EXTENT -180 -90 180 90\n" +
+                "    UNITS DD\n" +
+                "    SHAPEPATH \"../data\"\n" +
+                "    IMAGECOLOR 255 255 255\n" +
+                "    FONTSET \"../etc/fonts.txt\"\n" +
+                "\n" +
+                "    #\n" +
+                "    # Start of web interface definition\n" +
+                "    #\n" +
+                "    WEB\n" +
+                "        IMAGEPATH \"/ms4w/tmp/ms_tmp/\"\n" +
+                "        IMAGEURL \"/ms_tmp/\"\n" +
+                "    END # WEB\n" +
+                "\n" +
+                "    #\n" +
+                "    # Start of layer definitions\n" +
+                "    #\n" +
                 "    LAYER\n" +
-                "      LABELCACHe OFF\n" +
-                "      NAME \"layer alarm\"\n" +
-                "      TYPE CIRCLE\n" +
-                "      STATUS on\n" +
-                "      Title \"foo\n" +
-                "      FEATURE\n" +
-                "        POINTS\n" +
-                "          74.01 -53.8\n" +
-                "          110.7 -22.16\n" +
-                "        END\n" +
-                "      END\n" +
-                "      CLASS\n" +
-                "        STYLE\n" +
-                "          COLOR 0 0 255\n" +
-                "        END\n" +
-                "      END\n" +
-                "    END\n" +
-                "END";
+                "        NAME \"global-raster\"\n" +
+                "        TYPE RASTER\n" +
+                "        STATUS DEFAULT\n" +
+                "        DATA \"bluemarble.gif\"\n" +
+                "    END # LAYER\n" +
+                "END # MAP";
     }
 
     @Nullable
