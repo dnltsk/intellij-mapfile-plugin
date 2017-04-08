@@ -4,16 +4,16 @@ Editor support for Mapfiles of the UMN Mapserver. It is designed to support Maps
 
 ## Features
 
-* Syntax Validation
-* Syntax Highlighting (Color Settings Page)
-* ~~Helpers and Utilities~~
-* ~~Autocompletion (Ctrl+Space)~~
-* ~~References~~
-* ~~Find Usages (Alt+F7)~~
-* ~~Folding~~
-* ~~Structure View~~
-* ~~Formatter (Cmd+Shift+L)~~
-* ~~Quick Fix (Cmd+Return)~~
+* ![in progress](https://img.shields.io/badge/status-in%20progress-yellow.svg) Syntax Validation
+* ![in progress](https://img.shields.io/badge/status-in%20progress-yellow.svg) Syntax Highlighting (Color Settings Page) - in progress
+* ![not started](https://img.shields.io/badge/status-not%20started-lightgray.svg) Helpers and Utilities
+* ![not started](https://img.shields.io/badge/status-not%20started-lightgray.svg) Autocompletion (Ctrl+Space)
+* ![not started](https://img.shields.io/badge/status-not%20started-lightgray.svg) References
+* ![not started](https://img.shields.io/badge/status-not%20started-lightgray.svg) Find Usages (Alt+F7)
+* ![not started](https://img.shields.io/badge/status-not%20started-lightgray.svg) Folding
+* ![not started](https://img.shields.io/badge/status-not%20started-lightgray.svg) Structure View
+* ![not started](https://img.shields.io/badge/status-not%20started-lightgray.svg) Formatter (Cmd+Shift+L)
+* ![not started](https://img.shields.io/badge/status-not%20started-lightgray.svg) Quick Fix (Cmd+Return)
  
 ![very early state](resources/META-INF/sneak-preview-screenshot.png "very early state")
 
