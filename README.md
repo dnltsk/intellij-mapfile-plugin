@@ -5,7 +5,7 @@ Editor support for Mapfiles of the UMN Mapserver. It is designed to support Maps
 ## Features
 
 * ![in progress](https://img.shields.io/badge/status-in%20progress-yellow.svg) Syntax Validation
-* ![in progress](https://img.shields.io/badge/status-in%20progress-yellow.svg) Syntax Highlighting (Color Settings Page) - in progress
+* ![in progress](https://img.shields.io/badge/status-in%20progress-yellow.svg) Syntax Highlighting (Color Settings Page)
 * ![not started](https://img.shields.io/badge/status-not%20started-lightgray.svg) Helpers and Utilities
 * ![not started](https://img.shields.io/badge/status-not%20started-lightgray.svg) Autocompletion (Ctrl+Space)
 * ![not started](https://img.shields.io/badge/status-not%20started-lightgray.svg) References
