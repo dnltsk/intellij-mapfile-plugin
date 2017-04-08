@@ -10,17 +10,18 @@ import static org.dnltsk.mapfileplugin.psi.MapfileTypes.*;
 %%
 
 %{
-  public _MapfileLexer() {
+  public MapfileLexer() {
     this((java.io.Reader)null);
   }
 %}
 
 %public
-%class _MapfileLexer
+%class MapfileLexer
 %implements FlexLexer
 %function advance
 %type IElementType
 %unicode
+%ignorecase
 
 EOL=\R
 WHITE_SPACE=\s+
