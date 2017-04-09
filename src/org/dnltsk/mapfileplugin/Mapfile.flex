@@ -64,6 +64,7 @@ STRING=('([^'\\]|\\.)*'|\"([^\"\\]|\\.)*\")
   "VALIDATION"            { return VALIDATION; }
   "WEB"                   { return WEB; }
   "ANGLE"                 { return ANGLE; }
+  "BROWSEFORMAT"          { return BROWSEFORMAT; }
   "CLASSGROUP"            { return CLASSGROUP; }
   "CLASSITEM"             { return CLASSITEM; }
   "CONFIG"                { return CONFIG; }
@@ -80,6 +81,8 @@ STRING=('([^'\\]|\\.)*'|\"([^\"\\]|\\.)*\")
   "DEBUG"                 { return DEBUG; }
   "DEFRESOLUTION"         { return DEFRESOLUTION; }
   "DUMP"                  { return DUMP; }
+  "EMPTY"                 { return EMPTY; }
+  "ERROR"                 { return ERROR; }
   "ENCODING"              { return ENCODING; }
   "EXTENT"                { return EXTENT; }
   "FILTERITEM"            { return FILTERITEM; }
@@ -92,23 +95,29 @@ STRING=('([^'\\]|\\.)*'|\"([^\"\\]|\\.)*\")
   "GROUP"                 { return GROUP; }
   "HEADER"                { return HEADER; }
   "IMAGECOLOR"            { return IMAGECOLOR; }
+  "IMAGEPATH"             { return IMAGEPATH; }
+  "IMAGEURL"              { return IMAGEURL; }
   "INTERLACE"             { return INTERLACE; }
   "LABELITEM"             { return LABELITEM; }
   "LABELMAXSCALEDENOM"    { return LABELMAXSCALEDENOM; }
   "LABELMINSCALEDENOM"    { return LABELMINSCALEDENOM; }
   "LABELREQUIRES"         { return LABELREQUIRES; }
+  "LEGENDFORMAT"          { return LEGENDFORMAT; }
   "MASK"                  { return MASK; }
   "MAXFEATURES"           { return MAXFEATURES; }
   "MAXGEOWIDTH"           { return MAXGEOWIDTH; }
   "MAXSCALEDENOM"         { return MAXSCALEDENOM; }
   "MAXSIZE"               { return MAXSIZE; }
+  "MAXTEMPLATE"           { return MAXTEMPLATE; }
   "MINGEOWIDTH"           { return MINGEOWIDTH; }
   "MINSCALEDENOM"         { return MINSCALEDENOM; }
+  "MINTEMPLATE"           { return MINTEMPLATE; }
   "NAME"                  { return NAME; }
   "OFFSITE"               { return OFFSITE; }
   "PLUGIN"                { return PLUGIN; }
   "POSTLABELCACHE"        { return POSTLABELCACHE; }
   "PROCESSING"            { return PROCESSING; }
+  "QUERYFORMAT"           { return QUERYFORMAT; }
   "REQUIRES"              { return REQUIRES; }
   "RESOLUTION"            { return RESOLUTION; }
   "SCALEDENOM"            { return SCALEDENOM; }
@@ -121,6 +130,7 @@ STRING=('([^'\\]|\\.)*'|\"([^\"\\]|\\.)*\")
   "SYMBOLSET"             { return SYMBOLSET; }
   "TEMPLATE"              { return TEMPLATE; }
   "TEMPLATEPATTERN"       { return TEMPLATEPATTERN; }
+  "TEMPPATH"              { return TEMPPATH; }
   "TILEINDEX"             { return TILEINDEX; }
   "TILEITEM"              { return TILEITEM; }
   "TILESRS"               { return TILESRS; }

@@ -44,6 +44,18 @@ public class MapfileParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
+  // BROWSEFORMAT string
+  static boolean BrowseformatAttr(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "BrowseformatAttr")) return false;
+    if (!nextTokenIs(b, BROWSEFORMAT)) return false;
+    boolean r;
+    Marker m = enter_section_(b);
+    r = consumeTokens(b, 0, BROWSEFORMAT, STRING);
+    exit_section_(b, m, null, r);
+    return r;
+  }
+
+  /* ********************************************************** */
   // CLASS END
   static boolean ClassObject(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "ClassObject")) return false;
@@ -292,6 +304,18 @@ public class MapfileParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
+  // EMPTY string
+  static boolean EmptyAttr(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "EmptyAttr")) return false;
+    if (!nextTokenIs(b, EMPTY)) return false;
+    boolean r;
+    Marker m = enter_section_(b);
+    r = consumeTokens(b, 0, EMPTY, STRING);
+    exit_section_(b, m, null, r);
+    return r;
+  }
+
+  /* ********************************************************** */
   // ENCODING string
   static boolean EncodingAttr(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "EncodingAttr")) return false;
@@ -299,6 +323,18 @@ public class MapfileParser implements PsiParser, LightPsiParser {
     boolean r;
     Marker m = enter_section_(b);
     r = consumeTokens(b, 0, ENCODING, STRING);
+    exit_section_(b, m, null, r);
+    return r;
+  }
+
+  /* ********************************************************** */
+  // ERROR string
+  static boolean ErrorAttr(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "ErrorAttr")) return false;
+    if (!nextTokenIs(b, ERROR)) return false;
+    boolean r;
+    Marker m = enter_section_(b);
+    r = consumeTokens(b, 0, ERROR, STRING);
     exit_section_(b, m, null, r);
     return r;
   }
@@ -458,6 +494,18 @@ public class MapfileParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
+  // IMAGEPATH string
+  static boolean ImagepathAttr(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "ImagepathAttr")) return false;
+    if (!nextTokenIs(b, IMAGEPATH)) return false;
+    boolean r;
+    Marker m = enter_section_(b);
+    r = consumeTokens(b, 0, IMAGEPATH, STRING);
+    exit_section_(b, m, null, r);
+    return r;
+  }
+
+  /* ********************************************************** */
   // IMAGETYPE imagetypeValues
   static boolean ImagetypeAttr(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "ImagetypeAttr")) return false;
@@ -466,6 +514,18 @@ public class MapfileParser implements PsiParser, LightPsiParser {
     Marker m = enter_section_(b);
     r = consumeToken(b, IMAGETYPE);
     r = r && imagetypeValues(b, l + 1);
+    exit_section_(b, m, null, r);
+    return r;
+  }
+
+  /* ********************************************************** */
+  // IMAGEURL string
+  static boolean ImageurlAttr(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "ImageurlAttr")) return false;
+    if (!nextTokenIs(b, IMAGEURL)) return false;
+    boolean r;
+    Marker m = enter_section_(b);
+    r = consumeTokens(b, 0, IMAGEURL, STRING);
     exit_section_(b, m, null, r);
     return r;
   }
@@ -564,11 +624,11 @@ public class MapfileParser implements PsiParser, LightPsiParser {
   //         | EncodingAttr | ExtentAttr | FilterAttr | FooterAttr | FilteritemAttr | GeomtransformAttr | GroupAttr
   //         | HeaderAttr | LabelcacheAttr | LabelitemAttr | LabelmaxscaledenomAttr | LabelminscaledenomAttr
   //         | LabelrequiresAttr | MaskAttr | MaxfeaturesAttr | MaxgeowidthAttr | MaxscaledenomAttr | MingeowidthAttr
-  //         | Minscaledenom | NameAttr | PluginAttr | PostlabelcacheAttr | ProcessingAttr | OffsiteAttr | SizeunitsAttr
+  //         | MinscaledenomAttr | NameAttr | PluginAttr | PostlabelcacheAttr | ProcessingAttr | OffsiteAttr | SizeunitsAttr
   //         | RequiresAttr | StatusAttr | StyleitemAttr | SymbolscaledenomAttr | TemplateAttr | TileindexAttr
   //         | TileitemAttr | TilesrsAttr | TitleAttr | ToleranceunitsAttr | ToleranceAttr | TransformAttr | TypeAttr
   //         | UnitsAttr | UtfdataAttr | UtfitemAttr
-  //     ) LayerAttributes *
+  //     ) LayerAttributes*
   static boolean LayerAttributes(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "LayerAttributes")) return false;
     boolean r;
@@ -585,7 +645,7 @@ public class MapfileParser implements PsiParser, LightPsiParser {
   //         | EncodingAttr | ExtentAttr | FilterAttr | FooterAttr | FilteritemAttr | GeomtransformAttr | GroupAttr
   //         | HeaderAttr | LabelcacheAttr | LabelitemAttr | LabelmaxscaledenomAttr | LabelminscaledenomAttr
   //         | LabelrequiresAttr | MaskAttr | MaxfeaturesAttr | MaxgeowidthAttr | MaxscaledenomAttr | MingeowidthAttr
-  //         | Minscaledenom | NameAttr | PluginAttr | PostlabelcacheAttr | ProcessingAttr | OffsiteAttr | SizeunitsAttr
+  //         | MinscaledenomAttr | NameAttr | PluginAttr | PostlabelcacheAttr | ProcessingAttr | OffsiteAttr | SizeunitsAttr
   //         | RequiresAttr | StatusAttr | StyleitemAttr | SymbolscaledenomAttr | TemplateAttr | TileindexAttr
   //         | TileitemAttr | TilesrsAttr | TitleAttr | ToleranceunitsAttr | ToleranceAttr | TransformAttr | TypeAttr
   //         | UnitsAttr | UtfdataAttr | UtfitemAttr
@@ -627,7 +687,7 @@ public class MapfileParser implements PsiParser, LightPsiParser {
     if (!r) r = MaxgeowidthAttr(b, l + 1);
     if (!r) r = MaxscaledenomAttr(b, l + 1);
     if (!r) r = MingeowidthAttr(b, l + 1);
-    if (!r) r = Minscaledenom(b, l + 1);
+    if (!r) r = MinscaledenomAttr(b, l + 1);
     if (!r) r = NameAttr(b, l + 1);
     if (!r) r = PluginAttr(b, l + 1);
     if (!r) r = PostlabelcacheAttr(b, l + 1);
@@ -654,7 +714,7 @@ public class MapfileParser implements PsiParser, LightPsiParser {
     return r;
   }
 
-  // LayerAttributes *
+  // LayerAttributes*
   private static boolean LayerAttributes_1(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "LayerAttributes_1")) return false;
     int c = current_position_(b);
@@ -693,13 +753,25 @@ public class MapfileParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
+  // LEGENDFORMAT string
+  static boolean LegendformatAttr(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "LegendformatAttr")) return false;
+    if (!nextTokenIs(b, LEGENDFORMAT)) return false;
+    boolean r;
+    Marker m = enter_section_(b);
+    r = consumeTokens(b, 0, LEGENDFORMAT, STRING);
+    exit_section_(b, m, null, r);
+    return r;
+  }
+
+  /* ********************************************************** */
   // (
   //         LayerObject | LegendObject | ProjectionObject | QuerymapObject | ReferenceObject | ScalebarObject
   //         | SymbolObject | WebObject
   //         | AngleAttr | ConfigAttr | DatapatternAttr | DebugAttr | DefresolutionAttr | ExtentAttr | FontsetAttr
   //         | ImagecolorAttr | ImagetypeAttr | InterlaceAttr | MaxsizeAttr | NameAttr | ResolutionAttr
   //         | ScaledenomAttr | ShapepathAttr | SizeAttr | StatusAttr | SymbolsetAttr | TemplatepatternAttr | UnitsAttr
-  //     ) MapAttributes *
+  //     ) MapAttributes*
   static boolean MapAttributes(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "MapAttributes")) return false;
     boolean r;
@@ -751,7 +823,7 @@ public class MapfileParser implements PsiParser, LightPsiParser {
     return r;
   }
 
-  // MapAttributes *
+  // MapAttributes*
   private static boolean MapAttributes_1(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "MapAttributes_1")) return false;
     int c = current_position_(b);
@@ -838,6 +910,18 @@ public class MapfileParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
+  // MAXTEMPLATE string
+  static boolean MaxtemplateAttr(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "MaxtemplateAttr")) return false;
+    if (!nextTokenIs(b, MAXTEMPLATE)) return false;
+    boolean r;
+    Marker m = enter_section_(b);
+    r = consumeTokens(b, 0, MAXTEMPLATE, STRING);
+    exit_section_(b, m, null, r);
+    return r;
+  }
+
+  /* ********************************************************** */
   // METADATA END
   static boolean MetadataObject(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "MetadataObject")) return false;
@@ -863,12 +947,24 @@ public class MapfileParser implements PsiParser, LightPsiParser {
 
   /* ********************************************************** */
   // MINSCALEDENOM number
-  static boolean Minscaledenom(PsiBuilder b, int l) {
-    if (!recursion_guard_(b, l, "Minscaledenom")) return false;
+  static boolean MinscaledenomAttr(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "MinscaledenomAttr")) return false;
     if (!nextTokenIs(b, MINSCALEDENOM)) return false;
     boolean r;
     Marker m = enter_section_(b);
     r = consumeTokens(b, 0, MINSCALEDENOM, NUMBER);
+    exit_section_(b, m, null, r);
+    return r;
+  }
+
+  /* ********************************************************** */
+  // MINTEMPLATE string
+  static boolean MintemplateAttr(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "MintemplateAttr")) return false;
+    if (!nextTokenIs(b, MINTEMPLATE)) return false;
+    boolean r;
+    Marker m = enter_section_(b);
+    r = consumeTokens(b, 0, MINTEMPLATE, STRING);
     exit_section_(b, m, null, r);
     return r;
   }
@@ -964,6 +1060,18 @@ public class MapfileParser implements PsiParser, LightPsiParser {
     boolean r;
     Marker m = enter_section_(b);
     r = consumeTokens(b, 0, PROJECTION, END);
+    exit_section_(b, m, null, r);
+    return r;
+  }
+
+  /* ********************************************************** */
+  // QUERYFORMAT string
+  static boolean QueryformatAttr(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "QueryformatAttr")) return false;
+    if (!nextTokenIs(b, QUERYFORMAT)) return false;
+    boolean r;
+    Marker m = enter_section_(b);
+    r = consumeTokens(b, 0, QUERYFORMAT, STRING);
     exit_section_(b, m, null, r);
     return r;
   }
@@ -1163,6 +1271,18 @@ public class MapfileParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
+  // TEMPPATH string
+  static boolean TemppathAttr(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "TemppathAttr")) return false;
+    if (!nextTokenIs(b, TEMPPATH)) return false;
+    boolean r;
+    Marker m = enter_section_(b);
+    r = consumeTokens(b, 0, TEMPPATH, STRING);
+    exit_section_(b, m, null, r);
+    return r;
+  }
+
+  /* ********************************************************** */
   // TILEINDEX string
   static boolean TileindexAttr(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "TileindexAttr")) return false;
@@ -1311,13 +1431,73 @@ public class MapfileParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
-  // WEB END
+  // (
+  //         MetadataObject | ValidationObject
+  //         | BrowseformatAttr | EmptyAttr | ErrorAttr | FooterAttr | HeaderAttr | ImagepathAttr | ImageurlAttr
+  //         | LegendformatAttr | MaxscaledenomAttr | MaxtemplateAttr | MinscaledenomAttr | MintemplateAttr
+  //         | QueryformatAttr | TemplateAttr | TemppathAttr
+  //     ) WebAttributes*
+  static boolean WebAttributes(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "WebAttributes")) return false;
+    boolean r;
+    Marker m = enter_section_(b);
+    r = WebAttributes_0(b, l + 1);
+    r = r && WebAttributes_1(b, l + 1);
+    exit_section_(b, m, null, r);
+    return r;
+  }
+
+  // MetadataObject | ValidationObject
+  //         | BrowseformatAttr | EmptyAttr | ErrorAttr | FooterAttr | HeaderAttr | ImagepathAttr | ImageurlAttr
+  //         | LegendformatAttr | MaxscaledenomAttr | MaxtemplateAttr | MinscaledenomAttr | MintemplateAttr
+  //         | QueryformatAttr | TemplateAttr | TemppathAttr
+  private static boolean WebAttributes_0(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "WebAttributes_0")) return false;
+    boolean r;
+    Marker m = enter_section_(b);
+    r = MetadataObject(b, l + 1);
+    if (!r) r = ValidationObject(b, l + 1);
+    if (!r) r = BrowseformatAttr(b, l + 1);
+    if (!r) r = EmptyAttr(b, l + 1);
+    if (!r) r = ErrorAttr(b, l + 1);
+    if (!r) r = FooterAttr(b, l + 1);
+    if (!r) r = HeaderAttr(b, l + 1);
+    if (!r) r = ImagepathAttr(b, l + 1);
+    if (!r) r = ImageurlAttr(b, l + 1);
+    if (!r) r = LegendformatAttr(b, l + 1);
+    if (!r) r = MaxscaledenomAttr(b, l + 1);
+    if (!r) r = MaxtemplateAttr(b, l + 1);
+    if (!r) r = MinscaledenomAttr(b, l + 1);
+    if (!r) r = MintemplateAttr(b, l + 1);
+    if (!r) r = QueryformatAttr(b, l + 1);
+    if (!r) r = TemplateAttr(b, l + 1);
+    if (!r) r = TemppathAttr(b, l + 1);
+    exit_section_(b, m, null, r);
+    return r;
+  }
+
+  // WebAttributes*
+  private static boolean WebAttributes_1(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "WebAttributes_1")) return false;
+    int c = current_position_(b);
+    while (true) {
+      if (!WebAttributes(b, l + 1)) break;
+      if (!empty_element_parsed_guard_(b, "WebAttributes_1", c)) break;
+      c = current_position_(b);
+    }
+    return true;
+  }
+
+  /* ********************************************************** */
+  // WEB WebAttributes END
   static boolean WebObject(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "WebObject")) return false;
     if (!nextTokenIs(b, WEB)) return false;
     boolean r;
     Marker m = enter_section_(b);
-    r = consumeTokens(b, 0, WEB, END);
+    r = consumeToken(b, WEB);
+    r = r && WebAttributes(b, l + 1);
+    r = r && consumeToken(b, END);
     exit_section_(b, m, null, r);
     return r;
   }
