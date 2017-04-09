@@ -20,7 +20,7 @@ Editor support for Mapfiles of the UMN Mapserver. It supports Mapserver Release 
 ## Resources
 
 * Mapfile Documentation<br/>
-http://mapserver.org/documentation.html#mapfile
+http://mapserver.org/mapfile/index.html
 
 * Custom Language Support Tutorial<br/>
 http://www.jetbrains.org/intellij/sdk/docs/tutorials/custom_language_support_tutorial.html
