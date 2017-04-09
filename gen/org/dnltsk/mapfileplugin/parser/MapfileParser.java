@@ -349,16 +349,16 @@ public class MapfileParser implements PsiParser, LightPsiParser {
 
   /* ********************************************************** */
   // (
-  //       ClassObject | ClusterObject | CompositeObject | FeatureObject | GridObject | JoinObject | MetadataObject
-  //       | ProjectionObject | ValidationObject
-  //       | ClassgroupAttr | ClassitemAttr | ConnectionAttr | ConnectiontypeAttr | DataAttr | DebugAttr | DumpAttr
-  //       | EncodingAttr | ExtentAttr | FilterAttr | FooterAttr | FilteritemAttr | GeomtransformAttr | GroupAttr
-  //       | HeaderAttr | LabelcacheAttr | LabelitemAttr | LabelmaxscaledenomAttr | LabelminscaledenomAttr
-  //       | LabelrequiresAttr | MaskAttr | MaxfeaturesAttr | MaxgeowidthAttr | MaxscaledenomAttr | MingeowidthAttr
-  //       | Minscaledenom | NameAttr | PluginAttr | PostlabelcacheAttr | ProcessingAttr | OffsiteAttr | SizeunitsAttr
-  //       | RequiresAttr | StatusAttr | StyleitemAttr | SymbolscaledenomAttr | TemplateAttr | TileindexAttr
-  //       | TileitemAttr | TilesrsAttr | TitleAttr | ToleranceunitsAttr | ToleranceAttr | TransformAttr | TypeAttr
-  //       | UnitAttr | UtfdataAttr | UtfitemAttr
+  //         ClassObject | ClusterObject | CompositeObject | FeatureObject | GridObject | JoinObject | MetadataObject
+  //         | ProjectionObject | ValidationObject
+  //         | ClassgroupAttr | ClassitemAttr | ConnectionAttr | ConnectiontypeAttr | DataAttr | DebugAttr | DumpAttr
+  //         | EncodingAttr | ExtentAttr | FilterAttr | FooterAttr | FilteritemAttr | GeomtransformAttr | GroupAttr
+  //         | HeaderAttr | LabelcacheAttr | LabelitemAttr | LabelmaxscaledenomAttr | LabelminscaledenomAttr
+  //         | LabelrequiresAttr | MaskAttr | MaxfeaturesAttr | MaxgeowidthAttr | MaxscaledenomAttr | MingeowidthAttr
+  //         | Minscaledenom | NameAttr | PluginAttr | PostlabelcacheAttr | ProcessingAttr | OffsiteAttr | SizeunitsAttr
+  //         | RequiresAttr | StatusAttr | StyleitemAttr | SymbolscaledenomAttr | TemplateAttr | TileindexAttr
+  //         | TileitemAttr | TilesrsAttr | TitleAttr | ToleranceunitsAttr | ToleranceAttr | TransformAttr | TypeAttr
+  //         | UnitAttr | UtfdataAttr | UtfitemAttr
   //     ) LayerAttributes *
   static boolean LayerAttributes(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "LayerAttributes")) return false;
@@ -371,15 +371,15 @@ public class MapfileParser implements PsiParser, LightPsiParser {
   }
 
   // ClassObject | ClusterObject | CompositeObject | FeatureObject | GridObject | JoinObject | MetadataObject
-  //       | ProjectionObject | ValidationObject
-  //       | ClassgroupAttr | ClassitemAttr | ConnectionAttr | ConnectiontypeAttr | DataAttr | DebugAttr | DumpAttr
-  //       | EncodingAttr | ExtentAttr | FilterAttr | FooterAttr | FilteritemAttr | GeomtransformAttr | GroupAttr
-  //       | HeaderAttr | LabelcacheAttr | LabelitemAttr | LabelmaxscaledenomAttr | LabelminscaledenomAttr
-  //       | LabelrequiresAttr | MaskAttr | MaxfeaturesAttr | MaxgeowidthAttr | MaxscaledenomAttr | MingeowidthAttr
-  //       | Minscaledenom | NameAttr | PluginAttr | PostlabelcacheAttr | ProcessingAttr | OffsiteAttr | SizeunitsAttr
-  //       | RequiresAttr | StatusAttr | StyleitemAttr | SymbolscaledenomAttr | TemplateAttr | TileindexAttr
-  //       | TileitemAttr | TilesrsAttr | TitleAttr | ToleranceunitsAttr | ToleranceAttr | TransformAttr | TypeAttr
-  //       | UnitAttr | UtfdataAttr | UtfitemAttr
+  //         | ProjectionObject | ValidationObject
+  //         | ClassgroupAttr | ClassitemAttr | ConnectionAttr | ConnectiontypeAttr | DataAttr | DebugAttr | DumpAttr
+  //         | EncodingAttr | ExtentAttr | FilterAttr | FooterAttr | FilteritemAttr | GeomtransformAttr | GroupAttr
+  //         | HeaderAttr | LabelcacheAttr | LabelitemAttr | LabelmaxscaledenomAttr | LabelminscaledenomAttr
+  //         | LabelrequiresAttr | MaskAttr | MaxfeaturesAttr | MaxgeowidthAttr | MaxscaledenomAttr | MingeowidthAttr
+  //         | Minscaledenom | NameAttr | PluginAttr | PostlabelcacheAttr | ProcessingAttr | OffsiteAttr | SizeunitsAttr
+  //         | RequiresAttr | StatusAttr | StyleitemAttr | SymbolscaledenomAttr | TemplateAttr | TileindexAttr
+  //         | TileitemAttr | TilesrsAttr | TitleAttr | ToleranceunitsAttr | ToleranceAttr | TransformAttr | TypeAttr
+  //         | UnitAttr | UtfdataAttr | UtfitemAttr
   private static boolean LayerAttributes_0(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "LayerAttributes_0")) return false;
     boolean r;
@@ -472,9 +472,13 @@ public class MapfileParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
-  // ( NameAttr | TitleAttr | LayerObject ) MapAttributes *
+  // (
+  //         LayerObject
+  //         NameAttr | TitleAttr
+  //     ) MapAttributes *
   static boolean MapAttributes(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "MapAttributes")) return false;
+    if (!nextTokenIs(b, "", LAYER, TITLE)) return false;
     boolean r;
     Marker m = enter_section_(b);
     r = MapAttributes_0(b, l + 1);
@@ -483,14 +487,26 @@ public class MapfileParser implements PsiParser, LightPsiParser {
     return r;
   }
 
-  // NameAttr | TitleAttr | LayerObject
+  // LayerObject
+  //         NameAttr | TitleAttr
   private static boolean MapAttributes_0(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "MapAttributes_0")) return false;
     boolean r;
     Marker m = enter_section_(b);
-    r = NameAttr(b, l + 1);
+    r = MapAttributes_0_0(b, l + 1);
     if (!r) r = TitleAttr(b, l + 1);
-    if (!r) r = LayerObject(b, l + 1);
+    exit_section_(b, m, null, r);
+    return r;
+  }
+
+  // LayerObject
+  //         NameAttr
+  private static boolean MapAttributes_0_0(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "MapAttributes_0_0")) return false;
+    boolean r;
+    Marker m = enter_section_(b);
+    r = LayerObject(b, l + 1);
+    r = r && NameAttr(b, l + 1);
     exit_section_(b, m, null, r);
     return r;
   }

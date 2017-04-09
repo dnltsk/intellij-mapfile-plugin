@@ -37,22 +37,28 @@
 mapfile ::= (MapObject | LayerObject)
 
 private MapObject ::= MAP MapAttributes END
-private MapAttributes ::= ( NameAttr | TitleAttr | LayerObject ) MapAttributes *
+private MapAttributes ::=
+    (
+        LayerObject
+
+        NameAttr | TitleAttr
+
+    ) MapAttributes *
 
 private LayerObject ::= LAYER LayerAttributes END
 private LayerAttributes ::=
     (
-      ClassObject | ClusterObject | CompositeObject | FeatureObject | GridObject | JoinObject | MetadataObject
-      | ProjectionObject | ValidationObject
+        ClassObject | ClusterObject | CompositeObject | FeatureObject | GridObject | JoinObject | MetadataObject
+        | ProjectionObject | ValidationObject
 
-      | ClassgroupAttr | ClassitemAttr | ConnectionAttr | ConnectiontypeAttr | DataAttr | DebugAttr | DumpAttr
-      | EncodingAttr | ExtentAttr | FilterAttr | FooterAttr | FilteritemAttr | GeomtransformAttr | GroupAttr
-      | HeaderAttr | LabelcacheAttr | LabelitemAttr | LabelmaxscaledenomAttr | LabelminscaledenomAttr
-      | LabelrequiresAttr | MaskAttr | MaxfeaturesAttr | MaxgeowidthAttr | MaxscaledenomAttr | MingeowidthAttr
-      | Minscaledenom | NameAttr | PluginAttr | PostlabelcacheAttr | ProcessingAttr | OffsiteAttr | SizeunitsAttr
-      | RequiresAttr | StatusAttr | StyleitemAttr | SymbolscaledenomAttr | TemplateAttr | TileindexAttr
-      | TileitemAttr | TilesrsAttr | TitleAttr | ToleranceunitsAttr | ToleranceAttr | TransformAttr | TypeAttr
-      | UnitAttr | UtfdataAttr | UtfitemAttr
+        | ClassgroupAttr | ClassitemAttr | ConnectionAttr | ConnectiontypeAttr | DataAttr | DebugAttr | DumpAttr
+        | EncodingAttr | ExtentAttr | FilterAttr | FooterAttr | FilteritemAttr | GeomtransformAttr | GroupAttr
+        | HeaderAttr | LabelcacheAttr | LabelitemAttr | LabelmaxscaledenomAttr | LabelminscaledenomAttr
+        | LabelrequiresAttr | MaskAttr | MaxfeaturesAttr | MaxgeowidthAttr | MaxscaledenomAttr | MingeowidthAttr
+        | Minscaledenom | NameAttr | PluginAttr | PostlabelcacheAttr | ProcessingAttr | OffsiteAttr | SizeunitsAttr
+        | RequiresAttr | StatusAttr | StyleitemAttr | SymbolscaledenomAttr | TemplateAttr | TileindexAttr
+        | TileitemAttr | TilesrsAttr | TitleAttr | ToleranceunitsAttr | ToleranceAttr | TransformAttr | TypeAttr
+        | UnitAttr | UtfdataAttr | UtfitemAttr
 
     ) LayerAttributes *
 
@@ -77,30 +83,20 @@ private ValidationObject ::= VALIDATION END
 //
 // ATTRIBUTES
 //
+private ClassgroupAttr ::= CLASSGROUP string
+private ClassitemAttr ::= CLASSITEM string
+private ConnectionAttr ::= CONNECTION string
 private ConnectiontypeAttr ::= CONNECTIONTYPE connectionTypeValues
+private DataAttr ::= DATA string
 private DebugAttr ::= DEBUG debugValues
+private DumpAttr ::= DUMP booleanValues
+private EncodingAttr ::= ENCODING string
 private ExtentAttr ::= EXTENT number number number number // double!
 private FilterAttr ::= FILTER string // TODO: expression!
 private GeomtransformAttr ::= GEOMTRANSFORM string // [<expression>|<Javascript file>]
 private LabelcacheAttr ::= LABELCACHE onOffValues
-private OffsiteAttr ::= OFFSITE ( string | (number number number) )
-private SizeunitsAttr ::= SIZEUNITS sizeUnitValues
-private StatusAttr ::= STATUS statusValues
-private StyleitemAttr ::= STYLEITEM string // [<attribute>|auto|<javascript file>]
-private ToleranceunitsAttr ::= TOLERANCEUNITS toleranceUnitValues
-private TransformAttr ::= TRANSFORM transformValues
-private TypeAttr ::= TYPE typeValues
-private UnitAttr ::= UNIT unitValues
-private NameAttr ::= NAME string
-private TitleAttr ::= TITLE string
-private ClassgroupAttr ::= CLASSGROUP string
-private ClassitemAttr ::= CLASSITEM string
-private ConnectionAttr ::= CONNECTION string
-private DataAttr ::= DATA string
-private DumpAttr ::= DUMP booleanValues
-private EncodingAttr ::= ENCODING string
-private FooterAttr ::= FOOTER string //filename
 private FilteritemAttr ::= FILTERITEM string
+private FooterAttr ::= FOOTER string //filename
 private GroupAttr ::= GROUP string
 private HeaderAttr ::= HEADER string //filename
 private LabelitemAttr ::= LABELITEM string
@@ -113,16 +109,26 @@ private MaxgeowidthAttr ::= MAXGEOWIDTH number //double
 private MaxscaledenomAttr ::= MAXSCALEDENOM number //double
 private MingeowidthAttr ::= MINGEOWIDTH number //double
 private Minscaledenom ::= MINSCALEDENOM number //double
+private NameAttr ::= NAME string
+private OffsiteAttr ::= OFFSITE ( string | (number number number) )
 private PluginAttr ::= PLUGIN string // filename
 private PostlabelcacheAttr ::= POSTLABELCACHE booleanValues
 private ProcessingAttr ::= PROCESSING string
 private RequiresAttr ::= REQUIRES string // expression
+private SizeunitsAttr ::= SIZEUNITS sizeUnitValues
+private StatusAttr ::= STATUS statusValues
+private StyleitemAttr ::= STYLEITEM string // [<attribute>|auto|<javascript file>]
 private SymbolscaledenomAttr ::= SYMBOLSCALEDENOM number // double
 private TemplateAttr ::= TEMPLATE string // [file|url]
 private TileindexAttr ::= TILEINDEX string // [filename|layername]
 private TileitemAttr ::= TILEITEM string // [attribute]
 private TilesrsAttr ::= TILESRS string // [attribute]
+private TitleAttr ::= TITLE string
 private ToleranceAttr ::= TOLERANCE number // double
+private ToleranceunitsAttr ::= TOLERANCEUNITS toleranceUnitValues
+private TransformAttr ::= TRANSFORM transformValues
+private TypeAttr ::= TYPE typeValues
+private UnitAttr ::= UNIT unitValues
 private UtfdataAttr ::= UTFDATA string
 private UtfitemAttr ::= UTFITEM string
 
@@ -130,12 +136,12 @@ private UtfitemAttr ::= UTFITEM string
 // PRIMITIVE STUFF
 //
 private booleanValues ::= true|false
+private debugValues ::= onOffValues|0|1|2|3|4|5
+private connectionTypeValues ::= contour|kerneldensity|local|ogr|oraclespatial|plugin|postgis|sde|union|uvraster|wfs|wms
 private onOffValues ::= on|off
 private sizeUnitValues ::= feet|inches|kilometers|meters|miles|nauticalmiles|pixels
-private toleranceUnitValues ::= sizeUnitValues|dd
-private unitValues ::= toleranceUnitValues|percentages
-private connectionTypeValues ::= contour|kerneldensity|local|ogr|oraclespatial|plugin|postgis|sde|union|uvraster|wfs|wms
-private debugValues ::= onOffValues|0|1|2|3|4|5
 private statusValues ::= onOffValues|default
+private toleranceUnitValues ::= sizeUnitValues|dd
 private transformValues ::= booleanValues|ul|uc|ur|cl|cc|cr|ll|lc|lr
 private typeValues ::= chart|circle|line|point|polygon|raster|query
+private unitValues ::= toleranceUnitValues|percentages

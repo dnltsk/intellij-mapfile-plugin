@@ -57,30 +57,20 @@ STRING=('([^'\\]|\\.)*'|\"([^\"\\]|\\.)*\")
   "METADATA"              { return METADATA; }
   "PROJECTION"            { return PROJECTION; }
   "VALIDATION"            { return VALIDATION; }
+  "CLASSGROUP"            { return CLASSGROUP; }
+  "CLASSITEM"             { return CLASSITEM; }
+  "CONNECTION"            { return CONNECTION; }
   "CONNECTIONTYPE"        { return CONNECTIONTYPE; }
+  "DATA"                  { return DATA; }
   "DEBUG"                 { return DEBUG; }
+  "DUMP"                  { return DUMP; }
+  "ENCODING"              { return ENCODING; }
   "EXTENT"                { return EXTENT; }
   "FILTER"                { return FILTER; }
   "GEOMTRANSFORM"         { return GEOMTRANSFORM; }
   "LABELCACHE"            { return LABELCACHE; }
-  "OFFSITE"               { return OFFSITE; }
-  "SIZEUNITS"             { return SIZEUNITS; }
-  "STATUS"                { return STATUS; }
-  "STYLEITEM"             { return STYLEITEM; }
-  "TOLERANCEUNITS"        { return TOLERANCEUNITS; }
-  "TRANSFORM"             { return TRANSFORM; }
-  "TYPE"                  { return TYPE; }
-  "UNIT"                  { return UNIT; }
-  "NAME"                  { return NAME; }
-  "TITLE"                 { return TITLE; }
-  "CLASSGROUP"            { return CLASSGROUP; }
-  "CLASSITEM"             { return CLASSITEM; }
-  "CONNECTION"            { return CONNECTION; }
-  "DATA"                  { return DATA; }
-  "DUMP"                  { return DUMP; }
-  "ENCODING"              { return ENCODING; }
-  "FOOTER"                { return FOOTER; }
   "FILTERITEM"            { return FILTERITEM; }
+  "FOOTER"                { return FOOTER; }
   "GROUP"                 { return GROUP; }
   "HEADER"                { return HEADER; }
   "LABELITEM"             { return LABELITEM; }
@@ -93,31 +83,30 @@ STRING=('([^'\\]|\\.)*'|\"([^\"\\]|\\.)*\")
   "MAXSCALEDENOM"         { return MAXSCALEDENOM; }
   "MINGEOWIDTH"           { return MINGEOWIDTH; }
   "MINSCALEDENOM"         { return MINSCALEDENOM; }
+  "NAME"                  { return NAME; }
+  "OFFSITE"               { return OFFSITE; }
   "PLUGIN"                { return PLUGIN; }
   "POSTLABELCACHE"        { return POSTLABELCACHE; }
   "PROCESSING"            { return PROCESSING; }
   "REQUIRES"              { return REQUIRES; }
+  "SIZEUNITS"             { return SIZEUNITS; }
+  "STATUS"                { return STATUS; }
+  "STYLEITEM"             { return STYLEITEM; }
   "SYMBOLSCALEDENOM"      { return SYMBOLSCALEDENOM; }
   "TEMPLATE"              { return TEMPLATE; }
   "TILEINDEX"             { return TILEINDEX; }
   "TILEITEM"              { return TILEITEM; }
   "TILESRS"               { return TILESRS; }
+  "TITLE"                 { return TITLE; }
   "TOLERANCE"             { return TOLERANCE; }
+  "TOLERANCEUNITS"        { return TOLERANCEUNITS; }
+  "TRANSFORM"             { return TRANSFORM; }
+  "TYPE"                  { return TYPE; }
+  "UNIT"                  { return UNIT; }
   "UTFDATA"               { return UTFDATA; }
   "UTFITEM"               { return UTFITEM; }
   "true"                  { return TRUE; }
   "false"                 { return FALSE; }
-  "on"                    { return ON; }
-  "off"                   { return OFF; }
-  "feet"                  { return FEET; }
-  "inches"                { return INCHES; }
-  "kilometers"            { return KILOMETERS; }
-  "meters"                { return METERS; }
-  "miles"                 { return MILES; }
-  "nauticalmiles"         { return NAUTICALMILES; }
-  "pixels"                { return PIXELS; }
-  "dd"                    { return DD; }
-  "percentages"           { return PERCENTAGES; }
   "contour"               { return CONTOUR; }
   "kerneldensity"         { return KERNELDENSITY; }
   "local"                 { return LOCAL; }
@@ -129,7 +118,17 @@ STRING=('([^'\\]|\\.)*'|\"([^\"\\]|\\.)*\")
   "uvraster"              { return UVRASTER; }
   "wfs"                   { return WFS; }
   "wms"                   { return WMS; }
+  "on"                    { return ON; }
+  "off"                   { return OFF; }
+  "feet"                  { return FEET; }
+  "inches"                { return INCHES; }
+  "kilometers"            { return KILOMETERS; }
+  "meters"                { return METERS; }
+  "miles"                 { return MILES; }
+  "nauticalmiles"         { return NAUTICALMILES; }
+  "pixels"                { return PIXELS; }
   "default"               { return DEFAULT; }
+  "dd"                    { return DD; }
   "ul"                    { return UL; }
   "uc"                    { return UC; }
   "ur"                    { return UR; }
@@ -146,6 +145,7 @@ STRING=('([^'\\]|\\.)*'|\"([^\"\\]|\\.)*\")
   "polygon"               { return POLYGON; }
   "raster"                { return RASTER; }
   "query"                 { return QUERY; }
+  "percentages"           { return PERCENTAGES; }
 
   {SPACE}                 { return SPACE; }
   {COMMENT}               { return COMMENT; }
