@@ -4,8 +4,24 @@ Editor support for Mapfiles of the UMN Mapserver. It supports Mapserver Release 
 
 ## Features
 
-* ![in progress](https://img.shields.io/badge/status-in%20progress-yellow.svg) Syntax Validation
-* ![in progress](https://img.shields.io/badge/status-in%20progress-yellow.svg) Syntax Highlighting (Color Settings Page)
+* ![in progress](https://img.shields.io/badge/status-in%20progress-yellow.svg) Syntax Validation and Highlighting
+  * ![not started](https://img.shields.io/badge/status-not%20started-lightgray.svg) CLASS
+  * ![not started](https://img.shields.io/badge/status-not%20started-lightgray.svg) CLUSTER
+  * ![not started](https://img.shields.io/badge/status-not%20started-lightgray.svg) COMPOSITE
+  * ![not started](https://img.shields.io/badge/status-not%20started-lightgray.svg) FEATURE
+  * ![not started](https://img.shields.io/badge/status-not%20started-lightgray.svg) GRID
+  * ![not started](https://img.shields.io/badge/status-not%20started-lightgray.svg) JOIN
+  * ![done](https://img.shields.io/badge/status-not%20started-green.svg) LAYER
+  * ![not started](https://img.shields.io/badge/status-not%20started-lightgray.svg) LEGEND
+  * ![done](https://img.shields.io/badge/status-not%20started-green.svg) MAP
+  * ![not started](https://img.shields.io/badge/status-not%20started-lightgray.svg) METADATA
+  * ![not started](https://img.shields.io/badge/status-not%20started-lightgray.svg) PROJECTION
+  * ![not started](https://img.shields.io/badge/status-not%20started-lightgray.svg) QUERYMAP
+  * ![not started](https://img.shields.io/badge/status-not%20started-lightgray.svg) REFERENCE
+  * ![not started](https://img.shields.io/badge/status-not%20started-lightgray.svg) SCALEBAR
+  * ![not started](https://img.shields.io/badge/status-not%20started-lightgray.svg) SYMBOL
+  * ![not started](https://img.shields.io/badge/status-not%20started-lightgray.svg) VALIDATION
+  * ![done](https://img.shields.io/badge/status-not%20started-green.svg) WEB
 * ![not started](https://img.shields.io/badge/status-not%20started-lightgray.svg) Helpers and Utilities
 * ![not started](https://img.shields.io/badge/status-not%20started-lightgray.svg) Autocompletion (Ctrl+Space)
 * ![not started](https://img.shields.io/badge/status-not%20started-lightgray.svg) References
