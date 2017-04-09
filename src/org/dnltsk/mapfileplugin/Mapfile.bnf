@@ -36,14 +36,20 @@
 
 mapfile ::= (MapObject | LayerObject)
 
+//
+// OBJECTS
+//
 private MapObject ::= MAP MapAttributes END
 private MapAttributes ::=
     (
-        LayerObject
+        LayerObject | LegendObject | ProjectionObject | QuerymapObject | ReferenceObject | ScalebarObject
+        | SymbolObject | WebObject
 
-        NameAttr | TitleAttr
+        | AngleAttr | ConfigAttr | DatapatternAttr | DebugAttr | DefresolutionAttr | ExtentAttr | FontsetAttr
+        | ImagecolorAttr | ImagetypeAttr | InterlaceAttr | MaxsizeAttr | NameAttr | ResolutionAttr
+        | ScaledenomAttr | ShapepathAttr | SizeAttr | StatusAttr | SymbolsetAttr | TemplatepatternAttr | UnitsAttr
 
-    ) MapAttributes *
+    ) MapAttributes*
 
 private LayerObject ::= LAYER LayerAttributes END
 private LayerAttributes ::=
@@ -58,9 +64,9 @@ private LayerAttributes ::=
         | Minscaledenom | NameAttr | PluginAttr | PostlabelcacheAttr | ProcessingAttr | OffsiteAttr | SizeunitsAttr
         | RequiresAttr | StatusAttr | StyleitemAttr | SymbolscaledenomAttr | TemplateAttr | TileindexAttr
         | TileitemAttr | TilesrsAttr | TitleAttr | ToleranceunitsAttr | ToleranceAttr | TransformAttr | TypeAttr
-        | UnitAttr | UtfdataAttr | UtfitemAttr
+        | UnitsAttr | UtfdataAttr | UtfitemAttr
 
-    ) LayerAttributes *
+    ) LayerAttributes*
 
 private ClassObject ::= CLASS END
 
@@ -74,31 +80,57 @@ private GridObject ::= GRID END
 
 private JoinObject ::= JOIN END
 
+private LegendObject ::= LEGEND END
+
+private QuerymapObject ::= QUERYMAP END
+
+private ReferenceObject ::= REFERENCE END
+
 private MetadataObject ::= METADATA END
 
 private ProjectionObject ::= PROJECTION END
 
+private ScalebarObject ::= SCALEBAR END
+
+private SymbolObject ::= SYMBOL END
+
 private ValidationObject ::= VALIDATION END
+
+private WebObject ::= WEB END
 
 //
 // ATTRIBUTES
 //
+private AngleAttr ::= ANGLE number
 private ClassgroupAttr ::= CLASSGROUP string
 private ClassitemAttr ::= CLASSITEM string
+private ConfigAttr ::= CONFIG (
+    ( CGI_CONTEXT_URL string )
+    | ( MS_ENCRYPTION_KEY string )
+    | ( MS_ERRORFILE string )
+    | ( MS_NONSQUARE yesNoValues )
+    | ( ON_MISSING_DATA onMissingDataValues )
+    | ( PROJ_LIB string ) )
 private ConnectionAttr ::= CONNECTION string
 private ConnectiontypeAttr ::= CONNECTIONTYPE connectionTypeValues
 private DataAttr ::= DATA string
+private DatapatternAttr ::= DATAPATTERN string // TODO: regular expression
 private DebugAttr ::= DEBUG debugValues
+private DefresolutionAttr ::= DEFRESOLUTION number // TODO: int
 private DumpAttr ::= DUMP booleanValues
 private EncodingAttr ::= ENCODING string
 private ExtentAttr ::= EXTENT number number number number
-private FilterAttr ::= FILTER string // TODO: expression!
-private GeomtransformAttr ::= GEOMTRANSFORM string // TODO: [<expression>|<Javascript file>]
-private LabelcacheAttr ::= LABELCACHE onOffValues
 private FilteritemAttr ::= FILTERITEM string
+private FilterAttr ::= FILTER string // TODO: expression!
+private FontsetAttr ::= FONTSET string // TODO: file
+private GeomtransformAttr ::= GEOMTRANSFORM string // TODO: [<expression>|<Javascript file>]
+private ImagetypeAttr ::= IMAGETYPE imagetypeValues // TODO: must match one of the defined ones in OutputfomatObject
+private LabelcacheAttr ::= LABELCACHE onOffValues
 private FooterAttr ::= FOOTER string // TODO: filename
 private GroupAttr ::= GROUP string
 private HeaderAttr ::= HEADER string // TODO: filename
+private ImagecolorAttr ::= IMAGECOLOR ( string | ( number number number ) ) // TODO: hex or RGB
+private InterlaceAttr ::= INTERLACE onOffValues
 private LabelitemAttr ::= LABELITEM string
 private LabelmaxscaledenomAttr ::= LABELMAXSCALEDENOM number
 private LabelminscaledenomAttr ::= LABELMINSCALEDENOM number
@@ -107,6 +139,7 @@ private MaskAttr ::= MASK string // TODO: layername validation
 private MaxfeaturesAttr ::= MAXFEATURES number
 private MaxgeowidthAttr ::= MAXGEOWIDTH number
 private MaxscaledenomAttr ::= MAXSCALEDENOM number
+private MaxsizeAttr ::= MAXSIZE number // TODO: int
 private MingeowidthAttr ::= MINGEOWIDTH number
 private Minscaledenom ::= MINSCALEDENOM number
 private NameAttr ::= NAME string // TODO: Unique check
@@ -115,11 +148,17 @@ private PluginAttr ::= PLUGIN string // TODO: filename
 private PostlabelcacheAttr ::= POSTLABELCACHE booleanValues
 private ProcessingAttr ::= PROCESSING string
 private RequiresAttr ::= REQUIRES string // TODO: expression
+private ResolutionAttr ::= RESOLUTION number // TODO: int
+private ScaledenomAttr ::= SCALEDENOM number
+private ShapepathAttr ::= SHAPEPATH string // TODO: directory
+private SizeAttr ::= SIZE number number // TODO: int
 private SizeunitsAttr ::= SIZEUNITS sizeUnitValues
 private StatusAttr ::= STATUS statusValues
 private StyleitemAttr ::= STYLEITEM string // TODO: [<attribute>|auto|<javascript file>]
 private SymbolscaledenomAttr ::= SYMBOLSCALEDENOM number
+private SymbolsetAttr ::= SYMBOLSET string  // TODO: file
 private TemplateAttr ::= TEMPLATE string // TODO: [file|url]
+private TemplatepatternAttr ::= TEMPLATEPATTERN string // TODO regex
 private TileindexAttr ::= TILEINDEX string // TODO: [filename|layername]
 private TileitemAttr ::= TILEITEM string // TODO: [attribute]
 private TilesrsAttr ::= TILESRS string // TODO: [attribute]
@@ -128,7 +167,7 @@ private ToleranceAttr ::= TOLERANCE number
 private ToleranceunitsAttr ::= TOLERANCEUNITS toleranceUnitValues
 private TransformAttr ::= TRANSFORM transformValues
 private TypeAttr ::= TYPE typeValues
-private UnitAttr ::= UNIT unitValues
+private UnitsAttr ::= UNITS unitsValues
 private UtfdataAttr ::= UTFDATA string
 private UtfitemAttr ::= UTFITEM string
 
@@ -138,10 +177,13 @@ private UtfitemAttr ::= UTFITEM string
 private booleanValues ::= true|false
 private debugValues ::= onOffValues|0|1|2|3|4|5
 private connectionTypeValues ::= contour|kerneldensity|local|ogr|oraclespatial|plugin|postgis|sde|union|uvraster|wfs|wms
+private imagetypeValues ::= png|gif|png8|jpeg|svg|pdf|GTiff|kml|kmz|cairopng|string
 private onOffValues ::= on|off
 private sizeUnitValues ::= feet|inches|kilometers|meters|miles|nauticalmiles|pixels
 private statusValues ::= onOffValues|default
 private toleranceUnitValues ::= sizeUnitValues|dd
 private transformValues ::= booleanValues|ul|uc|ur|cl|cc|cr|ll|lc|lr
 private typeValues ::= chart|circle|line|point|polygon|raster|query
-private unitValues ::= toleranceUnitValues|percentages
+private unitsValues ::= toleranceUnitValues|percentages
+private yesNoValues ::= yes|no
+private onMissingDataValues ::= fail|log|ignore

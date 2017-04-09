@@ -54,25 +54,45 @@ STRING=('([^'\\]|\\.)*'|\"([^\"\\]|\\.)*\")
   "FEATURE"               { return FEATURE; }
   "GRID"                  { return GRID; }
   "JOIN"                  { return JOIN; }
+  "LEGEND"                { return LEGEND; }
+  "QUERYMAP"              { return QUERYMAP; }
+  "REFERENCE"             { return REFERENCE; }
   "METADATA"              { return METADATA; }
   "PROJECTION"            { return PROJECTION; }
+  "SCALEBAR"              { return SCALEBAR; }
+  "SYMBOL"                { return SYMBOL; }
   "VALIDATION"            { return VALIDATION; }
+  "WEB"                   { return WEB; }
+  "ANGLE"                 { return ANGLE; }
   "CLASSGROUP"            { return CLASSGROUP; }
   "CLASSITEM"             { return CLASSITEM; }
+  "CONFIG"                { return CONFIG; }
+  "CGI_CONTEXT_URL"       { return CGI_CONTEXT_URL; }
+  "MS_ENCRYPTION_KEY"     { return MS_ENCRYPTION_KEY; }
+  "MS_ERRORFILE"          { return MS_ERRORFILE; }
+  "MS_NONSQUARE"          { return MS_NONSQUARE; }
+  "ON_MISSING_DATA"       { return ON_MISSING_DATA; }
+  "PROJ_LIB"              { return PROJ_LIB; }
   "CONNECTION"            { return CONNECTION; }
   "CONNECTIONTYPE"        { return CONNECTIONTYPE; }
   "DATA"                  { return DATA; }
+  "DATAPATTERN"           { return DATAPATTERN; }
   "DEBUG"                 { return DEBUG; }
+  "DEFRESOLUTION"         { return DEFRESOLUTION; }
   "DUMP"                  { return DUMP; }
   "ENCODING"              { return ENCODING; }
   "EXTENT"                { return EXTENT; }
-  "FILTER"                { return FILTER; }
-  "GEOMTRANSFORM"         { return GEOMTRANSFORM; }
-  "LABELCACHE"            { return LABELCACHE; }
   "FILTERITEM"            { return FILTERITEM; }
+  "FILTER"                { return FILTER; }
+  "FONTSET"               { return FONTSET; }
+  "GEOMTRANSFORM"         { return GEOMTRANSFORM; }
+  "IMAGETYPE"             { return IMAGETYPE; }
+  "LABELCACHE"            { return LABELCACHE; }
   "FOOTER"                { return FOOTER; }
   "GROUP"                 { return GROUP; }
   "HEADER"                { return HEADER; }
+  "IMAGECOLOR"            { return IMAGECOLOR; }
+  "INTERLACE"             { return INTERLACE; }
   "LABELITEM"             { return LABELITEM; }
   "LABELMAXSCALEDENOM"    { return LABELMAXSCALEDENOM; }
   "LABELMINSCALEDENOM"    { return LABELMINSCALEDENOM; }
@@ -81,6 +101,7 @@ STRING=('([^'\\]|\\.)*'|\"([^\"\\]|\\.)*\")
   "MAXFEATURES"           { return MAXFEATURES; }
   "MAXGEOWIDTH"           { return MAXGEOWIDTH; }
   "MAXSCALEDENOM"         { return MAXSCALEDENOM; }
+  "MAXSIZE"               { return MAXSIZE; }
   "MINGEOWIDTH"           { return MINGEOWIDTH; }
   "MINSCALEDENOM"         { return MINSCALEDENOM; }
   "NAME"                  { return NAME; }
@@ -89,11 +110,17 @@ STRING=('([^'\\]|\\.)*'|\"([^\"\\]|\\.)*\")
   "POSTLABELCACHE"        { return POSTLABELCACHE; }
   "PROCESSING"            { return PROCESSING; }
   "REQUIRES"              { return REQUIRES; }
+  "RESOLUTION"            { return RESOLUTION; }
+  "SCALEDENOM"            { return SCALEDENOM; }
+  "SHAPEPATH"             { return SHAPEPATH; }
+  "SIZE"                  { return SIZE; }
   "SIZEUNITS"             { return SIZEUNITS; }
   "STATUS"                { return STATUS; }
   "STYLEITEM"             { return STYLEITEM; }
   "SYMBOLSCALEDENOM"      { return SYMBOLSCALEDENOM; }
+  "SYMBOLSET"             { return SYMBOLSET; }
   "TEMPLATE"              { return TEMPLATE; }
+  "TEMPLATEPATTERN"       { return TEMPLATEPATTERN; }
   "TILEINDEX"             { return TILEINDEX; }
   "TILEITEM"              { return TILEITEM; }
   "TILESRS"               { return TILESRS; }
@@ -102,7 +129,7 @@ STRING=('([^'\\]|\\.)*'|\"([^\"\\]|\\.)*\")
   "TOLERANCEUNITS"        { return TOLERANCEUNITS; }
   "TRANSFORM"             { return TRANSFORM; }
   "TYPE"                  { return TYPE; }
-  "UNIT"                  { return UNIT; }
+  "UNITS"                 { return UNITS; }
   "UTFDATA"               { return UTFDATA; }
   "UTFITEM"               { return UTFITEM; }
   "true"                  { return TRUE; }
@@ -118,6 +145,16 @@ STRING=('([^'\\]|\\.)*'|\"([^\"\\]|\\.)*\")
   "uvraster"              { return UVRASTER; }
   "wfs"                   { return WFS; }
   "wms"                   { return WMS; }
+  "png"                   { return PNG; }
+  "gif"                   { return GIF; }
+  "png8"                  { return PNG8; }
+  "jpeg"                  { return JPEG; }
+  "svg"                   { return SVG; }
+  "pdf"                   { return PDF; }
+  "GTiff"                 { return GTIFF; }
+  "kml"                   { return KML; }
+  "kmz"                   { return KMZ; }
+  "cairopng"              { return CAIROPNG; }
   "on"                    { return ON; }
   "off"                   { return OFF; }
   "feet"                  { return FEET; }
@@ -146,6 +183,11 @@ STRING=('([^'\\]|\\.)*'|\"([^\"\\]|\\.)*\")
   "raster"                { return RASTER; }
   "query"                 { return QUERY; }
   "percentages"           { return PERCENTAGES; }
+  "yes"                   { return YES; }
+  "no"                    { return NO; }
+  "fail"                  { return FAIL; }
+  "log"                   { return LOG; }
+  "ignore"                { return IGNORE; }
 
   {SPACE}                 { return SPACE; }
   {COMMENT}               { return COMMENT; }
