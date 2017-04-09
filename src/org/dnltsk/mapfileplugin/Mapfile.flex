@@ -69,8 +69,6 @@ STRING=('([^'\\]|\\.)*'|\"([^\"\\]|\\.)*\")
   "STYLEITEM"             { return STYLEITEM; }
   "TOLERANCEUNITS"        { return TOLERANCEUNITS; }
   "TRANSFORM"             { return TRANSFORM; }
-  "true"                  { return TRUE; }
-  "false"                 { return FALSE; }
   "TYPE"                  { return TYPE; }
   "UNIT"                  { return UNIT; }
   "NAME"                  { return NAME; }
@@ -107,6 +105,47 @@ STRING=('([^'\\]|\\.)*'|\"([^\"\\]|\\.)*\")
   "TOLERANCE"             { return TOLERANCE; }
   "UTFDATA"               { return UTFDATA; }
   "UTFITEM"               { return UTFITEM; }
+  "true"                  { return TRUE; }
+  "false"                 { return FALSE; }
+  "on"                    { return ON; }
+  "off"                   { return OFF; }
+  "feet"                  { return FEET; }
+  "inches"                { return INCHES; }
+  "kilometers"            { return KILOMETERS; }
+  "meters"                { return METERS; }
+  "miles"                 { return MILES; }
+  "nauticalmiles"         { return NAUTICALMILES; }
+  "pixels"                { return PIXELS; }
+  "dd"                    { return DD; }
+  "percentages"           { return PERCENTAGES; }
+  "contour"               { return CONTOUR; }
+  "kerneldensity"         { return KERNELDENSITY; }
+  "local"                 { return LOCAL; }
+  "ogr"                   { return OGR; }
+  "oraclespatial"         { return ORACLESPATIAL; }
+  "postgis"               { return POSTGIS; }
+  "sde"                   { return SDE; }
+  "union"                 { return UNION; }
+  "uvraster"              { return UVRASTER; }
+  "wfs"                   { return WFS; }
+  "wms"                   { return WMS; }
+  "default"               { return DEFAULT; }
+  "ul"                    { return UL; }
+  "uc"                    { return UC; }
+  "ur"                    { return UR; }
+  "cl"                    { return CL; }
+  "cc"                    { return CC; }
+  "cr"                    { return CR; }
+  "ll"                    { return LL; }
+  "lc"                    { return LC; }
+  "lr"                    { return LR; }
+  "chart"                 { return CHART; }
+  "circle"                { return CIRCLE; }
+  "line"                  { return LINE; }
+  "point"                 { return POINT; }
+  "polygon"               { return POLYGON; }
+  "raster"                { return RASTER; }
+  "query"                 { return QUERY; }
 
   {SPACE}                 { return SPACE; }
   {COMMENT}               { return COMMENT; }

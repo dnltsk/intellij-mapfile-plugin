@@ -104,35 +104,14 @@ public class MapfileParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
-  // CONNECTIONTYPE ('contour'|'kerneldensity'|'local'|'ogr'|'oraclespatial'|'plugin'|'postgis'|'sde'|'union'|'uvraster'|'wfs'|'wms')
+  // CONNECTIONTYPE connectionTypeValues
   static boolean ConnectiontypeAttr(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "ConnectiontypeAttr")) return false;
     if (!nextTokenIs(b, CONNECTIONTYPE)) return false;
     boolean r;
     Marker m = enter_section_(b);
     r = consumeToken(b, CONNECTIONTYPE);
-    r = r && ConnectiontypeAttr_1(b, l + 1);
-    exit_section_(b, m, null, r);
-    return r;
-  }
-
-  // 'contour'|'kerneldensity'|'local'|'ogr'|'oraclespatial'|'plugin'|'postgis'|'sde'|'union'|'uvraster'|'wfs'|'wms'
-  private static boolean ConnectiontypeAttr_1(PsiBuilder b, int l) {
-    if (!recursion_guard_(b, l, "ConnectiontypeAttr_1")) return false;
-    boolean r;
-    Marker m = enter_section_(b);
-    r = consumeToken(b, "contour");
-    if (!r) r = consumeToken(b, "kerneldensity");
-    if (!r) r = consumeToken(b, "local");
-    if (!r) r = consumeToken(b, "ogr");
-    if (!r) r = consumeToken(b, "oraclespatial");
-    if (!r) r = consumeToken(b, "plugin");
-    if (!r) r = consumeToken(b, "postgis");
-    if (!r) r = consumeToken(b, "sde");
-    if (!r) r = consumeToken(b, "union");
-    if (!r) r = consumeToken(b, "uvraster");
-    if (!r) r = consumeToken(b, "wfs");
-    if (!r) r = consumeToken(b, "wms");
+    r = r && connectionTypeValues(b, l + 1);
     exit_section_(b, m, null, r);
     return r;
   }
@@ -150,55 +129,27 @@ public class MapfileParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
-  // DEBUG ('off'|'on'|0|1|2|3|4|5)
+  // DEBUG debugValues
   static boolean DebugAttr(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "DebugAttr")) return false;
     if (!nextTokenIs(b, DEBUG)) return false;
     boolean r;
     Marker m = enter_section_(b);
     r = consumeToken(b, DEBUG);
-    r = r && DebugAttr_1(b, l + 1);
-    exit_section_(b, m, null, r);
-    return r;
-  }
-
-  // 'off'|'on'|0|1|2|3|4|5
-  private static boolean DebugAttr_1(PsiBuilder b, int l) {
-    if (!recursion_guard_(b, l, "DebugAttr_1")) return false;
-    boolean r;
-    Marker m = enter_section_(b);
-    r = consumeToken(b, "off");
-    if (!r) r = consumeToken(b, "on");
-    if (!r) r = consumeToken(b, "0");
-    if (!r) r = consumeToken(b, "1");
-    if (!r) r = consumeToken(b, "2");
-    if (!r) r = consumeToken(b, "3");
-    if (!r) r = consumeToken(b, "4");
-    if (!r) r = consumeToken(b, "5");
+    r = r && debugValues(b, l + 1);
     exit_section_(b, m, null, r);
     return r;
   }
 
   /* ********************************************************** */
-  // DUMP (true|false)
+  // DUMP booleanValues
   static boolean DumpAttr(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "DumpAttr")) return false;
     if (!nextTokenIs(b, DUMP)) return false;
     boolean r;
     Marker m = enter_section_(b);
     r = consumeToken(b, DUMP);
-    r = r && DumpAttr_1(b, l + 1);
-    exit_section_(b, m, null, r);
-    return r;
-  }
-
-  // true|false
-  private static boolean DumpAttr_1(PsiBuilder b, int l) {
-    if (!recursion_guard_(b, l, "DumpAttr_1")) return false;
-    boolean r;
-    Marker m = enter_section_(b);
-    r = consumeToken(b, TRUE);
-    if (!r) r = consumeToken(b, FALSE);
+    r = r && booleanValues(b, l + 1);
     exit_section_(b, m, null, r);
     return r;
   }
@@ -336,25 +287,14 @@ public class MapfileParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
-  // LABELCACHE ('on'|'off')
+  // LABELCACHE onOffValues
   static boolean LabelcacheAttr(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "LabelcacheAttr")) return false;
     if (!nextTokenIs(b, LABELCACHE)) return false;
     boolean r;
     Marker m = enter_section_(b);
     r = consumeToken(b, LABELCACHE);
-    r = r && LabelcacheAttr_1(b, l + 1);
-    exit_section_(b, m, null, r);
-    return r;
-  }
-
-  // 'on'|'off'
-  private static boolean LabelcacheAttr_1(PsiBuilder b, int l) {
-    if (!recursion_guard_(b, l, "LabelcacheAttr_1")) return false;
-    boolean r;
-    Marker m = enter_section_(b);
-    r = consumeToken(b, "on");
-    if (!r) r = consumeToken(b, "off");
+    r = r && onOffValues(b, l + 1);
     exit_section_(b, m, null, r);
     return r;
   }
@@ -418,7 +358,7 @@ public class MapfileParser implements PsiParser, LightPsiParser {
   //       | Minscaledenom | NameAttr | PluginAttr | PostlabelcacheAttr | ProcessingAttr | OffsiteAttr | SizeunitsAttr
   //       | RequiresAttr | StatusAttr | StyleitemAttr | SymbolscaledenomAttr | TemplateAttr | TileindexAttr
   //       | TileitemAttr | TilesrsAttr | TitleAttr | ToleranceunitsAttr | ToleranceAttr | TransformAttr | TypeAttr
-  //       | UnitsAttr | UtfdataAttr | UtfitemAttr
+  //       | UnitAttr | UtfdataAttr | UtfitemAttr
   //     ) LayerAttributes *
   static boolean LayerAttributes(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "LayerAttributes")) return false;
@@ -439,7 +379,7 @@ public class MapfileParser implements PsiParser, LightPsiParser {
   //       | Minscaledenom | NameAttr | PluginAttr | PostlabelcacheAttr | ProcessingAttr | OffsiteAttr | SizeunitsAttr
   //       | RequiresAttr | StatusAttr | StyleitemAttr | SymbolscaledenomAttr | TemplateAttr | TileindexAttr
   //       | TileitemAttr | TilesrsAttr | TitleAttr | ToleranceunitsAttr | ToleranceAttr | TransformAttr | TypeAttr
-  //       | UnitsAttr | UtfdataAttr | UtfitemAttr
+  //       | UnitAttr | UtfdataAttr | UtfitemAttr
   private static boolean LayerAttributes_0(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "LayerAttributes_0")) return false;
     boolean r;
@@ -498,7 +438,7 @@ public class MapfileParser implements PsiParser, LightPsiParser {
     if (!r) r = ToleranceAttr(b, l + 1);
     if (!r) r = TransformAttr(b, l + 1);
     if (!r) r = TypeAttr(b, l + 1);
-    if (!r) r = UnitsAttr(b, l + 1);
+    if (!r) r = UnitAttr(b, l + 1);
     if (!r) r = UtfdataAttr(b, l + 1);
     if (!r) r = UtfitemAttr(b, l + 1);
     exit_section_(b, m, null, r);
@@ -724,25 +664,14 @@ public class MapfileParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
-  // POSTLABELCACHE (true|false)
+  // POSTLABELCACHE booleanValues
   static boolean PostlabelcacheAttr(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "PostlabelcacheAttr")) return false;
     if (!nextTokenIs(b, POSTLABELCACHE)) return false;
     boolean r;
     Marker m = enter_section_(b);
     r = consumeToken(b, POSTLABELCACHE);
-    r = r && PostlabelcacheAttr_1(b, l + 1);
-    exit_section_(b, m, null, r);
-    return r;
-  }
-
-  // true|false
-  private static boolean PostlabelcacheAttr_1(PsiBuilder b, int l) {
-    if (!recursion_guard_(b, l, "PostlabelcacheAttr_1")) return false;
-    boolean r;
-    Marker m = enter_section_(b);
-    r = consumeToken(b, TRUE);
-    if (!r) r = consumeToken(b, FALSE);
+    r = r && booleanValues(b, l + 1);
     exit_section_(b, m, null, r);
     return r;
   }
@@ -784,55 +713,27 @@ public class MapfileParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
-  // SIZEUNITS ('feet'|'inches'|'kilometers'|'meters'|'miles'|'nauticalmiles'|'pixels')
+  // SIZEUNITS sizeUnitValues
   static boolean SizeunitsAttr(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "SizeunitsAttr")) return false;
     if (!nextTokenIs(b, SIZEUNITS)) return false;
     boolean r;
     Marker m = enter_section_(b);
     r = consumeToken(b, SIZEUNITS);
-    r = r && SizeunitsAttr_1(b, l + 1);
-    exit_section_(b, m, null, r);
-    return r;
-  }
-
-  // 'feet'|'inches'|'kilometers'|'meters'|'miles'|'nauticalmiles'|'pixels'
-  private static boolean SizeunitsAttr_1(PsiBuilder b, int l) {
-    if (!recursion_guard_(b, l, "SizeunitsAttr_1")) return false;
-    boolean r;
-    Marker m = enter_section_(b);
-    r = consumeToken(b, "feet");
-    if (!r) r = consumeToken(b, "inches");
-    if (!r) r = consumeToken(b, "kilometers");
-    if (!r) r = consumeToken(b, "meters");
-    if (!r) r = consumeToken(b, "miles");
-    if (!r) r = consumeToken(b, "nauticalmiles");
-    if (!r) r = consumeToken(b, "pixels");
+    r = r && sizeUnitValues(b, l + 1);
     exit_section_(b, m, null, r);
     return r;
   }
 
   /* ********************************************************** */
-  // STATUS ('on'|'off'|'default')
+  // STATUS statusValues
   static boolean StatusAttr(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "StatusAttr")) return false;
     if (!nextTokenIs(b, STATUS)) return false;
     boolean r;
     Marker m = enter_section_(b);
     r = consumeToken(b, STATUS);
-    r = r && StatusAttr_1(b, l + 1);
-    exit_section_(b, m, null, r);
-    return r;
-  }
-
-  // 'on'|'off'|'default'
-  private static boolean StatusAttr_1(PsiBuilder b, int l) {
-    if (!recursion_guard_(b, l, "StatusAttr_1")) return false;
-    boolean r;
-    Marker m = enter_section_(b);
-    r = consumeToken(b, "on");
-    if (!r) r = consumeToken(b, "off");
-    if (!r) r = consumeToken(b, "default");
+    r = r && statusValues(b, l + 1);
     exit_section_(b, m, null, r);
     return r;
   }
@@ -934,124 +835,53 @@ public class MapfileParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
-  // TOLERANCEUNITS ('pixels'|'feet'|'inches'|'kilometers'|'meters'|'miles'|'nauticalmiles'|'dd')
+  // TOLERANCEUNITS toleranceUnitValues
   static boolean ToleranceunitsAttr(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "ToleranceunitsAttr")) return false;
     if (!nextTokenIs(b, TOLERANCEUNITS)) return false;
     boolean r;
     Marker m = enter_section_(b);
     r = consumeToken(b, TOLERANCEUNITS);
-    r = r && ToleranceunitsAttr_1(b, l + 1);
-    exit_section_(b, m, null, r);
-    return r;
-  }
-
-  // 'pixels'|'feet'|'inches'|'kilometers'|'meters'|'miles'|'nauticalmiles'|'dd'
-  private static boolean ToleranceunitsAttr_1(PsiBuilder b, int l) {
-    if (!recursion_guard_(b, l, "ToleranceunitsAttr_1")) return false;
-    boolean r;
-    Marker m = enter_section_(b);
-    r = consumeToken(b, "pixels");
-    if (!r) r = consumeToken(b, "feet");
-    if (!r) r = consumeToken(b, "inches");
-    if (!r) r = consumeToken(b, "kilometers");
-    if (!r) r = consumeToken(b, "meters");
-    if (!r) r = consumeToken(b, "miles");
-    if (!r) r = consumeToken(b, "nauticalmiles");
-    if (!r) r = consumeToken(b, "dd");
+    r = r && toleranceUnitValues(b, l + 1);
     exit_section_(b, m, null, r);
     return r;
   }
 
   /* ********************************************************** */
-  // TRANSFORM (true|false|'ul'|'uc'|'ur'|'cl'|'cc'|'cr'|'ll'|'lc'|'lr')
+  // TRANSFORM transformValues
   static boolean TransformAttr(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "TransformAttr")) return false;
     if (!nextTokenIs(b, TRANSFORM)) return false;
     boolean r;
     Marker m = enter_section_(b);
     r = consumeToken(b, TRANSFORM);
-    r = r && TransformAttr_1(b, l + 1);
-    exit_section_(b, m, null, r);
-    return r;
-  }
-
-  // true|false|'ul'|'uc'|'ur'|'cl'|'cc'|'cr'|'ll'|'lc'|'lr'
-  private static boolean TransformAttr_1(PsiBuilder b, int l) {
-    if (!recursion_guard_(b, l, "TransformAttr_1")) return false;
-    boolean r;
-    Marker m = enter_section_(b);
-    r = consumeToken(b, TRUE);
-    if (!r) r = consumeToken(b, FALSE);
-    if (!r) r = consumeToken(b, "ul");
-    if (!r) r = consumeToken(b, "uc");
-    if (!r) r = consumeToken(b, "ur");
-    if (!r) r = consumeToken(b, "cl");
-    if (!r) r = consumeToken(b, "cc");
-    if (!r) r = consumeToken(b, "cr");
-    if (!r) r = consumeToken(b, "ll");
-    if (!r) r = consumeToken(b, "lc");
-    if (!r) r = consumeToken(b, "lr");
+    r = r && transformValues(b, l + 1);
     exit_section_(b, m, null, r);
     return r;
   }
 
   /* ********************************************************** */
-  // TYPE ('chart'|'circle'|'line'|'point'|'polygon'|'raster'|'query')
+  // TYPE typeValues
   static boolean TypeAttr(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "TypeAttr")) return false;
     if (!nextTokenIs(b, TYPE)) return false;
     boolean r;
     Marker m = enter_section_(b);
     r = consumeToken(b, TYPE);
-    r = r && TypeAttr_1(b, l + 1);
-    exit_section_(b, m, null, r);
-    return r;
-  }
-
-  // 'chart'|'circle'|'line'|'point'|'polygon'|'raster'|'query'
-  private static boolean TypeAttr_1(PsiBuilder b, int l) {
-    if (!recursion_guard_(b, l, "TypeAttr_1")) return false;
-    boolean r;
-    Marker m = enter_section_(b);
-    r = consumeToken(b, "chart");
-    if (!r) r = consumeToken(b, "circle");
-    if (!r) r = consumeToken(b, "line");
-    if (!r) r = consumeToken(b, "point");
-    if (!r) r = consumeToken(b, "polygon");
-    if (!r) r = consumeToken(b, "raster");
-    if (!r) r = consumeToken(b, "query");
+    r = r && typeValues(b, l + 1);
     exit_section_(b, m, null, r);
     return r;
   }
 
   /* ********************************************************** */
-  // UNIT ('dd'|'feet'|'inches'|'kilometers'|'meters'|'miles'|'nauticalmiles'|'percentages'|'pixels')
-  static boolean UnitsAttr(PsiBuilder b, int l) {
-    if (!recursion_guard_(b, l, "UnitsAttr")) return false;
+  // UNIT unitValues
+  static boolean UnitAttr(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "UnitAttr")) return false;
     if (!nextTokenIs(b, UNIT)) return false;
     boolean r;
     Marker m = enter_section_(b);
     r = consumeToken(b, UNIT);
-    r = r && UnitsAttr_1(b, l + 1);
-    exit_section_(b, m, null, r);
-    return r;
-  }
-
-  // 'dd'|'feet'|'inches'|'kilometers'|'meters'|'miles'|'nauticalmiles'|'percentages'|'pixels'
-  private static boolean UnitsAttr_1(PsiBuilder b, int l) {
-    if (!recursion_guard_(b, l, "UnitsAttr_1")) return false;
-    boolean r;
-    Marker m = enter_section_(b);
-    r = consumeToken(b, "dd");
-    if (!r) r = consumeToken(b, "feet");
-    if (!r) r = consumeToken(b, "inches");
-    if (!r) r = consumeToken(b, "kilometers");
-    if (!r) r = consumeToken(b, "meters");
-    if (!r) r = consumeToken(b, "miles");
-    if (!r) r = consumeToken(b, "nauticalmiles");
-    if (!r) r = consumeToken(b, "percentages");
-    if (!r) r = consumeToken(b, "pixels");
+    r = r && unitValues(b, l + 1);
     exit_section_(b, m, null, r);
     return r;
   }
@@ -1093,6 +923,58 @@ public class MapfileParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
+  // true|false
+  static boolean booleanValues(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "booleanValues")) return false;
+    if (!nextTokenIs(b, "", FALSE, TRUE)) return false;
+    boolean r;
+    Marker m = enter_section_(b);
+    r = consumeToken(b, TRUE);
+    if (!r) r = consumeToken(b, FALSE);
+    exit_section_(b, m, null, r);
+    return r;
+  }
+
+  /* ********************************************************** */
+  // contour|kerneldensity|local|ogr|oraclespatial|plugin|postgis|sde|union|uvraster|wfs|wms
+  static boolean connectionTypeValues(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "connectionTypeValues")) return false;
+    boolean r;
+    Marker m = enter_section_(b);
+    r = consumeToken(b, CONTOUR);
+    if (!r) r = consumeToken(b, KERNELDENSITY);
+    if (!r) r = consumeToken(b, LOCAL);
+    if (!r) r = consumeToken(b, OGR);
+    if (!r) r = consumeToken(b, ORACLESPATIAL);
+    if (!r) r = consumeToken(b, PLUGIN);
+    if (!r) r = consumeToken(b, POSTGIS);
+    if (!r) r = consumeToken(b, SDE);
+    if (!r) r = consumeToken(b, UNION);
+    if (!r) r = consumeToken(b, UVRASTER);
+    if (!r) r = consumeToken(b, WFS);
+    if (!r) r = consumeToken(b, WMS);
+    exit_section_(b, m, null, r);
+    return r;
+  }
+
+  /* ********************************************************** */
+  // onOffValues|0|1|2|3|4|5
+  static boolean debugValues(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "debugValues")) return false;
+    boolean r;
+    Marker m = enter_section_(b);
+    r = onOffValues(b, l + 1);
+    if (!r) r = consumeToken(b, "0");
+    if (!r) r = consumeToken(b, "1");
+    if (!r) r = consumeToken(b, "2");
+    if (!r) r = consumeToken(b, "3");
+    if (!r) r = consumeToken(b, "4");
+    if (!r) r = consumeToken(b, "5");
+    exit_section_(b, m, null, r);
+    return r;
+  }
+
+  /* ********************************************************** */
   // MapObject | LayerObject
   static boolean mapfile(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "mapfile")) return false;
@@ -1101,6 +983,109 @@ public class MapfileParser implements PsiParser, LightPsiParser {
     Marker m = enter_section_(b);
     r = MapObject(b, l + 1);
     if (!r) r = LayerObject(b, l + 1);
+    exit_section_(b, m, null, r);
+    return r;
+  }
+
+  /* ********************************************************** */
+  // on|off
+  static boolean onOffValues(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "onOffValues")) return false;
+    if (!nextTokenIs(b, "", OFF, ON)) return false;
+    boolean r;
+    Marker m = enter_section_(b);
+    r = consumeToken(b, ON);
+    if (!r) r = consumeToken(b, OFF);
+    exit_section_(b, m, null, r);
+    return r;
+  }
+
+  /* ********************************************************** */
+  // feet|inches|kilometers|meters|miles|nauticalmiles|pixels
+  static boolean sizeUnitValues(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "sizeUnitValues")) return false;
+    boolean r;
+    Marker m = enter_section_(b);
+    r = consumeToken(b, FEET);
+    if (!r) r = consumeToken(b, INCHES);
+    if (!r) r = consumeToken(b, KILOMETERS);
+    if (!r) r = consumeToken(b, METERS);
+    if (!r) r = consumeToken(b, MILES);
+    if (!r) r = consumeToken(b, NAUTICALMILES);
+    if (!r) r = consumeToken(b, PIXELS);
+    exit_section_(b, m, null, r);
+    return r;
+  }
+
+  /* ********************************************************** */
+  // onOffValues|default
+  static boolean statusValues(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "statusValues")) return false;
+    boolean r;
+    Marker m = enter_section_(b);
+    r = onOffValues(b, l + 1);
+    if (!r) r = consumeToken(b, DEFAULT);
+    exit_section_(b, m, null, r);
+    return r;
+  }
+
+  /* ********************************************************** */
+  // sizeUnitValues|dd
+  static boolean toleranceUnitValues(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "toleranceUnitValues")) return false;
+    boolean r;
+    Marker m = enter_section_(b);
+    r = sizeUnitValues(b, l + 1);
+    if (!r) r = consumeToken(b, DD);
+    exit_section_(b, m, null, r);
+    return r;
+  }
+
+  /* ********************************************************** */
+  // booleanValues|ul|uc|ur|cl|cc|cr|ll|lc|lr
+  static boolean transformValues(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "transformValues")) return false;
+    boolean r;
+    Marker m = enter_section_(b);
+    r = booleanValues(b, l + 1);
+    if (!r) r = consumeToken(b, UL);
+    if (!r) r = consumeToken(b, UC);
+    if (!r) r = consumeToken(b, UR);
+    if (!r) r = consumeToken(b, CL);
+    if (!r) r = consumeToken(b, CC);
+    if (!r) r = consumeToken(b, CR);
+    if (!r) r = consumeToken(b, LL);
+    if (!r) r = consumeToken(b, LC);
+    if (!r) r = consumeToken(b, LR);
+    exit_section_(b, m, null, r);
+    return r;
+  }
+
+  /* ********************************************************** */
+  // chart|circle|line|point|polygon|raster|query
+  static boolean typeValues(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "typeValues")) return false;
+    boolean r;
+    Marker m = enter_section_(b);
+    r = consumeToken(b, CHART);
+    if (!r) r = consumeToken(b, CIRCLE);
+    if (!r) r = consumeToken(b, LINE);
+    if (!r) r = consumeToken(b, POINT);
+    if (!r) r = consumeToken(b, POLYGON);
+    if (!r) r = consumeToken(b, RASTER);
+    if (!r) r = consumeToken(b, QUERY);
+    exit_section_(b, m, null, r);
+    return r;
+  }
+
+  /* ********************************************************** */
+  // toleranceUnitValues|percentages
+  static boolean unitValues(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "unitValues")) return false;
+    boolean r;
+    Marker m = enter_section_(b);
+    r = toleranceUnitValues(b, l + 1);
+    if (!r) r = consumeToken(b, PERCENTAGES);
     exit_section_(b, m, null, r);
     return r;
   }

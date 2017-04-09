@@ -18,20 +18,20 @@ import static com.intellij.openapi.editor.colors.TextAttributesKey.createTextAtt
 
 public class MapfileSyntaxHighlighter extends SyntaxHighlighterBase {
 
-    public static final TextAttributesKey OBJECT_KEYWORD =
-            createTextAttributesKey("MAPFILE_OBJECT_KEYWORD", DefaultLanguageHighlighterColors.KEYWORD);
-    public static final TextAttributesKey ATTRIBUTES =
-            createTextAttributesKey("MAPFILE_ATTRIBUTES", DefaultLanguageHighlighterColors.IDENTIFIER);
-    public static final TextAttributesKey CORE_ATTRIBUTE =
-            createTextAttributesKey("MAPFILE_CORE_ATTRIBUTES", DefaultLanguageHighlighterColors.CONSTANT);
-    public static final TextAttributesKey STRING_VALUE =
-            createTextAttributesKey("STRING_VALUE", DefaultLanguageHighlighterColors.STRING);
-    public static final TextAttributesKey NUMBER_VALUE =
-            createTextAttributesKey("NUMBER_VALUE", DefaultLanguageHighlighterColors.NUMBER);
-    public static final TextAttributesKey COMMENT =
-            createTextAttributesKey("MAPFILE_COMMENT", DefaultLanguageHighlighterColors.LINE_COMMENT);
-    public static final TextAttributesKey BAD_CHARACTER =
-            createTextAttributesKey("MAPFILE_BAD_CHARACTER", HighlighterColors.BAD_CHARACTER);
+    public static final TextAttributesKey OBJECT_KEYWORD_HIGHLIGHTER =
+            createTextAttributesKey("MAPFILE_OBJECT_KEYWORD_HIGHLIGHTER", DefaultLanguageHighlighterColors.KEYWORD);
+    public static final TextAttributesKey ATTRIBUTES_HIGHLIGHTER =
+            createTextAttributesKey("MAPFILE_ATTRIBUTES_HIGHLIGHTER", DefaultLanguageHighlighterColors.IDENTIFIER);
+    public static final TextAttributesKey CORE_ATTRIBUTE_HIGHLIGHTER =
+            createTextAttributesKey("MAPFILE_CORE_ATTRIBUTES_HIGHLIGHTER", DefaultLanguageHighlighterColors.CONSTANT);
+    public static final TextAttributesKey STRING_VALUE_HIGHLIGHTER =
+            createTextAttributesKey("STRING_VALUE_HIGHLIGHTER", DefaultLanguageHighlighterColors.STRING);
+    public static final TextAttributesKey NUMBER_VALUE_HIGHLIGHTER =
+            createTextAttributesKey("NUMBER_VALUE_HIGHLIGHTER", DefaultLanguageHighlighterColors.NUMBER);
+    public static final TextAttributesKey COMMENT_HIGHLIGHTER =
+            createTextAttributesKey("MAPFILE_COMMENT_HIGHLIGHTER", DefaultLanguageHighlighterColors.LINE_COMMENT);
+    public static final TextAttributesKey BAD_CHARACTER_HIGHLIGHTER =
+            createTextAttributesKey("MAPFILE_BAD_CHARACTER_HIGHLIGHTER", HighlighterColors.BAD_CHARACTER);
 
     private static final List<IElementType> OBJECT_KEYWORD_LIST = Arrays.asList(
             MapfileTypes.END,
@@ -101,6 +101,51 @@ public class MapfileSyntaxHighlighter extends SyntaxHighlighterBase {
             MapfileTypes.UTFDATA,
             MapfileTypes.UTFITEM);
 
+    private static final List<IElementType> KEYWORD_LIST = Arrays.asList(
+            MapfileTypes.TRUE,
+            MapfileTypes.FALSE,
+            MapfileTypes.ON,
+            MapfileTypes.OFF,
+            MapfileTypes.FEET,
+            MapfileTypes.INCHES,
+            MapfileTypes.KILOMETERS,
+            MapfileTypes.METERS,
+            MapfileTypes.MILES,
+            MapfileTypes.NAUTICALMILES,
+            MapfileTypes.PIXELS,
+            MapfileTypes.DD,
+            MapfileTypes.PERCENTAGES,
+            MapfileTypes.CONTOUR,
+            MapfileTypes.KERNELDENSITY,
+            MapfileTypes.LOCAL,
+            MapfileTypes.OGR,
+            MapfileTypes.ORACLESPATIAL,
+            MapfileTypes.PLUGIN,
+            MapfileTypes.POSTGIS,
+            MapfileTypes.SDE,
+            MapfileTypes.UNION,
+            MapfileTypes.UVRASTER,
+            MapfileTypes.WFS,
+            MapfileTypes.WMS,
+            MapfileTypes.DEFAULT,
+            MapfileTypes.UL,
+            MapfileTypes.UC,
+            MapfileTypes.UR,
+            MapfileTypes.CL,
+            MapfileTypes.CC,
+            MapfileTypes.CR,
+            MapfileTypes.LL,
+            MapfileTypes.LC,
+            MapfileTypes.LR,
+            MapfileTypes.CHART,
+            MapfileTypes.CIRCLE,
+            MapfileTypes.LINE,
+            MapfileTypes.POINT,
+            MapfileTypes.POLYGON,
+            MapfileTypes.RASTER,
+            MapfileTypes.QUERY
+    );
+
     @NotNull
     @Override
     public Lexer getHighlightingLexer() {
@@ -111,25 +156,28 @@ public class MapfileSyntaxHighlighter extends SyntaxHighlighterBase {
     @Override
     public TextAttributesKey[] getTokenHighlights(IElementType tokenType) {
         if (OBJECT_KEYWORD_LIST.contains(tokenType)) {
-            return new TextAttributesKey[]{OBJECT_KEYWORD};
+            return new TextAttributesKey[]{OBJECT_KEYWORD_HIGHLIGHTER};
 
         } else if (CORE_ATTRIBUTE_LIST.contains(tokenType)) {
-            return new TextAttributesKey[]{CORE_ATTRIBUTE};
+            return new TextAttributesKey[]{CORE_ATTRIBUTE_HIGHLIGHTER};
+
+        } else if (KEYWORD_LIST.contains(tokenType)) {
+            return new TextAttributesKey[]{OBJECT_KEYWORD_HIGHLIGHTER};
 
         } else if (ATTRIBUTE_LIST.contains(tokenType)) {
-            return new TextAttributesKey[]{ATTRIBUTES};
+            return new TextAttributesKey[]{ATTRIBUTES_HIGHLIGHTER};
 
         } else if (MapfileTypes.STRING.equals(tokenType)) {
-            return new TextAttributesKey[]{STRING_VALUE};
+            return new TextAttributesKey[]{STRING_VALUE_HIGHLIGHTER};
 
         } else if (MapfileTypes.NUMBER.equals(tokenType)) {
-            return new TextAttributesKey[]{NUMBER_VALUE};
+            return new TextAttributesKey[]{NUMBER_VALUE_HIGHLIGHTER};
 
         } else if (MapfileTypes.COMMENT.equals(tokenType)) {
-            return new TextAttributesKey[]{COMMENT};
+            return new TextAttributesKey[]{COMMENT_HIGHLIGHTER};
 
         } else if (TokenType.BAD_CHARACTER.equals(tokenType)) {
-            return new TextAttributesKey[]{BAD_CHARACTER};
+            return new TextAttributesKey[]{BAD_CHARACTER_HIGHLIGHTER};
 
         } else {
             return new TextAttributesKey[0];
