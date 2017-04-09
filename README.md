@@ -33,6 +33,18 @@ Editor support for Mapfiles of the UMN Mapserver. It supports Mapserver Release 
  
 ![very early state](resources/META-INF/sneak-preview-screenshot.png "very early state")
 
+## Install
+
+(tbd - not yet uploaded to https://plugins.jetbrains.com/)
+
+## Run
+
+1. comply the [basic prerequisites](http://www.jetbrains.org/intellij/sdk/docs/tutorials/custom_language_support/prerequisites.html) 
+2. clone the repository and import the project into IntelliJ
+4. in the `Run/Debug Configurations` dialog add a new `Configuration` (Ctrl+N)
+5. select `Plugin` and configure the correct module
+6. Run (Shift+F10)
+
 ## Resources
 
 * Mapfile Documentation<br/>
