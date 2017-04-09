@@ -1,6 +1,6 @@
 # IntelliJ Mapfile Plugin
 
-Editor support for Mapfiles of the UMN Mapserver. It supports Mapserver Release 7.0.4
+Editor support for UMN Mapserver Mapfiles. Supported Mapserver version is 7.0.4
 
 ## Features
 
