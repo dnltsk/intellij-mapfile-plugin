@@ -159,6 +159,29 @@ public class MapfileParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
+  // string | ( number number number )
+  static boolean ColorAttribute(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "ColorAttribute")) return false;
+    if (!nextTokenIs(b, "", NUMBER, STRING)) return false;
+    boolean r;
+    Marker m = enter_section_(b);
+    r = consumeToken(b, STRING);
+    if (!r) r = ColorAttribute_1(b, l + 1);
+    exit_section_(b, m, null, r);
+    return r;
+  }
+
+  // number number number
+  private static boolean ColorAttribute_1(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "ColorAttribute_1")) return false;
+    boolean r;
+    Marker m = enter_section_(b);
+    r = consumeTokens(b, 0, NUMBER, NUMBER, NUMBER);
+    exit_section_(b, m, null, r);
+    return r;
+  }
+
+  /* ********************************************************** */
   // COMPOP string
   static boolean CompopAttr(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "CompopAttr")) return false;
@@ -1074,7 +1097,7 @@ public class MapfileParser implements PsiParser, LightPsiParser {
   /* ********************************************************** */
   // (
   //         LabelObject
-  //         | ImagecolorAttr | InterlaceAttr | KeysizeAttr | KeyspacingAttr | OutlinecolorAttr | PositionAttr 
+  //         | ImagecolorAttr | InterlaceAttr | KeysizeAttr | KeyspacingAttr | OutlinecolorAttr | PositionAttr
   //         | PostlabelcacheAttr | StatusAttr | TemplateAttr
   //     ) LegendAttributes*
   static boolean LegendAttributes(PsiBuilder b, int l) {
@@ -1088,7 +1111,7 @@ public class MapfileParser implements PsiParser, LightPsiParser {
   }
 
   // LabelObject
-  //         | ImagecolorAttr | InterlaceAttr | KeysizeAttr | KeyspacingAttr | OutlinecolorAttr | PositionAttr 
+  //         | ImagecolorAttr | InterlaceAttr | KeysizeAttr | KeyspacingAttr | OutlinecolorAttr | PositionAttr
   //         | PostlabelcacheAttr | StatusAttr | TemplateAttr
   private static boolean LegendAttributes_0(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "LegendAttributes_0")) return false;
@@ -1608,15 +1631,29 @@ public class MapfileParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
-  // PROJECTION END
+  // PROJECTION string* END
   static boolean ProjectionObject(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "ProjectionObject")) return false;
     if (!nextTokenIs(b, PROJECTION)) return false;
     boolean r;
     Marker m = enter_section_(b);
-    r = consumeTokens(b, 0, PROJECTION, END);
+    r = consumeToken(b, PROJECTION);
+    r = r && ProjectionObject_1(b, l + 1);
+    r = r && consumeToken(b, END);
     exit_section_(b, m, null, r);
     return r;
+  }
+
+  // string*
+  private static boolean ProjectionObject_1(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "ProjectionObject_1")) return false;
+    int c = current_position_(b);
+    while (true) {
+      if (!consumeToken(b, STRING)) break;
+      if (!empty_element_parsed_guard_(b, "ProjectionObject_1", c)) break;
+      c = current_position_(b);
+    }
+    return true;
   }
 
   /* ********************************************************** */
@@ -1632,13 +1669,54 @@ public class MapfileParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
-  // QUERYMAP END
+  // (
+  //         ColorAttribute | SizeAttr | StatusAttr | StyleQuerymapAttr
+  //     ) QuerymapAttributes*
+  static boolean QuerymapAttributes(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "QuerymapAttributes")) return false;
+    boolean r;
+    Marker m = enter_section_(b);
+    r = QuerymapAttributes_0(b, l + 1);
+    r = r && QuerymapAttributes_1(b, l + 1);
+    exit_section_(b, m, null, r);
+    return r;
+  }
+
+  // ColorAttribute | SizeAttr | StatusAttr | StyleQuerymapAttr
+  private static boolean QuerymapAttributes_0(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "QuerymapAttributes_0")) return false;
+    boolean r;
+    Marker m = enter_section_(b);
+    r = ColorAttribute(b, l + 1);
+    if (!r) r = SizeAttr(b, l + 1);
+    if (!r) r = StatusAttr(b, l + 1);
+    if (!r) r = StyleQuerymapAttr(b, l + 1);
+    exit_section_(b, m, null, r);
+    return r;
+  }
+
+  // QuerymapAttributes*
+  private static boolean QuerymapAttributes_1(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "QuerymapAttributes_1")) return false;
+    int c = current_position_(b);
+    while (true) {
+      if (!QuerymapAttributes(b, l + 1)) break;
+      if (!empty_element_parsed_guard_(b, "QuerymapAttributes_1", c)) break;
+      c = current_position_(b);
+    }
+    return true;
+  }
+
+  /* ********************************************************** */
+  // QUERYMAP QuerymapAttributes END
   static boolean QuerymapObject(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "QuerymapObject")) return false;
     if (!nextTokenIs(b, QUERYMAP)) return false;
     boolean r;
     Marker m = enter_section_(b);
-    r = consumeTokens(b, 0, QUERYMAP, END);
+    r = consumeToken(b, QUERYMAP);
+    r = r && QuerymapAttributes(b, l + 1);
+    r = r && consumeToken(b, END);
     exit_section_(b, m, null, r);
     return r;
   }
@@ -1761,6 +1839,19 @@ public class MapfileParser implements PsiParser, LightPsiParser {
     Marker m = enter_section_(b);
     r = consumeToken(b, STATUS);
     r = r && statusValues(b, l + 1);
+    exit_section_(b, m, null, r);
+    return r;
+  }
+
+  /* ********************************************************** */
+  // STYLE styleQuerymapValues
+  static boolean StyleQuerymapAttr(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "StyleQuerymapAttr")) return false;
+    if (!nextTokenIs(b, STYLE)) return false;
+    boolean r;
+    Marker m = enter_section_(b);
+    r = consumeToken(b, STYLE);
+    r = r && styleQuerymapValues(b, l + 1);
     exit_section_(b, m, null, r);
     return r;
   }
@@ -2310,6 +2401,19 @@ public class MapfileParser implements PsiParser, LightPsiParser {
     Marker m = enter_section_(b);
     r = onOffValues(b, l + 1);
     if (!r) r = consumeToken(b, DEFAULT);
+    exit_section_(b, m, null, r);
+    return r;
+  }
+
+  /* ********************************************************** */
+  // normal|hilite|selected
+  static boolean styleQuerymapValues(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "styleQuerymapValues")) return false;
+    boolean r;
+    Marker m = enter_section_(b);
+    r = consumeToken(b, NORMAL);
+    if (!r) r = consumeToken(b, HILITE);
+    if (!r) r = consumeToken(b, SELECTED);
     exit_section_(b, m, null, r);
     return r;
   }

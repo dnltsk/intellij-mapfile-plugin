@@ -60,6 +60,7 @@ public interface MapfileTypes {
   IElementType GROUP = new MapfileTokenType("GROUP");
   IElementType GTIFF = new MapfileTokenType("GTiff");
   IElementType HEADER = new MapfileTokenType("HEADER");
+  IElementType HILITE = new MapfileTokenType("hilite");
   IElementType ID = new MapfileTokenType("id");
   IElementType IGNORE = new MapfileTokenType("ignore");
   IElementType IMAGECOLOR = new MapfileTokenType("IMAGECOLOR");
@@ -121,6 +122,7 @@ public interface MapfileTypes {
   IElementType NAME = new MapfileTokenType("NAME");
   IElementType NAUTICALMILES = new MapfileTokenType("nauticalmiles");
   IElementType NO = new MapfileTokenType("no");
+  IElementType NORMAL = new MapfileTokenType("normal");
   IElementType NUMBER = new MapfileTokenType("number");
   IElementType OFF = new MapfileTokenType("off");
   IElementType OFFSITE = new MapfileTokenType("OFFSITE");
@@ -165,12 +167,14 @@ public interface MapfileTypes {
   IElementType SCALEBAR = new MapfileTokenType("SCALEBAR");
   IElementType SCALEDENOM = new MapfileTokenType("SCALEDENOM");
   IElementType SDE = new MapfileTokenType("sde");
+  IElementType SELECTED = new MapfileTokenType("selected");
   IElementType SEMI = new MapfileTokenType(";");
   IElementType SHAPEPATH = new MapfileTokenType("SHAPEPATH");
   IElementType SIZE = new MapfileTokenType("SIZE");
   IElementType SIZEUNITS = new MapfileTokenType("SIZEUNITS");
   IElementType STATUS = new MapfileTokenType("STATUS");
   IElementType STRING = new MapfileTokenType("string");
+  IElementType STYLE = new MapfileTokenType("STYLE");
   IElementType STYLEITEM = new MapfileTokenType("STYLEITEM");
   IElementType SVG = new MapfileTokenType("svg");
   IElementType SYMBOL = new MapfileTokenType("SYMBOL");

@@ -145,6 +145,7 @@ STRING=('([^'\\]|\\.)*'|\"([^\"\\]|\\.)*\")
   "SIZE"                  { return SIZE; }
   "SIZEUNITS"             { return SIZEUNITS; }
   "STATUS"                { return STATUS; }
+  "STYLE"                 { return STYLE; }
   "STYLEITEM"             { return STYLEITEM; }
   "SYMBOLSCALEDENOM"      { return SYMBOLSCALEDENOM; }
   "SYMBOLSET"             { return SYMBOLSET; }
@@ -214,6 +215,9 @@ STRING=('([^'\\]|\\.)*'|\"([^\"\\]|\\.)*\")
   "nauticalmiles"         { return NAUTICALMILES; }
   "pixels"                { return PIXELS; }
   "default"               { return DEFAULT; }
+  "normal"                { return NORMAL; }
+  "hilite"                { return HILITE; }
+  "selected"              { return SELECTED; }
   "cl"                    { return CL; }
   "cc"                    { return CC; }
   "cr"                    { return CR; }

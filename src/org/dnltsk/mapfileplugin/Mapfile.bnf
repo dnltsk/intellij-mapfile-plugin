@@ -119,7 +119,11 @@ private LegendAttributes ::=
         | PostlabelcacheAttr | StatusAttr | TemplateAttr
     ) LegendAttributes*
 
-private QuerymapObject ::= QUERYMAP END
+private QuerymapObject ::= QUERYMAP QuerymapAttributes END
+private QuerymapAttributes ::=
+    (
+        ColorAttribute | SizeAttr | StatusAttr | StyleQuerymapAttr
+    ) QuerymapAttributes*
 
 private ReferenceObject ::= REFERENCE END
 
@@ -149,6 +153,7 @@ private BrowseformatAttr ::= BROWSEFORMAT string
 private BufferAttr ::= BUFFER number
 private ClassgroupAttr ::= CLASSGROUP string
 private ClassitemAttr ::= CLASSITEM string
+private ColorAttribute ::= ( string | ( number number number ) ) //TODO color
 private ConfigAttr ::= CONFIG (
     ( CGI_CONTEXT_URL string )
     | ( MS_ENCRYPTION_KEY string )
@@ -225,6 +230,7 @@ private ShapepathAttr ::= SHAPEPATH string // TODO: directory
 private SizeAttr ::= SIZE number number // TODO: int
 private SizeunitsAttr ::= SIZEUNITS sizeUnitValues
 private StatusAttr ::= STATUS statusValues
+private StyleQuerymapAttr ::= STYLE styleQuerymapValues
 private StyleitemAttr ::= STYLEITEM string // TODO: [<attribute>|auto|<javascript file>]
 private SymbolscaledenomAttr ::= SYMBOLSCALEDENOM number
 private SymbolsetAttr ::= SYMBOLSET string  // TODO: file
@@ -262,6 +268,7 @@ private onOffValues ::= on|off
 private positionValues ::= ul|uc|ur|ll|lc|lr // TODO why not cl\cc\cr?
 private sizeUnitValues ::= feet|inches|kilometers|meters|miles|nauticalmiles|pixels
 private statusValues ::= onOffValues|default
+private styleQuerymapValues ::= normal|hilite|selected
 private toleranceUnitValues ::= sizeUnitValues|dd
 private transformValues ::= booleanValues|ul|uc|ur|cl|cc|cr|ll|lc|lr
 private typeValues ::= chart|circle|line|point|polygon|raster|query
