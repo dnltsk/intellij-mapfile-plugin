@@ -14,9 +14,11 @@ public interface MapfileTypes {
   IElementType ANTIALIAS = new MapfileTokenType("ANTIALIAS");
   IElementType ATTRIBUTETOKEN = new MapfileTokenType("attributeToken");
   IElementType AUTO = new MapfileTokenType("auto");
+  IElementType AUTO2 = new MapfileTokenType("auto2");
   IElementType BACKGROUNDCOLOR = new MapfileTokenType("BACKGROUNDCOLOR");
   IElementType BBOX = new MapfileTokenType("bbox");
   IElementType BEVEL = new MapfileTokenType("bevel");
+  IElementType BITMAP = new MapfileTokenType("bitmap");
   IElementType BROWSEFORMAT = new MapfileTokenType("BROWSEFORMAT");
   IElementType BUFFER = new MapfileTokenType("BUFFER");
   IElementType BUTT = new MapfileTokenType("butt");
@@ -67,12 +69,15 @@ public interface MapfileTypes {
   IElementType FILLED = new MapfileTokenType("FILLED");
   IElementType FILTER = new MapfileTokenType("FILTER");
   IElementType FILTERITEM = new MapfileTokenType("FILTERITEM");
+  IElementType FOLLOW = new MapfileTokenType("follow");
   IElementType FONT = new MapfileTokenType("FONT");
   IElementType FONTSET = new MapfileTokenType("FONTSET");
   IElementType FOOTER = new MapfileTokenType("FOOTER");
+  IElementType FORCE = new MapfileTokenType("FORCE");
   IElementType FROM = new MapfileTokenType("FROM");
   IElementType GAP = new MapfileTokenType("GAP");
   IElementType GEOMTRANSFORM = new MapfileTokenType("GEOMTRANSFORM");
+  IElementType GIANT = new MapfileTokenType("giant");
   IElementType GIF = new MapfileTokenType("gif");
   IElementType GRID = new MapfileTokenType("GRID");
   IElementType GRIDSTEP = new MapfileTokenType("GRIDSTEP");
@@ -110,6 +115,7 @@ public interface MapfileTypes {
   IElementType LABELPNT = new MapfileTokenType("labelpnt");
   IElementType LABELPOLY = new MapfileTokenType("labelpoly");
   IElementType LABELREQUIRES = new MapfileTokenType("LABELREQUIRES");
+  IElementType LARGE = new MapfileTokenType("large");
   IElementType LAYER = new MapfileTokenType("LAYER");
   IElementType LC = new MapfileTokenType("lc");
   IElementType LEADER = new MapfileTokenType("LEADER");
@@ -135,16 +141,21 @@ public interface MapfileTypes {
   IElementType MAXFEATURES = new MapfileTokenType("MAXFEATURES");
   IElementType MAXGEOWIDTH = new MapfileTokenType("MAXGEOWIDTH");
   IElementType MAXINTERVAL = new MapfileTokenType("MAXINTERVAL");
+  IElementType MAXLENGTH = new MapfileTokenType("MAXLENGTH");
+  IElementType MAXOVERLAPANGLE = new MapfileTokenType("MAXOVERLAPANGLE");
   IElementType MAXSCALEDENOM = new MapfileTokenType("MAXSCALEDENOM");
   IElementType MAXSIZE = new MapfileTokenType("MAXSIZE");
   IElementType MAXSUBDIVIDE = new MapfileTokenType("MAXSUBDIVIDE");
   IElementType MAXTEMPLATE = new MapfileTokenType("MAXTEMPLATE");
   IElementType MAXWIDTH = new MapfileTokenType("MAXWIDTH");
+  IElementType MEDIUM = new MapfileTokenType("medium");
   IElementType METADATA = new MapfileTokenType("METADATA");
   IElementType METERS = new MapfileTokenType("meters");
   IElementType MILES = new MapfileTokenType("miles");
   IElementType MINARCS = new MapfileTokenType("MINARCS");
   IElementType MINBOXSIZE = new MapfileTokenType("MINBOXSIZE");
+  IElementType MINDISTANCE = new MapfileTokenType("MINDISTANCE");
+  IElementType MINFEATURESIZE = new MapfileTokenType("MINFEATURESIZE");
   IElementType MINGEOWIDTH = new MapfileTokenType("MINGEOWIDTH");
   IElementType MININTERVAL = new MapfileTokenType("MININTERVAL");
   IElementType MINSCALEDENOM = new MapfileTokenType("MINSCALEDENOM");
@@ -180,6 +191,7 @@ public interface MapfileTypes {
   IElementType ORACLESPATIAL = new MapfileTokenType("oraclespatial");
   IElementType OUTLINECOLOR = new MapfileTokenType("OUTLINECOLOR");
   IElementType OUTLINEWIDTH = new MapfileTokenType("OUTLINEWIDTH");
+  IElementType PARTIALS = new MapfileTokenType("PARTIALS");
   IElementType PATTERN = new MapfileTokenType("PATTERN");
   IElementType PDF = new MapfileTokenType("pdf");
   IElementType PERCENTAGES = new MapfileTokenType("percentages");
@@ -196,6 +208,7 @@ public interface MapfileTypes {
   IElementType POSTGIS = new MapfileTokenType("postgis");
   IElementType POSTGRESQL = new MapfileTokenType("postgresql");
   IElementType POSTLABELCACHE = new MapfileTokenType("POSTLABELCACHE");
+  IElementType PRIORITY = new MapfileTokenType("PRIORITY");
   IElementType PROCESSING = new MapfileTokenType("PROCESSING");
   IElementType PROJECTION = new MapfileTokenType("PROJECTION");
   IElementType PROJ_LIB = new MapfileTokenType("PROJ_LIB");
@@ -205,6 +218,7 @@ public interface MapfileTypes {
   IElementType RASTER = new MapfileTokenType("raster");
   IElementType REFERENCE = new MapfileTokenType("REFERENCE");
   IElementType REGION = new MapfileTokenType("REGION");
+  IElementType REPEATDISTANCE = new MapfileTokenType("REPEATDISTANCE");
   IElementType REQUIRES = new MapfileTokenType("REQUIRES");
   IElementType RESOLUTION = new MapfileTokenType("RESOLUTION");
   IElementType RIGHT = new MapfileTokenType("right");
@@ -215,9 +229,12 @@ public interface MapfileTypes {
   IElementType SDE = new MapfileTokenType("sde");
   IElementType SELECTED = new MapfileTokenType("selected");
   IElementType SEMI = new MapfileTokenType(";");
+  IElementType SHADOWCOLOR = new MapfileTokenType("SHADOWCOLOR");
+  IElementType SHADOWSIZE = new MapfileTokenType("SHADOWSIZE");
   IElementType SHAPEPATH = new MapfileTokenType("SHAPEPATH");
   IElementType SIZE = new MapfileTokenType("SIZE");
   IElementType SIZEUNITS = new MapfileTokenType("SIZEUNITS");
+  IElementType SMALL = new MapfileTokenType("small");
   IElementType SQUARE = new MapfileTokenType("square");
   IElementType START = new MapfileTokenType("start");
   IElementType STATUS = new MapfileTokenType("STATUS");
@@ -236,6 +253,7 @@ public interface MapfileTypes {
   IElementType TILEINDEX = new MapfileTokenType("TILEINDEX");
   IElementType TILEITEM = new MapfileTokenType("TILEITEM");
   IElementType TILESRS = new MapfileTokenType("TILESRS");
+  IElementType TINY = new MapfileTokenType("tiny");
   IElementType TITLE = new MapfileTokenType("TITLE");
   IElementType TO = new MapfileTokenType("TO");
   IElementType TOLERANCE = new MapfileTokenType("TOLERANCE");
@@ -261,6 +279,7 @@ public interface MapfileTypes {
   IElementType WIDTH = new MapfileTokenType("WIDTH");
   IElementType WKT = new MapfileTokenType("WKT");
   IElementType WMS = new MapfileTokenType("wms");
+  IElementType WRAP = new MapfileTokenType("WRAP");
   IElementType YES = new MapfileTokenType("yes");
 
   class Factory {

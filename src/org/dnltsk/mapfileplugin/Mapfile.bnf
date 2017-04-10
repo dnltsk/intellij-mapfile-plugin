@@ -93,7 +93,16 @@ private SymbolObjectChildren ::=
         | TransparentAttr | TypeSymbolAttr
     )
 
-private LabelObject ::= LABEL END
+private LabelObject ::= LABEL LabelObjectChildren END
+private LabelObjectChildren ::=
+    (
+        StyleObject
+        | AlignAttr | AngleLabelAttr | AntialiasAttr | BufferAttr | ColorClassEnum | ExpressionAttr | FontLabelAttr
+        | ForceAttr | MaxlengthAttr | MaxoverlapangleAttr | MaxscaledenomAttr | MaxsizeAttr | MindistanceAttr
+        | MinfeaturesizeAttr | MinscaledenomAttr | MinsizeAttr | OffsetAttr | OutlinecolorClassAttr | OutlinewidthAttr
+        | PartialsAttr | PositionAttr | PriorityAttr | RepeatdistanceAttr | ShadowcolorAttr | ShadowsizeAttr
+        | SizeLabelAttr | TextAttr | TypeLabelAttr | WrapAttr
+    )
 
 private StyleObject ::= STYLE StyleObjectChildren END
 private StyleObjectChildren ::=
@@ -191,10 +200,11 @@ private AlignAttr ::= ALIGN AlignEnum
 private AnchorpointAttr ::= ANCHORPOINT number number // double 0-1
 private AngleAttr ::= ANGLE number
 private AngleClassAttr ::= ANGLE AngleClassEnum
+private AngleLabelAttr ::= ANGLE AngleLabelEnum
 private AntialiasAttr ::= ANTIALIAS BooleanEnum
-private BackgroundcolorAttr ::= BACKGROUNDCOLOR ( string | ( number number number ) ) //TODO color
+private BackgroundcolorAttr ::= BACKGROUNDCOLOR ColorEnum //TODO color
 private BrowseformatAttr ::= BROWSEFORMAT string
-private BufferAttr ::= BUFFER number
+private BufferAttr ::= BUFFER number // TODO int (?)
 private CharacterAttr ::= CHARACTER string // TODO char
 private ClassgroupAttr ::= CLASSGROUP string
 private ClassitemAttr ::= CLASSITEM string
@@ -225,9 +235,11 @@ private ExtentAttr ::= EXTENT number number number number
 private FilledAttr ::= FILLED BooleanEnum
 private FilterAttr ::= FILTER string // TODO: expression!
 private FilteritemAttr ::= FILTERITEM string
-private FontAttr ::= FONT number // TODO must be defined in fontset!
+private FontAttr ::= FONT string // TODO must be defined in fontset!
+private FontLabelAttr ::= FONT ( string | attributeToken ) // TODO must be defined in fontset!
 private FontsetAttr ::= FONTSET string // TODO: file
 private FooterAttr ::= FOOTER string // TODO: filename
+private ForceAttr ::= FORCE BooleanEnum
 private FromAttr ::= FROM string
 private GapAttr ::= GAP number
 private GeomtransformAttr ::= GEOMTRANSFORM string // TODO: [<expression>|<Javascript file>]
@@ -265,6 +277,8 @@ private MaxdistanceAttr ::= MAXDISTANCE number // TODO int
 private MaxfeaturesAttr ::= MAXFEATURES number // TODO int
 private MaxgeowidthAttr ::= MAXGEOWIDTH number
 private MaxintervalAttr ::= MAXINTERVAL number
+private MaxlengthAttr ::= MAXLENGTH number // TODO int
+private MaxoverlapangleAttr ::= MAXOVERLAPANGLE number
 private MaxscaledenomAttr ::= MAXSCALEDENOM number
 private MaxsizeAttr ::= MAXSIZE number // TODO: int
 private MaxsubdivideAttr ::= MAXSUBDIVIDE number
@@ -272,6 +286,8 @@ private MaxtemplateAttr ::= MAXTEMPLATE string // TODO: [file/url]
 private MaxwidthAttr ::= MAXWIDTH number
 private MinarcsAttr ::= MINARCS number
 private MinboxsizeAttr ::= MINBOXSIZE number // TODO int
+private MindistanceAttr ::= MINDISTANCE number // int
+private MinfeaturesizeAttr ::= MINFEATURESIZE MinfeaturesizeEnum
 private MingeowidthAttr ::= MINGEOWIDTH number
 private MinintervalAttr ::= MININTERVAL number
 private MinscaledenomAttr ::= MINSCALEDENOM number
@@ -286,20 +302,26 @@ private OpacityAttr ::= OPACITY number // TODO: integer
 private OpacityClassAttr ::= OPACITY OpacityEnum // TODO: integer
 private OutlinecolorAttr ::= OUTLINECOLOR ColorEnum // TODO color
 private OutlinecolorClassAttr ::= OUTLINECOLOR ColorClassEnum
-private OutlinewidthAttr ::= OUTLINEWIDTH OutlinewidthEnum
+private OutlinewidthAttr ::= OUTLINEWIDTH ( number | attributeToken )
+private PartialsAttr ::= PARTIALS BooleanEnum
 private PluginAttr ::= PLUGIN string // TODO: filename
 private PolaroffsetAttr ::= POLAROFFSET ( ( number | attributeToken ) ( number | attributeToken ) )
 private PositionAttr ::= POSITION PositionEnum
 private PostlabelcacheAttr ::= POSTLABELCACHE BooleanEnum
+private PriorityAttr ::= PRIORITY ( number | string | attributeToken ) // TODO int
 private ProcessingAttr ::= PROCESSING string // TODO: keywords in string!!
 private QueryformatAttr ::= QUERYFORMAT string
 private RegionAttr ::= REGION string
+private RepeatdistanceAttr ::= REPEATDISTANCE number
 private RequiresAttr ::= REQUIRES string // TODO: expression
 private ResolutionAttr ::= RESOLUTION number // TODO: int
 private ScaledenomAttr ::= SCALEDENOM number
+private ShadowcolorAttr ::= SHADOWCOLOR ColorEnum
+private ShadowsizeAttr ::= SHADOWSIZE ( ( number | attributeToken ) ( number | attributeToken ) )
 private ShapepathAttr ::= SHAPEPATH string // TODO: directory
 private SizeAttr ::= SIZE number number // TODO: int
 private SizeClassAttr ::= SIZE ( number | attributeToken ) // TODO: int
+private SizeLabelAttr ::= SIZE SizeLabelEnum
 private SizeunitsAttr ::= SIZEUNITS SizeUnitEnum
 private StatusAttr ::= STATUS StatusEnum
 private StyleitemAttr ::= STYLEITEM string // TODO: [<attribute>|auto|<javascript file>]
@@ -324,18 +346,21 @@ private TransformAttr ::= TRANSFORM TransformEnum
 private TransparentAttr ::= TRANSPARENT number // TODO color-index
 private TypeAttr ::= TYPE TypeEnum
 private TypeJoinAttr ::= TYPE TypeJoinEnum
+private TypeLabelAttr ::= TYPE TypeLabelEnum
 private TypeSymbolAttr ::= TYPE TypeSymbolEnum
 private UnitsAttr ::= UNITS UnitsEnum
 private UtfdataAttr ::= UTFDATA string
 private UtfitemAttr ::= UTFITEM string
 private WidthClassAttr ::= WIDTH (number | attributeToken)
 private WktAttr ::= WKT string // TODO wkt standard
+private WrapAttr ::= WRAP string // TODO character
 
 //
 // ENUMERATIONS
 //
 private AlignEnum ::= left|center|right
 private AngleClassEnum ::= number|attributeToken|auto
+private AngleLabelEnum ::= AngleClassEnum|auto2|follow
 private BooleanEnum ::= true|false
 private ColorClassEnum ::= ColorEnum|attributeToken
 private ColorEnum ::= ( string | ( number number number ) )
@@ -347,18 +372,20 @@ private ImagetypeEnum ::= png|gif|png8|jpeg|svg|pdf|gtiff|kml|kmz|cairopng|strin
 private LabelFormatEnum ::= dd|ddmm|ddmmss|string // TODO string=cformat-string
 private LinecapEnum ::= butt|round|square
 private LinejoinEnum ::= round|miter|bevel|none
+private MinfeaturesizeEnum ::= number|auto // TODO int
 private OnMissingDataEnum ::= fail|log|ignore
 private OnOffEnum ::= on|off
 private OpacityEnum ::= number|attributeToken // TODO int
-private OutlinewidthEnum ::= number|attributeToken
-private PositionEnum ::= ul|uc|ur|ll|lc|lr // TODO why not cl\cc\cr?
+private PositionEnum ::= ul|uc|ur|cl|cc|cr|ll|lc|lr // TODO why not cl\cc\cr?
+private SizeLabelEnum ::= number|tiny|small|medium|large|giant|attributeToken
 private SizeUnitEnum ::= feet|inches|kilometers|meters|miles|nauticalmiles|pixels
 private StatusEnum ::= OnOffEnum|default
 private StyleQuerymapEnum ::= normal|hilite|selected
 private ToleranceUnitEnum ::= SizeUnitEnum|dd
 private TransformEnum ::= BooleanEnum|ul|uc|ur|cl|cc|cr|ll|lc|lr
 private TypeEnum ::= chart|circle|line|point|polygon|raster|query
-private TypeSymbolEnum ::= ellipse|hatch|pixmap|svg|truetype|vector
 private TypeJoinEnum ::= ONE-TO-ONE|ONE-TO-MANY
+private TypeLabelEnum ::= bitmap|truetype
+private TypeSymbolEnum ::= ellipse|hatch|pixmap|svg|truetype|vector
 private UnitsEnum ::= ToleranceUnitEnum|percentages
 private YesNoEnum ::= yes|no
