@@ -102,20 +102,27 @@ STRING=('([^'\\]|\\.)*'|\"([^\"\\]|\\.)*\")
   "INTERLACE"             { return INTERLACE; }
   "ITEMS"                 { return ITEMS; }
   "LABELCACHE"            { return LABELCACHE; }
+  "LABELFORMAT"           { return LABELFORMAT; }
   "LABELITEM"             { return LABELITEM; }
   "LABELMAXSCALEDENOM"    { return LABELMAXSCALEDENOM; }
   "LABELMINSCALEDENOM"    { return LABELMINSCALEDENOM; }
   "LABELREQUIRES"         { return LABELREQUIRES; }
   "LEGENDFORMAT"          { return LEGENDFORMAT; }
   "MASK"                  { return MASK; }
+  "MAXARCS"               { return MAXARCS; }
   "MAXDISTANCE"           { return MAXDISTANCE; }
   "MAXFEATURES"           { return MAXFEATURES; }
   "MAXGEOWIDTH"           { return MAXGEOWIDTH; }
+  "MAXINTERVAL"           { return MAXINTERVAL; }
   "MAXSCALEDENOM"         { return MAXSCALEDENOM; }
+  "MAXSUBDIVIDE"          { return MAXSUBDIVIDE; }
   "MAXSIZE"               { return MAXSIZE; }
   "MAXTEMPLATE"           { return MAXTEMPLATE; }
+  "MINARCS"               { return MINARCS; }
   "MINGEOWIDTH"           { return MINGEOWIDTH; }
+  "MININTERVAL"           { return MININTERVAL; }
   "MINSCALEDENOM"         { return MINSCALEDENOM; }
+  "MINSUBDIVIDE"          { return MINSUBDIVIDE; }
   "MINTEMPLATE"           { return MINTEMPLATE; }
   "NAME"                  { return NAME; }
   "OFFSITE"               { return OFFSITE; }
@@ -174,6 +181,9 @@ STRING=('([^'\\]|\\.)*'|\"([^\"\\]|\\.)*\")
   "kml"                   { return KML; }
   "kmz"                   { return KMZ; }
   "cairopng"              { return CAIROPNG; }
+  "dd"                    { return DD; }
+  "ddmm"                  { return DDMM; }
+  "ddmmss"                { return DDMMSS; }
   "fail"                  { return FAIL; }
   "log"                   { return LOG; }
   "ignore"                { return IGNORE; }

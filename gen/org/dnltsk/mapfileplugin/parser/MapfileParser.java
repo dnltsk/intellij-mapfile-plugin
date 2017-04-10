@@ -574,13 +574,59 @@ public class MapfileParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
-  // GRID END
+  // (
+  //         LabelformatAttr | MinarcsAttr | MaxarcsAttr | MinintervalAttr | MaxintervalAttr | MinsubdivideAttr
+  //         | MaxsubdivideAttr
+  //     ) GridAttributes*
+  static boolean GridAttributes(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "GridAttributes")) return false;
+    boolean r;
+    Marker m = enter_section_(b);
+    r = GridAttributes_0(b, l + 1);
+    r = r && GridAttributes_1(b, l + 1);
+    exit_section_(b, m, null, r);
+    return r;
+  }
+
+  // LabelformatAttr | MinarcsAttr | MaxarcsAttr | MinintervalAttr | MaxintervalAttr | MinsubdivideAttr
+  //         | MaxsubdivideAttr
+  private static boolean GridAttributes_0(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "GridAttributes_0")) return false;
+    boolean r;
+    Marker m = enter_section_(b);
+    r = LabelformatAttr(b, l + 1);
+    if (!r) r = MinarcsAttr(b, l + 1);
+    if (!r) r = MaxarcsAttr(b, l + 1);
+    if (!r) r = MinintervalAttr(b, l + 1);
+    if (!r) r = MaxintervalAttr(b, l + 1);
+    if (!r) r = MinsubdivideAttr(b, l + 1);
+    if (!r) r = MaxsubdivideAttr(b, l + 1);
+    exit_section_(b, m, null, r);
+    return r;
+  }
+
+  // GridAttributes*
+  private static boolean GridAttributes_1(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "GridAttributes_1")) return false;
+    int c = current_position_(b);
+    while (true) {
+      if (!GridAttributes(b, l + 1)) break;
+      if (!empty_element_parsed_guard_(b, "GridAttributes_1", c)) break;
+      c = current_position_(b);
+    }
+    return true;
+  }
+
+  /* ********************************************************** */
+  // GRID GridAttributes END
   static boolean GridObject(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "GridObject")) return false;
     if (!nextTokenIs(b, GRID)) return false;
     boolean r;
     Marker m = enter_section_(b);
-    r = consumeTokens(b, 0, GRID, END);
+    r = consumeToken(b, GRID);
+    r = r && GridAttributes(b, l + 1);
+    r = r && consumeToken(b, END);
     exit_section_(b, m, null, r);
     return r;
   }
@@ -726,6 +772,19 @@ public class MapfileParser implements PsiParser, LightPsiParser {
     Marker m = enter_section_(b);
     r = consumeToken(b, LABELCACHE);
     r = r && onOffValues(b, l + 1);
+    exit_section_(b, m, null, r);
+    return r;
+  }
+
+  /* ********************************************************** */
+  // LABELFORMAT labelFormatValues
+  static boolean LabelformatAttr(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "LabelformatAttr")) return false;
+    if (!nextTokenIs(b, LABELFORMAT)) return false;
+    boolean r;
+    Marker m = enter_section_(b);
+    r = consumeToken(b, LABELFORMAT);
+    r = r && labelFormatValues(b, l + 1);
     exit_section_(b, m, null, r);
     return r;
   }
@@ -1024,6 +1083,18 @@ public class MapfileParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
+  // MAXARCS number
+  static boolean MaxarcsAttr(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "MaxarcsAttr")) return false;
+    if (!nextTokenIs(b, MAXARCS)) return false;
+    boolean r;
+    Marker m = enter_section_(b);
+    r = consumeTokens(b, 0, MAXARCS, NUMBER);
+    exit_section_(b, m, null, r);
+    return r;
+  }
+
+  /* ********************************************************** */
   // MAXDISTANCE number
   static boolean MaxdistanceAttr(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "MaxdistanceAttr")) return false;
@@ -1060,6 +1131,18 @@ public class MapfileParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
+  // MAXINTERVAL number
+  static boolean MaxintervalAttr(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "MaxintervalAttr")) return false;
+    if (!nextTokenIs(b, MAXINTERVAL)) return false;
+    boolean r;
+    Marker m = enter_section_(b);
+    r = consumeTokens(b, 0, MAXINTERVAL, NUMBER);
+    exit_section_(b, m, null, r);
+    return r;
+  }
+
+  /* ********************************************************** */
   // MAXSCALEDENOM number
   static boolean MaxscaledenomAttr(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "MaxscaledenomAttr")) return false;
@@ -1079,6 +1162,18 @@ public class MapfileParser implements PsiParser, LightPsiParser {
     boolean r;
     Marker m = enter_section_(b);
     r = consumeTokens(b, 0, MAXSIZE, NUMBER);
+    exit_section_(b, m, null, r);
+    return r;
+  }
+
+  /* ********************************************************** */
+  // MAXSUBDIVIDE number
+  static boolean MaxsubdivideAttr(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "MaxsubdivideAttr")) return false;
+    if (!nextTokenIs(b, MAXSUBDIVIDE)) return false;
+    boolean r;
+    Marker m = enter_section_(b);
+    r = consumeTokens(b, 0, MAXSUBDIVIDE, NUMBER);
     exit_section_(b, m, null, r);
     return r;
   }
@@ -1108,6 +1203,18 @@ public class MapfileParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
+  // MINARCS number
+  static boolean MinarcsAttr(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "MinarcsAttr")) return false;
+    if (!nextTokenIs(b, MINARCS)) return false;
+    boolean r;
+    Marker m = enter_section_(b);
+    r = consumeTokens(b, 0, MINARCS, NUMBER);
+    exit_section_(b, m, null, r);
+    return r;
+  }
+
+  /* ********************************************************** */
   // MINGEOWIDTH number
   static boolean MingeowidthAttr(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "MingeowidthAttr")) return false;
@@ -1120,6 +1227,18 @@ public class MapfileParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
+  // MININTERVAL number
+  static boolean MinintervalAttr(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "MinintervalAttr")) return false;
+    if (!nextTokenIs(b, MININTERVAL)) return false;
+    boolean r;
+    Marker m = enter_section_(b);
+    r = consumeTokens(b, 0, MININTERVAL, NUMBER);
+    exit_section_(b, m, null, r);
+    return r;
+  }
+
+  /* ********************************************************** */
   // MINSCALEDENOM number
   static boolean MinscaledenomAttr(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "MinscaledenomAttr")) return false;
@@ -1127,6 +1246,18 @@ public class MapfileParser implements PsiParser, LightPsiParser {
     boolean r;
     Marker m = enter_section_(b);
     r = consumeTokens(b, 0, MINSCALEDENOM, NUMBER);
+    exit_section_(b, m, null, r);
+    return r;
+  }
+
+  /* ********************************************************** */
+  // MINSUBDIVIDE number
+  static boolean MinsubdivideAttr(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "MinsubdivideAttr")) return false;
+    if (!nextTokenIs(b, MINSUBDIVIDE)) return false;
+    boolean r;
+    Marker m = enter_section_(b);
+    r = consumeTokens(b, 0, MINSUBDIVIDE, NUMBER);
     exit_section_(b, m, null, r);
     return r;
   }
@@ -1822,6 +1953,20 @@ public class MapfileParser implements PsiParser, LightPsiParser {
     if (!r) r = consumeToken(b, KML);
     if (!r) r = consumeToken(b, KMZ);
     if (!r) r = consumeToken(b, CAIROPNG);
+    if (!r) r = consumeToken(b, STRING);
+    exit_section_(b, m, null, r);
+    return r;
+  }
+
+  /* ********************************************************** */
+  // dd|ddmm|ddmmss|string
+  static boolean labelFormatValues(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "labelFormatValues")) return false;
+    boolean r;
+    Marker m = enter_section_(b);
+    r = consumeToken(b, DD);
+    if (!r) r = consumeToken(b, DDMM);
+    if (!r) r = consumeToken(b, DDMMSS);
     if (!r) r = consumeToken(b, STRING);
     exit_section_(b, m, null, r);
     return r;

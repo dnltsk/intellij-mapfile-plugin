@@ -9,7 +9,7 @@ Editor support for UMN Mapserver Mapfiles. Supported Mapserver version is 7.0.4
   * ![done](https://img.shields.io/badge/status-done-green.svg) CLUSTER
   * ![done](https://img.shields.io/badge/status-done-green.svg) COMPOSITE
   * ![done](https://img.shields.io/badge/status-done-green.svg) FEATURE
-  * ![not started](https://img.shields.io/badge/status-not%20started-lightgray.svg) GRID
+  * ![done](https://img.shields.io/badge/status-done-green.svg) GRID
   * ![not started](https://img.shields.io/badge/status-not%20started-lightgray.svg) JOIN
   * ![done](https://img.shields.io/badge/status-done-green.svg) LAYER
   * ![not started](https://img.shields.io/badge/status-not%20started-lightgray.svg) LEGEND

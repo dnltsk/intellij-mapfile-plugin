@@ -92,7 +92,12 @@ private FeatureAttributes ::=
 
 private PointsObject ::= POINTS (number number)* END
 
-private GridObject ::= GRID END
+private GridObject ::= GRID GridAttributes END
+private GridAttributes ::=
+    (
+        LabelformatAttr | MinarcsAttr | MaxarcsAttr | MinintervalAttr | MaxintervalAttr | MinsubdivideAttr
+        | MaxsubdivideAttr
+    ) GridAttributes*
 
 private JoinObject ::= JOIN END
 
@@ -163,20 +168,27 @@ private ImageurlAttr ::= IMAGEURL string // TODO path? url?
 private InterlaceAttr ::= INTERLACE onOffValues
 private ItemsAttr ::= ITEMS string // TODO: comma separated list
 private LabelcacheAttr ::= LABELCACHE onOffValues
+private LabelformatAttr ::= LABELFORMAT labelFormatValues
 private LabelitemAttr ::= LABELITEM string
 private LabelmaxscaledenomAttr ::= LABELMAXSCALEDENOM number
 private LabelminscaledenomAttr ::= LABELMINSCALEDENOM number
 private LabelrequiresAttr ::= LABELREQUIRES string // TODO: expression
 private LegendformatAttr ::= LEGENDFORMAT string
 private MaskAttr ::= MASK string // TODO: layername validation
+private MaxarcsAttr ::= MAXARCS number
 private MaxdistanceAttr ::= MAXDISTANCE number
 private MaxfeaturesAttr ::= MAXFEATURES number
 private MaxgeowidthAttr ::= MAXGEOWIDTH number
+private MaxintervalAttr ::= MAXINTERVAL number
 private MaxscaledenomAttr ::= MAXSCALEDENOM number
+private MaxsubdivideAttr ::= MAXSUBDIVIDE number
 private MaxsizeAttr ::= MAXSIZE number // TODO: int
 private MaxtemplateAttr ::= MAXTEMPLATE string // TODO: [file/url]
+private MinarcsAttr ::= MINARCS number
 private MingeowidthAttr ::= MINGEOWIDTH number
+private MinintervalAttr ::= MININTERVAL number
 private MinscaledenomAttr ::= MINSCALEDENOM number
+private MinsubdivideAttr ::= MINSUBDIVIDE number
 private MintemplateAttr ::= MINTEMPLATE string // TODO: [file/url]
 private NameAttr ::= NAME string // TODO: Unique check
 private OffsiteAttr ::= OFFSITE ( string | (number number number) )
@@ -220,6 +232,7 @@ private booleanValues ::= true|false
 private connectionTypeValues ::= contour|kerneldensity|local|ogr|oraclespatial|plugin|postgis|sde|union|uvraster|wfs|wms
 private debugValues ::= onOffValues|0|1|2|3|4|5
 private imagetypeValues ::= png|gif|png8|jpeg|svg|pdf|GTiff|kml|kmz|cairopng|string
+private labelFormatValues ::= dd|ddmm|ddmmss|string // todo string=cformat-string
 private onMissingDataValues ::= fail|log|ignore
 private onOffValues ::= on|off
 private sizeUnitValues ::= feet|inches|kilometers|meters|miles|nauticalmiles|pixels
