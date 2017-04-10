@@ -52,6 +52,8 @@ STRING=('([^'\\]|\\.)*'|\"([^\"\\]|\\.)*\")
   "CLASS"                 { return CLASS; }
   "SYMBOL"                { return SYMBOL; }
   "LABEL"                 { return LABEL; }
+  "STYLE"                 { return STYLE; }
+  "LEADER"                { return LEADER; }
   "LEGEND"                { return LEGEND; }
   "FEATURE"               { return FEATURE; }
   "CLUSTER"               { return CLUSTER; }
@@ -91,6 +93,7 @@ STRING=('([^'\\]|\\.)*'|\"([^\"\\]|\\.)*\")
   "EMPTY"                 { return EMPTY; }
   "ENCODING"              { return ENCODING; }
   "ERROR"                 { return ERROR; }
+  "EXPRESSION"            { return EXPRESSION; }
   "EXTENT"                { return EXTENT; }
   "FILTER"                { return FILTER; }
   "FILTERITEM"            { return FILTERITEM; }
@@ -107,6 +110,7 @@ STRING=('([^'\\]|\\.)*'|\"([^\"\\]|\\.)*\")
   "IMAGEURL"              { return IMAGEURL; }
   "INTERLACE"             { return INTERLACE; }
   "ITEMS"                 { return ITEMS; }
+  "KEYIMAGE"              { return KEYIMAGE; }
   "KEYSIZE"               { return KEYSIZE; }
   "KEYSPACING"            { return KEYSPACING; }
   "LABELCACHE"            { return LABELCACHE; }
@@ -154,7 +158,6 @@ STRING=('([^'\\]|\\.)*'|\"([^\"\\]|\\.)*\")
   "SIZEUNITS"             { return SIZEUNITS; }
   "STATUS"                { return STATUS; }
   "STYLEITEM"             { return STYLEITEM; }
-  "STYLE"                 { return STYLE; }
   "SYMBOLSCALEDENOM"      { return SYMBOLSCALEDENOM; }
   "SYMBOLSET"             { return SYMBOLSET; }
   "TABLE"                 { return TABLE; }

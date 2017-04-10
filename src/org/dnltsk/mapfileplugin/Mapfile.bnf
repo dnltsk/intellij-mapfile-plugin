@@ -78,11 +78,22 @@ private LayerObjectChildren ::=
 
     ) LayerObjectChildren*
 
-private ClassObject ::= CLASS END
+private ClassObject ::= CLASS ClassObjectChildren END
+private ClassObjectChildren ::=
+    (
+        LabelObject | LeaderObject | StyleObject | ValidationObject
+
+        | DebugClassAttr | ExpressionAttr | GroupAttr | KeyimageAttr
+        | MaxscaledenomAttr | MinscaledenomAttr | NameAttr | StatusAttr | TemplateAttr | TextAttr
+    ) ClassObjectChildren*
 
 private SymbolObject ::= SYMBOL END
 
 private LabelObject ::= LABEL END
+
+private StyleObject ::= STYLE END
+
+private LeaderObject ::= LEADER END
 
 private LegendObject ::= LEGEND LegendObjectChildren END
 private LegendObjectChildren ::=
@@ -182,11 +193,13 @@ private ConnectiontypeJoinAttr ::= CONNECTIONTYPE ConnectiontypeJoinEnum
 private DataAttr ::= DATA string
 private DatapatternAttr ::= DATAPATTERN string // TODO: regular expression
 private DebugAttr ::= DEBUG DebugEnum
+private DebugClassAttr ::= DEBUG BooleanEnum
 private DefresolutionAttr ::= DEFRESOLUTION number // TODO: int
 private DumpAttr ::= DUMP BooleanEnum
 private EmptyAttr ::= EMPTY string // TODO: url
 private EncodingAttr ::= ENCODING string
 private ErrorAttr ::= ERROR string // TODO: url
+private ExpressionAttr ::= EXPRESSION string // TODO four types of expression: String comparisons, regular expressions, logical expressions, and string functions
 private ExtentAttr ::= EXTENT number number number number
 private FilterAttr ::= FILTER string // TODO: expression!
 private FilteritemAttr ::= FILTERITEM string
@@ -203,6 +216,7 @@ private ImagetypeAttr ::= IMAGETYPE ImagetypeEnum // TODO: must match one of the
 private ImageurlAttr ::= IMAGEURL string // TODO path? url?
 private InterlaceAttr ::= INTERLACE OnOffEnum
 private ItemsAttr ::= ITEMS string // TODO: comma separated list
+private KeyimageAttr ::= KEYIMAGE string // TODO filename
 private KeysizeAttr ::= KEYSIZE number number // TODO int?
 private KeyspacingAttr ::= KEYSPACING number number // TODO int?
 private LabelcacheAttr ::= LABELCACHE OnOffEnum
@@ -258,7 +272,7 @@ private TableAttr ::= TABLE string
 private TemplateAttr ::= TEMPLATE string // TODO: [file|url]
 private TemplatepatternAttr ::= TEMPLATEPATTERN string // TODO regex
 private TemppathAttr ::= TEMPPATH string // TODO: path
-private TextAttr ::= TEXT string
+private TextAttr ::= TEXT string // TODO string,expression
 private TileindexAttr ::= TILEINDEX string // TODO: [filename|layername]
 private TileitemAttr ::= TILEITEM string // TODO: [attribute]
 private TilesrsAttr ::= TILESRS string // TODO: [attribute]

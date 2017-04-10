@@ -141,15 +141,70 @@ public class MapfileParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
-  // CLASS END
+  // CLASS ClassObjectChildren END
   static boolean ClassObject(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "ClassObject")) return false;
     if (!nextTokenIs(b, CLASS)) return false;
     boolean r;
     Marker m = enter_section_(b);
-    r = consumeTokens(b, 0, CLASS, END);
+    r = consumeToken(b, CLASS);
+    r = r && ClassObjectChildren(b, l + 1);
+    r = r && consumeToken(b, END);
     exit_section_(b, m, null, r);
     return r;
+  }
+
+  /* ********************************************************** */
+  // (
+  //         LabelObject | LeaderObject | StyleObject | ValidationObject
+  //         | DebugClassAttr | ExpressionAttr | GroupAttr | KeyimageAttr
+  //         | MaxscaledenomAttr | MinscaledenomAttr | NameAttr | StatusAttr | TemplateAttr | TextAttr
+  //     ) ClassObjectChildren*
+  static boolean ClassObjectChildren(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "ClassObjectChildren")) return false;
+    boolean r;
+    Marker m = enter_section_(b);
+    r = ClassObjectChildren_0(b, l + 1);
+    r = r && ClassObjectChildren_1(b, l + 1);
+    exit_section_(b, m, null, r);
+    return r;
+  }
+
+  // LabelObject | LeaderObject | StyleObject | ValidationObject
+  //         | DebugClassAttr | ExpressionAttr | GroupAttr | KeyimageAttr
+  //         | MaxscaledenomAttr | MinscaledenomAttr | NameAttr | StatusAttr | TemplateAttr | TextAttr
+  private static boolean ClassObjectChildren_0(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "ClassObjectChildren_0")) return false;
+    boolean r;
+    Marker m = enter_section_(b);
+    r = LabelObject(b, l + 1);
+    if (!r) r = LeaderObject(b, l + 1);
+    if (!r) r = StyleObject(b, l + 1);
+    if (!r) r = ValidationObject(b, l + 1);
+    if (!r) r = DebugClassAttr(b, l + 1);
+    if (!r) r = ExpressionAttr(b, l + 1);
+    if (!r) r = GroupAttr(b, l + 1);
+    if (!r) r = KeyimageAttr(b, l + 1);
+    if (!r) r = MaxscaledenomAttr(b, l + 1);
+    if (!r) r = MinscaledenomAttr(b, l + 1);
+    if (!r) r = NameAttr(b, l + 1);
+    if (!r) r = StatusAttr(b, l + 1);
+    if (!r) r = TemplateAttr(b, l + 1);
+    if (!r) r = TextAttr(b, l + 1);
+    exit_section_(b, m, null, r);
+    return r;
+  }
+
+  // ClassObjectChildren*
+  private static boolean ClassObjectChildren_1(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "ClassObjectChildren_1")) return false;
+    int c = current_position_(b);
+    while (true) {
+      if (!ClassObjectChildren(b, l + 1)) break;
+      if (!empty_element_parsed_guard_(b, "ClassObjectChildren_1", c)) break;
+      c = current_position_(b);
+    }
+    return true;
   }
 
   /* ********************************************************** */
@@ -541,6 +596,19 @@ public class MapfileParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
+  // DEBUG BooleanEnum
+  static boolean DebugClassAttr(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "DebugClassAttr")) return false;
+    if (!nextTokenIs(b, DEBUG)) return false;
+    boolean r;
+    Marker m = enter_section_(b);
+    r = consumeToken(b, DEBUG);
+    r = r && BooleanEnum(b, l + 1);
+    exit_section_(b, m, null, r);
+    return r;
+  }
+
+  /* ********************************************************** */
   // OnOffEnum|0|1|2|3|4|5
   static boolean DebugEnum(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "DebugEnum")) return false;
@@ -614,6 +682,18 @@ public class MapfileParser implements PsiParser, LightPsiParser {
     boolean r;
     Marker m = enter_section_(b);
     r = consumeTokens(b, 0, ERROR, STRING);
+    exit_section_(b, m, null, r);
+    return r;
+  }
+
+  /* ********************************************************** */
+  // EXPRESSION string
+  static boolean ExpressionAttr(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "ExpressionAttr")) return false;
+    if (!nextTokenIs(b, EXPRESSION)) return false;
+    boolean r;
+    Marker m = enter_section_(b);
+    r = consumeTokens(b, 0, EXPRESSION, STRING);
     exit_section_(b, m, null, r);
     return r;
   }
@@ -1030,6 +1110,18 @@ public class MapfileParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
+  // KEYIMAGE string
+  static boolean KeyimageAttr(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "KeyimageAttr")) return false;
+    if (!nextTokenIs(b, KEYIMAGE)) return false;
+    boolean r;
+    Marker m = enter_section_(b);
+    r = consumeTokens(b, 0, KEYIMAGE, STRING);
+    exit_section_(b, m, null, r);
+    return r;
+  }
+
+  /* ********************************************************** */
   // KEYSIZE number number
   static boolean KeysizeAttr(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "KeysizeAttr")) return false;
@@ -1275,6 +1367,18 @@ public class MapfileParser implements PsiParser, LightPsiParser {
       c = current_position_(b);
     }
     return true;
+  }
+
+  /* ********************************************************** */
+  // LEADER END
+  static boolean LeaderObject(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "LeaderObject")) return false;
+    if (!nextTokenIs(b, LEADER)) return false;
+    boolean r;
+    Marker m = enter_section_(b);
+    r = consumeTokens(b, 0, LEADER, END);
+    exit_section_(b, m, null, r);
+    return r;
   }
 
   /* ********************************************************** */
@@ -2280,6 +2384,18 @@ public class MapfileParser implements PsiParser, LightPsiParser {
     Marker m = enter_section_(b);
     r = OnOffEnum(b, l + 1);
     if (!r) r = consumeToken(b, DEFAULT);
+    exit_section_(b, m, null, r);
+    return r;
+  }
+
+  /* ********************************************************** */
+  // STYLE END
+  static boolean StyleObject(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "StyleObject")) return false;
+    if (!nextTokenIs(b, STYLE)) return false;
+    boolean r;
+    Marker m = enter_section_(b);
+    r = consumeTokens(b, 0, STYLE, END);
     exit_section_(b, m, null, r);
     return r;
   }

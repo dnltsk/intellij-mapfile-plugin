@@ -48,6 +48,7 @@ public interface MapfileTypes {
   IElementType END = new MapfileTokenType("END");
   IElementType EQ = new MapfileTokenType("=");
   IElementType ERROR = new MapfileTokenType("ERROR");
+  IElementType EXPRESSION = new MapfileTokenType("EXPRESSION");
   IElementType EXTENT = new MapfileTokenType("EXTENT");
   IElementType FAIL = new MapfileTokenType("fail");
   IElementType FALSE = new MapfileTokenType("false");
@@ -78,6 +79,7 @@ public interface MapfileTypes {
   IElementType JOIN = new MapfileTokenType("JOIN");
   IElementType JPEG = new MapfileTokenType("jpeg");
   IElementType KERNELDENSITY = new MapfileTokenType("kerneldensity");
+  IElementType KEYIMAGE = new MapfileTokenType("KEYIMAGE");
   IElementType KEYSIZE = new MapfileTokenType("KEYSIZE");
   IElementType KEYSPACING = new MapfileTokenType("KEYSPACING");
   IElementType KILOMETERS = new MapfileTokenType("kilometers");
@@ -92,6 +94,7 @@ public interface MapfileTypes {
   IElementType LABELREQUIRES = new MapfileTokenType("LABELREQUIRES");
   IElementType LAYER = new MapfileTokenType("LAYER");
   IElementType LC = new MapfileTokenType("lc");
+  IElementType LEADER = new MapfileTokenType("LEADER");
   IElementType LEFT = new MapfileTokenType("left");
   IElementType LEGEND = new MapfileTokenType("LEGEND");
   IElementType LEGENDFORMAT = new MapfileTokenType("LEGENDFORMAT");
