@@ -65,7 +65,9 @@ STRING=('([^'\\]|\\.)*'|\"([^\"\\]|\\.)*\")
   "SCALEBAR"              { return SCALEBAR; }
   "VALIDATION"            { return VALIDATION; }
   "WEB"                   { return WEB; }
+  "ALIGN"                 { return ALIGN; }
   "ANGLE"                 { return ANGLE; }
+  "BACKGROUNDCOLOR"       { return BACKGROUNDCOLOR; }
   "BROWSEFORMAT"          { return BROWSEFORMAT; }
   "BUFFER"                { return BUFFER; }
   "CLASSGROUP"            { return CLASSGROUP; }
@@ -78,9 +80,9 @@ STRING=('([^'\\]|\\.)*'|\"([^\"\\]|\\.)*\")
   "MS_NONSQUARE"          { return MS_NONSQUARE; }
   "ON_MISSING_DATA"       { return ON_MISSING_DATA; }
   "PROJ_LIB"              { return PROJ_LIB; }
+  "COMPOP"                { return COMPOP; }
   "CONNECTION"            { return CONNECTION; }
   "CONNECTIONTYPE"        { return CONNECTIONTYPE; }
-  "COMPOP"                { return COMPOP; }
   "DATA"                  { return DATA; }
   "DATAPATTERN"           { return DATAPATTERN; }
   "DEBUG"                 { return DEBUG; }
@@ -124,8 +126,8 @@ STRING=('([^'\\]|\\.)*'|\"([^\"\\]|\\.)*\")
   "MAXGEOWIDTH"           { return MAXGEOWIDTH; }
   "MAXINTERVAL"           { return MAXINTERVAL; }
   "MAXSCALEDENOM"         { return MAXSCALEDENOM; }
-  "MAXSUBDIVIDE"          { return MAXSUBDIVIDE; }
   "MAXSIZE"               { return MAXSIZE; }
+  "MAXSUBDIVIDE"          { return MAXSUBDIVIDE; }
   "MAXTEMPLATE"           { return MAXTEMPLATE; }
   "MINARCS"               { return MINARCS; }
   "MINBOXSIZE"            { return MINBOXSIZE; }
@@ -151,8 +153,8 @@ STRING=('([^'\\]|\\.)*'|\"([^\"\\]|\\.)*\")
   "SIZE"                  { return SIZE; }
   "SIZEUNITS"             { return SIZEUNITS; }
   "STATUS"                { return STATUS; }
-  "STYLE"                 { return STYLE; }
   "STYLEITEM"             { return STYLEITEM; }
+  "STYLE"                 { return STYLE; }
   "SYMBOLSCALEDENOM"      { return SYMBOLSCALEDENOM; }
   "SYMBOLSET"             { return SYMBOLSET; }
   "TABLE"                 { return TABLE; }
@@ -173,8 +175,14 @@ STRING=('([^'\\]|\\.)*'|\"([^\"\\]|\\.)*\")
   "UTFDATA"               { return UTFDATA; }
   "UTFITEM"               { return UTFITEM; }
   "WKT"                   { return WKT; }
+  "left"                  { return LEFT; }
+  "center"                { return CENTER; }
+  "right"                 { return RIGHT; }
   "true"                  { return TRUE; }
   "false"                 { return FALSE; }
+  "csv"                   { return CSV; }
+  "mysql"                 { return MYSQL; }
+  "postgresql"            { return POSTGRESQL; }
   "contour"               { return CONTOUR; }
   "kerneldensity"         { return KERNELDENSITY; }
   "local"                 { return LOCAL; }
@@ -186,9 +194,6 @@ STRING=('([^'\\]|\\.)*'|\"([^\"\\]|\\.)*\")
   "uvraster"              { return UVRASTER; }
   "wfs"                   { return WFS; }
   "wms"                   { return WMS; }
-  "csv"                   { return CSV; }
-  "mysql"                 { return MYSQL; }
-  "postgresql"            { return POSTGRESQL; }
   "png"                   { return PNG; }
   "gif"                   { return GIF; }
   "png8"                  { return PNG8; }
@@ -227,6 +232,8 @@ STRING=('([^'\\]|\\.)*'|\"([^\"\\]|\\.)*\")
   "cl"                    { return CL; }
   "cc"                    { return CC; }
   "cr"                    { return CR; }
+  "ONE-TO-ONE"            { return ONE_TO_ONE; }
+  "ONE-TO-MANY"           { return ONE_TO_MANY; }
   "chart"                 { return CHART; }
   "circle"                { return CIRCLE; }
   "line"                  { return LINE; }
@@ -234,8 +241,6 @@ STRING=('([^'\\]|\\.)*'|\"([^\"\\]|\\.)*\")
   "polygon"               { return POLYGON; }
   "raster"                { return RASTER; }
   "query"                 { return QUERY; }
-  "ONE-TO-ONE"            { return ONE_TO_ONE; }
-  "ONE-TO-MANY"           { return ONE_TO_MANY; }
   "percentages"           { return PERCENTAGES; }
   "yes"                   { return YES; }
   "no"                    { return NO; }

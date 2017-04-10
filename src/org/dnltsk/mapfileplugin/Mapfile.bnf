@@ -136,7 +136,14 @@ private MetadataObject ::= METADATA END
 
 private ProjectionObject ::= PROJECTION string* END
 
-private ScalebarObject ::= SCALEBAR END
+private ScalebarObject ::= SCALEBAR ScalebarAttributes END
+private ScalebarAttributes ::=
+    (
+        LabelObject
+
+        | AlignAttr | BackgroundcolorAttr | ColorAttr | ImagecolorAttr | InterlaceAttr | OutlinecolorAttr | PositionAttr
+        | PostlabelcacheAttr | SizeAttr | StatusAttr | StyleScalebarAttr | UnitsAttr
+    ) ScalebarAttributes*
 
 private ValidationObject ::= VALIDATION END
 
@@ -153,7 +160,9 @@ private WebAttributes ::=
 //
 // ATTRIBUTES
 //
+private AlignAttr ::= ALIGN alignValues
 private AngleAttr ::= ANGLE number
+private BackgroundcolorAttr ::= BACKGROUNDCOLOR ( string | ( number number number ) ) //TODO color
 private BrowseformatAttr ::= BROWSEFORMAT string
 private BufferAttr ::= BUFFER number
 private ClassgroupAttr ::= CLASSGROUP string
@@ -242,6 +251,7 @@ private SizeunitsAttr ::= SIZEUNITS sizeUnitValues
 private StatusAttr ::= STATUS statusValues
 private StyleitemAttr ::= STYLEITEM string // TODO: [<attribute>|auto|<javascript file>]
 private StyleQuerymapAttr ::= STYLE styleQuerymapValues
+private StyleScalebarAttr ::= STYLE ( 0 | 1)
 private SymbolscaledenomAttr ::= SYMBOLSCALEDENOM number
 private SymbolsetAttr ::= SYMBOLSET string  // TODO: file
 private TableAttr ::= TABLE string
@@ -267,6 +277,7 @@ private WktAttr ::= WKT string // TODO wkt standard
 //
 // VALUES
 //
+private alignValues ::= left|center|right
 private booleanValues ::= true|false
 private connectiontypeJoinValues ::= csv|mysql|postgresql
 private connectiontypeValues ::= contour|kerneldensity|local|ogr|oraclespatial|plugin|postgis|sde|union|uvraster|wfs|wms // TODO check for completeness

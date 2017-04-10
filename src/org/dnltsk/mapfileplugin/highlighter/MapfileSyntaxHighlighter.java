@@ -80,7 +80,9 @@ public class MapfileSyntaxHighlighter extends SyntaxHighlighterBase {
     );
 
     private static final List<IElementType> ATTRIBUTE_LIST = Arrays.asList(
+            ALIGN,
             ANGLE,
+            BACKGROUNDCOLOR,
             BROWSEFORMAT,
             BUFFER,
             CLASSGROUP,
@@ -168,6 +170,7 @@ public class MapfileSyntaxHighlighter extends SyntaxHighlighterBase {
     private static final List<IElementType> KEYWORD_LIST = Arrays.asList(
             CAIROPNG,
             CC,
+            CENTER,
             CGI_CONTEXT_URL,
             CHART,
             CIRCLE,
@@ -193,6 +196,7 @@ public class MapfileSyntaxHighlighter extends SyntaxHighlighterBase {
             KML,
             KMZ,
             LC,
+            LEFT,
             LINE,
             LL,
             LOCAL,
@@ -224,6 +228,7 @@ public class MapfileSyntaxHighlighter extends SyntaxHighlighterBase {
             PROJ_LIB,
             QUERY,
             RASTER,
+            RIGHT,
             SDE,
             SELECTED,
             SVG,

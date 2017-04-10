@@ -8,11 +8,14 @@ import com.intellij.psi.tree.IElementType;
 public interface MapfileTypes {
 
 
+  IElementType ALIGN = new MapfileTokenType("ALIGN");
   IElementType ANGLE = new MapfileTokenType("ANGLE");
+  IElementType BACKGROUNDCOLOR = new MapfileTokenType("BACKGROUNDCOLOR");
   IElementType BROWSEFORMAT = new MapfileTokenType("BROWSEFORMAT");
   IElementType BUFFER = new MapfileTokenType("BUFFER");
   IElementType CAIROPNG = new MapfileTokenType("cairopng");
   IElementType CC = new MapfileTokenType("cc");
+  IElementType CENTER = new MapfileTokenType("center");
   IElementType CGI_CONTEXT_URL = new MapfileTokenType("CGI_CONTEXT_URL");
   IElementType CHART = new MapfileTokenType("chart");
   IElementType CIRCLE = new MapfileTokenType("circle");
@@ -89,6 +92,7 @@ public interface MapfileTypes {
   IElementType LABELREQUIRES = new MapfileTokenType("LABELREQUIRES");
   IElementType LAYER = new MapfileTokenType("LAYER");
   IElementType LC = new MapfileTokenType("lc");
+  IElementType LEFT = new MapfileTokenType("left");
   IElementType LEGEND = new MapfileTokenType("LEGEND");
   IElementType LEGENDFORMAT = new MapfileTokenType("LEGENDFORMAT");
   IElementType LINE = new MapfileTokenType("line");
@@ -169,6 +173,7 @@ public interface MapfileTypes {
   IElementType REGION = new MapfileTokenType("REGION");
   IElementType REQUIRES = new MapfileTokenType("REQUIRES");
   IElementType RESOLUTION = new MapfileTokenType("RESOLUTION");
+  IElementType RIGHT = new MapfileTokenType("right");
   IElementType RP = new MapfileTokenType(")");
   IElementType SCALEBAR = new MapfileTokenType("SCALEBAR");
   IElementType SCALEDENOM = new MapfileTokenType("SCALEDENOM");
