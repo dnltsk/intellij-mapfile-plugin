@@ -70,6 +70,10 @@ private LayerAttributes ::=
 
 private ClassObject ::= CLASS END
 
+private SymbolObject ::= SYMBOL END
+
+private LabelObject ::= LABEL END
+
 private ClusterObject ::= CLUSTER ClusterAttributes END // TODO: only within POINT layers
 private ClusterAttributes ::=
     (
@@ -106,7 +110,14 @@ private JoinAttributes ::=
         | TemplateAttr | ToAttr | TypeJoinAttr
     ) JoinAttributes*
 
-private LegendObject ::= LEGEND END
+private LegendObject ::= LEGEND LegendAttributes END
+private LegendAttributes ::=
+    (
+        LabelObject
+
+        | ImagecolorAttr | InterlaceAttr | KeysizeAttr | KeyspacingAttr | OutlinecolorAttr | PositionAttr
+        | PostlabelcacheAttr | StatusAttr | TemplateAttr
+    ) LegendAttributes*
 
 private QuerymapObject ::= QUERYMAP END
 
@@ -117,8 +128,6 @@ private MetadataObject ::= METADATA END
 private ProjectionObject ::= PROJECTION END
 
 private ScalebarObject ::= SCALEBAR END
-
-private SymbolObject ::= SYMBOL END
 
 private ValidationObject ::= VALIDATION END
 
@@ -174,6 +183,8 @@ private ImagetypeAttr ::= IMAGETYPE imagetypeValues // TODO: must match one of t
 private ImageurlAttr ::= IMAGEURL string // TODO path? url?
 private InterlaceAttr ::= INTERLACE onOffValues
 private ItemsAttr ::= ITEMS string // TODO: comma separated list
+private KeysizeAttr ::= KEYSIZE number number // TODO int?
+private KeyspacingAttr ::= KEYSPACING number number // TODO int?
 private LabelcacheAttr ::= LABELCACHE onOffValues
 private LabelformatAttr ::= LABELFORMAT labelFormatValues
 private LabelitemAttr ::= LABELITEM string
@@ -198,9 +209,11 @@ private MinscaledenomAttr ::= MINSCALEDENOM number
 private MinsubdivideAttr ::= MINSUBDIVIDE number
 private MintemplateAttr ::= MINTEMPLATE string // TODO: [file/url]
 private NameAttr ::= NAME string // TODO: Unique check
-private OffsiteAttr ::= OFFSITE ( string | (number number number) )
+private OffsiteAttr ::= OFFSITE ( string | (number number number) ) // TODO is this a color
 private OpacityAttr ::= OPACITY // TODO: integer
+private OutlinecolorAttr ::= OUTLINECOLOR ( string | (number number number) ) // TODO color
 private PluginAttr ::= PLUGIN string // TODO: filename
+private PositionAttr ::= POSITION positionValues
 private PostlabelcacheAttr ::= POSTLABELCACHE booleanValues
 private ProcessingAttr ::= PROCESSING string // TODO: keywords in string!!
 private QueryformatAttr ::= QUERYFORMAT string
@@ -243,9 +256,10 @@ private connectiontypeValues ::= contour|kerneldensity|local|ogr|oraclespatial|p
 private connectiontypeJoinValues ::= csv|mysql|postgresql
 private debugValues ::= onOffValues|0|1|2|3|4|5
 private imagetypeValues ::= png|gif|png8|jpeg|svg|pdf|GTiff|kml|kmz|cairopng|string
-private labelFormatValues ::= dd|ddmm|ddmmss|string // todo string=cformat-string
+private labelFormatValues ::= dd|ddmm|ddmmss|string // TODO string=cformat-string
 private onMissingDataValues ::= fail|log|ignore
 private onOffValues ::= on|off
+private positionValues ::= ul|uc|ur|ll|lc|lr // TODO why not cl\cc\cr?
 private sizeUnitValues ::= feet|inches|kilometers|meters|miles|nauticalmiles|pixels
 private statusValues ::= onOffValues|default
 private toleranceUnitValues ::= sizeUnitValues|dd

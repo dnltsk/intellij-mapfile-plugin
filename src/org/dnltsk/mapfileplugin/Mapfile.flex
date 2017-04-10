@@ -49,6 +49,8 @@ STRING=('([^'\\]|\\.)*'|\"([^\"\\]|\\.)*\")
   "END"                   { return END; }
   "LAYER"                 { return LAYER; }
   "CLASS"                 { return CLASS; }
+  "SYMBOL"                { return SYMBOL; }
+  "LABEL"                 { return LABEL; }
   "CLUSTER"               { return CLUSTER; }
   "COMPOSITE"             { return COMPOSITE; }
   "FEATURE"               { return FEATURE; }
@@ -61,7 +63,6 @@ STRING=('([^'\\]|\\.)*'|\"([^\"\\]|\\.)*\")
   "METADATA"              { return METADATA; }
   "PROJECTION"            { return PROJECTION; }
   "SCALEBAR"              { return SCALEBAR; }
-  "SYMBOL"                { return SYMBOL; }
   "VALIDATION"            { return VALIDATION; }
   "WEB"                   { return WEB; }
   "ANGLE"                 { return ANGLE; }
@@ -102,6 +103,8 @@ STRING=('([^'\\]|\\.)*'|\"([^\"\\]|\\.)*\")
   "IMAGEURL"              { return IMAGEURL; }
   "INTERLACE"             { return INTERLACE; }
   "ITEMS"                 { return ITEMS; }
+  "KEYSIZE"               { return KEYSIZE; }
+  "KEYSPACING"            { return KEYSPACING; }
   "LABELCACHE"            { return LABELCACHE; }
   "LABELFORMAT"           { return LABELFORMAT; }
   "LABELITEM"             { return LABELITEM; }
@@ -128,7 +131,9 @@ STRING=('([^'\\]|\\.)*'|\"([^\"\\]|\\.)*\")
   "NAME"                  { return NAME; }
   "OFFSITE"               { return OFFSITE; }
   "OPACITY"               { return OPACITY; }
+  "OUTLINECOLOR"          { return OUTLINECOLOR; }
   "PLUGIN"                { return PLUGIN; }
+  "POSITION"              { return POSITION; }
   "POSTLABELCACHE"        { return POSTLABELCACHE; }
   "PROCESSING"            { return PROCESSING; }
   "QUERYFORMAT"           { return QUERYFORMAT; }
@@ -195,6 +200,12 @@ STRING=('([^'\\]|\\.)*'|\"([^\"\\]|\\.)*\")
   "ignore"                { return IGNORE; }
   "on"                    { return ON; }
   "off"                   { return OFF; }
+  "ul"                    { return UL; }
+  "uc"                    { return UC; }
+  "ur"                    { return UR; }
+  "ll"                    { return LL; }
+  "lc"                    { return LC; }
+  "lr"                    { return LR; }
   "feet"                  { return FEET; }
   "inches"                { return INCHES; }
   "kilometers"            { return KILOMETERS; }
@@ -203,15 +214,9 @@ STRING=('([^'\\]|\\.)*'|\"([^\"\\]|\\.)*\")
   "nauticalmiles"         { return NAUTICALMILES; }
   "pixels"                { return PIXELS; }
   "default"               { return DEFAULT; }
-  "ul"                    { return UL; }
-  "uc"                    { return UC; }
-  "ur"                    { return UR; }
   "cl"                    { return CL; }
   "cc"                    { return CC; }
   "cr"                    { return CR; }
-  "ll"                    { return LL; }
-  "lc"                    { return LC; }
-  "lr"                    { return LR; }
   "chart"                 { return CHART; }
   "circle"                { return CIRCLE; }
   "line"                  { return LINE; }

@@ -72,9 +72,12 @@ public interface MapfileTypes {
   IElementType JOIN = new MapfileTokenType("JOIN");
   IElementType JPEG = new MapfileTokenType("jpeg");
   IElementType KERNELDENSITY = new MapfileTokenType("kerneldensity");
+  IElementType KEYSIZE = new MapfileTokenType("KEYSIZE");
+  IElementType KEYSPACING = new MapfileTokenType("KEYSPACING");
   IElementType KILOMETERS = new MapfileTokenType("kilometers");
   IElementType KML = new MapfileTokenType("kml");
   IElementType KMZ = new MapfileTokenType("kmz");
+  IElementType LABEL = new MapfileTokenType("LABEL");
   IElementType LABELCACHE = new MapfileTokenType("LABELCACHE");
   IElementType LABELFORMAT = new MapfileTokenType("LABELFORMAT");
   IElementType LABELITEM = new MapfileTokenType("LABELITEM");
@@ -133,6 +136,7 @@ public interface MapfileTypes {
   IElementType OP_4 = new MapfileTokenType("/");
   IElementType OP_5 = new MapfileTokenType("!");
   IElementType ORACLESPATIAL = new MapfileTokenType("oraclespatial");
+  IElementType OUTLINECOLOR = new MapfileTokenType("OUTLINECOLOR");
   IElementType PDF = new MapfileTokenType("pdf");
   IElementType PERCENTAGES = new MapfileTokenType("percentages");
   IElementType PIXELS = new MapfileTokenType("pixels");
@@ -142,6 +146,7 @@ public interface MapfileTypes {
   IElementType POINT = new MapfileTokenType("point");
   IElementType POINTS = new MapfileTokenType("POINTS");
   IElementType POLYGON = new MapfileTokenType("polygon");
+  IElementType POSITION = new MapfileTokenType("POSITION");
   IElementType POSTGIS = new MapfileTokenType("postgis");
   IElementType POSTGRESQL = new MapfileTokenType("postgresql");
   IElementType POSTLABELCACHE = new MapfileTokenType("POSTLABELCACHE");
