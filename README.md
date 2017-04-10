@@ -41,9 +41,10 @@ Editor support for UMN Mapserver Mapfiles. Supported Mapserver version is 7.0.4
 
 1. comply the [basic prerequisites](http://www.jetbrains.org/intellij/sdk/docs/tutorials/custom_language_support/prerequisites.html) 
 2. clone the repository and import the project into IntelliJ
-4. in the `Run/Debug Configurations` dialog add a new `Configuration` (Ctrl+N)
+3. mark the `gen` directory as a `sources root`
+4. in the `Run/Debug Configurations` dialog add a new `Configuration`
 5. select `Plugin` and configure the correct module
-6. Run (Shift+F10)
+6. Run
 
 ## Resources
 
