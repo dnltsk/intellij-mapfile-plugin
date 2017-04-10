@@ -44,7 +44,6 @@ private MapObjectChildren ::=
     (
         LayerObject | LegendObject | ProjectionObject | QuerymapObject | ReferenceObject | ScalebarObject
         | SymbolObject | WebObject
-
         | AngleAttr | ConfigAttr | DatapatternAttr | DebugAttr | DefresolutionAttr | ExtentAttr | FontsetAttr
         | ImagecolorAttr | ImagetypeAttr | InterlaceAttr | MaxsizeAttr | NameAttr | ResolutionAttr
         | ScaledenomAttr | ShapepathAttr | SizeAttr | StatusAttr | SymbolsetAttr | TemplatepatternAttr | UnitsAttr
@@ -55,7 +54,6 @@ private WebObject ::= WEB WebObjectChildren END
 private WebObjectChildren ::=
     (
         MetadataObject | ValidationObject
-
         | BrowseformatAttr | EmptyAttr | ErrorAttr | FooterAttr | HeaderAttr | ImagepathAttr | ImageurlAttr
         | LegendformatAttr | MaxscaledenomAttr | MaxtemplateAttr | MinscaledenomAttr | MintemplateAttr
         | QueryformatAttr | TemplateAttr | TemppathAttr
@@ -66,7 +64,6 @@ private LayerObjectChildren ::=
     (
         ClassObject | ClusterObject | CompositeObject | FeatureObject | GridObject | JoinObject | MetadataObject
         | ProjectionObject | ValidationObject
-
         | ClassgroupAttr | ClassitemAttr | ConnectionAttr | ConnectiontypeAttr | DataAttr | DebugAttr | DumpAttr
         | EncodingAttr | ExtentAttr | FilterAttr | FooterAttr | FilteritemAttr | GeomtransformAttr | GroupAttr
         | HeaderAttr | LabelcacheAttr | LabelitemAttr | LabelmaxscaledenomAttr | LabelminscaledenomAttr
@@ -82,7 +79,6 @@ private ClassObject ::= CLASS ClassObjectChildren END
 private ClassObjectChildren ::=
     (
         LabelObject | LeaderObject | StyleObject | ValidationObject
-
         | DebugClassAttr | ExpressionAttr | GroupAttr | KeyimageAttr
         | MaxscaledenomAttr | MinscaledenomAttr | NameAttr | StatusAttr | TemplateAttr | TextAttr
     ) ClassObjectChildren*
@@ -93,13 +89,17 @@ private LabelObject ::= LABEL END
 
 private StyleObject ::= STYLE END
 
-private LeaderObject ::= LEADER END
+private LeaderObject ::= LEADER LeaderObjectChildren END // TODO supported layer type: Polygon
+private LeaderObjectChildren ::=
+    (
+        StyleObject
+        | GridstepAttr | MaxdistanceAttr
+    )
 
 private LegendObject ::= LEGEND LegendObjectChildren END
 private LegendObjectChildren ::=
     (
         LabelObject
-
         | ImagecolorAttr | InterlaceAttr | KeysizeAttr | KeyspacingAttr | OutlinecolorAttr | PositionAttr
         | PostlabelcacheAttr | StatusAttr | TemplateAttr
     ) LegendObjectChildren*
@@ -108,7 +108,6 @@ private FeatureObject ::= FEATURE FeatureObjectChildren END
 private FeatureObjectChildren ::=
     (
         PointsObject
-
         | ItemsAttr | TextAttr | WktAttr
     ) FeatureObjectChildren*
 
@@ -155,7 +154,6 @@ private ScalebarObject ::= SCALEBAR ScalebarObjectChildren END
 private ScalebarObjectChildren ::=
     (
         LabelObject
-
         | AlignAttr | BackgroundcolorAttr | ColorAttr | ImagecolorAttr | InterlaceAttr | OutlinecolorAttr | PositionAttr
         | PostlabelcacheAttr | SizeAttr | StatusAttr | StyleScalebarAttr | UnitsAttr
     ) ScalebarObjectChildren*
@@ -208,6 +206,7 @@ private FooterAttr ::= FOOTER string // TODO: filename
 private FromAttr ::= FROM string
 private GeomtransformAttr ::= GEOMTRANSFORM string // TODO: [<expression>|<Javascript file>]
 private GroupAttr ::= GROUP string
+private GridstepAttr ::= GRIDSTEP number // TODO int
 private HeaderAttr ::= HEADER string // TODO: filename
 private ImageAttr ::= IMAGE string
 private ImagecolorAttr ::= IMAGECOLOR ( string | ( number number number ) ) // TODO: hex or RGB
@@ -231,8 +230,8 @@ private MarkersizeAttr ::= MARKERSIZE number // TODO int
 private MaskAttr ::= MASK string // TODO: layername validation
 private MaxarcsAttr ::= MAXARCS number
 private MaxboxsizeAttr ::= MAXBOXSIZE number // TODO int
-private MaxdistanceAttr ::= MAXDISTANCE number
-private MaxfeaturesAttr ::= MAXFEATURES number
+private MaxdistanceAttr ::= MAXDISTANCE number // TODO int
+private MaxfeaturesAttr ::= MAXFEATURES number // TODO int
 private MaxgeowidthAttr ::= MAXGEOWIDTH number
 private MaxintervalAttr ::= MAXINTERVAL number
 private MaxscaledenomAttr ::= MAXSCALEDENOM number

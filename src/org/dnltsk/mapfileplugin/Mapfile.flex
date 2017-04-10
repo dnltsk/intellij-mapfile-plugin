@@ -102,6 +102,7 @@ STRING=('([^'\\]|\\.)*'|\"([^\"\\]|\\.)*\")
   "FROM"                  { return FROM; }
   "GEOMTRANSFORM"         { return GEOMTRANSFORM; }
   "GROUP"                 { return GROUP; }
+  "GRIDSTEP"              { return GRIDSTEP; }
   "HEADER"                { return HEADER; }
   "IMAGE"                 { return IMAGE; }
   "IMAGECOLOR"            { return IMAGECOLOR; }

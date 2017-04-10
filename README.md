@@ -13,7 +13,7 @@ Editor support for UMN Mapserver Mapfiles. Supported Mapserver version is 7.0.4
   * ![done](https://img.shields.io/badge/status-done-green.svg) JOIN
   * ![done](https://img.shields.io/badge/status-done-green.svg) LAYER
   * ![not started](https://img.shields.io/badge/status-not%20started-lightgray.svg) LABEL
-  * ![not started](https://img.shields.io/badge/status-not%20started-lightgray.svg) LEADER
+  * ![done](https://img.shields.io/badge/status-done-green.svg) LEADER
   * ![done](https://img.shields.io/badge/status-done-green.svg) LEGEND
   * ![done](https://img.shields.io/badge/status-done-green.svg) MAP
   * ![done](https://img.shields.io/badge/status-done-green.svg) METADATA

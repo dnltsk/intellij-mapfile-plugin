@@ -62,6 +62,7 @@ public interface MapfileTypes {
   IElementType GEOMTRANSFORM = new MapfileTokenType("GEOMTRANSFORM");
   IElementType GIF = new MapfileTokenType("gif");
   IElementType GRID = new MapfileTokenType("GRID");
+  IElementType GRIDSTEP = new MapfileTokenType("GRIDSTEP");
   IElementType GROUP = new MapfileTokenType("GROUP");
   IElementType GTIFF = new MapfileTokenType("GTiff");
   IElementType HEADER = new MapfileTokenType("HEADER");

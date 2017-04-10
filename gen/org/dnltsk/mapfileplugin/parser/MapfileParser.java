@@ -896,6 +896,18 @@ public class MapfileParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
+  // GRIDSTEP number
+  static boolean GridstepAttr(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "GridstepAttr")) return false;
+    if (!nextTokenIs(b, GRIDSTEP)) return false;
+    boolean r;
+    Marker m = enter_section_(b);
+    r = consumeTokens(b, 0, GRIDSTEP, NUMBER);
+    exit_section_(b, m, null, r);
+    return r;
+  }
+
+  /* ********************************************************** */
   // GROUP string
   static boolean GroupAttr(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "GroupAttr")) return false;
@@ -1370,13 +1382,29 @@ public class MapfileParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
-  // LEADER END
+  // LEADER LeaderObjectChildren END
   static boolean LeaderObject(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "LeaderObject")) return false;
     if (!nextTokenIs(b, LEADER)) return false;
     boolean r;
     Marker m = enter_section_(b);
-    r = consumeTokens(b, 0, LEADER, END);
+    r = consumeToken(b, LEADER);
+    r = r && LeaderObjectChildren(b, l + 1);
+    r = r && consumeToken(b, END);
+    exit_section_(b, m, null, r);
+    return r;
+  }
+
+  /* ********************************************************** */
+  // StyleObject
+  //         | GridstepAttr | MaxdistanceAttr
+  static boolean LeaderObjectChildren(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "LeaderObjectChildren")) return false;
+    boolean r;
+    Marker m = enter_section_(b);
+    r = StyleObject(b, l + 1);
+    if (!r) r = GridstepAttr(b, l + 1);
+    if (!r) r = MaxdistanceAttr(b, l + 1);
     exit_section_(b, m, null, r);
     return r;
   }
