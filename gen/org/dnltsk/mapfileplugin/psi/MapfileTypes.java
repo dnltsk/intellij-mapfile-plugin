@@ -152,7 +152,7 @@ public interface MapfileTypes {
   IElementType PDF = new MapfileTokenType("pdf");
   IElementType PERCENTAGES = new MapfileTokenType("percentages");
   IElementType PIXELS = new MapfileTokenType("pixels");
-  IElementType PLUGIN = new MapfileTokenType("plugin");
+  IElementType PLUGIN = new MapfileTokenType("PLUGIN");
   IElementType PNG = new MapfileTokenType("png");
   IElementType PNG8 = new MapfileTokenType("png8");
   IElementType POINT = new MapfileTokenType("point");

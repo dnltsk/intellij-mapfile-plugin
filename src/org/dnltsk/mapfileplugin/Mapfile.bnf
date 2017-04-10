@@ -39,8 +39,8 @@ mapfile ::= (MapObject | LayerObject)
 //
 // OBJECTS
 //
-private MapObject ::= MAP MapAttributes END
-private MapAttributes ::=
+private MapObject ::= MAP MapObjectChildren END
+private MapObjectChildren ::=
     (
         LayerObject | LegendObject | ProjectionObject | QuerymapObject | ReferenceObject | ScalebarObject
         | SymbolObject | WebObject
@@ -49,10 +49,10 @@ private MapAttributes ::=
         | ImagecolorAttr | ImagetypeAttr | InterlaceAttr | MaxsizeAttr | NameAttr | ResolutionAttr
         | ScaledenomAttr | ShapepathAttr | SizeAttr | StatusAttr | SymbolsetAttr | TemplatepatternAttr | UnitsAttr
 
-    ) MapAttributes*
+    ) MapObjectChildren*
 
-private LayerObject ::= LAYER LayerAttributes END
-private LayerAttributes ::=
+private LayerObject ::= LAYER LayerObjectChildren END
+private LayerObjectChildren ::=
     (
         ClassObject | ClusterObject | CompositeObject | FeatureObject | GridObject | JoinObject | MetadataObject
         | ProjectionObject | ValidationObject
@@ -66,7 +66,7 @@ private LayerAttributes ::=
         | TileitemAttr | TilesrsAttr | TitleAttr | ToleranceunitsAttr | ToleranceAttr | TransformAttr | TypeAttr
         | UnitsAttr | UtfdataAttr | UtfitemAttr
 
-    ) LayerAttributes*
+    ) LayerObjectChildren*
 
 private ClassObject ::= CLASS END
 
@@ -74,93 +74,93 @@ private SymbolObject ::= SYMBOL END
 
 private LabelObject ::= LABEL END
 
-private ClusterObject ::= CLUSTER ClusterAttributes END // TODO: only within POINT layers
-private ClusterAttributes ::=
+private ClusterObject ::= CLUSTER ClusterObjectChildren END // TODO: only within POINT layers
+private ClusterObjectChildren ::=
     (
         MaxdistanceAttr | RegionAttr | BufferAttr | GroupAttr | FilterAttr | ProcessingAttr
-    ) ClusterAttributes*
+    ) ClusterObjectChildren*
 
-private CompositeObject ::= COMPOSITE CompositeAttributes END
-private CompositeAttributes ::=
+private CompositeObject ::= COMPOSITE CompositeObjectChildren END
+private CompositeObjectChildren ::=
     (
         OpacityAttr | CompopAttr
-    ) CompositeAttributes*
+    ) CompositeObjectChildren*
 
-private FeatureObject ::= FEATURE FeatureAttributes END
-private FeatureAttributes ::=
+private FeatureObject ::= FEATURE FeatureObjectChildren END
+private FeatureObjectChildren ::=
     (
         PointsObject
 
         | ItemsAttr | TextAttr | WktAttr
-    ) FeatureAttributes*
+    ) FeatureObjectChildren*
 
 private PointsObject ::= POINTS (number number)* END
 
-private GridObject ::= GRID GridAttributes END
-private GridAttributes ::=
+private GridObject ::= GRID GridObjectChildren END
+private GridObjectChildren ::=
     (
         LabelformatAttr | MinarcsAttr | MaxarcsAttr | MinintervalAttr | MaxintervalAttr | MinsubdivideAttr
         | MaxsubdivideAttr
-    ) GridAttributes*
+    ) GridObjectChildren*
 
-private JoinObject ::= JOIN JoinAttributes END
-private JoinAttributes ::=
+private JoinObject ::= JOIN JoinObjectChildren END
+private JoinObjectChildren ::=
     (
         ConnectionAttr | ConnectiontypeJoinAttr | FooterAttr |  FromAttr | HeaderAttr | NameAttr | TableAttr
         | TemplateAttr | ToAttr | TypeJoinAttr
-    ) JoinAttributes*
+    ) JoinObjectChildren*
 
-private LegendObject ::= LEGEND LegendAttributes END
-private LegendAttributes ::=
+private LegendObject ::= LEGEND LegendObjectChildren END
+private LegendObjectChildren ::=
     (
         LabelObject
 
         | ImagecolorAttr | InterlaceAttr | KeysizeAttr | KeyspacingAttr | OutlinecolorAttr | PositionAttr
         | PostlabelcacheAttr | StatusAttr | TemplateAttr
-    ) LegendAttributes*
+    ) LegendObjectChildren*
 
-private QuerymapObject ::= QUERYMAP QuerymapAttributes END
-private QuerymapAttributes ::=
+private QuerymapObject ::= QUERYMAP QuerymapObjectChildren END
+private QuerymapObjectChildren ::=
     (
         ColorAttr | SizeAttr | StatusAttr | StyleQuerymapAttr
-    ) QuerymapAttributes*
+    ) QuerymapObjectChildren*
 
-private ReferenceObject ::= REFERENCE ReferenceAttributes END
-private ReferenceAttributes ::=
+private ReferenceObject ::= REFERENCE ReferenceObjectChildren END
+private ReferenceObjectChildren ::=
     (
         ColorAttr | ExtentAttr | ImageAttr | MarkerAttr | MarkersizeAttr | MinboxsizeAttr | MaxboxsizeAttr
         | OutlinecolorAttr | SizeAttr | StatusAttr
-    ) ReferenceAttributes*
+    ) ReferenceObjectChildren*
 
 private MetadataObject ::= METADATA END
 
 private ProjectionObject ::= PROJECTION string* END
 
-private ScalebarObject ::= SCALEBAR ScalebarAttributes END
-private ScalebarAttributes ::=
+private ScalebarObject ::= SCALEBAR ScalebarObjectChildren END
+private ScalebarObjectChildren ::=
     (
         LabelObject
 
         | AlignAttr | BackgroundcolorAttr | ColorAttr | ImagecolorAttr | InterlaceAttr | OutlinecolorAttr | PositionAttr
         | PostlabelcacheAttr | SizeAttr | StatusAttr | StyleScalebarAttr | UnitsAttr
-    ) ScalebarAttributes*
+    ) ScalebarObjectChildren*
 
 private ValidationObject ::= VALIDATION END
 
-private WebObject ::= WEB WebAttributes END
-private WebAttributes ::=
+private WebObject ::= WEB WebObjectChildren END
+private WebObjectChildren ::=
     (
         MetadataObject | ValidationObject
 
         | BrowseformatAttr | EmptyAttr | ErrorAttr | FooterAttr | HeaderAttr | ImagepathAttr | ImageurlAttr
         | LegendformatAttr | MaxscaledenomAttr | MaxtemplateAttr | MinscaledenomAttr | MintemplateAttr
         | QueryformatAttr | TemplateAttr | TemppathAttr
-    ) WebAttributes*
+    ) WebObjectChildren*
 
 //
 // ATTRIBUTES
 //
-private AlignAttr ::= ALIGN alignValues
+private AlignAttr ::= ALIGN AlignEnum
 private AngleAttr ::= ANGLE number
 private BackgroundcolorAttr ::= BACKGROUNDCOLOR ( string | ( number number number ) ) //TODO color
 private BrowseformatAttr ::= BROWSEFORMAT string
@@ -172,18 +172,18 @@ private ConfigAttr ::= CONFIG (
     ( CGI_CONTEXT_URL string )
     | ( MS_ENCRYPTION_KEY string )
     | ( MS_ERRORFILE string )
-    | ( MS_NONSQUARE yesNoValues )
-    | ( ON_MISSING_DATA onMissingDataValues )
+    | ( MS_NONSQUARE YesNoEnum )
+    | ( ON_MISSING_DATA OnMissingDataEnum )
     | ( PROJ_LIB string ) )
 private CompopAttr ::= COMPOP string // TODO: keywords in string
 private ConnectionAttr ::= CONNECTION string
-private ConnectiontypeAttr ::= CONNECTIONTYPE connectiontypeValues
-private ConnectiontypeJoinAttr ::= CONNECTIONTYPE connectiontypeJoinValues
+private ConnectiontypeAttr ::= CONNECTIONTYPE ConnectiontypeEnum
+private ConnectiontypeJoinAttr ::= CONNECTIONTYPE ConnectiontypeJoinEnum
 private DataAttr ::= DATA string
 private DatapatternAttr ::= DATAPATTERN string // TODO: regular expression
-private DebugAttr ::= DEBUG debugValues
+private DebugAttr ::= DEBUG DebugEnum
 private DefresolutionAttr ::= DEFRESOLUTION number // TODO: int
-private DumpAttr ::= DUMP booleanValues
+private DumpAttr ::= DUMP BooleanEnum
 private EmptyAttr ::= EMPTY string // TODO: url
 private EncodingAttr ::= ENCODING string
 private ErrorAttr ::= ERROR string // TODO: url
@@ -199,14 +199,14 @@ private HeaderAttr ::= HEADER string // TODO: filename
 private ImageAttr ::= IMAGE string
 private ImagecolorAttr ::= IMAGECOLOR ( string | ( number number number ) ) // TODO: hex or RGB
 private ImagepathAttr ::= IMAGEPATH string // TODO: path
-private ImagetypeAttr ::= IMAGETYPE imagetypeValues // TODO: must match one of the defined ones in OutputfomatObject
+private ImagetypeAttr ::= IMAGETYPE ImagetypeEnum // TODO: must match one of the defined ones in OutputfomatObject
 private ImageurlAttr ::= IMAGEURL string // TODO path? url?
-private InterlaceAttr ::= INTERLACE onOffValues
+private InterlaceAttr ::= INTERLACE OnOffEnum
 private ItemsAttr ::= ITEMS string // TODO: comma separated list
 private KeysizeAttr ::= KEYSIZE number number // TODO int?
 private KeyspacingAttr ::= KEYSPACING number number // TODO int?
-private LabelcacheAttr ::= LABELCACHE onOffValues
-private LabelformatAttr ::= LABELFORMAT labelFormatValues
+private LabelcacheAttr ::= LABELCACHE OnOffEnum
+private LabelformatAttr ::= LABELFORMAT LabelFormatEnum
 private LabelitemAttr ::= LABELITEM string
 private LabelmaxscaledenomAttr ::= LABELMAXSCALEDENOM number
 private LabelminscaledenomAttr ::= LABELMINSCALEDENOM number
@@ -237,8 +237,8 @@ private OffsiteAttr ::= OFFSITE ( string | (number number number) ) // TODO is t
 private OpacityAttr ::= OPACITY // TODO: integer
 private OutlinecolorAttr ::= OUTLINECOLOR ( string | (number number number) ) // TODO color
 private PluginAttr ::= PLUGIN string // TODO: filename
-private PositionAttr ::= POSITION positionValues
-private PostlabelcacheAttr ::= POSTLABELCACHE booleanValues
+private PositionAttr ::= POSITION PositionEnum
+private PostlabelcacheAttr ::= POSTLABELCACHE BooleanEnum
 private ProcessingAttr ::= PROCESSING string // TODO: keywords in string!!
 private QueryformatAttr ::= QUERYFORMAT string
 private RegionAttr ::= REGION string
@@ -247,10 +247,10 @@ private ResolutionAttr ::= RESOLUTION number // TODO: int
 private ScaledenomAttr ::= SCALEDENOM number
 private ShapepathAttr ::= SHAPEPATH string // TODO: directory
 private SizeAttr ::= SIZE number number // TODO: int
-private SizeunitsAttr ::= SIZEUNITS sizeUnitValues
-private StatusAttr ::= STATUS statusValues
+private SizeunitsAttr ::= SIZEUNITS SizeUnitEnum
+private StatusAttr ::= STATUS StatusEnum
 private StyleitemAttr ::= STYLEITEM string // TODO: [<attribute>|auto|<javascript file>]
-private StyleQuerymapAttr ::= STYLE styleQuerymapValues
+private StyleQuerymapAttr ::= STYLE StyleQuerymapEnum
 private StyleScalebarAttr ::= STYLE ( 0 | 1)
 private SymbolscaledenomAttr ::= SYMBOLSCALEDENOM number
 private SymbolsetAttr ::= SYMBOLSET string  // TODO: file
@@ -265,34 +265,34 @@ private TilesrsAttr ::= TILESRS string // TODO: [attribute]
 private TitleAttr ::= TITLE string
 private ToAttr ::= TO string
 private ToleranceAttr ::= TOLERANCE number
-private ToleranceunitsAttr ::= TOLERANCEUNITS toleranceUnitValues
-private TransformAttr ::= TRANSFORM transformValues
-private TypeAttr ::= TYPE typeValues
-private TypeJoinAttr ::= TYPE typeJoinValues
-private UnitsAttr ::= UNITS unitsValues
+private ToleranceunitsAttr ::= TOLERANCEUNITS ToleranceUnitEnum
+private TransformAttr ::= TRANSFORM TransformEnum
+private TypeAttr ::= TYPE TypeEnum
+private TypeJoinAttr ::= TYPE TypeJoinEnum
+private UnitsAttr ::= UNITS UnitsEnum
 private UtfdataAttr ::= UTFDATA string
 private UtfitemAttr ::= UTFITEM string
 private WktAttr ::= WKT string // TODO wkt standard
 
 //
-// VALUES
+// ENUMERATIONS
 //
-private alignValues ::= left|center|right
-private booleanValues ::= true|false
-private connectiontypeJoinValues ::= csv|mysql|postgresql
-private connectiontypeValues ::= contour|kerneldensity|local|ogr|oraclespatial|plugin|postgis|sde|union|uvraster|wfs|wms // TODO check for completeness
-private debugValues ::= onOffValues|0|1|2|3|4|5
-private imagetypeValues ::= png|gif|png8|jpeg|svg|pdf|GTiff|kml|kmz|cairopng|string
-private labelFormatValues ::= dd|ddmm|ddmmss|string // TODO string=cformat-string
-private onMissingDataValues ::= fail|log|ignore
-private onOffValues ::= on|off
-private positionValues ::= ul|uc|ur|ll|lc|lr // TODO why not cl\cc\cr?
-private sizeUnitValues ::= feet|inches|kilometers|meters|miles|nauticalmiles|pixels
-private statusValues ::= onOffValues|default
-private styleQuerymapValues ::= normal|hilite|selected
-private toleranceUnitValues ::= sizeUnitValues|dd
-private transformValues ::= booleanValues|ul|uc|ur|cl|cc|cr|ll|lc|lr
-private typeJoinValues ::= ONE-TO-ONE|ONE-TO-MANY
-private typeValues ::= chart|circle|line|point|polygon|raster|query
-private unitsValues ::= toleranceUnitValues|percentages
-private yesNoValues ::= yes|no
+private AlignEnum ::= left|center|right
+private BooleanEnum ::= true|false
+private ConnectiontypeJoinEnum ::= csv|mysql|postgresql
+private ConnectiontypeEnum ::= contour|kerneldensity|local|ogr|oraclespatial|plugin|postgis|sde|union|uvraster|wfs|wms // TODO check for completeness
+private DebugEnum ::= OnOffEnum|0|1|2|3|4|5
+private ImagetypeEnum ::= png|gif|png8|jpeg|svg|pdf|GTiff|kml|kmz|cairopng|string
+private LabelFormatEnum ::= dd|ddmm|ddmmss|string // TODO string=cformat-string
+private OnMissingDataEnum ::= fail|log|ignore
+private OnOffEnum ::= on|off
+private PositionEnum ::= ul|uc|ur|ll|lc|lr // TODO why not cl\cc\cr?
+private SizeUnitEnum ::= feet|inches|kilometers|meters|miles|nauticalmiles|pixels
+private StatusEnum ::= OnOffEnum|default
+private StyleQuerymapEnum ::= normal|hilite|selected
+private ToleranceUnitEnum ::= SizeUnitEnum|dd
+private TransformEnum ::= BooleanEnum|ul|uc|ur|cl|cc|cr|ll|lc|lr
+private TypeJoinEnum ::= ONE-TO-ONE|ONE-TO-MANY
+private TypeEnum ::= chart|circle|line|point|polygon|raster|query
+private UnitsEnum ::= ToleranceUnitEnum|percentages
+private YesNoEnum ::= yes|no
