@@ -70,7 +70,11 @@ private LayerAttributes ::=
 
 private ClassObject ::= CLASS END
 
-private ClusterObject ::= CLUSTER END
+private ClusterObject ::= CLUSTER ClusterAttributes END // TODO: only within POINT layers
+private ClusterAttributes ::=
+    (
+        MaxdistanceAttr | RegionAttr | BufferAttr | GroupAttr | FilterAttr | ProcessingAttr
+    ) ClusterAttributes*
 
 private CompositeObject ::= COMPOSITE END
 
@@ -111,6 +115,7 @@ private WebAttributes ::=
 //
 private AngleAttr ::= ANGLE number
 private BrowseformatAttr ::= BROWSEFORMAT string
+private BufferAttr ::= BUFFER number
 private ClassgroupAttr ::= CLASSGROUP string
 private ClassitemAttr ::= CLASSITEM string
 private ConfigAttr ::= CONFIG (
@@ -128,28 +133,29 @@ private DebugAttr ::= DEBUG debugValues
 private DefresolutionAttr ::= DEFRESOLUTION number // TODO: int
 private DumpAttr ::= DUMP booleanValues
 private EmptyAttr ::= EMPTY string // TODO: url
-private ErrorAttr ::= ERROR string // TODO: url
 private EncodingAttr ::= ENCODING string
+private ErrorAttr ::= ERROR string // TODO: url
 private ExtentAttr ::= EXTENT number number number number
-private FilteritemAttr ::= FILTERITEM string
 private FilterAttr ::= FILTER string // TODO: expression!
+private FilteritemAttr ::= FILTERITEM string
 private FontsetAttr ::= FONTSET string // TODO: file
-private GeomtransformAttr ::= GEOMTRANSFORM string // TODO: [<expression>|<Javascript file>]
-private ImagetypeAttr ::= IMAGETYPE imagetypeValues // TODO: must match one of the defined ones in OutputfomatObject
-private LabelcacheAttr ::= LABELCACHE onOffValues
 private FooterAttr ::= FOOTER string // TODO: filename
+private GeomtransformAttr ::= GEOMTRANSFORM string // TODO: [<expression>|<Javascript file>]
 private GroupAttr ::= GROUP string
 private HeaderAttr ::= HEADER string // TODO: filename
 private ImagecolorAttr ::= IMAGECOLOR ( string | ( number number number ) ) // TODO: hex or RGB
 private ImagepathAttr ::= IMAGEPATH string // TODO: path
+private ImagetypeAttr ::= IMAGETYPE imagetypeValues // TODO: must match one of the defined ones in OutputfomatObject
 private ImageurlAttr ::= IMAGEURL string // TODO path? url?
 private InterlaceAttr ::= INTERLACE onOffValues
+private LabelcacheAttr ::= LABELCACHE onOffValues
 private LabelitemAttr ::= LABELITEM string
 private LabelmaxscaledenomAttr ::= LABELMAXSCALEDENOM number
 private LabelminscaledenomAttr ::= LABELMINSCALEDENOM number
 private LabelrequiresAttr ::= LABELREQUIRES string // TODO: expression
 private LegendformatAttr ::= LEGENDFORMAT string
 private MaskAttr ::= MASK string // TODO: layername validation
+private MaxdistanceAttr ::= MAXDISTANCE number
 private MaxfeaturesAttr ::= MAXFEATURES number
 private MaxgeowidthAttr ::= MAXGEOWIDTH number
 private MaxscaledenomAttr ::= MAXSCALEDENOM number
@@ -162,8 +168,9 @@ private NameAttr ::= NAME string // TODO: Unique check
 private OffsiteAttr ::= OFFSITE ( string | (number number number) )
 private PluginAttr ::= PLUGIN string // TODO: filename
 private PostlabelcacheAttr ::= POSTLABELCACHE booleanValues
-private ProcessingAttr ::= PROCESSING string
+private ProcessingAttr ::= PROCESSING string // TODO: keywords in string!!
 private QueryformatAttr ::= QUERYFORMAT string
+private RegionAttr ::= REGION string
 private RequiresAttr ::= REQUIRES string // TODO: expression
 private ResolutionAttr ::= RESOLUTION number // TODO: int
 private ScaledenomAttr ::= SCALEDENOM number
@@ -193,9 +200,10 @@ private UtfitemAttr ::= UTFITEM string
 // VALUES
 //
 private booleanValues ::= true|false
-private debugValues ::= onOffValues|0|1|2|3|4|5
 private connectionTypeValues ::= contour|kerneldensity|local|ogr|oraclespatial|plugin|postgis|sde|union|uvraster|wfs|wms
+private debugValues ::= onOffValues|0|1|2|3|4|5
 private imagetypeValues ::= png|gif|png8|jpeg|svg|pdf|GTiff|kml|kmz|cairopng|string
+private onMissingDataValues ::= fail|log|ignore
 private onOffValues ::= on|off
 private sizeUnitValues ::= feet|inches|kilometers|meters|miles|nauticalmiles|pixels
 private statusValues ::= onOffValues|default
@@ -204,4 +212,3 @@ private transformValues ::= booleanValues|ul|uc|ur|cl|cc|cr|ll|lc|lr
 private typeValues ::= chart|circle|line|point|polygon|raster|query
 private unitsValues ::= toleranceUnitValues|percentages
 private yesNoValues ::= yes|no
-private onMissingDataValues ::= fail|log|ignore

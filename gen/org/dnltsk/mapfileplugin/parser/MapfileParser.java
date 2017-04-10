@@ -56,6 +56,18 @@ public class MapfileParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
+  // BUFFER number
+  static boolean BufferAttr(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "BufferAttr")) return false;
+    if (!nextTokenIs(b, BUFFER)) return false;
+    boolean r;
+    Marker m = enter_section_(b);
+    r = consumeTokens(b, 0, BUFFER, NUMBER);
+    exit_section_(b, m, null, r);
+    return r;
+  }
+
+  /* ********************************************************** */
   // CLASS END
   static boolean ClassObject(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "ClassObject")) return false;
@@ -92,13 +104,56 @@ public class MapfileParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
-  // CLUSTER END
+  // (
+  //         MaxdistanceAttr | RegionAttr | BufferAttr | GroupAttr | FilterAttr | ProcessingAttr
+  //     ) ClusterAttributes*
+  static boolean ClusterAttributes(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "ClusterAttributes")) return false;
+    boolean r;
+    Marker m = enter_section_(b);
+    r = ClusterAttributes_0(b, l + 1);
+    r = r && ClusterAttributes_1(b, l + 1);
+    exit_section_(b, m, null, r);
+    return r;
+  }
+
+  // MaxdistanceAttr | RegionAttr | BufferAttr | GroupAttr | FilterAttr | ProcessingAttr
+  private static boolean ClusterAttributes_0(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "ClusterAttributes_0")) return false;
+    boolean r;
+    Marker m = enter_section_(b);
+    r = MaxdistanceAttr(b, l + 1);
+    if (!r) r = RegionAttr(b, l + 1);
+    if (!r) r = BufferAttr(b, l + 1);
+    if (!r) r = GroupAttr(b, l + 1);
+    if (!r) r = FilterAttr(b, l + 1);
+    if (!r) r = ProcessingAttr(b, l + 1);
+    exit_section_(b, m, null, r);
+    return r;
+  }
+
+  // ClusterAttributes*
+  private static boolean ClusterAttributes_1(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "ClusterAttributes_1")) return false;
+    int c = current_position_(b);
+    while (true) {
+      if (!ClusterAttributes(b, l + 1)) break;
+      if (!empty_element_parsed_guard_(b, "ClusterAttributes_1", c)) break;
+      c = current_position_(b);
+    }
+    return true;
+  }
+
+  /* ********************************************************** */
+  // CLUSTER ClusterAttributes END
   static boolean ClusterObject(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "ClusterObject")) return false;
     if (!nextTokenIs(b, CLUSTER)) return false;
     boolean r;
     Marker m = enter_section_(b);
-    r = consumeTokens(b, 0, CLUSTER, END);
+    r = consumeToken(b, CLUSTER);
+    r = r && ClusterAttributes(b, l + 1);
+    r = r && consumeToken(b, END);
     exit_section_(b, m, null, r);
     return r;
   }
@@ -862,6 +917,18 @@ public class MapfileParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
+  // MAXDISTANCE number
+  static boolean MaxdistanceAttr(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "MaxdistanceAttr")) return false;
+    if (!nextTokenIs(b, MAXDISTANCE)) return false;
+    boolean r;
+    Marker m = enter_section_(b);
+    r = consumeTokens(b, 0, MAXDISTANCE, NUMBER);
+    exit_section_(b, m, null, r);
+    return r;
+  }
+
+  /* ********************************************************** */
   // MAXFEATURES number
   static boolean MaxfeaturesAttr(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "MaxfeaturesAttr")) return false;
@@ -1096,6 +1163,18 @@ public class MapfileParser implements PsiParser, LightPsiParser {
     boolean r;
     Marker m = enter_section_(b);
     r = consumeTokens(b, 0, REFERENCE, END);
+    exit_section_(b, m, null, r);
+    return r;
+  }
+
+  /* ********************************************************** */
+  // REGION string
+  static boolean RegionAttr(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "RegionAttr")) return false;
+    if (!nextTokenIs(b, REGION)) return false;
+    boolean r;
+    Marker m = enter_section_(b);
+    r = consumeTokens(b, 0, REGION, STRING);
     exit_section_(b, m, null, r);
     return r;
   }

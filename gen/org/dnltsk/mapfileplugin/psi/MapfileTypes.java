@@ -10,6 +10,7 @@ public interface MapfileTypes {
 
   IElementType ANGLE = new MapfileTokenType("ANGLE");
   IElementType BROWSEFORMAT = new MapfileTokenType("BROWSEFORMAT");
+  IElementType BUFFER = new MapfileTokenType("BUFFER");
   IElementType CAIROPNG = new MapfileTokenType("cairopng");
   IElementType CC = new MapfileTokenType("cc");
   IElementType CGI_CONTEXT_URL = new MapfileTokenType("CGI_CONTEXT_URL");
@@ -85,6 +86,7 @@ public interface MapfileTypes {
   IElementType LR = new MapfileTokenType("lr");
   IElementType MAP = new MapfileTokenType("MAP");
   IElementType MASK = new MapfileTokenType("MASK");
+  IElementType MAXDISTANCE = new MapfileTokenType("MAXDISTANCE");
   IElementType MAXFEATURES = new MapfileTokenType("MAXFEATURES");
   IElementType MAXGEOWIDTH = new MapfileTokenType("MAXGEOWIDTH");
   IElementType MAXSCALEDENOM = new MapfileTokenType("MAXSCALEDENOM");
@@ -132,6 +134,7 @@ public interface MapfileTypes {
   IElementType QUERYMAP = new MapfileTokenType("QUERYMAP");
   IElementType RASTER = new MapfileTokenType("raster");
   IElementType REFERENCE = new MapfileTokenType("REFERENCE");
+  IElementType REGION = new MapfileTokenType("REGION");
   IElementType REQUIRES = new MapfileTokenType("REQUIRES");
   IElementType RESOLUTION = new MapfileTokenType("RESOLUTION");
   IElementType RP = new MapfileTokenType(")");

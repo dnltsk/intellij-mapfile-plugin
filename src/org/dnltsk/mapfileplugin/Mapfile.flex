@@ -65,6 +65,7 @@ STRING=('([^'\\]|\\.)*'|\"([^\"\\]|\\.)*\")
   "WEB"                   { return WEB; }
   "ANGLE"                 { return ANGLE; }
   "BROWSEFORMAT"          { return BROWSEFORMAT; }
+  "BUFFER"                { return BUFFER; }
   "CLASSGROUP"            { return CLASSGROUP; }
   "CLASSITEM"             { return CLASSITEM; }
   "CONFIG"                { return CONFIG; }
@@ -82,28 +83,29 @@ STRING=('([^'\\]|\\.)*'|\"([^\"\\]|\\.)*\")
   "DEFRESOLUTION"         { return DEFRESOLUTION; }
   "DUMP"                  { return DUMP; }
   "EMPTY"                 { return EMPTY; }
-  "ERROR"                 { return ERROR; }
   "ENCODING"              { return ENCODING; }
+  "ERROR"                 { return ERROR; }
   "EXTENT"                { return EXTENT; }
-  "FILTERITEM"            { return FILTERITEM; }
   "FILTER"                { return FILTER; }
+  "FILTERITEM"            { return FILTERITEM; }
   "FONTSET"               { return FONTSET; }
-  "GEOMTRANSFORM"         { return GEOMTRANSFORM; }
-  "IMAGETYPE"             { return IMAGETYPE; }
-  "LABELCACHE"            { return LABELCACHE; }
   "FOOTER"                { return FOOTER; }
+  "GEOMTRANSFORM"         { return GEOMTRANSFORM; }
   "GROUP"                 { return GROUP; }
   "HEADER"                { return HEADER; }
   "IMAGECOLOR"            { return IMAGECOLOR; }
   "IMAGEPATH"             { return IMAGEPATH; }
+  "IMAGETYPE"             { return IMAGETYPE; }
   "IMAGEURL"              { return IMAGEURL; }
   "INTERLACE"             { return INTERLACE; }
+  "LABELCACHE"            { return LABELCACHE; }
   "LABELITEM"             { return LABELITEM; }
   "LABELMAXSCALEDENOM"    { return LABELMAXSCALEDENOM; }
   "LABELMINSCALEDENOM"    { return LABELMINSCALEDENOM; }
   "LABELREQUIRES"         { return LABELREQUIRES; }
   "LEGENDFORMAT"          { return LEGENDFORMAT; }
   "MASK"                  { return MASK; }
+  "MAXDISTANCE"           { return MAXDISTANCE; }
   "MAXFEATURES"           { return MAXFEATURES; }
   "MAXGEOWIDTH"           { return MAXGEOWIDTH; }
   "MAXSCALEDENOM"         { return MAXSCALEDENOM; }
@@ -118,6 +120,7 @@ STRING=('([^'\\]|\\.)*'|\"([^\"\\]|\\.)*\")
   "POSTLABELCACHE"        { return POSTLABELCACHE; }
   "PROCESSING"            { return PROCESSING; }
   "QUERYFORMAT"           { return QUERYFORMAT; }
+  "REGION"                { return REGION; }
   "REQUIRES"              { return REQUIRES; }
   "RESOLUTION"            { return RESOLUTION; }
   "SCALEDENOM"            { return SCALEDENOM; }
@@ -165,6 +168,9 @@ STRING=('([^'\\]|\\.)*'|\"([^\"\\]|\\.)*\")
   "kml"                   { return KML; }
   "kmz"                   { return KMZ; }
   "cairopng"              { return CAIROPNG; }
+  "fail"                  { return FAIL; }
+  "log"                   { return LOG; }
+  "ignore"                { return IGNORE; }
   "on"                    { return ON; }
   "off"                   { return OFF; }
   "feet"                  { return FEET; }
@@ -195,9 +201,6 @@ STRING=('([^'\\]|\\.)*'|\"([^\"\\]|\\.)*\")
   "percentages"           { return PERCENTAGES; }
   "yes"                   { return YES; }
   "no"                    { return NO; }
-  "fail"                  { return FAIL; }
-  "log"                   { return LOG; }
-  "ignore"                { return IGNORE; }
 
   {SPACE}                 { return SPACE; }
   {COMMENT}               { return COMMENT; }
