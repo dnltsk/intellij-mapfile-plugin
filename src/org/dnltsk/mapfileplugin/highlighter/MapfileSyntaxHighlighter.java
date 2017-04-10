@@ -61,6 +61,7 @@ public class MapfileSyntaxHighlighter extends SyntaxHighlighterBase {
             CONNECTION,
             DATA,
             FONTSET,
+            FROM,
             IMAGEPATH,
             IMAGEURL,
             MAXTEMPLATE,
@@ -69,8 +70,10 @@ public class MapfileSyntaxHighlighter extends SyntaxHighlighterBase {
             SHAPEPATH,
             STATUS,
             SYMBOLSET,
+            TABLE,
             TEMPPATH,
             TITLE,
+            TO,
             TYPE
     );
 
@@ -153,6 +156,9 @@ public class MapfileSyntaxHighlighter extends SyntaxHighlighterBase {
     private static final List<IElementType> KEYWORD_LIST = Arrays.asList(
             CAIROPNG,
             CC,
+            CSV,
+            POSTGRESQL,
+            MYSQL,
             CGI_CONTEXT_URL,
             CHART,
             CIRCLE,

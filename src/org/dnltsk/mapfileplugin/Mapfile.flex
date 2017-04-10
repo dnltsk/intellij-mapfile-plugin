@@ -92,6 +92,7 @@ STRING=('([^'\\]|\\.)*'|\"([^\"\\]|\\.)*\")
   "FILTERITEM"            { return FILTERITEM; }
   "FONTSET"               { return FONTSET; }
   "FOOTER"                { return FOOTER; }
+  "FROM"                  { return FROM; }
   "GEOMTRANSFORM"         { return GEOMTRANSFORM; }
   "GROUP"                 { return GROUP; }
   "HEADER"                { return HEADER; }
@@ -142,6 +143,7 @@ STRING=('([^'\\]|\\.)*'|\"([^\"\\]|\\.)*\")
   "STYLEITEM"             { return STYLEITEM; }
   "SYMBOLSCALEDENOM"      { return SYMBOLSCALEDENOM; }
   "SYMBOLSET"             { return SYMBOLSET; }
+  "TABLE"                 { return TABLE; }
   "TEMPLATE"              { return TEMPLATE; }
   "TEMPLATEPATTERN"       { return TEMPLATEPATTERN; }
   "TEMPPATH"              { return TEMPPATH; }
@@ -150,6 +152,7 @@ STRING=('([^'\\]|\\.)*'|\"([^\"\\]|\\.)*\")
   "TILEITEM"              { return TILEITEM; }
   "TILESRS"               { return TILESRS; }
   "TITLE"                 { return TITLE; }
+  "TO"                    { return TO; }
   "TOLERANCE"             { return TOLERANCE; }
   "TOLERANCEUNITS"        { return TOLERANCEUNITS; }
   "TRANSFORM"             { return TRANSFORM; }
@@ -171,6 +174,9 @@ STRING=('([^'\\]|\\.)*'|\"([^\"\\]|\\.)*\")
   "uvraster"              { return UVRASTER; }
   "wfs"                   { return WFS; }
   "wms"                   { return WMS; }
+  "csv"                   { return CSV; }
+  "mysql"                 { return MYSQL; }
+  "postgresql"            { return POSTGRESQL; }
   "png"                   { return PNG; }
   "gif"                   { return GIF; }
   "png8"                  { return PNG8; }
@@ -197,7 +203,6 @@ STRING=('([^'\\]|\\.)*'|\"([^\"\\]|\\.)*\")
   "nauticalmiles"         { return NAUTICALMILES; }
   "pixels"                { return PIXELS; }
   "default"               { return DEFAULT; }
-  "dd"                    { return DD; }
   "ul"                    { return UL; }
   "uc"                    { return UC; }
   "ur"                    { return UR; }
@@ -214,6 +219,8 @@ STRING=('([^'\\]|\\.)*'|\"([^\"\\]|\\.)*\")
   "polygon"               { return POLYGON; }
   "raster"                { return RASTER; }
   "query"                 { return QUERY; }
+  "ONE-TO-ONE"            { return ONE_TO_ONE; }
+  "ONE-TO-MANY"           { return ONE_TO_MANY; }
   "percentages"           { return PERCENTAGES; }
   "yes"                   { return YES; }
   "no"                    { return NO; }

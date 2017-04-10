@@ -29,6 +29,7 @@ public interface MapfileTypes {
   IElementType CONNECTIONTYPE = new MapfileTokenType("CONNECTIONTYPE");
   IElementType CONTOUR = new MapfileTokenType("contour");
   IElementType CR = new MapfileTokenType("cr");
+  IElementType CSV = new MapfileTokenType("csv");
   IElementType DATA = new MapfileTokenType("DATA");
   IElementType DATAPATTERN = new MapfileTokenType("DATAPATTERN");
   IElementType DD = new MapfileTokenType("dd");
@@ -52,6 +53,7 @@ public interface MapfileTypes {
   IElementType FILTERITEM = new MapfileTokenType("FILTERITEM");
   IElementType FONTSET = new MapfileTokenType("FONTSET");
   IElementType FOOTER = new MapfileTokenType("FOOTER");
+  IElementType FROM = new MapfileTokenType("FROM");
   IElementType GEOMTRANSFORM = new MapfileTokenType("GEOMTRANSFORM");
   IElementType GIF = new MapfileTokenType("gif");
   IElementType GRID = new MapfileTokenType("GRID");
@@ -112,6 +114,7 @@ public interface MapfileTypes {
   IElementType MS_ENCRYPTION_KEY = new MapfileTokenType("MS_ENCRYPTION_KEY");
   IElementType MS_ERRORFILE = new MapfileTokenType("MS_ERRORFILE");
   IElementType MS_NONSQUARE = new MapfileTokenType("MS_NONSQUARE");
+  IElementType MYSQL = new MapfileTokenType("mysql");
   IElementType NAME = new MapfileTokenType("NAME");
   IElementType NAUTICALMILES = new MapfileTokenType("nauticalmiles");
   IElementType NO = new MapfileTokenType("no");
@@ -120,6 +123,8 @@ public interface MapfileTypes {
   IElementType OFFSITE = new MapfileTokenType("OFFSITE");
   IElementType OGR = new MapfileTokenType("ogr");
   IElementType ON = new MapfileTokenType("on");
+  IElementType ONE_TO_MANY = new MapfileTokenType("ONE-TO-MANY");
+  IElementType ONE_TO_ONE = new MapfileTokenType("ONE-TO-ONE");
   IElementType ON_MISSING_DATA = new MapfileTokenType("ON_MISSING_DATA");
   IElementType OPACITY = new MapfileTokenType("OPACITY");
   IElementType OP_1 = new MapfileTokenType("+");
@@ -138,6 +143,7 @@ public interface MapfileTypes {
   IElementType POINTS = new MapfileTokenType("POINTS");
   IElementType POLYGON = new MapfileTokenType("polygon");
   IElementType POSTGIS = new MapfileTokenType("postgis");
+  IElementType POSTGRESQL = new MapfileTokenType("postgresql");
   IElementType POSTLABELCACHE = new MapfileTokenType("POSTLABELCACHE");
   IElementType PROCESSING = new MapfileTokenType("PROCESSING");
   IElementType PROJECTION = new MapfileTokenType("PROJECTION");
@@ -165,6 +171,7 @@ public interface MapfileTypes {
   IElementType SYMBOL = new MapfileTokenType("SYMBOL");
   IElementType SYMBOLSCALEDENOM = new MapfileTokenType("SYMBOLSCALEDENOM");
   IElementType SYMBOLSET = new MapfileTokenType("SYMBOLSET");
+  IElementType TABLE = new MapfileTokenType("TABLE");
   IElementType TEMPLATE = new MapfileTokenType("TEMPLATE");
   IElementType TEMPLATEPATTERN = new MapfileTokenType("TEMPLATEPATTERN");
   IElementType TEMPPATH = new MapfileTokenType("TEMPPATH");
@@ -173,6 +180,7 @@ public interface MapfileTypes {
   IElementType TILEITEM = new MapfileTokenType("TILEITEM");
   IElementType TILESRS = new MapfileTokenType("TILESRS");
   IElementType TITLE = new MapfileTokenType("TITLE");
+  IElementType TO = new MapfileTokenType("TO");
   IElementType TOLERANCE = new MapfileTokenType("TOLERANCE");
   IElementType TOLERANCEUNITS = new MapfileTokenType("TOLERANCEUNITS");
   IElementType TRANSFORM = new MapfileTokenType("TRANSFORM");

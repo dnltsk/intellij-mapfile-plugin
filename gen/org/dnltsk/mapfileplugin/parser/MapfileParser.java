@@ -336,14 +336,27 @@ public class MapfileParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
-  // CONNECTIONTYPE connectionTypeValues
+  // CONNECTIONTYPE connectiontypeValues
   static boolean ConnectiontypeAttr(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "ConnectiontypeAttr")) return false;
     if (!nextTokenIs(b, CONNECTIONTYPE)) return false;
     boolean r;
     Marker m = enter_section_(b);
     r = consumeToken(b, CONNECTIONTYPE);
-    r = r && connectionTypeValues(b, l + 1);
+    r = r && connectiontypeValues(b, l + 1);
+    exit_section_(b, m, null, r);
+    return r;
+  }
+
+  /* ********************************************************** */
+  // CONNECTIONTYPE connectiontypeJoinValues
+  static boolean ConnectiontypeJoinAttr(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "ConnectiontypeJoinAttr")) return false;
+    if (!nextTokenIs(b, CONNECTIONTYPE)) return false;
+    boolean r;
+    Marker m = enter_section_(b);
+    r = consumeToken(b, CONNECTIONTYPE);
+    r = r && connectiontypeJoinValues(b, l + 1);
     exit_section_(b, m, null, r);
     return r;
   }
@@ -562,6 +575,18 @@ public class MapfileParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
+  // FROM string
+  static boolean FromAttr(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "FromAttr")) return false;
+    if (!nextTokenIs(b, FROM)) return false;
+    boolean r;
+    Marker m = enter_section_(b);
+    r = consumeTokens(b, 0, FROM, STRING);
+    exit_section_(b, m, null, r);
+    return r;
+  }
+
+  /* ********************************************************** */
   // GEOMTRANSFORM string
   static boolean GeomtransformAttr(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "GeomtransformAttr")) return false;
@@ -752,13 +777,62 @@ public class MapfileParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
-  // JOIN END
+  // (
+  //         ConnectionAttr | ConnectiontypeJoinAttr | FooterAttr |  FromAttr | HeaderAttr | NameAttr | TableAttr
+  //         | TemplateAttr | ToAttr | TypeJoinAttr
+  //     ) JoinAttributes*
+  static boolean JoinAttributes(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "JoinAttributes")) return false;
+    boolean r;
+    Marker m = enter_section_(b);
+    r = JoinAttributes_0(b, l + 1);
+    r = r && JoinAttributes_1(b, l + 1);
+    exit_section_(b, m, null, r);
+    return r;
+  }
+
+  // ConnectionAttr | ConnectiontypeJoinAttr | FooterAttr |  FromAttr | HeaderAttr | NameAttr | TableAttr
+  //         | TemplateAttr | ToAttr | TypeJoinAttr
+  private static boolean JoinAttributes_0(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "JoinAttributes_0")) return false;
+    boolean r;
+    Marker m = enter_section_(b);
+    r = ConnectionAttr(b, l + 1);
+    if (!r) r = ConnectiontypeJoinAttr(b, l + 1);
+    if (!r) r = FooterAttr(b, l + 1);
+    if (!r) r = FromAttr(b, l + 1);
+    if (!r) r = HeaderAttr(b, l + 1);
+    if (!r) r = NameAttr(b, l + 1);
+    if (!r) r = TableAttr(b, l + 1);
+    if (!r) r = TemplateAttr(b, l + 1);
+    if (!r) r = ToAttr(b, l + 1);
+    if (!r) r = TypeJoinAttr(b, l + 1);
+    exit_section_(b, m, null, r);
+    return r;
+  }
+
+  // JoinAttributes*
+  private static boolean JoinAttributes_1(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "JoinAttributes_1")) return false;
+    int c = current_position_(b);
+    while (true) {
+      if (!JoinAttributes(b, l + 1)) break;
+      if (!empty_element_parsed_guard_(b, "JoinAttributes_1", c)) break;
+      c = current_position_(b);
+    }
+    return true;
+  }
+
+  /* ********************************************************** */
+  // JOIN JoinAttributes END
   static boolean JoinObject(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "JoinObject")) return false;
     if (!nextTokenIs(b, JOIN)) return false;
     boolean r;
     Marker m = enter_section_(b);
-    r = consumeTokens(b, 0, JOIN, END);
+    r = consumeToken(b, JOIN);
+    r = r && JoinAttributes(b, l + 1);
+    r = r && consumeToken(b, END);
     exit_section_(b, m, null, r);
     return r;
   }
@@ -1606,6 +1680,18 @@ public class MapfileParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
+  // TABLE string
+  static boolean TableAttr(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "TableAttr")) return false;
+    if (!nextTokenIs(b, TABLE)) return false;
+    boolean r;
+    Marker m = enter_section_(b);
+    r = consumeTokens(b, 0, TABLE, STRING);
+    exit_section_(b, m, null, r);
+    return r;
+  }
+
+  /* ********************************************************** */
   // TEMPLATE string
   static boolean TemplateAttr(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "TemplateAttr")) return false;
@@ -1702,6 +1788,18 @@ public class MapfileParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
+  // TO string
+  static boolean ToAttr(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "ToAttr")) return false;
+    if (!nextTokenIs(b, TO)) return false;
+    boolean r;
+    Marker m = enter_section_(b);
+    r = consumeTokens(b, 0, TO, STRING);
+    exit_section_(b, m, null, r);
+    return r;
+  }
+
+  /* ********************************************************** */
   // TOLERANCE number
   static boolean ToleranceAttr(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "ToleranceAttr")) return false;
@@ -1748,6 +1846,19 @@ public class MapfileParser implements PsiParser, LightPsiParser {
     Marker m = enter_section_(b);
     r = consumeToken(b, TYPE);
     r = r && typeValues(b, l + 1);
+    exit_section_(b, m, null, r);
+    return r;
+  }
+
+  /* ********************************************************** */
+  // TYPE typeJoinValues
+  static boolean TypeJoinAttr(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "TypeJoinAttr")) return false;
+    if (!nextTokenIs(b, TYPE)) return false;
+    boolean r;
+    Marker m = enter_section_(b);
+    r = consumeToken(b, TYPE);
+    r = r && typeJoinValues(b, l + 1);
     exit_section_(b, m, null, r);
     return r;
   }
@@ -1899,9 +2010,22 @@ public class MapfileParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
+  // csv|mysql|postgresql
+  static boolean connectiontypeJoinValues(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "connectiontypeJoinValues")) return false;
+    boolean r;
+    Marker m = enter_section_(b);
+    r = consumeToken(b, CSV);
+    if (!r) r = consumeToken(b, MYSQL);
+    if (!r) r = consumeToken(b, POSTGRESQL);
+    exit_section_(b, m, null, r);
+    return r;
+  }
+
+  /* ********************************************************** */
   // contour|kerneldensity|local|ogr|oraclespatial|plugin|postgis|sde|union|uvraster|wfs|wms
-  static boolean connectionTypeValues(PsiBuilder b, int l) {
-    if (!recursion_guard_(b, l, "connectionTypeValues")) return false;
+  static boolean connectiontypeValues(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "connectiontypeValues")) return false;
     boolean r;
     Marker m = enter_section_(b);
     r = consumeToken(b, CONTOUR);
@@ -2068,6 +2192,19 @@ public class MapfileParser implements PsiParser, LightPsiParser {
     if (!r) r = consumeToken(b, LL);
     if (!r) r = consumeToken(b, LC);
     if (!r) r = consumeToken(b, LR);
+    exit_section_(b, m, null, r);
+    return r;
+  }
+
+  /* ********************************************************** */
+  // ONE-TO-ONE|ONE-TO-MANY
+  static boolean typeJoinValues(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "typeJoinValues")) return false;
+    if (!nextTokenIs(b, "", ONE_TO_MANY, ONE_TO_ONE)) return false;
+    boolean r;
+    Marker m = enter_section_(b);
+    r = consumeToken(b, ONE_TO_ONE);
+    if (!r) r = consumeToken(b, ONE_TO_MANY);
     exit_section_(b, m, null, r);
     return r;
   }

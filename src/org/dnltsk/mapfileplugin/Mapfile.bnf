@@ -99,7 +99,12 @@ private GridAttributes ::=
         | MaxsubdivideAttr
     ) GridAttributes*
 
-private JoinObject ::= JOIN END
+private JoinObject ::= JOIN JoinAttributes END
+private JoinAttributes ::=
+    (
+        ConnectionAttr | ConnectiontypeJoinAttr | FooterAttr |  FromAttr | HeaderAttr | NameAttr | TableAttr
+        | TemplateAttr | ToAttr | TypeJoinAttr
+    ) JoinAttributes*
 
 private LegendObject ::= LEGEND END
 
@@ -143,7 +148,8 @@ private ConfigAttr ::= CONFIG (
     | ( ON_MISSING_DATA onMissingDataValues )
     | ( PROJ_LIB string ) )
 private ConnectionAttr ::= CONNECTION string
-private ConnectiontypeAttr ::= CONNECTIONTYPE connectionTypeValues
+private ConnectiontypeAttr ::= CONNECTIONTYPE connectiontypeValues
+private ConnectiontypeJoinAttr ::= CONNECTIONTYPE connectiontypeJoinValues
 private CompopAttr ::= COMPOP string // TODO: keywords in string
 private DataAttr ::= DATA string
 private DatapatternAttr ::= DATAPATTERN string // TODO: regular expression
@@ -158,6 +164,7 @@ private FilterAttr ::= FILTER string // TODO: expression!
 private FilteritemAttr ::= FILTERITEM string
 private FontsetAttr ::= FONTSET string // TODO: file
 private FooterAttr ::= FOOTER string // TODO: filename
+private FromAttr ::= FROM string
 private GeomtransformAttr ::= GEOMTRANSFORM string // TODO: [<expression>|<Javascript file>]
 private GroupAttr ::= GROUP string
 private HeaderAttr ::= HEADER string // TODO: filename
@@ -208,6 +215,7 @@ private StatusAttr ::= STATUS statusValues
 private StyleitemAttr ::= STYLEITEM string // TODO: [<attribute>|auto|<javascript file>]
 private SymbolscaledenomAttr ::= SYMBOLSCALEDENOM number
 private SymbolsetAttr ::= SYMBOLSET string  // TODO: file
+private TableAttr ::= TABLE string
 private TemplateAttr ::= TEMPLATE string // TODO: [file|url]
 private TemplatepatternAttr ::= TEMPLATEPATTERN string // TODO regex
 private TemppathAttr ::= TEMPPATH string // TODO: path
@@ -216,10 +224,12 @@ private TileindexAttr ::= TILEINDEX string // TODO: [filename|layername]
 private TileitemAttr ::= TILEITEM string // TODO: [attribute]
 private TilesrsAttr ::= TILESRS string // TODO: [attribute]
 private TitleAttr ::= TITLE string
+private ToAttr ::= TO string
 private ToleranceAttr ::= TOLERANCE number
 private ToleranceunitsAttr ::= TOLERANCEUNITS toleranceUnitValues
 private TransformAttr ::= TRANSFORM transformValues
 private TypeAttr ::= TYPE typeValues
+private TypeJoinAttr ::= TYPE typeJoinValues
 private UnitsAttr ::= UNITS unitsValues
 private UtfdataAttr ::= UTFDATA string
 private UtfitemAttr ::= UTFITEM string
@@ -229,7 +239,8 @@ private WktAttr ::= WKT string // TODO wkt standard
 // VALUES
 //
 private booleanValues ::= true|false
-private connectionTypeValues ::= contour|kerneldensity|local|ogr|oraclespatial|plugin|postgis|sde|union|uvraster|wfs|wms
+private connectiontypeValues ::= contour|kerneldensity|local|ogr|oraclespatial|plugin|postgis|sde|union|uvraster|wfs|wms // TODO check for completeness
+private connectiontypeJoinValues ::= csv|mysql|postgresql
 private debugValues ::= onOffValues|0|1|2|3|4|5
 private imagetypeValues ::= png|gif|png8|jpeg|svg|pdf|GTiff|kml|kmz|cairopng|string
 private labelFormatValues ::= dd|ddmm|ddmmss|string // todo string=cformat-string
@@ -240,5 +251,6 @@ private statusValues ::= onOffValues|default
 private toleranceUnitValues ::= sizeUnitValues|dd
 private transformValues ::= booleanValues|ul|uc|ur|cl|cc|cr|ll|lc|lr
 private typeValues ::= chart|circle|line|point|polygon|raster|query
+private typeJoinValues ::= ONE-TO-ONE|ONE-TO-MANY
 private unitsValues ::= toleranceUnitValues|percentages
 private yesNoValues ::= yes|no
