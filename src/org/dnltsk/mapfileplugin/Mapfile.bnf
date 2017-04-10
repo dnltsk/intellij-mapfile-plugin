@@ -82,7 +82,15 @@ private CompositeAttributes ::=
         OpacityAttr | CompopAttr
     ) CompositeAttributes*
 
-private FeatureObject ::= FEATURE END
+private FeatureObject ::= FEATURE FeatureAttributes END
+private FeatureAttributes ::=
+    (
+        PointsObject
+
+        | ItemsAttr | TextAttr | WktAttr
+    ) FeatureAttributes*
+
+private PointsObject ::= POINTS (number number)* END
 
 private GridObject ::= GRID END
 
@@ -153,6 +161,7 @@ private ImagepathAttr ::= IMAGEPATH string // TODO: path
 private ImagetypeAttr ::= IMAGETYPE imagetypeValues // TODO: must match one of the defined ones in OutputfomatObject
 private ImageurlAttr ::= IMAGEURL string // TODO path? url?
 private InterlaceAttr ::= INTERLACE onOffValues
+private ItemsAttr ::= ITEMS string // TODO: comma separated list
 private LabelcacheAttr ::= LABELCACHE onOffValues
 private LabelitemAttr ::= LABELITEM string
 private LabelmaxscaledenomAttr ::= LABELMAXSCALEDENOM number
@@ -190,6 +199,7 @@ private SymbolsetAttr ::= SYMBOLSET string  // TODO: file
 private TemplateAttr ::= TEMPLATE string // TODO: [file|url]
 private TemplatepatternAttr ::= TEMPLATEPATTERN string // TODO regex
 private TemppathAttr ::= TEMPPATH string // TODO: path
+private TextAttr ::= TEXT string
 private TileindexAttr ::= TILEINDEX string // TODO: [filename|layername]
 private TileitemAttr ::= TILEITEM string // TODO: [attribute]
 private TilesrsAttr ::= TILESRS string // TODO: [attribute]
@@ -201,6 +211,7 @@ private TypeAttr ::= TYPE typeValues
 private UnitsAttr ::= UNITS unitsValues
 private UtfdataAttr ::= UTFDATA string
 private UtfitemAttr ::= UTFITEM string
+private WktAttr ::= WKT string // TODO wkt standard
 
 //
 // VALUES

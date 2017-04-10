@@ -52,6 +52,7 @@ STRING=('([^'\\]|\\.)*'|\"([^\"\\]|\\.)*\")
   "CLUSTER"               { return CLUSTER; }
   "COMPOSITE"             { return COMPOSITE; }
   "FEATURE"               { return FEATURE; }
+  "POINTS"                { return POINTS; }
   "GRID"                  { return GRID; }
   "JOIN"                  { return JOIN; }
   "LEGEND"                { return LEGEND; }
@@ -99,6 +100,7 @@ STRING=('([^'\\]|\\.)*'|\"([^\"\\]|\\.)*\")
   "IMAGETYPE"             { return IMAGETYPE; }
   "IMAGEURL"              { return IMAGEURL; }
   "INTERLACE"             { return INTERLACE; }
+  "ITEMS"                 { return ITEMS; }
   "LABELCACHE"            { return LABELCACHE; }
   "LABELITEM"             { return LABELITEM; }
   "LABELMAXSCALEDENOM"    { return LABELMAXSCALEDENOM; }
@@ -136,6 +138,7 @@ STRING=('([^'\\]|\\.)*'|\"([^\"\\]|\\.)*\")
   "TEMPLATE"              { return TEMPLATE; }
   "TEMPLATEPATTERN"       { return TEMPLATEPATTERN; }
   "TEMPPATH"              { return TEMPPATH; }
+  "TEXT"                  { return TEXT; }
   "TILEINDEX"             { return TILEINDEX; }
   "TILEITEM"              { return TILEITEM; }
   "TILESRS"               { return TILESRS; }
@@ -147,6 +150,7 @@ STRING=('([^'\\]|\\.)*'|\"([^\"\\]|\\.)*\")
   "UNITS"                 { return UNITS; }
   "UTFDATA"               { return UTFDATA; }
   "UTFITEM"               { return UTFITEM; }
+  "WKT"                   { return WKT; }
   "true"                  { return TRUE; }
   "false"                 { return FALSE; }
   "contour"               { return CONTOUR; }

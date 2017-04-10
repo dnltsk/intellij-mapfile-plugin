@@ -46,6 +46,7 @@ public class MapfileSyntaxHighlighter extends SyntaxHighlighterBase {
             LEGEND,
             MAP,
             METADATA,
+            POINTS,
             PROJECTION,
             QUERYMAP,
             REFERENCE,
@@ -97,6 +98,7 @@ public class MapfileSyntaxHighlighter extends SyntaxHighlighterBase {
             IMAGECOLOR,
             IMAGETYPE,
             INTERLACE,
+            ITEMS,
             LABELCACHE,
             LABELITEM,
             LABELMAXSCALEDENOM,
@@ -128,6 +130,7 @@ public class MapfileSyntaxHighlighter extends SyntaxHighlighterBase {
             SYMBOLSCALEDENOM,
             TEMPLATE,
             TEMPLATEPATTERN,
+            TEXT,
             TILEINDEX,
             TILEITEM,
             TILESRS,
@@ -136,7 +139,8 @@ public class MapfileSyntaxHighlighter extends SyntaxHighlighterBase {
             TRANSFORM,
             UNITS,
             UTFDATA,
-            UTFITEM
+            UTFITEM,
+            WKT
     );
 
     private static final List<IElementType> KEYWORD_LIST = Arrays.asList(

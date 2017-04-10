@@ -64,6 +64,7 @@ public interface MapfileTypes {
   IElementType IMAGEURL = new MapfileTokenType("IMAGEURL");
   IElementType INCHES = new MapfileTokenType("inches");
   IElementType INTERLACE = new MapfileTokenType("INTERLACE");
+  IElementType ITEMS = new MapfileTokenType("ITEMS");
   IElementType JOIN = new MapfileTokenType("JOIN");
   IElementType JPEG = new MapfileTokenType("jpeg");
   IElementType KERNELDENSITY = new MapfileTokenType("kerneldensity");
@@ -125,6 +126,7 @@ public interface MapfileTypes {
   IElementType PNG = new MapfileTokenType("png");
   IElementType PNG8 = new MapfileTokenType("png8");
   IElementType POINT = new MapfileTokenType("point");
+  IElementType POINTS = new MapfileTokenType("POINTS");
   IElementType POLYGON = new MapfileTokenType("polygon");
   IElementType POSTGIS = new MapfileTokenType("postgis");
   IElementType POSTLABELCACHE = new MapfileTokenType("POSTLABELCACHE");
@@ -157,6 +159,7 @@ public interface MapfileTypes {
   IElementType TEMPLATE = new MapfileTokenType("TEMPLATE");
   IElementType TEMPLATEPATTERN = new MapfileTokenType("TEMPLATEPATTERN");
   IElementType TEMPPATH = new MapfileTokenType("TEMPPATH");
+  IElementType TEXT = new MapfileTokenType("TEXT");
   IElementType TILEINDEX = new MapfileTokenType("TILEINDEX");
   IElementType TILEITEM = new MapfileTokenType("TILEITEM");
   IElementType TILESRS = new MapfileTokenType("TILESRS");
@@ -177,6 +180,7 @@ public interface MapfileTypes {
   IElementType VALIDATION = new MapfileTokenType("VALIDATION");
   IElementType WEB = new MapfileTokenType("WEB");
   IElementType WFS = new MapfileTokenType("wfs");
+  IElementType WKT = new MapfileTokenType("WKT");
   IElementType WMS = new MapfileTokenType("wms");
   IElementType YES = new MapfileTokenType("yes");
 

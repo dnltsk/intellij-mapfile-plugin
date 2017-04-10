@@ -459,13 +459,56 @@ public class MapfileParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
-  // FEATURE END
+  // (
+  //         PointsObject
+  //         | ItemsAttr | TextAttr | WktAttr
+  //     ) FeatureAttributes*
+  static boolean FeatureAttributes(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "FeatureAttributes")) return false;
+    boolean r;
+    Marker m = enter_section_(b);
+    r = FeatureAttributes_0(b, l + 1);
+    r = r && FeatureAttributes_1(b, l + 1);
+    exit_section_(b, m, null, r);
+    return r;
+  }
+
+  // PointsObject
+  //         | ItemsAttr | TextAttr | WktAttr
+  private static boolean FeatureAttributes_0(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "FeatureAttributes_0")) return false;
+    boolean r;
+    Marker m = enter_section_(b);
+    r = PointsObject(b, l + 1);
+    if (!r) r = ItemsAttr(b, l + 1);
+    if (!r) r = TextAttr(b, l + 1);
+    if (!r) r = WktAttr(b, l + 1);
+    exit_section_(b, m, null, r);
+    return r;
+  }
+
+  // FeatureAttributes*
+  private static boolean FeatureAttributes_1(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "FeatureAttributes_1")) return false;
+    int c = current_position_(b);
+    while (true) {
+      if (!FeatureAttributes(b, l + 1)) break;
+      if (!empty_element_parsed_guard_(b, "FeatureAttributes_1", c)) break;
+      c = current_position_(b);
+    }
+    return true;
+  }
+
+  /* ********************************************************** */
+  // FEATURE FeatureAttributes END
   static boolean FeatureObject(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "FeatureObject")) return false;
     if (!nextTokenIs(b, FEATURE)) return false;
     boolean r;
     Marker m = enter_section_(b);
-    r = consumeTokens(b, 0, FEATURE, END);
+    r = consumeToken(b, FEATURE);
+    r = r && FeatureAttributes(b, l + 1);
+    r = r && consumeToken(b, END);
     exit_section_(b, m, null, r);
     return r;
   }
@@ -646,6 +689,18 @@ public class MapfileParser implements PsiParser, LightPsiParser {
     Marker m = enter_section_(b);
     r = consumeToken(b, INTERLACE);
     r = r && onOffValues(b, l + 1);
+    exit_section_(b, m, null, r);
+    return r;
+  }
+
+  /* ********************************************************** */
+  // ITEMS string
+  static boolean ItemsAttr(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "ItemsAttr")) return false;
+    if (!nextTokenIs(b, ITEMS)) return false;
+    boolean r;
+    Marker m = enter_section_(b);
+    r = consumeTokens(b, 0, ITEMS, STRING);
     exit_section_(b, m, null, r);
     return r;
   }
@@ -1153,6 +1208,42 @@ public class MapfileParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
+  // POINTS (number number)* END
+  static boolean PointsObject(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "PointsObject")) return false;
+    if (!nextTokenIs(b, POINTS)) return false;
+    boolean r;
+    Marker m = enter_section_(b);
+    r = consumeToken(b, POINTS);
+    r = r && PointsObject_1(b, l + 1);
+    r = r && consumeToken(b, END);
+    exit_section_(b, m, null, r);
+    return r;
+  }
+
+  // (number number)*
+  private static boolean PointsObject_1(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "PointsObject_1")) return false;
+    int c = current_position_(b);
+    while (true) {
+      if (!PointsObject_1_0(b, l + 1)) break;
+      if (!empty_element_parsed_guard_(b, "PointsObject_1", c)) break;
+      c = current_position_(b);
+    }
+    return true;
+  }
+
+  // number number
+  private static boolean PointsObject_1_0(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "PointsObject_1_0")) return false;
+    boolean r;
+    Marker m = enter_section_(b);
+    r = consumeTokens(b, 0, NUMBER, NUMBER);
+    exit_section_(b, m, null, r);
+    return r;
+  }
+
+  /* ********************************************************** */
   // POSTLABELCACHE booleanValues
   static boolean PostlabelcacheAttr(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "PostlabelcacheAttr")) return false;
@@ -1420,6 +1511,18 @@ public class MapfileParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
+  // TEXT string
+  static boolean TextAttr(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "TextAttr")) return false;
+    if (!nextTokenIs(b, TEXT)) return false;
+    boolean r;
+    Marker m = enter_section_(b);
+    r = consumeTokens(b, 0, TEXT, STRING);
+    exit_section_(b, m, null, r);
+    return r;
+  }
+
+  /* ********************************************************** */
   // TILEINDEX string
   static boolean TileindexAttr(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "TileindexAttr")) return false;
@@ -1635,6 +1738,18 @@ public class MapfileParser implements PsiParser, LightPsiParser {
     r = consumeToken(b, WEB);
     r = r && WebAttributes(b, l + 1);
     r = r && consumeToken(b, END);
+    exit_section_(b, m, null, r);
+    return r;
+  }
+
+  /* ********************************************************** */
+  // WKT string
+  static boolean WktAttr(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "WktAttr")) return false;
+    if (!nextTokenIs(b, WKT)) return false;
+    boolean r;
+    Marker m = enter_section_(b);
+    r = consumeTokens(b, 0, WKT, STRING);
     exit_section_(b, m, null, r);
     return r;
   }
