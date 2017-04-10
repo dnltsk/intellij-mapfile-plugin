@@ -122,10 +122,15 @@ private LegendAttributes ::=
 private QuerymapObject ::= QUERYMAP QuerymapAttributes END
 private QuerymapAttributes ::=
     (
-        ColorAttribute | SizeAttr | StatusAttr | StyleQuerymapAttr
+        ColorAttr | SizeAttr | StatusAttr | StyleQuerymapAttr
     ) QuerymapAttributes*
 
-private ReferenceObject ::= REFERENCE END
+private ReferenceObject ::= REFERENCE ReferenceAttributes END
+private ReferenceAttributes ::=
+    (
+        ColorAttr | ExtentAttr | ImageAttr | MarkerAttr | MarkersizeAttr | MinboxsizeAttr | MaxboxsizeAttr
+        | OutlinecolorAttr | SizeAttr | StatusAttr
+    ) ReferenceAttributes*
 
 private MetadataObject ::= METADATA END
 
@@ -153,7 +158,7 @@ private BrowseformatAttr ::= BROWSEFORMAT string
 private BufferAttr ::= BUFFER number
 private ClassgroupAttr ::= CLASSGROUP string
 private ClassitemAttr ::= CLASSITEM string
-private ColorAttribute ::= ( string | ( number number number ) ) //TODO color
+private ColorAttr ::= COLOR ( string | ( number number number ) ) //TODO color
 private ConfigAttr ::= CONFIG (
     ( CGI_CONTEXT_URL string )
     | ( MS_ENCRYPTION_KEY string )
@@ -161,10 +166,10 @@ private ConfigAttr ::= CONFIG (
     | ( MS_NONSQUARE yesNoValues )
     | ( ON_MISSING_DATA onMissingDataValues )
     | ( PROJ_LIB string ) )
+private CompopAttr ::= COMPOP string // TODO: keywords in string
 private ConnectionAttr ::= CONNECTION string
 private ConnectiontypeAttr ::= CONNECTIONTYPE connectiontypeValues
 private ConnectiontypeJoinAttr ::= CONNECTIONTYPE connectiontypeJoinValues
-private CompopAttr ::= COMPOP string // TODO: keywords in string
 private DataAttr ::= DATA string
 private DatapatternAttr ::= DATAPATTERN string // TODO: regular expression
 private DebugAttr ::= DEBUG debugValues
@@ -182,6 +187,7 @@ private FromAttr ::= FROM string
 private GeomtransformAttr ::= GEOMTRANSFORM string // TODO: [<expression>|<Javascript file>]
 private GroupAttr ::= GROUP string
 private HeaderAttr ::= HEADER string // TODO: filename
+private ImageAttr ::= IMAGE string
 private ImagecolorAttr ::= IMAGECOLOR ( string | ( number number number ) ) // TODO: hex or RGB
 private ImagepathAttr ::= IMAGEPATH string // TODO: path
 private ImagetypeAttr ::= IMAGETYPE imagetypeValues // TODO: must match one of the defined ones in OutputfomatObject
@@ -197,17 +203,21 @@ private LabelmaxscaledenomAttr ::= LABELMAXSCALEDENOM number
 private LabelminscaledenomAttr ::= LABELMINSCALEDENOM number
 private LabelrequiresAttr ::= LABELREQUIRES string // TODO: expression
 private LegendformatAttr ::= LEGENDFORMAT string
+private MarkerAttr ::= MARKER ( number | string) // TODO int
+private MarkersizeAttr ::= MARKERSIZE number // TODO int
 private MaskAttr ::= MASK string // TODO: layername validation
 private MaxarcsAttr ::= MAXARCS number
+private MaxboxsizeAttr ::= MAXBOXSIZE number // TODO int
 private MaxdistanceAttr ::= MAXDISTANCE number
 private MaxfeaturesAttr ::= MAXFEATURES number
 private MaxgeowidthAttr ::= MAXGEOWIDTH number
 private MaxintervalAttr ::= MAXINTERVAL number
 private MaxscaledenomAttr ::= MAXSCALEDENOM number
-private MaxsubdivideAttr ::= MAXSUBDIVIDE number
 private MaxsizeAttr ::= MAXSIZE number // TODO: int
+private MaxsubdivideAttr ::= MAXSUBDIVIDE number
 private MaxtemplateAttr ::= MAXTEMPLATE string // TODO: [file/url]
 private MinarcsAttr ::= MINARCS number
+private MinboxsizeAttr ::= MINBOXSIZE number // TODO int
 private MingeowidthAttr ::= MINGEOWIDTH number
 private MinintervalAttr ::= MININTERVAL number
 private MinscaledenomAttr ::= MINSCALEDENOM number
@@ -230,8 +240,8 @@ private ShapepathAttr ::= SHAPEPATH string // TODO: directory
 private SizeAttr ::= SIZE number number // TODO: int
 private SizeunitsAttr ::= SIZEUNITS sizeUnitValues
 private StatusAttr ::= STATUS statusValues
-private StyleQuerymapAttr ::= STYLE styleQuerymapValues
 private StyleitemAttr ::= STYLEITEM string // TODO: [<attribute>|auto|<javascript file>]
+private StyleQuerymapAttr ::= STYLE styleQuerymapValues
 private SymbolscaledenomAttr ::= SYMBOLSCALEDENOM number
 private SymbolsetAttr ::= SYMBOLSET string  // TODO: file
 private TableAttr ::= TABLE string
@@ -258,8 +268,8 @@ private WktAttr ::= WKT string // TODO wkt standard
 // VALUES
 //
 private booleanValues ::= true|false
-private connectiontypeValues ::= contour|kerneldensity|local|ogr|oraclespatial|plugin|postgis|sde|union|uvraster|wfs|wms // TODO check for completeness
 private connectiontypeJoinValues ::= csv|mysql|postgresql
+private connectiontypeValues ::= contour|kerneldensity|local|ogr|oraclespatial|plugin|postgis|sde|union|uvraster|wfs|wms // TODO check for completeness
 private debugValues ::= onOffValues|0|1|2|3|4|5
 private imagetypeValues ::= png|gif|png8|jpeg|svg|pdf|GTiff|kml|kmz|cairopng|string
 private labelFormatValues ::= dd|ddmm|ddmmss|string // TODO string=cformat-string
@@ -271,7 +281,7 @@ private statusValues ::= onOffValues|default
 private styleQuerymapValues ::= normal|hilite|selected
 private toleranceUnitValues ::= sizeUnitValues|dd
 private transformValues ::= booleanValues|ul|uc|ur|cl|cc|cr|ll|lc|lr
-private typeValues ::= chart|circle|line|point|polygon|raster|query
 private typeJoinValues ::= ONE-TO-ONE|ONE-TO-MANY
+private typeValues ::= chart|circle|line|point|polygon|raster|query
 private unitsValues ::= toleranceUnitValues|percentages
 private yesNoValues ::= yes|no

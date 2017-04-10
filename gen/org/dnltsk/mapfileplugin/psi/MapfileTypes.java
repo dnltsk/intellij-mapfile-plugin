@@ -21,6 +21,7 @@ public interface MapfileTypes {
   IElementType CLASSGROUP = new MapfileTokenType("CLASSGROUP");
   IElementType CLASSITEM = new MapfileTokenType("CLASSITEM");
   IElementType CLUSTER = new MapfileTokenType("CLUSTER");
+  IElementType COLOR = new MapfileTokenType("COLOR");
   IElementType COMMENT = new MapfileTokenType("comment");
   IElementType COMPOP = new MapfileTokenType("COMPOP");
   IElementType COMPOSITE = new MapfileTokenType("COMPOSITE");
@@ -63,6 +64,7 @@ public interface MapfileTypes {
   IElementType HILITE = new MapfileTokenType("hilite");
   IElementType ID = new MapfileTokenType("id");
   IElementType IGNORE = new MapfileTokenType("ignore");
+  IElementType IMAGE = new MapfileTokenType("IMAGE");
   IElementType IMAGECOLOR = new MapfileTokenType("IMAGECOLOR");
   IElementType IMAGEPATH = new MapfileTokenType("IMAGEPATH");
   IElementType IMAGETYPE = new MapfileTokenType("IMAGETYPE");
@@ -96,8 +98,11 @@ public interface MapfileTypes {
   IElementType LP = new MapfileTokenType("(");
   IElementType LR = new MapfileTokenType("lr");
   IElementType MAP = new MapfileTokenType("MAP");
+  IElementType MARKER = new MapfileTokenType("MARKER");
+  IElementType MARKERSIZE = new MapfileTokenType("MARKERSIZE");
   IElementType MASK = new MapfileTokenType("MASK");
   IElementType MAXARCS = new MapfileTokenType("MAXARCS");
+  IElementType MAXBOXSIZE = new MapfileTokenType("MAXBOXSIZE");
   IElementType MAXDISTANCE = new MapfileTokenType("MAXDISTANCE");
   IElementType MAXFEATURES = new MapfileTokenType("MAXFEATURES");
   IElementType MAXGEOWIDTH = new MapfileTokenType("MAXGEOWIDTH");
@@ -110,6 +115,7 @@ public interface MapfileTypes {
   IElementType METERS = new MapfileTokenType("meters");
   IElementType MILES = new MapfileTokenType("miles");
   IElementType MINARCS = new MapfileTokenType("MINARCS");
+  IElementType MINBOXSIZE = new MapfileTokenType("MINBOXSIZE");
   IElementType MINGEOWIDTH = new MapfileTokenType("MINGEOWIDTH");
   IElementType MININTERVAL = new MapfileTokenType("MININTERVAL");
   IElementType MINSCALEDENOM = new MapfileTokenType("MINSCALEDENOM");

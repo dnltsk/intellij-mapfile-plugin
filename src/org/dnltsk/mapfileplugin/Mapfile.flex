@@ -70,6 +70,7 @@ STRING=('([^'\\]|\\.)*'|\"([^\"\\]|\\.)*\")
   "BUFFER"                { return BUFFER; }
   "CLASSGROUP"            { return CLASSGROUP; }
   "CLASSITEM"             { return CLASSITEM; }
+  "COLOR"                 { return COLOR; }
   "CONFIG"                { return CONFIG; }
   "CGI_CONTEXT_URL"       { return CGI_CONTEXT_URL; }
   "MS_ENCRYPTION_KEY"     { return MS_ENCRYPTION_KEY; }
@@ -97,6 +98,7 @@ STRING=('([^'\\]|\\.)*'|\"([^\"\\]|\\.)*\")
   "GEOMTRANSFORM"         { return GEOMTRANSFORM; }
   "GROUP"                 { return GROUP; }
   "HEADER"                { return HEADER; }
+  "IMAGE"                 { return IMAGE; }
   "IMAGECOLOR"            { return IMAGECOLOR; }
   "IMAGEPATH"             { return IMAGEPATH; }
   "IMAGETYPE"             { return IMAGETYPE; }
@@ -112,8 +114,11 @@ STRING=('([^'\\]|\\.)*'|\"([^\"\\]|\\.)*\")
   "LABELMINSCALEDENOM"    { return LABELMINSCALEDENOM; }
   "LABELREQUIRES"         { return LABELREQUIRES; }
   "LEGENDFORMAT"          { return LEGENDFORMAT; }
+  "MARKER"                { return MARKER; }
+  "MARKERSIZE"            { return MARKERSIZE; }
   "MASK"                  { return MASK; }
   "MAXARCS"               { return MAXARCS; }
+  "MAXBOXSIZE"            { return MAXBOXSIZE; }
   "MAXDISTANCE"           { return MAXDISTANCE; }
   "MAXFEATURES"           { return MAXFEATURES; }
   "MAXGEOWIDTH"           { return MAXGEOWIDTH; }
@@ -123,6 +128,7 @@ STRING=('([^'\\]|\\.)*'|\"([^\"\\]|\\.)*\")
   "MAXSIZE"               { return MAXSIZE; }
   "MAXTEMPLATE"           { return MAXTEMPLATE; }
   "MINARCS"               { return MINARCS; }
+  "MINBOXSIZE"            { return MINBOXSIZE; }
   "MINGEOWIDTH"           { return MINGEOWIDTH; }
   "MININTERVAL"           { return MININTERVAL; }
   "MINSCALEDENOM"         { return MINSCALEDENOM; }
