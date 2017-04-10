@@ -132,7 +132,7 @@ private ReferenceObjectChildren ::=
         | OutlinecolorAttr | SizeAttr | StatusAttr
     ) ReferenceObjectChildren*
 
-private MetadataObject ::= METADATA END
+private MetadataObject ::= METADATA ( string string )* END
 
 private ProjectionObject ::= PROJECTION string* END
 

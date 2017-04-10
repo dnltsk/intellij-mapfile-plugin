@@ -15,7 +15,7 @@ Editor support for UMN Mapserver Mapfiles. Supported Mapserver version is 7.0.4
   * ![not started](https://img.shields.io/badge/status-not%20started-lightgray.svg) LABEL
   * ![done](https://img.shields.io/badge/status-done-green.svg) LEGEND
   * ![done](https://img.shields.io/badge/status-done-green.svg) MAP
-  * ![not started](https://img.shields.io/badge/status-not%20started-lightgray.svg) METADATA
+  * ![done](https://img.shields.io/badge/status-done-green.svg) METADATA
   * ![done](https://img.shields.io/badge/status-done-green.svg) PROJECTION
   * ![done](https://img.shields.io/badge/status-done-green.svg) QUERYMAP
   * ![done](https://img.shields.io/badge/status-done-green.svg) REFERENCE
