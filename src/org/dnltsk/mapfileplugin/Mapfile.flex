@@ -70,11 +70,13 @@ ATTRIBUTETOKEN=\[[a-zA-Z_0-9]+\]
   "POINTS"                { return POINTS; }
   "PROJECTION"            { return PROJECTION; }
   "ALIGN"                 { return ALIGN; }
+  "ANCHORPOINT"           { return ANCHORPOINT; }
   "ANGLE"                 { return ANGLE; }
   "ANTIALIAS"             { return ANTIALIAS; }
   "BACKGROUNDCOLOR"       { return BACKGROUNDCOLOR; }
   "BROWSEFORMAT"          { return BROWSEFORMAT; }
   "BUFFER"                { return BUFFER; }
+  "CHARACTER"             { return CHARACTER; }
   "CLASSGROUP"            { return CLASSGROUP; }
   "CLASSITEM"             { return CLASSITEM; }
   "COLOR"                 { return COLOR; }
@@ -98,8 +100,10 @@ ATTRIBUTETOKEN=\[[a-zA-Z_0-9]+\]
   "ERROR"                 { return ERROR; }
   "EXPRESSION"            { return EXPRESSION; }
   "EXTENT"                { return EXTENT; }
+  "FILLED"                { return FILLED; }
   "FILTER"                { return FILTER; }
   "FILTERITEM"            { return FILTERITEM; }
+  "FONT"                  { return FONT; }
   "FONTSET"               { return FONTSET; }
   "FOOTER"                { return FOOTER; }
   "FROM"                  { return FROM; }
@@ -188,6 +192,7 @@ ATTRIBUTETOKEN=\[[a-zA-Z_0-9]+\]
   "TOLERANCE"             { return TOLERANCE; }
   "TOLERANCEUNITS"        { return TOLERANCEUNITS; }
   "TRANSFORM"             { return TRANSFORM; }
+  "TRANSPARENT"           { return TRANSPARENT; }
   "TYPE"                  { return TYPE; }
   "UNITS"                 { return UNITS; }
   "UTFDATA"               { return UTFDATA; }
@@ -271,8 +276,13 @@ ATTRIBUTETOKEN=\[[a-zA-Z_0-9]+\]
   "polygon"               { return POLYGON; }
   "raster"                { return RASTER; }
   "query"                 { return QUERY; }
-  "ONE-TO-ONE"            { return ONE_TO_ONE; }
-  "ONE-TO-MANY"           { return ONE_TO_MANY; }
+  "ellipse"               { return ELLIPSE; }
+  "hatch"                 { return HATCH; }
+  "pixmap"                { return PIXMAP; }
+  "truetype"              { return TRUETYPE; }
+  "vector"                { return VECTOR; }
+  "ONE-TO-ONE"            { return ONE-TO-ONE; }
+  "ONE-TO-MANY"           { return ONE-TO-MANY; }
   "percentages"           { return PERCENTAGES; }
   "yes"                   { return YES; }
   "no"                    { return NO; }

@@ -9,6 +9,7 @@ public interface MapfileTypes {
 
 
   IElementType ALIGN = new MapfileTokenType("ALIGN");
+  IElementType ANCHORPOINT = new MapfileTokenType("ANCHORPOINT");
   IElementType ANGLE = new MapfileTokenType("ANGLE");
   IElementType ANTIALIAS = new MapfileTokenType("ANTIALIAS");
   IElementType ATTRIBUTETOKEN = new MapfileTokenType("attributeToken");
@@ -24,6 +25,7 @@ public interface MapfileTypes {
   IElementType CENTER = new MapfileTokenType("center");
   IElementType CENTROID = new MapfileTokenType("centroid");
   IElementType CGI_CONTEXT_URL = new MapfileTokenType("CGI_CONTEXT_URL");
+  IElementType CHARACTER = new MapfileTokenType("CHARACTER");
   IElementType CHART = new MapfileTokenType("chart");
   IElementType CIRCLE = new MapfileTokenType("circle");
   IElementType CL = new MapfileTokenType("cl");
@@ -50,6 +52,7 @@ public interface MapfileTypes {
   IElementType DEFAULT = new MapfileTokenType("default");
   IElementType DEFRESOLUTION = new MapfileTokenType("DEFRESOLUTION");
   IElementType DUMP = new MapfileTokenType("DUMP");
+  IElementType ELLIPSE = new MapfileTokenType("ellipse");
   IElementType EMPTY = new MapfileTokenType("EMPTY");
   IElementType ENCODING = new MapfileTokenType("ENCODING");
   IElementType END = new MapfileTokenType("end");
@@ -61,8 +64,10 @@ public interface MapfileTypes {
   IElementType FALSE = new MapfileTokenType("false");
   IElementType FEATURE = new MapfileTokenType("FEATURE");
   IElementType FEET = new MapfileTokenType("feet");
+  IElementType FILLED = new MapfileTokenType("FILLED");
   IElementType FILTER = new MapfileTokenType("FILTER");
   IElementType FILTERITEM = new MapfileTokenType("FILTERITEM");
+  IElementType FONT = new MapfileTokenType("FONT");
   IElementType FONTSET = new MapfileTokenType("FONTSET");
   IElementType FOOTER = new MapfileTokenType("FOOTER");
   IElementType FROM = new MapfileTokenType("FROM");
@@ -73,6 +78,7 @@ public interface MapfileTypes {
   IElementType GRIDSTEP = new MapfileTokenType("GRIDSTEP");
   IElementType GROUP = new MapfileTokenType("GROUP");
   IElementType GTIFF = new MapfileTokenType("gtiff");
+  IElementType HATCH = new MapfileTokenType("hatch");
   IElementType HEADER = new MapfileTokenType("HEADER");
   IElementType HILITE = new MapfileTokenType("hilite");
   IElementType ID = new MapfileTokenType("id");
@@ -178,6 +184,7 @@ public interface MapfileTypes {
   IElementType PDF = new MapfileTokenType("pdf");
   IElementType PERCENTAGES = new MapfileTokenType("percentages");
   IElementType PIXELS = new MapfileTokenType("pixels");
+  IElementType PIXMAP = new MapfileTokenType("pixmap");
   IElementType PLUGIN = new MapfileTokenType("PLUGIN");
   IElementType PNG = new MapfileTokenType("png");
   IElementType PNG8 = new MapfileTokenType("png8");
@@ -234,7 +241,9 @@ public interface MapfileTypes {
   IElementType TOLERANCE = new MapfileTokenType("TOLERANCE");
   IElementType TOLERANCEUNITS = new MapfileTokenType("TOLERANCEUNITS");
   IElementType TRANSFORM = new MapfileTokenType("TRANSFORM");
+  IElementType TRANSPARENT = new MapfileTokenType("TRANSPARENT");
   IElementType TRUE = new MapfileTokenType("true");
+  IElementType TRUETYPE = new MapfileTokenType("truetype");
   IElementType TYPE = new MapfileTokenType("TYPE");
   IElementType UC = new MapfileTokenType("uc");
   IElementType UL = new MapfileTokenType("ul");
@@ -245,6 +254,7 @@ public interface MapfileTypes {
   IElementType UTFITEM = new MapfileTokenType("UTFITEM");
   IElementType UVRASTER = new MapfileTokenType("uvraster");
   IElementType VALIDATION = new MapfileTokenType("VALIDATION");
+  IElementType VECTOR = new MapfileTokenType("vector");
   IElementType VERTICES = new MapfileTokenType("vertices");
   IElementType WEB = new MapfileTokenType("WEB");
   IElementType WFS = new MapfileTokenType("wfs");

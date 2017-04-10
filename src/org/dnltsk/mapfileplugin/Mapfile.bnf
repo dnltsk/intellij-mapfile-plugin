@@ -85,7 +85,13 @@ private ClassObjectChildren ::=
         | MaxscaledenomAttr | MinscaledenomAttr | NameAttr | StatusAttr | TemplateAttr | TextAttr
     ) ClassObjectChildren*
 
-private SymbolObject ::= SYMBOL END
+private SymbolObject ::= SYMBOL SymbolObjectChildren END
+private SymbolObjectChildren ::=
+    (
+        PointsObject
+        | AnchorpointAttr | AntialiasAttr | CharacterAttr | FilledAttr | FontAttr | ImageAttr | NameAttr
+        | TransparentAttr | TypeSymbolAttr
+    )
 
 private LabelObject ::= LABEL END
 
@@ -182,12 +188,14 @@ private ProjectionObject ::= PROJECTION string* END
 // ATTRIBUTES
 //
 private AlignAttr ::= ALIGN AlignEnum
+private AnchorpointAttr ::= ANCHORPOINT number number // double 0-1
 private AngleAttr ::= ANGLE number
 private AngleClassAttr ::= ANGLE AngleClassEnum
 private AntialiasAttr ::= ANTIALIAS BooleanEnum
 private BackgroundcolorAttr ::= BACKGROUNDCOLOR ( string | ( number number number ) ) //TODO color
 private BrowseformatAttr ::= BROWSEFORMAT string
 private BufferAttr ::= BUFFER number
+private CharacterAttr ::= CHARACTER string // TODO char
 private ClassgroupAttr ::= CLASSGROUP string
 private ClassitemAttr ::= CLASSITEM string
 private ColorAttr ::= COLOR ColorEnum //TODO color
@@ -214,8 +222,10 @@ private EncodingAttr ::= ENCODING string
 private ErrorAttr ::= ERROR string // TODO: url
 private ExpressionAttr ::= EXPRESSION string // TODO four types of expression: String comparisons, regular expressions, logical expressions, and string functions
 private ExtentAttr ::= EXTENT number number number number
+private FilledAttr ::= FILLED BooleanEnum
 private FilterAttr ::= FILTER string // TODO: expression!
 private FilteritemAttr ::= FILTERITEM string
+private FontAttr ::= FONT number // TODO must be defined in fontset!
 private FontsetAttr ::= FONTSET string // TODO: file
 private FooterAttr ::= FOOTER string // TODO: filename
 private FromAttr ::= FROM string
@@ -311,8 +321,10 @@ private ToAttr ::= TO string
 private ToleranceAttr ::= TOLERANCE number
 private ToleranceunitsAttr ::= TOLERANCEUNITS ToleranceUnitEnum
 private TransformAttr ::= TRANSFORM TransformEnum
+private TransparentAttr ::= TRANSPARENT number // TODO color-index
 private TypeAttr ::= TYPE TypeEnum
 private TypeJoinAttr ::= TYPE TypeJoinEnum
+private TypeSymbolAttr ::= TYPE TypeSymbolEnum
 private UnitsAttr ::= UNITS UnitsEnum
 private UtfdataAttr ::= UTFDATA string
 private UtfitemAttr ::= UTFITEM string
@@ -346,6 +358,7 @@ private StyleQuerymapEnum ::= normal|hilite|selected
 private ToleranceUnitEnum ::= SizeUnitEnum|dd
 private TransformEnum ::= BooleanEnum|ul|uc|ur|cl|cc|cr|ll|lc|lr
 private TypeEnum ::= chart|circle|line|point|polygon|raster|query
+private TypeSymbolEnum ::= ellipse|hatch|pixmap|svg|truetype|vector
 private TypeJoinEnum ::= ONE-TO-ONE|ONE-TO-MANY
 private UnitsEnum ::= ToleranceUnitEnum|percentages
 private YesNoEnum ::= yes|no
