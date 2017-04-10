@@ -31,6 +31,7 @@ COMMENT=#.*
 NUMBER=[+-]{0,1}[0-9]+(\.[0-9]*)?
 ID=[:letter:][a-zA-Z_0-9]*
 STRING=('([^'\\]|\\.)*'|\"([^\"\\]|\\.)*\")
+ATTRIBUTETOKEN=\[[a-zA-Z_0-9]+\]
 
 %%
 <YYINITIAL> {
@@ -63,12 +64,14 @@ STRING=('([^'\\]|\\.)*'|\"([^\"\\]|\\.)*\")
   "QUERYMAP"              { return QUERYMAP; }
   "REFERENCE"             { return REFERENCE; }
   "SCALEBAR"              { return SCALEBAR; }
+  "PATTERN"               { return PATTERN; }
   "VALIDATION"            { return VALIDATION; }
   "METADATA"              { return METADATA; }
   "POINTS"                { return POINTS; }
   "PROJECTION"            { return PROJECTION; }
   "ALIGN"                 { return ALIGN; }
   "ANGLE"                 { return ANGLE; }
+  "ANTIALIAS"             { return ANTIALIAS; }
   "BACKGROUNDCOLOR"       { return BACKGROUNDCOLOR; }
   "BROWSEFORMAT"          { return BROWSEFORMAT; }
   "BUFFER"                { return BUFFER; }
@@ -100,15 +103,17 @@ STRING=('([^'\\]|\\.)*'|\"([^\"\\]|\\.)*\")
   "FONTSET"               { return FONTSET; }
   "FOOTER"                { return FOOTER; }
   "FROM"                  { return FROM; }
+  "GAP"                   { return GAP; }
   "GEOMTRANSFORM"         { return GEOMTRANSFORM; }
-  "GROUP"                 { return GROUP; }
   "GRIDSTEP"              { return GRIDSTEP; }
+  "GROUP"                 { return GROUP; }
   "HEADER"                { return HEADER; }
   "IMAGE"                 { return IMAGE; }
   "IMAGECOLOR"            { return IMAGECOLOR; }
   "IMAGEPATH"             { return IMAGEPATH; }
   "IMAGETYPE"             { return IMAGETYPE; }
   "IMAGEURL"              { return IMAGEURL; }
+  "INITIALGAP"            { return INITIALGAP; }
   "INTERLACE"             { return INTERLACE; }
   "ITEMS"                 { return ITEMS; }
   "KEYIMAGE"              { return KEYIMAGE; }
@@ -121,6 +126,9 @@ STRING=('([^'\\]|\\.)*'|\"([^\"\\]|\\.)*\")
   "LABELMINSCALEDENOM"    { return LABELMINSCALEDENOM; }
   "LABELREQUIRES"         { return LABELREQUIRES; }
   "LEGENDFORMAT"          { return LEGENDFORMAT; }
+  "LINECAP"               { return LINECAP; }
+  "LINEJOIN"              { return LINEJOIN; }
+  "LINEJOINMAXSIZE"       { return LINEJOINMAXSIZE; }
   "MARKER"                { return MARKER; }
   "MARKERSIZE"            { return MARKERSIZE; }
   "MASK"                  { return MASK; }
@@ -134,18 +142,24 @@ STRING=('([^'\\]|\\.)*'|\"([^\"\\]|\\.)*\")
   "MAXSIZE"               { return MAXSIZE; }
   "MAXSUBDIVIDE"          { return MAXSUBDIVIDE; }
   "MAXTEMPLATE"           { return MAXTEMPLATE; }
+  "MAXWIDTH"              { return MAXWIDTH; }
   "MINARCS"               { return MINARCS; }
   "MINBOXSIZE"            { return MINBOXSIZE; }
   "MINGEOWIDTH"           { return MINGEOWIDTH; }
   "MININTERVAL"           { return MININTERVAL; }
   "MINSCALEDENOM"         { return MINSCALEDENOM; }
+  "MINSIZE"               { return MINSIZE; }
   "MINSUBDIVIDE"          { return MINSUBDIVIDE; }
   "MINTEMPLATE"           { return MINTEMPLATE; }
+  "MINWIDTH"              { return MINWIDTH; }
   "NAME"                  { return NAME; }
+  "OFFSET"                { return OFFSET; }
   "OFFSITE"               { return OFFSITE; }
   "OPACITY"               { return OPACITY; }
   "OUTLINECOLOR"          { return OUTLINECOLOR; }
+  "OUTLINEWIDTH"          { return OUTLINEWIDTH; }
   "PLUGIN"                { return PLUGIN; }
+  "POLAROFFSET"           { return POLAROFFSET; }
   "POSITION"              { return POSITION; }
   "POSTLABELCACHE"        { return POSTLABELCACHE; }
   "PROCESSING"            { return PROCESSING; }
@@ -178,15 +192,14 @@ STRING=('([^'\\]|\\.)*'|\"([^\"\\]|\\.)*\")
   "UNITS"                 { return UNITS; }
   "UTFDATA"               { return UTFDATA; }
   "UTFITEM"               { return UTFITEM; }
+  "WIDTH"                 { return WIDTH; }
   "WKT"                   { return WKT; }
   "left"                  { return LEFT; }
   "center"                { return CENTER; }
   "right"                 { return RIGHT; }
+  "auto"                  { return AUTO; }
   "true"                  { return TRUE; }
   "false"                 { return FALSE; }
-  "csv"                   { return CSV; }
-  "mysql"                 { return MYSQL; }
-  "postgresql"            { return POSTGRESQL; }
   "contour"               { return CONTOUR; }
   "kerneldensity"         { return KERNELDENSITY; }
   "local"                 { return LOCAL; }
@@ -198,19 +211,34 @@ STRING=('([^'\\]|\\.)*'|\"([^\"\\]|\\.)*\")
   "uvraster"              { return UVRASTER; }
   "wfs"                   { return WFS; }
   "wms"                   { return WMS; }
+  "csv"                   { return CSV; }
+  "mysql"                 { return MYSQL; }
+  "postgresql"            { return POSTGRESQL; }
+  "bbox"                  { return BBOX; }
+  "centroid"              { return CENTROID; }
+  "labelpnt"              { return LABELPNT; }
+  "labelpoly"             { return LABELPOLY; }
+  "start"                 { return START; }
+  "vertices"              { return VERTICES; }
   "png"                   { return PNG; }
   "gif"                   { return GIF; }
   "png8"                  { return PNG8; }
   "jpeg"                  { return JPEG; }
   "svg"                   { return SVG; }
   "pdf"                   { return PDF; }
-  "GTiff"                 { return GTIFF; }
+  "gtiff"                 { return GTIFF; }
   "kml"                   { return KML; }
   "kmz"                   { return KMZ; }
   "cairopng"              { return CAIROPNG; }
   "dd"                    { return DD; }
   "ddmm"                  { return DDMM; }
   "ddmmss"                { return DDMMSS; }
+  "butt"                  { return BUTT; }
+  "round"                 { return ROUND; }
+  "square"                { return SQUARE; }
+  "miter"                 { return MITER; }
+  "bevel"                 { return BEVEL; }
+  "none"                  { return NONE; }
   "fail"                  { return FAIL; }
   "log"                   { return LOG; }
   "ignore"                { return IGNORE; }
@@ -236,8 +264,6 @@ STRING=('([^'\\]|\\.)*'|\"([^\"\\]|\\.)*\")
   "cl"                    { return CL; }
   "cc"                    { return CC; }
   "cr"                    { return CR; }
-  "ONE-TO-ONE"            { return ONE_TO_ONE; }
-  "ONE-TO-MANY"           { return ONE_TO_MANY; }
   "chart"                 { return CHART; }
   "circle"                { return CIRCLE; }
   "line"                  { return LINE; }
@@ -245,6 +271,8 @@ STRING=('([^'\\]|\\.)*'|\"([^\"\\]|\\.)*\")
   "polygon"               { return POLYGON; }
   "raster"                { return RASTER; }
   "query"                 { return QUERY; }
+  "ONE-TO-ONE"            { return ONE_TO_ONE; }
+  "ONE-TO-MANY"           { return ONE_TO_MANY; }
   "percentages"           { return PERCENTAGES; }
   "yes"                   { return YES; }
   "no"                    { return NO; }
@@ -254,6 +282,7 @@ STRING=('([^'\\]|\\.)*'|\"([^\"\\]|\\.)*\")
   {NUMBER}                { return NUMBER; }
   {ID}                    { return ID; }
   {STRING}                { return STRING; }
+  {ATTRIBUTETOKEN}        { return ATTRIBUTETOKEN; }
 
 }
 

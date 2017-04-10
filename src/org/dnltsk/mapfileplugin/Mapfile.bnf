@@ -26,6 +26,8 @@
     id='regexp:\p{Alpha}\w*'
     string="regexp:('([^'\\]|\\.)*'|\"([^\"\\]|\\.)*\")"
 
+    attributeToken="regexp:\[\w+\]"
+
     op_1='+'
     op_2='-'
     op_3='*'
@@ -87,7 +89,15 @@ private SymbolObject ::= SYMBOL END
 
 private LabelObject ::= LABEL END
 
-private StyleObject ::= STYLE END
+private StyleObject ::= STYLE StyleObjectChildren END
+private StyleObjectChildren ::=
+    (
+        PatternObject
+        | AngleClassAttr | AntialiasAttr | ColorClassAttr | GapAttr | GeomtransformClassAttr | InitialgapAttr
+        | LinecapAttr | LinejoinAttr | LinejoinmaxsizeAttr | MaxscaledenomAttr | MaxsizeAttr | MaxwidthAttr
+        | MinscaledenomAttr | MinsizeAttr | MinwidthAttr | OffsetAttr | OpacityClassAttr | OutlinecolorClassAttr
+        | OutlinewidthAttr | PolaroffsetAttr | SizeClassAttr | SymbolClassAttr | WidthClassAttr
+    )
 
 private LeaderObject ::= LEADER LeaderObjectChildren END // TODO supported layer type: Polygon
 private LeaderObjectChildren ::=
@@ -158,11 +168,13 @@ private ScalebarObjectChildren ::=
         | PostlabelcacheAttr | SizeAttr | StatusAttr | StyleScalebarAttr | UnitsAttr
     ) ScalebarObjectChildren*
 
-private ValidationObject ::= VALIDATION (string string) END
+private PatternObject ::= PATTERN ( number number )* END
+
+private ValidationObject ::= VALIDATION ( string string )* END
 
 private MetadataObject ::= METADATA ( string string )* END
 
-private PointsObject ::= POINTS (number number)* END
+private PointsObject ::= POINTS ( number number )* END
 
 private ProjectionObject ::= PROJECTION string* END
 
@@ -171,12 +183,15 @@ private ProjectionObject ::= PROJECTION string* END
 //
 private AlignAttr ::= ALIGN AlignEnum
 private AngleAttr ::= ANGLE number
+private AngleClassAttr ::= ANGLE AngleClassEnum
+private AntialiasAttr ::= ANTIALIAS BooleanEnum
 private BackgroundcolorAttr ::= BACKGROUNDCOLOR ( string | ( number number number ) ) //TODO color
 private BrowseformatAttr ::= BROWSEFORMAT string
 private BufferAttr ::= BUFFER number
 private ClassgroupAttr ::= CLASSGROUP string
 private ClassitemAttr ::= CLASSITEM string
-private ColorAttr ::= COLOR ( string | ( number number number ) ) //TODO color
+private ColorAttr ::= COLOR ColorEnum //TODO color
+private ColorClassAttr ::= COLOR ColorClassEnum
 private ConfigAttr ::= CONFIG (
     ( CGI_CONTEXT_URL string )
     | ( MS_ENCRYPTION_KEY string )
@@ -204,15 +219,18 @@ private FilteritemAttr ::= FILTERITEM string
 private FontsetAttr ::= FONTSET string // TODO: file
 private FooterAttr ::= FOOTER string // TODO: filename
 private FromAttr ::= FROM string
+private GapAttr ::= GAP number
 private GeomtransformAttr ::= GEOMTRANSFORM string // TODO: [<expression>|<Javascript file>]
-private GroupAttr ::= GROUP string
+private GeomtransformClassAttr ::= GEOMTRANSFORM GeomtransformClassEnum
 private GridstepAttr ::= GRIDSTEP number // TODO int
+private GroupAttr ::= GROUP string
 private HeaderAttr ::= HEADER string // TODO: filename
 private ImageAttr ::= IMAGE string
 private ImagecolorAttr ::= IMAGECOLOR ( string | ( number number number ) ) // TODO: hex or RGB
 private ImagepathAttr ::= IMAGEPATH string // TODO: path
 private ImagetypeAttr ::= IMAGETYPE ImagetypeEnum // TODO: must match one of the defined ones in OutputfomatObject
 private ImageurlAttr ::= IMAGEURL string // TODO path? url?
+private InitialgapAttr ::= INITIALGAP number
 private InterlaceAttr ::= INTERLACE OnOffEnum
 private ItemsAttr ::= ITEMS string // TODO: comma separated list
 private KeyimageAttr ::= KEYIMAGE string // TODO filename
@@ -225,6 +243,9 @@ private LabelmaxscaledenomAttr ::= LABELMAXSCALEDENOM number
 private LabelminscaledenomAttr ::= LABELMINSCALEDENOM number
 private LabelrequiresAttr ::= LABELREQUIRES string // TODO: expression
 private LegendformatAttr ::= LEGENDFORMAT string
+private LinecapAttr ::= LINECAP LinecapEnum
+private LinejoinAttr ::= LINEJOIN LinejoinEnum
+private LinejoinmaxsizeAttr ::= LINEJOINMAXSIZE number // TODO int
 private MarkerAttr ::= MARKER ( number | string) // TODO int
 private MarkersizeAttr ::= MARKERSIZE number // TODO int
 private MaskAttr ::= MASK string // TODO: layername validation
@@ -238,18 +259,26 @@ private MaxscaledenomAttr ::= MAXSCALEDENOM number
 private MaxsizeAttr ::= MAXSIZE number // TODO: int
 private MaxsubdivideAttr ::= MAXSUBDIVIDE number
 private MaxtemplateAttr ::= MAXTEMPLATE string // TODO: [file/url]
+private MaxwidthAttr ::= MAXWIDTH number
 private MinarcsAttr ::= MINARCS number
 private MinboxsizeAttr ::= MINBOXSIZE number // TODO int
 private MingeowidthAttr ::= MINGEOWIDTH number
 private MinintervalAttr ::= MININTERVAL number
 private MinscaledenomAttr ::= MINSCALEDENOM number
+private MinsizeAttr ::= MINSIZE number
 private MinsubdivideAttr ::= MINSUBDIVIDE number
 private MintemplateAttr ::= MINTEMPLATE string // TODO: [file/url]
+private MinwidthAttr ::= MINWIDTH number
 private NameAttr ::= NAME string // TODO: Unique check
-private OffsiteAttr ::= OFFSITE ( string | (number number number) ) // TODO is this a color
-private OpacityAttr ::= OPACITY // TODO: integer
-private OutlinecolorAttr ::= OUTLINECOLOR ( string | (number number number) ) // TODO color
+private OffsetAttr ::= OFFSET number number
+private OffsiteAttr ::= OFFSITE ColorEnum
+private OpacityAttr ::= OPACITY number // TODO: integer
+private OpacityClassAttr ::= OPACITY OpacityEnum // TODO: integer
+private OutlinecolorAttr ::= OUTLINECOLOR ColorEnum // TODO color
+private OutlinecolorClassAttr ::= OUTLINECOLOR ColorClassEnum
+private OutlinewidthAttr ::= OUTLINEWIDTH OutlinewidthEnum
 private PluginAttr ::= PLUGIN string // TODO: filename
+private PolaroffsetAttr ::= POLAROFFSET ( ( number | attributeToken ) ( number | attributeToken ) )
 private PositionAttr ::= POSITION PositionEnum
 private PostlabelcacheAttr ::= POSTLABELCACHE BooleanEnum
 private ProcessingAttr ::= PROCESSING string // TODO: keywords in string!!
@@ -260,11 +289,13 @@ private ResolutionAttr ::= RESOLUTION number // TODO: int
 private ScaledenomAttr ::= SCALEDENOM number
 private ShapepathAttr ::= SHAPEPATH string // TODO: directory
 private SizeAttr ::= SIZE number number // TODO: int
+private SizeClassAttr ::= SIZE ( number | attributeToken ) // TODO: int
 private SizeunitsAttr ::= SIZEUNITS SizeUnitEnum
 private StatusAttr ::= STATUS StatusEnum
 private StyleitemAttr ::= STYLEITEM string // TODO: [<attribute>|auto|<javascript file>]
 private StyleQuerymapAttr ::= STYLE StyleQuerymapEnum
 private StyleScalebarAttr ::= STYLE ( 0 | 1)
+private SymbolClassAttr ::= SYMBOL (number | string | attributeToken)
 private SymbolscaledenomAttr ::= SYMBOLSCALEDENOM number
 private SymbolsetAttr ::= SYMBOLSET string  // TODO: file
 private TableAttr ::= TABLE string
@@ -285,27 +316,36 @@ private TypeJoinAttr ::= TYPE TypeJoinEnum
 private UnitsAttr ::= UNITS UnitsEnum
 private UtfdataAttr ::= UTFDATA string
 private UtfitemAttr ::= UTFITEM string
+private WidthClassAttr ::= WIDTH (number | attributeToken)
 private WktAttr ::= WKT string // TODO wkt standard
 
 //
 // ENUMERATIONS
 //
 private AlignEnum ::= left|center|right
+private AngleClassEnum ::= number|attributeToken|auto
 private BooleanEnum ::= true|false
-private ConnectiontypeJoinEnum ::= csv|mysql|postgresql
+private ColorClassEnum ::= ColorEnum|attributeToken
+private ColorEnum ::= ( string | ( number number number ) )
 private ConnectiontypeEnum ::= contour|kerneldensity|local|ogr|oraclespatial|plugin|postgis|sde|union|uvraster|wfs|wms // TODO check for completeness
+private ConnectiontypeJoinEnum ::= csv|mysql|postgresql
 private DebugEnum ::= OnOffEnum|0|1|2|3|4|5
-private ImagetypeEnum ::= png|gif|png8|jpeg|svg|pdf|GTiff|kml|kmz|cairopng|string
+private GeomtransformClassEnum ::= bbox|centroid|end|labelpnt|labelpoly|start|vertices|string // TODO string = expression!
+private ImagetypeEnum ::= png|gif|png8|jpeg|svg|pdf|gtiff|kml|kmz|cairopng|string
 private LabelFormatEnum ::= dd|ddmm|ddmmss|string // TODO string=cformat-string
+private LinecapEnum ::= butt|round|square
+private LinejoinEnum ::= round|miter|bevel|none
 private OnMissingDataEnum ::= fail|log|ignore
 private OnOffEnum ::= on|off
+private OpacityEnum ::= number|attributeToken // TODO int
+private OutlinewidthEnum ::= number|attributeToken
 private PositionEnum ::= ul|uc|ur|ll|lc|lr // TODO why not cl\cc\cr?
 private SizeUnitEnum ::= feet|inches|kilometers|meters|miles|nauticalmiles|pixels
 private StatusEnum ::= OnOffEnum|default
 private StyleQuerymapEnum ::= normal|hilite|selected
 private ToleranceUnitEnum ::= SizeUnitEnum|dd
 private TransformEnum ::= BooleanEnum|ul|uc|ur|cl|cc|cr|ll|lc|lr
-private TypeJoinEnum ::= ONE-TO-ONE|ONE-TO-MANY
 private TypeEnum ::= chart|circle|line|point|polygon|raster|query
+private TypeJoinEnum ::= ONE-TO-ONE|ONE-TO-MANY
 private UnitsEnum ::= ToleranceUnitEnum|percentages
 private YesNoEnum ::= yes|no
