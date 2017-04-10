@@ -159,13 +159,65 @@ public class MapfileParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
-  // COMPOSITE END
+  // COMPOP string
+  static boolean CompopAttr(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "CompopAttr")) return false;
+    if (!nextTokenIs(b, COMPOP)) return false;
+    boolean r;
+    Marker m = enter_section_(b);
+    r = consumeTokens(b, 0, COMPOP, STRING);
+    exit_section_(b, m, null, r);
+    return r;
+  }
+
+  /* ********************************************************** */
+  // (
+  //         OpacityAttr | CompopAttr
+  //     ) CompositeAttributes*
+  static boolean CompositeAttributes(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "CompositeAttributes")) return false;
+    if (!nextTokenIs(b, "", COMPOP, OPACITY)) return false;
+    boolean r;
+    Marker m = enter_section_(b);
+    r = CompositeAttributes_0(b, l + 1);
+    r = r && CompositeAttributes_1(b, l + 1);
+    exit_section_(b, m, null, r);
+    return r;
+  }
+
+  // OpacityAttr | CompopAttr
+  private static boolean CompositeAttributes_0(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "CompositeAttributes_0")) return false;
+    boolean r;
+    Marker m = enter_section_(b);
+    r = OpacityAttr(b, l + 1);
+    if (!r) r = CompopAttr(b, l + 1);
+    exit_section_(b, m, null, r);
+    return r;
+  }
+
+  // CompositeAttributes*
+  private static boolean CompositeAttributes_1(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "CompositeAttributes_1")) return false;
+    int c = current_position_(b);
+    while (true) {
+      if (!CompositeAttributes(b, l + 1)) break;
+      if (!empty_element_parsed_guard_(b, "CompositeAttributes_1", c)) break;
+      c = current_position_(b);
+    }
+    return true;
+  }
+
+  /* ********************************************************** */
+  // COMPOSITE CompositeAttributes END
   static boolean CompositeObject(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "CompositeObject")) return false;
     if (!nextTokenIs(b, COMPOSITE)) return false;
     boolean r;
     Marker m = enter_section_(b);
-    r = consumeTokens(b, 0, COMPOSITE, END);
+    r = consumeToken(b, COMPOSITE);
+    r = r && CompositeAttributes(b, l + 1);
+    r = r && consumeToken(b, END);
     exit_section_(b, m, null, r);
     return r;
   }
@@ -1080,6 +1132,12 @@ public class MapfileParser implements PsiParser, LightPsiParser {
     r = consumeTokens(b, 0, NUMBER, NUMBER, NUMBER);
     exit_section_(b, m, null, r);
     return r;
+  }
+
+  /* ********************************************************** */
+  // OPACITY
+  static boolean OpacityAttr(PsiBuilder b, int l) {
+    return consumeToken(b, OPACITY);
   }
 
   /* ********************************************************** */

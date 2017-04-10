@@ -22,6 +22,7 @@ public interface MapfileTypes {
   IElementType CLASSITEM = new MapfileTokenType("CLASSITEM");
   IElementType CLUSTER = new MapfileTokenType("CLUSTER");
   IElementType COMMENT = new MapfileTokenType("comment");
+  IElementType COMPOP = new MapfileTokenType("COMPOP");
   IElementType COMPOSITE = new MapfileTokenType("COMPOSITE");
   IElementType CONFIG = new MapfileTokenType("CONFIG");
   IElementType CONNECTION = new MapfileTokenType("CONNECTION");
@@ -110,6 +111,7 @@ public interface MapfileTypes {
   IElementType OGR = new MapfileTokenType("ogr");
   IElementType ON = new MapfileTokenType("on");
   IElementType ON_MISSING_DATA = new MapfileTokenType("ON_MISSING_DATA");
+  IElementType OPACITY = new MapfileTokenType("OPACITY");
   IElementType OP_1 = new MapfileTokenType("+");
   IElementType OP_2 = new MapfileTokenType("-");
   IElementType OP_3 = new MapfileTokenType("*");

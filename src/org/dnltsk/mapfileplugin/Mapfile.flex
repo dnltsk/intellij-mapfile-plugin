@@ -77,6 +77,7 @@ STRING=('([^'\\]|\\.)*'|\"([^\"\\]|\\.)*\")
   "PROJ_LIB"              { return PROJ_LIB; }
   "CONNECTION"            { return CONNECTION; }
   "CONNECTIONTYPE"        { return CONNECTIONTYPE; }
+  "COMPOP"                { return COMPOP; }
   "DATA"                  { return DATA; }
   "DATAPATTERN"           { return DATAPATTERN; }
   "DEBUG"                 { return DEBUG; }
@@ -116,6 +117,7 @@ STRING=('([^'\\]|\\.)*'|\"([^\"\\]|\\.)*\")
   "MINTEMPLATE"           { return MINTEMPLATE; }
   "NAME"                  { return NAME; }
   "OFFSITE"               { return OFFSITE; }
+  "OPACITY"               { return OPACITY; }
   "PLUGIN"                { return PLUGIN; }
   "POSTLABELCACHE"        { return POSTLABELCACHE; }
   "PROCESSING"            { return PROCESSING; }

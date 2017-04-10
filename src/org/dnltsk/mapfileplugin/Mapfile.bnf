@@ -76,7 +76,11 @@ private ClusterAttributes ::=
         MaxdistanceAttr | RegionAttr | BufferAttr | GroupAttr | FilterAttr | ProcessingAttr
     ) ClusterAttributes*
 
-private CompositeObject ::= COMPOSITE END
+private CompositeObject ::= COMPOSITE CompositeAttributes END
+private CompositeAttributes ::=
+    (
+        OpacityAttr | CompopAttr
+    ) CompositeAttributes*
 
 private FeatureObject ::= FEATURE END
 
@@ -127,6 +131,7 @@ private ConfigAttr ::= CONFIG (
     | ( PROJ_LIB string ) )
 private ConnectionAttr ::= CONNECTION string
 private ConnectiontypeAttr ::= CONNECTIONTYPE connectionTypeValues
+private CompopAttr ::= COMPOP string // TODO: keywords in string
 private DataAttr ::= DATA string
 private DatapatternAttr ::= DATAPATTERN string // TODO: regular expression
 private DebugAttr ::= DEBUG debugValues
@@ -166,6 +171,7 @@ private MinscaledenomAttr ::= MINSCALEDENOM number
 private MintemplateAttr ::= MINTEMPLATE string // TODO: [file/url]
 private NameAttr ::= NAME string // TODO: Unique check
 private OffsiteAttr ::= OFFSITE ( string | (number number number) )
+private OpacityAttr ::= OPACITY // TODO: integer
 private PluginAttr ::= PLUGIN string // TODO: filename
 private PostlabelcacheAttr ::= POSTLABELCACHE booleanValues
 private ProcessingAttr ::= PROCESSING string // TODO: keywords in string!!
