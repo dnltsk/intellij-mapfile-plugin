@@ -47,24 +47,24 @@ STRING=('([^'\\]|\\.)*'|\"([^\"\\]|\\.)*\")
   "!"                     { return OP_5; }
   "MAP"                   { return MAP; }
   "END"                   { return END; }
+  "WEB"                   { return WEB; }
   "LAYER"                 { return LAYER; }
   "CLASS"                 { return CLASS; }
   "SYMBOL"                { return SYMBOL; }
   "LABEL"                 { return LABEL; }
+  "LEGEND"                { return LEGEND; }
+  "FEATURE"               { return FEATURE; }
   "CLUSTER"               { return CLUSTER; }
   "COMPOSITE"             { return COMPOSITE; }
-  "FEATURE"               { return FEATURE; }
-  "POINTS"                { return POINTS; }
   "GRID"                  { return GRID; }
   "JOIN"                  { return JOIN; }
-  "LEGEND"                { return LEGEND; }
   "QUERYMAP"              { return QUERYMAP; }
   "REFERENCE"             { return REFERENCE; }
-  "METADATA"              { return METADATA; }
-  "PROJECTION"            { return PROJECTION; }
   "SCALEBAR"              { return SCALEBAR; }
   "VALIDATION"            { return VALIDATION; }
-  "WEB"                   { return WEB; }
+  "METADATA"              { return METADATA; }
+  "POINTS"                { return POINTS; }
+  "PROJECTION"            { return PROJECTION; }
   "ALIGN"                 { return ALIGN; }
   "ANGLE"                 { return ANGLE; }
   "BACKGROUNDCOLOR"       { return BACKGROUNDCOLOR; }

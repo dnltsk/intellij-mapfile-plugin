@@ -1606,13 +1606,37 @@ public class MapfileParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
-  // METADATA END
+  // METADATA ( string string )* END
   static boolean MetadataObject(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "MetadataObject")) return false;
     if (!nextTokenIs(b, METADATA)) return false;
     boolean r;
     Marker m = enter_section_(b);
-    r = consumeTokens(b, 0, METADATA, END);
+    r = consumeToken(b, METADATA);
+    r = r && MetadataObject_1(b, l + 1);
+    r = r && consumeToken(b, END);
+    exit_section_(b, m, null, r);
+    return r;
+  }
+
+  // ( string string )*
+  private static boolean MetadataObject_1(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "MetadataObject_1")) return false;
+    int c = current_position_(b);
+    while (true) {
+      if (!MetadataObject_1_0(b, l + 1)) break;
+      if (!empty_element_parsed_guard_(b, "MetadataObject_1", c)) break;
+      c = current_position_(b);
+    }
+    return true;
+  }
+
+  // string string
+  private static boolean MetadataObject_1_0(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "MetadataObject_1_0")) return false;
+    boolean r;
+    Marker m = enter_section_(b);
+    r = consumeTokens(b, 0, STRING, STRING);
     exit_section_(b, m, null, r);
     return r;
   }
@@ -2654,13 +2678,25 @@ public class MapfileParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
-  // VALIDATION END
+  // VALIDATION (string string) END
   static boolean ValidationObject(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "ValidationObject")) return false;
     if (!nextTokenIs(b, VALIDATION)) return false;
     boolean r;
     Marker m = enter_section_(b);
-    r = consumeTokens(b, 0, VALIDATION, END);
+    r = consumeToken(b, VALIDATION);
+    r = r && ValidationObject_1(b, l + 1);
+    r = r && consumeToken(b, END);
+    exit_section_(b, m, null, r);
+    return r;
+  }
+
+  // string string
+  private static boolean ValidationObject_1(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "ValidationObject_1")) return false;
+    boolean r;
+    Marker m = enter_section_(b);
+    r = consumeTokens(b, 0, STRING, STRING);
     exit_section_(b, m, null, r);
     return r;
   }
