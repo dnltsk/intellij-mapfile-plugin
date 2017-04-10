@@ -125,7 +125,7 @@ private ReferenceObject ::= REFERENCE END
 
 private MetadataObject ::= METADATA END
 
-private ProjectionObject ::= PROJECTION END
+private ProjectionObject ::= PROJECTION string* END
 
 private ScalebarObject ::= SCALEBAR END
 
