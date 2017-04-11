@@ -807,13 +807,28 @@ public class MapfileParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
-  // EXPRESSION string
+  // EXPRESSION ExpressionEnum
   static boolean ExpressionAttr(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "ExpressionAttr")) return false;
     if (!nextTokenIs(b, EXPRESSION)) return false;
     boolean r;
     Marker m = enter_section_(b);
-    r = consumeTokens(b, 0, EXPRESSION, STRING);
+    r = consumeToken(b, EXPRESSION);
+    r = r && ExpressionEnum(b, l + 1);
+    exit_section_(b, m, null, r);
+    return r;
+  }
+
+  /* ********************************************************** */
+  // string | logicalExpressionToken | regexToken | listExpressionToken
+  static boolean ExpressionEnum(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "ExpressionEnum")) return false;
+    boolean r;
+    Marker m = enter_section_(b);
+    r = consumeToken(b, STRING);
+    if (!r) r = consumeToken(b, LOGICALEXPRESSIONTOKEN);
+    if (!r) r = consumeToken(b, REGEXTOKEN);
+    if (!r) r = consumeToken(b, LISTEXPRESSIONTOKEN);
     exit_section_(b, m, null, r);
     return r;
   }
@@ -947,13 +962,14 @@ public class MapfileParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
-  // FILTER string
+  // FILTER ExpressionEnum
   static boolean FilterAttr(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "FilterAttr")) return false;
     if (!nextTokenIs(b, FILTER)) return false;
     boolean r;
     Marker m = enter_section_(b);
-    r = consumeTokens(b, 0, FILTER, STRING);
+    r = consumeToken(b, FILTER);
+    r = r && ExpressionEnum(b, l + 1);
     exit_section_(b, m, null, r);
     return r;
   }

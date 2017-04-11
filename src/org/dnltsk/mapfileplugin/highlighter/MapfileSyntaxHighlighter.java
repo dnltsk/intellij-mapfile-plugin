@@ -296,9 +296,13 @@ public class MapfileSyntaxHighlighter extends SyntaxHighlighterBase {
     );
 
     private static final List<IElementType> NUMBER_LIST = Arrays.asList(
+            ATTRIBUTETOKEN,
             DOUBLE,
             INTEGER,
-            NUMBER
+            LISTEXPRESSIONTOKEN,
+            LOGICALEXPRESSIONTOKEN,
+            NUMBER,
+            REGEXTOKEN
     );
 
     @NotNull

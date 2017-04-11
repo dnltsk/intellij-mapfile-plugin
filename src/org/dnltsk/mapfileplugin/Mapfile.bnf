@@ -20,7 +20,10 @@
     LP='('
     RP=')'
 
-    attributeToken="regexp:\[\w+\]"
+    attributeToken="regexp:\[.+\]"
+    logicalExpressionToken="regexp:\(.+\)"
+    listExpressionToken="regexp:\{.+\}"
+    regexToken="regexp:/.+/"
     integer='regexp:[+-]{0,1}\d+'
     double='regexp:[+-]{0,1}\d+(\.\d*)?'
 
@@ -232,10 +235,10 @@ private DumpAttr ::= DUMP BooleanEnum
 private EmptyAttr ::= EMPTY string // TODO: url
 private EncodingAttr ::= ENCODING string
 private ErrorAttr ::= ERROR string // TODO: url
-private ExpressionAttr ::= EXPRESSION string // TODO four types of expression: String comparisons, regular expressions, logical expressions, and string functions
+private ExpressionAttr ::= EXPRESSION ExpressionEnum
 private ExtentAttr ::= EXTENT ( integer | double ) ( integer | double ) ( integer | double ) ( integer | double )
 private FilledAttr ::= FILLED BooleanEnum
-private FilterAttr ::= FILTER string // TODO: expression!
+private FilterAttr ::= FILTER ExpressionEnum // TODO: expression!
 private FilteritemAttr ::= FILTERITEM string
 private FontAttr ::= FONT string // TODO must be defined in fontset!
 private FontLabelAttr ::= FONT ( string | attributeToken ) // TODO must be defined in fontset!
@@ -369,12 +372,13 @@ private ColorEnum ::= string | ( integer integer integer )
 private ConnectiontypeEnum ::= contour|kerneldensity|local|ogr|oraclespatial|plugin|postgis|sde|union|uvraster|wfs|wms // TODO check for completeness
 private ConnectiontypeJoinEnum ::= csv|mysql|postgresql
 private DebugEnum ::= OnOffEnum|0|1|2|3|4|5
+private ExpressionEnum ::= ( string | logicalExpressionToken | regexToken | listExpressionToken ) // TODO string functions
 private GeomtransformClassEnum ::= bbox|centroid|end|labelpnt|labelpoly|start|vertices|string // TODO string = expression!
 private ImagetypeEnum ::= png|gif|png8|jpeg|svg|pdf|gtiff|kml|kmz|cairopng|string
 private LabelFormatEnum ::= dd|ddmm|ddmmss|string // TODO string=cformat-string
 private LinecapEnum ::= butt|round|square
 private LinejoinEnum ::= round|miter|bevel|none
-private MinfeaturesizeEnum ::= integer|auto // TODO int
+private MinfeaturesizeEnum ::= integer|auto
 private OnMissingDataEnum ::= fail|log|ignore
 private OnOffEnum ::= on|off
 private PositionEnum ::= ul|uc|ur|cl|cc|cr|ll|lc|lr // TODO why not cl\cc\cr?

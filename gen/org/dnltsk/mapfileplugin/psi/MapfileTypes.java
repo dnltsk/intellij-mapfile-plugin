@@ -128,9 +128,11 @@ public interface MapfileTypes {
   IElementType LINECAP = new MapfileTokenType("LINECAP");
   IElementType LINEJOIN = new MapfileTokenType("LINEJOIN");
   IElementType LINEJOINMAXSIZE = new MapfileTokenType("LINEJOINMAXSIZE");
+  IElementType LISTEXPRESSIONTOKEN = new MapfileTokenType("listExpressionToken");
   IElementType LL = new MapfileTokenType("ll");
   IElementType LOCAL = new MapfileTokenType("local");
   IElementType LOG = new MapfileTokenType("log");
+  IElementType LOGICALEXPRESSIONTOKEN = new MapfileTokenType("logicalExpressionToken");
   IElementType LP = new MapfileTokenType("(");
   IElementType LR = new MapfileTokenType("lr");
   IElementType MAP = new MapfileTokenType("MAP");
@@ -219,6 +221,7 @@ public interface MapfileTypes {
   IElementType QUERYMAP = new MapfileTokenType("QUERYMAP");
   IElementType RASTER = new MapfileTokenType("raster");
   IElementType REFERENCE = new MapfileTokenType("REFERENCE");
+  IElementType REGEXTOKEN = new MapfileTokenType("regexToken");
   IElementType REGION = new MapfileTokenType("REGION");
   IElementType REPEATDISTANCE = new MapfileTokenType("REPEATDISTANCE");
   IElementType REQUIRES = new MapfileTokenType("REQUIRES");
