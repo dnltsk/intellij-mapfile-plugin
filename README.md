@@ -4,11 +4,11 @@ Editor support for UMN Mapserver Mapfiles. Supported Mapserver version is 7.0.4
 
 ## Features
 
-* ![in progress](https://img.shields.io/badge/status-in%20progress-yellow.svg) Syntax Validation and Highlighting
+* ![done](https://img.shields.io/badge/status-in%20progress-yellow.svg) Basic Syntax Validation and Highlighting
   * ![done](https://img.shields.io/badge/status-done-green.svg) CLASS
   * ![done](https://img.shields.io/badge/status-done-green.svg) CLUSTER
   * ![done](https://img.shields.io/badge/status-done-green.svg) COMPOSITE
-  * ![not started](https://img.shields.io/badge/status-not--started-lightgray.svg) EXPRESSION
+  * ![done](https://img.shields.io/badge/status-done-green.svg) EXPRESSION
   * ![done](https://img.shields.io/badge/status-done-green.svg) FEATURE
   * ![done](https://img.shields.io/badge/status-done-green.svg) GRID
   * ![done](https://img.shields.io/badge/status-done-green.svg) JOIN
@@ -26,6 +26,9 @@ Editor support for UMN Mapserver Mapfiles. Supported Mapserver version is 7.0.4
   * ![done](https://img.shields.io/badge/status-done-green.svg) SYMBOL
   * ![done](https://img.shields.io/badge/status-done-green.svg) VALIDATION
   * ![done](https://img.shields.io/badge/status-done-green.svg) WEB
+* ![not started](https://img.shields.io/badge/status-not%20started-lightgray.svg) Annotations (Error Messages)
+* ![not started](https://img.shields.io/badge/status-not%20started-lightgray.svg) Advanced Syntax Highlighting
+* ![not started](https://img.shields.io/badge/status-not%20started-lightgray.svg) Color Picker
 * ![not started](https://img.shields.io/badge/status-not%20started-lightgray.svg) Helpers and Utilities
 * ![not started](https://img.shields.io/badge/status-not%20started-lightgray.svg) Autocompletion (Ctrl+Space)
 * ![not started](https://img.shields.io/badge/status-not%20started-lightgray.svg) References
