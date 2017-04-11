@@ -6,7 +6,7 @@ Editor support for UMN Mapserver Mapfiles. Supported Mapserver version is 7.0.4
 
 ## Features
 
-* ![done](https://img.shields.io/badge/status-in%20progress-yellow.svg) Basic Syntax Validation and Highlighting
+* ![done](https://img.shields.io/badge/status-done-green.svg) Basic Syntax Validation and Highlighting
   * ![done](https://img.shields.io/badge/status-done-green.svg) CLASS
   * ![done](https://img.shields.io/badge/status-done-green.svg) CLUSTER
   * ![done](https://img.shields.io/badge/status-done-green.svg) COMPOSITE
