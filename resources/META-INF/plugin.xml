@@ -1,16 +1,22 @@
 <idea-plugin>
   <id>org.dnltsk.mapfileplugin</id>
   <name>Mapfile</name>
-  <version>0.0.1</version>
+  <version>7.0.4#0.0.1</version>
   <vendor email="daniel.teske@gmail.com">dnltsk</vendor>
 
   <description><![CDATA[
-      Editor support for Mapfiles of the UMN Mapserver.
+      <p>
+        Editor support for UMN Mapserver Mapfiles. Supported Mapserver version is 7.0.4
+      </p>
+      <p>
+        Source, issues or feature requests on Github:
+        <a href="https://github.com/dnltsk/intellij-mapfile-plugin">https://github.com/dnltsk/intellij-mapfile-plugin</a>
+      </p>
       ]]></description>
 
   <change-notes><![CDATA[
       <ul>
-        <li>7.0.4:0.1-SNAPSHOT very basic Mapfile support</li>
+        <li>7.0.4#0.0.1 basic syntax validation and syntax highlighting</li>
       </ul>
       ]]></change-notes>
 
