@@ -58,7 +58,7 @@ private MapObjectChildren ::=
         | ImagecolorAttr | ImagetypeAttr | InterlaceAttr | MaxsizeAttr | NameAttr | ResolutionAttr
         | ScaledenomAttr | ShapepathAttr | SizeAttr | StatusAttr | SymbolsetAttr | TemplatepatternAttr | UnitsAttr
 
-    ) MapObjectChildren*
+    )*
 
 private WebObject ::= WEB WebObjectChildren END
 private WebObjectChildren ::=
@@ -67,7 +67,7 @@ private WebObjectChildren ::=
         | BrowseformatAttr | EmptyAttr | ErrorAttr | FooterAttr | HeaderAttr | ImagepathAttr | ImageurlAttr
         | LegendformatAttr | MaxscaledenomAttr | MaxtemplateAttr | MinscaledenomAttr | MintemplateAttr
         | QueryformatAttr | TemplateAttr | TemppathAttr
-    ) WebObjectChildren*
+    )*
 
 private LayerObject ::= LAYER LayerObjectChildren END
 private LayerObjectChildren ::=
@@ -82,8 +82,7 @@ private LayerObjectChildren ::=
         | RequiresAttr | StatusAttr | StyleitemAttr | SymbolscaledenomAttr | TemplateAttr | TileindexAttr
         | TileitemAttr | TilesrsAttr | TitleAttr | ToleranceunitsAttr | ToleranceAttr | TransformAttr | TypeAttr
         | UnitsAttr | UtfdataAttr | UtfitemAttr
-
-    ) LayerObjectChildren*
+    )*
 
 private ClassObject ::= CLASS ClassObjectChildren END
 private ClassObjectChildren ::=
@@ -91,7 +90,7 @@ private ClassObjectChildren ::=
         LabelObject | LeaderObject | StyleObject | ValidationObject
         | DebugClassAttr | ExpressionAttr | GroupAttr | KeyimageAttr
         | MaxscaledenomAttr | MinscaledenomAttr | NameAttr | StatusAttr | TemplateAttr | TextAttr
-    ) ClassObjectChildren*
+    )*
 
 private SymbolObject ::= SYMBOL SymbolObjectChildren END
 private SymbolObjectChildren ::=
@@ -99,7 +98,7 @@ private SymbolObjectChildren ::=
         PointsObject
         | AnchorpointAttr | AntialiasAttr | CharacterAttr | FilledAttr | FontAttr | ImageAttr | NameAttr
         | TransparentAttr | TypeSymbolAttr
-    )
+    )*
 
 private LabelObject ::= LABEL LabelObjectChildren END
 private LabelObjectChildren ::=
@@ -110,7 +109,7 @@ private LabelObjectChildren ::=
         | MinfeaturesizeAttr | MinscaledenomAttr | MinsizeAttr | OffsetAttr | OutlinecolorClassAttr | OutlinewidthAttr
         | PartialsAttr | PositionAttr | PriorityAttr | RepeatdistanceAttr | ShadowcolorAttr | ShadowsizeAttr
         | SizeLabelAttr | TextAttr | TypeLabelAttr | WrapAttr
-    )
+    )*
 
 private StyleObject ::= STYLE StyleObjectChildren END
 private StyleObjectChildren ::=
@@ -120,14 +119,14 @@ private StyleObjectChildren ::=
         | LinecapAttr | LinejoinAttr | LinejoinmaxsizeAttr | MaxscaledenomAttr | MaxsizeAttr | MaxwidthAttr
         | MinscaledenomAttr | MinsizeAttr | MinwidthAttr | OffsetAttr | OpacityClassAttr | OutlinecolorClassAttr
         | OutlinewidthAttr | PolaroffsetAttr | SizeClassAttr | SymbolClassAttr | WidthClassAttr
-    )
+    )*
 
 private LeaderObject ::= LEADER LeaderObjectChildren END // TODO supported layer type: Polygon
 private LeaderObjectChildren ::=
     (
         StyleObject
         | GridstepAttr | MaxdistanceAttr
-    )
+    )*
 
 private LegendObject ::= LEGEND LegendObjectChildren END
 private LegendObjectChildren ::=
@@ -135,53 +134,53 @@ private LegendObjectChildren ::=
         LabelObject
         | ImagecolorAttr | InterlaceAttr | KeysizeAttr | KeyspacingAttr | OutlinecolorAttr | PositionAttr
         | PostlabelcacheAttr | StatusAttr | TemplateAttr
-    ) LegendObjectChildren*
+    )*
 
 private FeatureObject ::= FEATURE FeatureObjectChildren END
 private FeatureObjectChildren ::=
     (
         PointsObject
         | ItemsAttr | TextAttr | WktAttr
-    ) FeatureObjectChildren*
+    )*
 
 private ClusterObject ::= CLUSTER ClusterObjectChildren END // TODO: only within POINT layers
 private ClusterObjectChildren ::=
     (
         MaxdistanceAttr | RegionAttr | BufferAttr | GroupAttr | FilterAttr | ProcessingAttr
-    ) ClusterObjectChildren*
+    )*
 
 private CompositeObject ::= COMPOSITE CompositeObjectChildren END
 private CompositeObjectChildren ::=
     (
         OpacityAttr | CompopAttr
-    ) CompositeObjectChildren*
+    )*
 
 private GridObject ::= GRID GridObjectChildren END
 private GridObjectChildren ::=
     (
         LabelformatAttr | MinarcsAttr | MaxarcsAttr | MinintervalAttr | MaxintervalAttr | MinsubdivideAttr
         | MaxsubdivideAttr
-    ) GridObjectChildren*
+    )*
 
 private JoinObject ::= JOIN JoinObjectChildren END
 private JoinObjectChildren ::=
     (
         ConnectionAttr | ConnectiontypeJoinAttr | FooterAttr |  FromAttr | HeaderAttr | NameAttr | TableAttr
         | TemplateAttr | ToAttr | TypeJoinAttr
-    ) JoinObjectChildren*
+    )*
 
 private QuerymapObject ::= QUERYMAP QuerymapObjectChildren END
 private QuerymapObjectChildren ::=
     (
         ColorAttr | SizeAttr | StatusAttr | StyleQuerymapAttr
-    ) QuerymapObjectChildren*
+    )*
 
 private ReferenceObject ::= REFERENCE ReferenceObjectChildren END
 private ReferenceObjectChildren ::=
     (
         ColorAttr | ExtentAttr | ImageAttr | MarkerAttr | MarkersizeAttr | MinboxsizeAttr | MaxboxsizeAttr
         | OutlinecolorAttr | SizeAttr | StatusAttr
-    ) ReferenceObjectChildren*
+    )*
 
 private ScalebarObject ::= SCALEBAR ScalebarObjectChildren END
 private ScalebarObjectChildren ::=
@@ -189,7 +188,7 @@ private ScalebarObjectChildren ::=
         LabelObject
         | AlignAttr | BackgroundcolorAttr | ColorAttr | ImagecolorAttr | InterlaceAttr | OutlinecolorAttr | PositionAttr
         | PostlabelcacheAttr | SizeAttr | StatusAttr | StyleScalebarAttr | UnitsAttr
-    ) ScalebarObjectChildren*
+    )*
 
 private PatternObject ::= PATTERN ( integer integer )* END
 
