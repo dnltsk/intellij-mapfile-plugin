@@ -1,5 +1,7 @@
 # IntelliJ Mapfile Plugin
 
+https://plugins.jetbrains.com/plugin/9626-mapfile
+
 Editor support for UMN Mapserver Mapfiles. Supported Mapserver version is 7.0.4
 
 ## Features
