@@ -58,25 +58,37 @@ public class MapfileParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
-  // ANCHORPOINT number number
+  // ANCHORPOINT double double
   static boolean AnchorpointAttr(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "AnchorpointAttr")) return false;
     if (!nextTokenIs(b, ANCHORPOINT)) return false;
     boolean r;
     Marker m = enter_section_(b);
-    r = consumeTokens(b, 0, ANCHORPOINT, NUMBER, NUMBER);
+    r = consumeTokens(b, 0, ANCHORPOINT, DOUBLE, DOUBLE);
     exit_section_(b, m, null, r);
     return r;
   }
 
   /* ********************************************************** */
-  // ANGLE number
+  // ANGLE ( integer | double )
   static boolean AngleAttr(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "AngleAttr")) return false;
     if (!nextTokenIs(b, ANGLE)) return false;
     boolean r;
     Marker m = enter_section_(b);
-    r = consumeTokens(b, 0, ANGLE, NUMBER);
+    r = consumeToken(b, ANGLE);
+    r = r && AngleAttr_1(b, l + 1);
+    exit_section_(b, m, null, r);
+    return r;
+  }
+
+  // integer | double
+  private static boolean AngleAttr_1(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "AngleAttr_1")) return false;
+    boolean r;
+    Marker m = enter_section_(b);
+    r = consumeToken(b, INTEGER);
+    if (!r) r = consumeToken(b, DOUBLE);
     exit_section_(b, m, null, r);
     return r;
   }
@@ -95,12 +107,13 @@ public class MapfileParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
-  // number|attributeToken|auto
+  // integer|double|attributeToken|auto
   static boolean AngleClassEnum(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "AngleClassEnum")) return false;
     boolean r;
     Marker m = enter_section_(b);
-    r = consumeToken(b, NUMBER);
+    r = consumeToken(b, INTEGER);
+    if (!r) r = consumeToken(b, DOUBLE);
     if (!r) r = consumeToken(b, ATTRIBUTETOKEN);
     if (!r) r = consumeToken(b, AUTO);
     exit_section_(b, m, null, r);
@@ -185,13 +198,25 @@ public class MapfileParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
-  // BUFFER number
+  // BUFFER ( integer | double )
   static boolean BufferAttr(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "BufferAttr")) return false;
     if (!nextTokenIs(b, BUFFER)) return false;
     boolean r;
     Marker m = enter_section_(b);
-    r = consumeTokens(b, 0, BUFFER, NUMBER);
+    r = consumeToken(b, BUFFER);
+    r = r && BufferAttr_1(b, l + 1);
+    exit_section_(b, m, null, r);
+    return r;
+  }
+
+  // integer | double
+  private static boolean BufferAttr_1(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "BufferAttr_1")) return false;
+    boolean r;
+    Marker m = enter_section_(b);
+    r = consumeToken(b, INTEGER);
+    if (!r) r = consumeToken(b, DOUBLE);
     exit_section_(b, m, null, r);
     return r;
   }
@@ -393,10 +418,10 @@ public class MapfileParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
-  // string | ( number number number )
+  // string | ( integer integer integer )
   static boolean ColorEnum(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "ColorEnum")) return false;
-    if (!nextTokenIs(b, "", NUMBER, STRING)) return false;
+    if (!nextTokenIs(b, "", INTEGER, STRING)) return false;
     boolean r;
     Marker m = enter_section_(b);
     r = consumeToken(b, STRING);
@@ -405,12 +430,12 @@ public class MapfileParser implements PsiParser, LightPsiParser {
     return r;
   }
 
-  // number number number
+  // integer integer integer
   private static boolean ColorEnum_1(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "ColorEnum_1")) return false;
     boolean r;
     Marker m = enter_section_(b);
-    r = consumeTokens(b, 0, NUMBER, NUMBER, NUMBER);
+    r = consumeTokens(b, 0, INTEGER, INTEGER, INTEGER);
     exit_section_(b, m, null, r);
     return r;
   }
@@ -721,13 +746,13 @@ public class MapfileParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
-  // DEFRESOLUTION number
+  // DEFRESOLUTION integer
   static boolean DefresolutionAttr(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "DefresolutionAttr")) return false;
     if (!nextTokenIs(b, DEFRESOLUTION)) return false;
     boolean r;
     Marker m = enter_section_(b);
-    r = consumeTokens(b, 0, DEFRESOLUTION, NUMBER);
+    r = consumeTokens(b, 0, DEFRESOLUTION, INTEGER);
     exit_section_(b, m, null, r);
     return r;
   }
@@ -794,13 +819,61 @@ public class MapfileParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
-  // EXTENT double double double double
+  // EXTENT ( integer | double ) ( integer | double ) ( integer | double ) ( integer | double )
   static boolean ExtentAttr(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "ExtentAttr")) return false;
     if (!nextTokenIs(b, EXTENT)) return false;
     boolean r;
     Marker m = enter_section_(b);
-    r = consumeTokens(b, 0, EXTENT, DOUBLE, DOUBLE, DOUBLE, DOUBLE);
+    r = consumeToken(b, EXTENT);
+    r = r && ExtentAttr_1(b, l + 1);
+    r = r && ExtentAttr_2(b, l + 1);
+    r = r && ExtentAttr_3(b, l + 1);
+    r = r && ExtentAttr_4(b, l + 1);
+    exit_section_(b, m, null, r);
+    return r;
+  }
+
+  // integer | double
+  private static boolean ExtentAttr_1(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "ExtentAttr_1")) return false;
+    boolean r;
+    Marker m = enter_section_(b);
+    r = consumeToken(b, INTEGER);
+    if (!r) r = consumeToken(b, DOUBLE);
+    exit_section_(b, m, null, r);
+    return r;
+  }
+
+  // integer | double
+  private static boolean ExtentAttr_2(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "ExtentAttr_2")) return false;
+    boolean r;
+    Marker m = enter_section_(b);
+    r = consumeToken(b, INTEGER);
+    if (!r) r = consumeToken(b, DOUBLE);
+    exit_section_(b, m, null, r);
+    return r;
+  }
+
+  // integer | double
+  private static boolean ExtentAttr_3(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "ExtentAttr_3")) return false;
+    boolean r;
+    Marker m = enter_section_(b);
+    r = consumeToken(b, INTEGER);
+    if (!r) r = consumeToken(b, DOUBLE);
+    exit_section_(b, m, null, r);
+    return r;
+  }
+
+  // integer | double
+  private static boolean ExtentAttr_4(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "ExtentAttr_4")) return false;
+    boolean r;
+    Marker m = enter_section_(b);
+    r = consumeToken(b, INTEGER);
+    if (!r) r = consumeToken(b, DOUBLE);
     exit_section_(b, m, null, r);
     return r;
   }
@@ -983,13 +1056,13 @@ public class MapfileParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
-  // GAP number
+  // GAP double
   static boolean GapAttr(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "GapAttr")) return false;
     if (!nextTokenIs(b, GAP)) return false;
     boolean r;
     Marker m = enter_section_(b);
-    r = consumeTokens(b, 0, GAP, NUMBER);
+    r = consumeTokens(b, 0, GAP, DOUBLE);
     exit_section_(b, m, null, r);
     return r;
   }
@@ -1096,13 +1169,13 @@ public class MapfileParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
-  // GRIDSTEP number
+  // GRIDSTEP integer
   static boolean GridstepAttr(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "GridstepAttr")) return false;
     if (!nextTokenIs(b, GRIDSTEP)) return false;
     boolean r;
     Marker m = enter_section_(b);
-    r = consumeTokens(b, 0, GRIDSTEP, NUMBER);
+    r = consumeTokens(b, 0, GRIDSTEP, INTEGER);
     exit_section_(b, m, null, r);
     return r;
   }
@@ -1144,35 +1217,14 @@ public class MapfileParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
-  // IMAGECOLOR ( string | ( number number number ) )
+  // IMAGECOLOR ColorEnum
   static boolean ImagecolorAttr(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "ImagecolorAttr")) return false;
     if (!nextTokenIs(b, IMAGECOLOR)) return false;
     boolean r;
     Marker m = enter_section_(b);
     r = consumeToken(b, IMAGECOLOR);
-    r = r && ImagecolorAttr_1(b, l + 1);
-    exit_section_(b, m, null, r);
-    return r;
-  }
-
-  // string | ( number number number )
-  private static boolean ImagecolorAttr_1(PsiBuilder b, int l) {
-    if (!recursion_guard_(b, l, "ImagecolorAttr_1")) return false;
-    boolean r;
-    Marker m = enter_section_(b);
-    r = consumeToken(b, STRING);
-    if (!r) r = ImagecolorAttr_1_1(b, l + 1);
-    exit_section_(b, m, null, r);
-    return r;
-  }
-
-  // number number number
-  private static boolean ImagecolorAttr_1_1(PsiBuilder b, int l) {
-    if (!recursion_guard_(b, l, "ImagecolorAttr_1_1")) return false;
-    boolean r;
-    Marker m = enter_section_(b);
-    r = consumeTokens(b, 0, NUMBER, NUMBER, NUMBER);
+    r = r && ColorEnum(b, l + 1);
     exit_section_(b, m, null, r);
     return r;
   }
@@ -1236,13 +1288,13 @@ public class MapfileParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
-  // INITIALGAP number
+  // INITIALGAP integer
   static boolean InitialgapAttr(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "InitialgapAttr")) return false;
     if (!nextTokenIs(b, INITIALGAP)) return false;
     boolean r;
     Marker m = enter_section_(b);
-    r = consumeTokens(b, 0, INITIALGAP, NUMBER);
+    r = consumeTokens(b, 0, INITIALGAP, INTEGER);
     exit_section_(b, m, null, r);
     return r;
   }
@@ -1346,25 +1398,25 @@ public class MapfileParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
-  // KEYSIZE number number
+  // KEYSIZE integer integer
   static boolean KeysizeAttr(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "KeysizeAttr")) return false;
     if (!nextTokenIs(b, KEYSIZE)) return false;
     boolean r;
     Marker m = enter_section_(b);
-    r = consumeTokens(b, 0, KEYSIZE, NUMBER, NUMBER);
+    r = consumeTokens(b, 0, KEYSIZE, INTEGER, INTEGER);
     exit_section_(b, m, null, r);
     return r;
   }
 
   /* ********************************************************** */
-  // KEYSPACING number number
+  // KEYSPACING integer integer
   static boolean KeyspacingAttr(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "KeyspacingAttr")) return false;
     if (!nextTokenIs(b, KEYSPACING)) return false;
     boolean r;
     Marker m = enter_section_(b);
-    r = consumeTokens(b, 0, KEYSPACING, NUMBER, NUMBER);
+    r = consumeTokens(b, 0, KEYSPACING, INTEGER, INTEGER);
     exit_section_(b, m, null, r);
     return r;
   }
@@ -1481,25 +1533,49 @@ public class MapfileParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
-  // LABELMAXSCALEDENOM number
+  // LABELMAXSCALEDENOM ( integer | double )
   static boolean LabelmaxscaledenomAttr(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "LabelmaxscaledenomAttr")) return false;
     if (!nextTokenIs(b, LABELMAXSCALEDENOM)) return false;
     boolean r;
     Marker m = enter_section_(b);
-    r = consumeTokens(b, 0, LABELMAXSCALEDENOM, NUMBER);
+    r = consumeToken(b, LABELMAXSCALEDENOM);
+    r = r && LabelmaxscaledenomAttr_1(b, l + 1);
+    exit_section_(b, m, null, r);
+    return r;
+  }
+
+  // integer | double
+  private static boolean LabelmaxscaledenomAttr_1(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "LabelmaxscaledenomAttr_1")) return false;
+    boolean r;
+    Marker m = enter_section_(b);
+    r = consumeToken(b, INTEGER);
+    if (!r) r = consumeToken(b, DOUBLE);
     exit_section_(b, m, null, r);
     return r;
   }
 
   /* ********************************************************** */
-  // LABELMINSCALEDENOM number
+  // LABELMINSCALEDENOM ( integer | double )
   static boolean LabelminscaledenomAttr(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "LabelminscaledenomAttr")) return false;
     if (!nextTokenIs(b, LABELMINSCALEDENOM)) return false;
     boolean r;
     Marker m = enter_section_(b);
-    r = consumeTokens(b, 0, LABELMINSCALEDENOM, NUMBER);
+    r = consumeToken(b, LABELMINSCALEDENOM);
+    r = r && LabelminscaledenomAttr_1(b, l + 1);
+    exit_section_(b, m, null, r);
+    return r;
+  }
+
+  // integer | double
+  private static boolean LabelminscaledenomAttr_1(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "LabelminscaledenomAttr_1")) return false;
+    boolean r;
+    Marker m = enter_section_(b);
+    r = consumeToken(b, INTEGER);
+    if (!r) r = consumeToken(b, DOUBLE);
     exit_section_(b, m, null, r);
     return r;
   }
@@ -1797,13 +1873,13 @@ public class MapfileParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
-  // LINEJOINMAXSIZE number
+  // LINEJOINMAXSIZE integer
   static boolean LinejoinmaxsizeAttr(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "LinejoinmaxsizeAttr")) return false;
     if (!nextTokenIs(b, LINEJOINMAXSIZE)) return false;
     boolean r;
     Marker m = enter_section_(b);
-    r = consumeTokens(b, 0, LINEJOINMAXSIZE, NUMBER);
+    r = consumeTokens(b, 0, LINEJOINMAXSIZE, INTEGER);
     exit_section_(b, m, null, r);
     return r;
   }
@@ -1894,7 +1970,7 @@ public class MapfileParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
-  // MARKER ( number | string)
+  // MARKER ( integer | string)
   static boolean MarkerAttr(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "MarkerAttr")) return false;
     if (!nextTokenIs(b, MARKER)) return false;
@@ -1906,25 +1982,25 @@ public class MapfileParser implements PsiParser, LightPsiParser {
     return r;
   }
 
-  // number | string
+  // integer | string
   private static boolean MarkerAttr_1(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "MarkerAttr_1")) return false;
     boolean r;
     Marker m = enter_section_(b);
-    r = consumeToken(b, NUMBER);
+    r = consumeToken(b, INTEGER);
     if (!r) r = consumeToken(b, STRING);
     exit_section_(b, m, null, r);
     return r;
   }
 
   /* ********************************************************** */
-  // MARKERSIZE number
+  // MARKERSIZE integer
   static boolean MarkersizeAttr(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "MarkersizeAttr")) return false;
     if (!nextTokenIs(b, MARKERSIZE)) return false;
     boolean r;
     Marker m = enter_section_(b);
-    r = consumeTokens(b, 0, MARKERSIZE, NUMBER);
+    r = consumeTokens(b, 0, MARKERSIZE, INTEGER);
     exit_section_(b, m, null, r);
     return r;
   }
@@ -1942,109 +2018,169 @@ public class MapfileParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
-  // MAXARCS number
+  // MAXARCS double
   static boolean MaxarcsAttr(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "MaxarcsAttr")) return false;
     if (!nextTokenIs(b, MAXARCS)) return false;
     boolean r;
     Marker m = enter_section_(b);
-    r = consumeTokens(b, 0, MAXARCS, NUMBER);
+    r = consumeTokens(b, 0, MAXARCS, DOUBLE);
     exit_section_(b, m, null, r);
     return r;
   }
 
   /* ********************************************************** */
-  // MAXBOXSIZE number
+  // MAXBOXSIZE integer
   static boolean MaxboxsizeAttr(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "MaxboxsizeAttr")) return false;
     if (!nextTokenIs(b, MAXBOXSIZE)) return false;
     boolean r;
     Marker m = enter_section_(b);
-    r = consumeTokens(b, 0, MAXBOXSIZE, NUMBER);
+    r = consumeTokens(b, 0, MAXBOXSIZE, INTEGER);
     exit_section_(b, m, null, r);
     return r;
   }
 
   /* ********************************************************** */
-  // MAXDISTANCE number
+  // MAXDISTANCE ( integer | double )
   static boolean MaxdistanceAttr(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "MaxdistanceAttr")) return false;
     if (!nextTokenIs(b, MAXDISTANCE)) return false;
     boolean r;
     Marker m = enter_section_(b);
-    r = consumeTokens(b, 0, MAXDISTANCE, NUMBER);
+    r = consumeToken(b, MAXDISTANCE);
+    r = r && MaxdistanceAttr_1(b, l + 1);
+    exit_section_(b, m, null, r);
+    return r;
+  }
+
+  // integer | double
+  private static boolean MaxdistanceAttr_1(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "MaxdistanceAttr_1")) return false;
+    boolean r;
+    Marker m = enter_section_(b);
+    r = consumeToken(b, INTEGER);
+    if (!r) r = consumeToken(b, DOUBLE);
     exit_section_(b, m, null, r);
     return r;
   }
 
   /* ********************************************************** */
-  // MAXFEATURES number
+  // MAXFEATURES integer
   static boolean MaxfeaturesAttr(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "MaxfeaturesAttr")) return false;
     if (!nextTokenIs(b, MAXFEATURES)) return false;
     boolean r;
     Marker m = enter_section_(b);
-    r = consumeTokens(b, 0, MAXFEATURES, NUMBER);
+    r = consumeTokens(b, 0, MAXFEATURES, INTEGER);
     exit_section_(b, m, null, r);
     return r;
   }
 
   /* ********************************************************** */
-  // MAXGEOWIDTH number
+  // MAXGEOWIDTH ( integer | double )
   static boolean MaxgeowidthAttr(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "MaxgeowidthAttr")) return false;
     if (!nextTokenIs(b, MAXGEOWIDTH)) return false;
     boolean r;
     Marker m = enter_section_(b);
-    r = consumeTokens(b, 0, MAXGEOWIDTH, NUMBER);
+    r = consumeToken(b, MAXGEOWIDTH);
+    r = r && MaxgeowidthAttr_1(b, l + 1);
+    exit_section_(b, m, null, r);
+    return r;
+  }
+
+  // integer | double
+  private static boolean MaxgeowidthAttr_1(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "MaxgeowidthAttr_1")) return false;
+    boolean r;
+    Marker m = enter_section_(b);
+    r = consumeToken(b, INTEGER);
+    if (!r) r = consumeToken(b, DOUBLE);
     exit_section_(b, m, null, r);
     return r;
   }
 
   /* ********************************************************** */
-  // MAXINTERVAL number
+  // MAXINTERVAL ( integer | double )
   static boolean MaxintervalAttr(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "MaxintervalAttr")) return false;
     if (!nextTokenIs(b, MAXINTERVAL)) return false;
     boolean r;
     Marker m = enter_section_(b);
-    r = consumeTokens(b, 0, MAXINTERVAL, NUMBER);
+    r = consumeToken(b, MAXINTERVAL);
+    r = r && MaxintervalAttr_1(b, l + 1);
+    exit_section_(b, m, null, r);
+    return r;
+  }
+
+  // integer | double
+  private static boolean MaxintervalAttr_1(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "MaxintervalAttr_1")) return false;
+    boolean r;
+    Marker m = enter_section_(b);
+    r = consumeToken(b, INTEGER);
+    if (!r) r = consumeToken(b, DOUBLE);
     exit_section_(b, m, null, r);
     return r;
   }
 
   /* ********************************************************** */
-  // MAXLENGTH number
+  // MAXLENGTH integer
   static boolean MaxlengthAttr(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "MaxlengthAttr")) return false;
     if (!nextTokenIs(b, MAXLENGTH)) return false;
     boolean r;
     Marker m = enter_section_(b);
-    r = consumeTokens(b, 0, MAXLENGTH, NUMBER);
+    r = consumeTokens(b, 0, MAXLENGTH, INTEGER);
     exit_section_(b, m, null, r);
     return r;
   }
 
   /* ********************************************************** */
-  // MAXOVERLAPANGLE number
+  // MAXOVERLAPANGLE ( integer | double )
   static boolean MaxoverlapangleAttr(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "MaxoverlapangleAttr")) return false;
     if (!nextTokenIs(b, MAXOVERLAPANGLE)) return false;
     boolean r;
     Marker m = enter_section_(b);
-    r = consumeTokens(b, 0, MAXOVERLAPANGLE, NUMBER);
+    r = consumeToken(b, MAXOVERLAPANGLE);
+    r = r && MaxoverlapangleAttr_1(b, l + 1);
+    exit_section_(b, m, null, r);
+    return r;
+  }
+
+  // integer | double
+  private static boolean MaxoverlapangleAttr_1(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "MaxoverlapangleAttr_1")) return false;
+    boolean r;
+    Marker m = enter_section_(b);
+    r = consumeToken(b, INTEGER);
+    if (!r) r = consumeToken(b, DOUBLE);
     exit_section_(b, m, null, r);
     return r;
   }
 
   /* ********************************************************** */
-  // MAXSCALEDENOM number
+  // MAXSCALEDENOM ( integer | double )
   static boolean MaxscaledenomAttr(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "MaxscaledenomAttr")) return false;
     if (!nextTokenIs(b, MAXSCALEDENOM)) return false;
     boolean r;
     Marker m = enter_section_(b);
-    r = consumeTokens(b, 0, MAXSCALEDENOM, NUMBER);
+    r = consumeToken(b, MAXSCALEDENOM);
+    r = r && MaxscaledenomAttr_1(b, l + 1);
+    exit_section_(b, m, null, r);
+    return r;
+  }
+
+  // integer | double
+  private static boolean MaxscaledenomAttr_1(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "MaxscaledenomAttr_1")) return false;
+    boolean r;
+    Marker m = enter_section_(b);
+    r = consumeToken(b, INTEGER);
+    if (!r) r = consumeToken(b, DOUBLE);
     exit_section_(b, m, null, r);
     return r;
   }
@@ -2062,13 +2198,25 @@ public class MapfileParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
-  // MAXSUBDIVIDE number
+  // MAXSUBDIVIDE ( integer | double )
   static boolean MaxsubdivideAttr(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "MaxsubdivideAttr")) return false;
     if (!nextTokenIs(b, MAXSUBDIVIDE)) return false;
     boolean r;
     Marker m = enter_section_(b);
-    r = consumeTokens(b, 0, MAXSUBDIVIDE, NUMBER);
+    r = consumeToken(b, MAXSUBDIVIDE);
+    r = r && MaxsubdivideAttr_1(b, l + 1);
+    exit_section_(b, m, null, r);
+    return r;
+  }
+
+  // integer | double
+  private static boolean MaxsubdivideAttr_1(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "MaxsubdivideAttr_1")) return false;
+    boolean r;
+    Marker m = enter_section_(b);
+    r = consumeToken(b, INTEGER);
+    if (!r) r = consumeToken(b, DOUBLE);
     exit_section_(b, m, null, r);
     return r;
   }
@@ -2086,13 +2234,25 @@ public class MapfileParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
-  // MAXWIDTH number
+  // MAXWIDTH ( integer | double )
   static boolean MaxwidthAttr(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "MaxwidthAttr")) return false;
     if (!nextTokenIs(b, MAXWIDTH)) return false;
     boolean r;
     Marker m = enter_section_(b);
-    r = consumeTokens(b, 0, MAXWIDTH, NUMBER);
+    r = consumeToken(b, MAXWIDTH);
+    r = r && MaxwidthAttr_1(b, l + 1);
+    exit_section_(b, m, null, r);
+    return r;
+  }
+
+  // integer | double
+  private static boolean MaxwidthAttr_1(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "MaxwidthAttr_1")) return false;
+    boolean r;
+    Marker m = enter_section_(b);
+    r = consumeToken(b, INTEGER);
+    if (!r) r = consumeToken(b, DOUBLE);
     exit_section_(b, m, null, r);
     return r;
   }
@@ -2134,37 +2294,61 @@ public class MapfileParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
-  // MINARCS number
+  // MINARCS ( integer | double )
   static boolean MinarcsAttr(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "MinarcsAttr")) return false;
     if (!nextTokenIs(b, MINARCS)) return false;
     boolean r;
     Marker m = enter_section_(b);
-    r = consumeTokens(b, 0, MINARCS, NUMBER);
+    r = consumeToken(b, MINARCS);
+    r = r && MinarcsAttr_1(b, l + 1);
+    exit_section_(b, m, null, r);
+    return r;
+  }
+
+  // integer | double
+  private static boolean MinarcsAttr_1(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "MinarcsAttr_1")) return false;
+    boolean r;
+    Marker m = enter_section_(b);
+    r = consumeToken(b, INTEGER);
+    if (!r) r = consumeToken(b, DOUBLE);
     exit_section_(b, m, null, r);
     return r;
   }
 
   /* ********************************************************** */
-  // MINBOXSIZE number
+  // MINBOXSIZE integer
   static boolean MinboxsizeAttr(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "MinboxsizeAttr")) return false;
     if (!nextTokenIs(b, MINBOXSIZE)) return false;
     boolean r;
     Marker m = enter_section_(b);
-    r = consumeTokens(b, 0, MINBOXSIZE, NUMBER);
+    r = consumeTokens(b, 0, MINBOXSIZE, INTEGER);
     exit_section_(b, m, null, r);
     return r;
   }
 
   /* ********************************************************** */
-  // MINDISTANCE number
+  // MINDISTANCE ( integer | double )
   static boolean MindistanceAttr(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "MindistanceAttr")) return false;
     if (!nextTokenIs(b, MINDISTANCE)) return false;
     boolean r;
     Marker m = enter_section_(b);
-    r = consumeTokens(b, 0, MINDISTANCE, NUMBER);
+    r = consumeToken(b, MINDISTANCE);
+    r = r && MindistanceAttr_1(b, l + 1);
+    exit_section_(b, m, null, r);
+    return r;
+  }
+
+  // integer | double
+  private static boolean MindistanceAttr_1(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "MindistanceAttr_1")) return false;
+    boolean r;
+    Marker m = enter_section_(b);
+    r = consumeToken(b, INTEGER);
+    if (!r) r = consumeToken(b, DOUBLE);
     exit_section_(b, m, null, r);
     return r;
   }
@@ -2183,74 +2367,122 @@ public class MapfileParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
-  // number|auto
+  // integer|auto
   static boolean MinfeaturesizeEnum(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "MinfeaturesizeEnum")) return false;
-    if (!nextTokenIs(b, "", AUTO, NUMBER)) return false;
+    if (!nextTokenIs(b, "", AUTO, INTEGER)) return false;
     boolean r;
     Marker m = enter_section_(b);
-    r = consumeToken(b, NUMBER);
+    r = consumeToken(b, INTEGER);
     if (!r) r = consumeToken(b, AUTO);
     exit_section_(b, m, null, r);
     return r;
   }
 
   /* ********************************************************** */
-  // MINGEOWIDTH number
+  // MINGEOWIDTH ( integer | double )
   static boolean MingeowidthAttr(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "MingeowidthAttr")) return false;
     if (!nextTokenIs(b, MINGEOWIDTH)) return false;
     boolean r;
     Marker m = enter_section_(b);
-    r = consumeTokens(b, 0, MINGEOWIDTH, NUMBER);
+    r = consumeToken(b, MINGEOWIDTH);
+    r = r && MingeowidthAttr_1(b, l + 1);
+    exit_section_(b, m, null, r);
+    return r;
+  }
+
+  // integer | double
+  private static boolean MingeowidthAttr_1(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "MingeowidthAttr_1")) return false;
+    boolean r;
+    Marker m = enter_section_(b);
+    r = consumeToken(b, INTEGER);
+    if (!r) r = consumeToken(b, DOUBLE);
     exit_section_(b, m, null, r);
     return r;
   }
 
   /* ********************************************************** */
-  // MININTERVAL number
+  // MININTERVAL ( integer | double )
   static boolean MinintervalAttr(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "MinintervalAttr")) return false;
     if (!nextTokenIs(b, MININTERVAL)) return false;
     boolean r;
     Marker m = enter_section_(b);
-    r = consumeTokens(b, 0, MININTERVAL, NUMBER);
+    r = consumeToken(b, MININTERVAL);
+    r = r && MinintervalAttr_1(b, l + 1);
+    exit_section_(b, m, null, r);
+    return r;
+  }
+
+  // integer | double
+  private static boolean MinintervalAttr_1(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "MinintervalAttr_1")) return false;
+    boolean r;
+    Marker m = enter_section_(b);
+    r = consumeToken(b, INTEGER);
+    if (!r) r = consumeToken(b, DOUBLE);
     exit_section_(b, m, null, r);
     return r;
   }
 
   /* ********************************************************** */
-  // MINSCALEDENOM number
+  // MINSCALEDENOM ( integer | double )
   static boolean MinscaledenomAttr(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "MinscaledenomAttr")) return false;
     if (!nextTokenIs(b, MINSCALEDENOM)) return false;
     boolean r;
     Marker m = enter_section_(b);
-    r = consumeTokens(b, 0, MINSCALEDENOM, NUMBER);
+    r = consumeToken(b, MINSCALEDENOM);
+    r = r && MinscaledenomAttr_1(b, l + 1);
+    exit_section_(b, m, null, r);
+    return r;
+  }
+
+  // integer | double
+  private static boolean MinscaledenomAttr_1(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "MinscaledenomAttr_1")) return false;
+    boolean r;
+    Marker m = enter_section_(b);
+    r = consumeToken(b, INTEGER);
+    if (!r) r = consumeToken(b, DOUBLE);
     exit_section_(b, m, null, r);
     return r;
   }
 
   /* ********************************************************** */
-  // MINSIZE number
+  // MINSIZE integer
   static boolean MinsizeAttr(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "MinsizeAttr")) return false;
     if (!nextTokenIs(b, MINSIZE)) return false;
     boolean r;
     Marker m = enter_section_(b);
-    r = consumeTokens(b, 0, MINSIZE, NUMBER);
+    r = consumeTokens(b, 0, MINSIZE, INTEGER);
     exit_section_(b, m, null, r);
     return r;
   }
 
   /* ********************************************************** */
-  // MINSUBDIVIDE number
+  // MINSUBDIVIDE ( integer | double )
   static boolean MinsubdivideAttr(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "MinsubdivideAttr")) return false;
     if (!nextTokenIs(b, MINSUBDIVIDE)) return false;
     boolean r;
     Marker m = enter_section_(b);
-    r = consumeTokens(b, 0, MINSUBDIVIDE, NUMBER);
+    r = consumeToken(b, MINSUBDIVIDE);
+    r = r && MinsubdivideAttr_1(b, l + 1);
+    exit_section_(b, m, null, r);
+    return r;
+  }
+
+  // integer | double
+  private static boolean MinsubdivideAttr_1(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "MinsubdivideAttr_1")) return false;
+    boolean r;
+    Marker m = enter_section_(b);
+    r = consumeToken(b, INTEGER);
+    if (!r) r = consumeToken(b, DOUBLE);
     exit_section_(b, m, null, r);
     return r;
   }
@@ -2268,13 +2500,25 @@ public class MapfileParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
-  // MINWIDTH number
+  // MINWIDTH ( integer | double )
   static boolean MinwidthAttr(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "MinwidthAttr")) return false;
     if (!nextTokenIs(b, MINWIDTH)) return false;
     boolean r;
     Marker m = enter_section_(b);
-    r = consumeTokens(b, 0, MINWIDTH, NUMBER);
+    r = consumeToken(b, MINWIDTH);
+    r = r && MinwidthAttr_1(b, l + 1);
+    exit_section_(b, m, null, r);
+    return r;
+  }
+
+  // integer | double
+  private static boolean MinwidthAttr_1(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "MinwidthAttr_1")) return false;
+    boolean r;
+    Marker m = enter_section_(b);
+    r = consumeToken(b, INTEGER);
+    if (!r) r = consumeToken(b, DOUBLE);
     exit_section_(b, m, null, r);
     return r;
   }
@@ -2292,13 +2536,37 @@ public class MapfileParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
-  // OFFSET number number
+  // OFFSET ( integer | double ) ( integer | double )
   static boolean OffsetAttr(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "OffsetAttr")) return false;
     if (!nextTokenIs(b, OFFSET)) return false;
     boolean r;
     Marker m = enter_section_(b);
-    r = consumeTokens(b, 0, OFFSET, NUMBER, NUMBER);
+    r = consumeToken(b, OFFSET);
+    r = r && OffsetAttr_1(b, l + 1);
+    r = r && OffsetAttr_2(b, l + 1);
+    exit_section_(b, m, null, r);
+    return r;
+  }
+
+  // integer | double
+  private static boolean OffsetAttr_1(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "OffsetAttr_1")) return false;
+    boolean r;
+    Marker m = enter_section_(b);
+    r = consumeToken(b, INTEGER);
+    if (!r) r = consumeToken(b, DOUBLE);
+    exit_section_(b, m, null, r);
+    return r;
+  }
+
+  // integer | double
+  private static boolean OffsetAttr_2(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "OffsetAttr_2")) return false;
+    boolean r;
+    Marker m = enter_section_(b);
+    r = consumeToken(b, INTEGER);
+    if (!r) r = consumeToken(b, DOUBLE);
     exit_section_(b, m, null, r);
     return r;
   }
@@ -2343,38 +2611,36 @@ public class MapfileParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
-  // OPACITY number
+  // OPACITY integer
   static boolean OpacityAttr(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "OpacityAttr")) return false;
     if (!nextTokenIs(b, OPACITY)) return false;
     boolean r;
     Marker m = enter_section_(b);
-    r = consumeTokens(b, 0, OPACITY, NUMBER);
+    r = consumeTokens(b, 0, OPACITY, INTEGER);
     exit_section_(b, m, null, r);
     return r;
   }
 
   /* ********************************************************** */
-  // OPACITY OpacityEnum
+  // OPACITY ( integer | attributeToken )
   static boolean OpacityClassAttr(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "OpacityClassAttr")) return false;
     if (!nextTokenIs(b, OPACITY)) return false;
     boolean r;
     Marker m = enter_section_(b);
     r = consumeToken(b, OPACITY);
-    r = r && OpacityEnum(b, l + 1);
+    r = r && OpacityClassAttr_1(b, l + 1);
     exit_section_(b, m, null, r);
     return r;
   }
 
-  /* ********************************************************** */
-  // number|attributeToken
-  static boolean OpacityEnum(PsiBuilder b, int l) {
-    if (!recursion_guard_(b, l, "OpacityEnum")) return false;
-    if (!nextTokenIs(b, "", ATTRIBUTETOKEN, NUMBER)) return false;
+  // integer | attributeToken
+  private static boolean OpacityClassAttr_1(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "OpacityClassAttr_1")) return false;
     boolean r;
     Marker m = enter_section_(b);
-    r = consumeToken(b, NUMBER);
+    r = consumeToken(b, INTEGER);
     if (!r) r = consumeToken(b, ATTRIBUTETOKEN);
     exit_section_(b, m, null, r);
     return r;
@@ -2407,7 +2673,7 @@ public class MapfileParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
-  // OUTLINEWIDTH ( number | attributeToken )
+  // OUTLINEWIDTH ( double | attributeToken )
   static boolean OutlinewidthAttr(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "OutlinewidthAttr")) return false;
     if (!nextTokenIs(b, OUTLINEWIDTH)) return false;
@@ -2419,12 +2685,12 @@ public class MapfileParser implements PsiParser, LightPsiParser {
     return r;
   }
 
-  // number | attributeToken
+  // double | attributeToken
   private static boolean OutlinewidthAttr_1(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "OutlinewidthAttr_1")) return false;
     boolean r;
     Marker m = enter_section_(b);
-    r = consumeToken(b, NUMBER);
+    r = consumeToken(b, DOUBLE);
     if (!r) r = consumeToken(b, ATTRIBUTETOKEN);
     exit_section_(b, m, null, r);
     return r;
@@ -2444,7 +2710,7 @@ public class MapfileParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
-  // PATTERN ( number number )* END
+  // PATTERN ( integer integer )* END
   static boolean PatternObject(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "PatternObject")) return false;
     if (!nextTokenIs(b, PATTERN)) return false;
@@ -2457,7 +2723,7 @@ public class MapfileParser implements PsiParser, LightPsiParser {
     return r;
   }
 
-  // ( number number )*
+  // ( integer integer )*
   private static boolean PatternObject_1(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "PatternObject_1")) return false;
     int c = current_position_(b);
@@ -2469,12 +2735,12 @@ public class MapfileParser implements PsiParser, LightPsiParser {
     return true;
   }
 
-  // number number
+  // integer integer
   private static boolean PatternObject_1_0(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "PatternObject_1_0")) return false;
     boolean r;
     Marker m = enter_section_(b);
-    r = consumeTokens(b, 0, NUMBER, NUMBER);
+    r = consumeTokens(b, 0, INTEGER, INTEGER);
     exit_section_(b, m, null, r);
     return r;
   }
@@ -2492,7 +2758,7 @@ public class MapfileParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
-  // POINTS ( number number )* END
+  // POINTS ( double double )* END
   static boolean PointsObject(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "PointsObject")) return false;
     if (!nextTokenIs(b, POINTS)) return false;
@@ -2505,7 +2771,7 @@ public class MapfileParser implements PsiParser, LightPsiParser {
     return r;
   }
 
-  // ( number number )*
+  // ( double double )*
   private static boolean PointsObject_1(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "PointsObject_1")) return false;
     int c = current_position_(b);
@@ -2517,18 +2783,18 @@ public class MapfileParser implements PsiParser, LightPsiParser {
     return true;
   }
 
-  // number number
+  // double double
   private static boolean PointsObject_1_0(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "PointsObject_1_0")) return false;
     boolean r;
     Marker m = enter_section_(b);
-    r = consumeTokens(b, 0, NUMBER, NUMBER);
+    r = consumeTokens(b, 0, DOUBLE, DOUBLE);
     exit_section_(b, m, null, r);
     return r;
   }
 
   /* ********************************************************** */
-  // POLAROFFSET ( ( number | attributeToken ) ( number | attributeToken ) )
+  // POLAROFFSET ( ( double | attributeToken ) ( double | attributeToken ) )
   static boolean PolaroffsetAttr(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "PolaroffsetAttr")) return false;
     if (!nextTokenIs(b, POLAROFFSET)) return false;
@@ -2540,7 +2806,7 @@ public class MapfileParser implements PsiParser, LightPsiParser {
     return r;
   }
 
-  // ( number | attributeToken ) ( number | attributeToken )
+  // ( double | attributeToken ) ( double | attributeToken )
   private static boolean PolaroffsetAttr_1(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "PolaroffsetAttr_1")) return false;
     boolean r;
@@ -2551,23 +2817,23 @@ public class MapfileParser implements PsiParser, LightPsiParser {
     return r;
   }
 
-  // number | attributeToken
+  // double | attributeToken
   private static boolean PolaroffsetAttr_1_0(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "PolaroffsetAttr_1_0")) return false;
     boolean r;
     Marker m = enter_section_(b);
-    r = consumeToken(b, NUMBER);
+    r = consumeToken(b, DOUBLE);
     if (!r) r = consumeToken(b, ATTRIBUTETOKEN);
     exit_section_(b, m, null, r);
     return r;
   }
 
-  // number | attributeToken
+  // double | attributeToken
   private static boolean PolaroffsetAttr_1_1(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "PolaroffsetAttr_1_1")) return false;
     boolean r;
     Marker m = enter_section_(b);
-    r = consumeToken(b, NUMBER);
+    r = consumeToken(b, DOUBLE);
     if (!r) r = consumeToken(b, ATTRIBUTETOKEN);
     exit_section_(b, m, null, r);
     return r;
@@ -2619,7 +2885,7 @@ public class MapfileParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
-  // PRIORITY ( number | string | attributeToken )
+  // PRIORITY ( integer | string | attributeToken )
   static boolean PriorityAttr(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "PriorityAttr")) return false;
     if (!nextTokenIs(b, PRIORITY)) return false;
@@ -2631,12 +2897,12 @@ public class MapfileParser implements PsiParser, LightPsiParser {
     return r;
   }
 
-  // number | string | attributeToken
+  // integer | string | attributeToken
   private static boolean PriorityAttr_1(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "PriorityAttr_1")) return false;
     boolean r;
     Marker m = enter_section_(b);
-    r = consumeToken(b, NUMBER);
+    r = consumeToken(b, INTEGER);
     if (!r) r = consumeToken(b, STRING);
     if (!r) r = consumeToken(b, ATTRIBUTETOKEN);
     exit_section_(b, m, null, r);
@@ -2820,13 +3086,13 @@ public class MapfileParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
-  // REPEATDISTANCE number
+  // REPEATDISTANCE integer
   static boolean RepeatdistanceAttr(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "RepeatdistanceAttr")) return false;
     if (!nextTokenIs(b, REPEATDISTANCE)) return false;
     boolean r;
     Marker m = enter_section_(b);
-    r = consumeTokens(b, 0, REPEATDISTANCE, NUMBER);
+    r = consumeTokens(b, 0, REPEATDISTANCE, INTEGER);
     exit_section_(b, m, null, r);
     return r;
   }
@@ -2844,13 +3110,13 @@ public class MapfileParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
-  // RESOLUTION number
+  // RESOLUTION integer
   static boolean ResolutionAttr(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "ResolutionAttr")) return false;
     if (!nextTokenIs(b, RESOLUTION)) return false;
     boolean r;
     Marker m = enter_section_(b);
-    r = consumeTokens(b, 0, RESOLUTION, NUMBER);
+    r = consumeTokens(b, 0, RESOLUTION, INTEGER);
     exit_section_(b, m, null, r);
     return r;
   }
@@ -2922,13 +3188,25 @@ public class MapfileParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
-  // SCALEDENOM number
+  // SCALEDENOM ( integer | double )
   static boolean ScaledenomAttr(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "ScaledenomAttr")) return false;
     if (!nextTokenIs(b, SCALEDENOM)) return false;
     boolean r;
     Marker m = enter_section_(b);
-    r = consumeTokens(b, 0, SCALEDENOM, NUMBER);
+    r = consumeToken(b, SCALEDENOM);
+    r = r && ScaledenomAttr_1(b, l + 1);
+    exit_section_(b, m, null, r);
+    return r;
+  }
+
+  // integer | double
+  private static boolean ScaledenomAttr_1(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "ScaledenomAttr_1")) return false;
+    boolean r;
+    Marker m = enter_section_(b);
+    r = consumeToken(b, INTEGER);
+    if (!r) r = consumeToken(b, DOUBLE);
     exit_section_(b, m, null, r);
     return r;
   }
@@ -2947,7 +3225,7 @@ public class MapfileParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
-  // SHADOWSIZE ( ( number | attributeToken ) ( number | attributeToken ) )
+  // SHADOWSIZE ( ( integer | attributeToken ) ( integer | attributeToken ) )
   static boolean ShadowsizeAttr(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "ShadowsizeAttr")) return false;
     if (!nextTokenIs(b, SHADOWSIZE)) return false;
@@ -2959,7 +3237,7 @@ public class MapfileParser implements PsiParser, LightPsiParser {
     return r;
   }
 
-  // ( number | attributeToken ) ( number | attributeToken )
+  // ( integer | attributeToken ) ( integer | attributeToken )
   private static boolean ShadowsizeAttr_1(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "ShadowsizeAttr_1")) return false;
     boolean r;
@@ -2970,23 +3248,23 @@ public class MapfileParser implements PsiParser, LightPsiParser {
     return r;
   }
 
-  // number | attributeToken
+  // integer | attributeToken
   private static boolean ShadowsizeAttr_1_0(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "ShadowsizeAttr_1_0")) return false;
     boolean r;
     Marker m = enter_section_(b);
-    r = consumeToken(b, NUMBER);
+    r = consumeToken(b, INTEGER);
     if (!r) r = consumeToken(b, ATTRIBUTETOKEN);
     exit_section_(b, m, null, r);
     return r;
   }
 
-  // number | attributeToken
+  // integer | attributeToken
   private static boolean ShadowsizeAttr_1_1(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "ShadowsizeAttr_1_1")) return false;
     boolean r;
     Marker m = enter_section_(b);
-    r = consumeToken(b, NUMBER);
+    r = consumeToken(b, INTEGER);
     if (!r) r = consumeToken(b, ATTRIBUTETOKEN);
     exit_section_(b, m, null, r);
     return r;
@@ -3017,7 +3295,7 @@ public class MapfileParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
-  // SIZE ( number | attributeToken )
+  // SIZE ( double | attributeToken )
   static boolean SizeClassAttr(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "SizeClassAttr")) return false;
     if (!nextTokenIs(b, SIZE)) return false;
@@ -3029,12 +3307,12 @@ public class MapfileParser implements PsiParser, LightPsiParser {
     return r;
   }
 
-  // number | attributeToken
+  // double | attributeToken
   private static boolean SizeClassAttr_1(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "SizeClassAttr_1")) return false;
     boolean r;
     Marker m = enter_section_(b);
-    r = consumeToken(b, NUMBER);
+    r = consumeToken(b, DOUBLE);
     if (!r) r = consumeToken(b, ATTRIBUTETOKEN);
     exit_section_(b, m, null, r);
     return r;
@@ -3054,12 +3332,12 @@ public class MapfileParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
-  // number|tiny|small|medium|large|giant|attributeToken
+  // integer|tiny|small|medium|large|giant|attributeToken
   static boolean SizeLabelEnum(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "SizeLabelEnum")) return false;
     boolean r;
     Marker m = enter_section_(b);
-    r = consumeToken(b, NUMBER);
+    r = consumeToken(b, INTEGER);
     if (!r) r = consumeToken(b, TINY);
     if (!r) r = consumeToken(b, SMALL);
     if (!r) r = consumeToken(b, MEDIUM);
@@ -3240,7 +3518,7 @@ public class MapfileParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
-  // SYMBOL (number | string | attributeToken)
+  // SYMBOL (integer | string | attributeToken)
   static boolean SymbolClassAttr(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "SymbolClassAttr")) return false;
     if (!nextTokenIs(b, SYMBOL)) return false;
@@ -3252,12 +3530,12 @@ public class MapfileParser implements PsiParser, LightPsiParser {
     return r;
   }
 
-  // number | string | attributeToken
+  // integer | string | attributeToken
   private static boolean SymbolClassAttr_1(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "SymbolClassAttr_1")) return false;
     boolean r;
     Marker m = enter_section_(b);
-    r = consumeToken(b, NUMBER);
+    r = consumeToken(b, INTEGER);
     if (!r) r = consumeToken(b, STRING);
     if (!r) r = consumeToken(b, ATTRIBUTETOKEN);
     exit_section_(b, m, null, r);
@@ -3301,13 +3579,13 @@ public class MapfileParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
-  // SYMBOLSCALEDENOM number
+  // SYMBOLSCALEDENOM double
   static boolean SymbolscaledenomAttr(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "SymbolscaledenomAttr")) return false;
     if (!nextTokenIs(b, SYMBOLSCALEDENOM)) return false;
     boolean r;
     Marker m = enter_section_(b);
-    r = consumeTokens(b, 0, SYMBOLSCALEDENOM, NUMBER);
+    r = consumeTokens(b, 0, SYMBOLSCALEDENOM, DOUBLE);
     exit_section_(b, m, null, r);
     return r;
   }
@@ -3445,13 +3723,25 @@ public class MapfileParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
-  // TOLERANCE number
+  // TOLERANCE ( integer | double )
   static boolean ToleranceAttr(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "ToleranceAttr")) return false;
     if (!nextTokenIs(b, TOLERANCE)) return false;
     boolean r;
     Marker m = enter_section_(b);
-    r = consumeTokens(b, 0, TOLERANCE, NUMBER);
+    r = consumeToken(b, TOLERANCE);
+    r = r && ToleranceAttr_1(b, l + 1);
+    exit_section_(b, m, null, r);
+    return r;
+  }
+
+  // integer | double
+  private static boolean ToleranceAttr_1(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "ToleranceAttr_1")) return false;
+    boolean r;
+    Marker m = enter_section_(b);
+    r = consumeToken(b, INTEGER);
+    if (!r) r = consumeToken(b, DOUBLE);
     exit_section_(b, m, null, r);
     return r;
   }
@@ -3515,13 +3805,13 @@ public class MapfileParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
-  // TRANSPARENT number
+  // TRANSPARENT integer
   static boolean TransparentAttr(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "TransparentAttr")) return false;
     if (!nextTokenIs(b, TRANSPARENT)) return false;
     boolean r;
     Marker m = enter_section_(b);
-    r = consumeTokens(b, 0, TRANSPARENT, NUMBER);
+    r = consumeTokens(b, 0, TRANSPARENT, INTEGER);
     exit_section_(b, m, null, r);
     return r;
   }
@@ -3795,7 +4085,7 @@ public class MapfileParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
-  // WIDTH (number | attributeToken)
+  // WIDTH ( ( integer | double ) | attributeToken )
   static boolean WidthClassAttr(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "WidthClassAttr")) return false;
     if (!nextTokenIs(b, WIDTH)) return false;
@@ -3807,13 +4097,24 @@ public class MapfileParser implements PsiParser, LightPsiParser {
     return r;
   }
 
-  // number | attributeToken
+  // ( integer | double ) | attributeToken
   private static boolean WidthClassAttr_1(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "WidthClassAttr_1")) return false;
     boolean r;
     Marker m = enter_section_(b);
-    r = consumeToken(b, NUMBER);
+    r = WidthClassAttr_1_0(b, l + 1);
     if (!r) r = consumeToken(b, ATTRIBUTETOKEN);
+    exit_section_(b, m, null, r);
+    return r;
+  }
+
+  // integer | double
+  private static boolean WidthClassAttr_1_0(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "WidthClassAttr_1_0")) return false;
+    boolean r;
+    Marker m = enter_section_(b);
+    r = consumeToken(b, INTEGER);
+    if (!r) r = consumeToken(b, DOUBLE);
     exit_section_(b, m, null, r);
     return r;
   }

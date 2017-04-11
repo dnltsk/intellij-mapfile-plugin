@@ -295,6 +295,12 @@ public class MapfileSyntaxHighlighter extends SyntaxHighlighterBase {
             YES
     );
 
+    private static final List<IElementType> NUMBER_LIST = Arrays.asList(
+            DOUBLE,
+            INTEGER,
+            NUMBER
+    );
+
     @NotNull
     @Override
     public Lexer getHighlightingLexer() {
@@ -316,11 +322,11 @@ public class MapfileSyntaxHighlighter extends SyntaxHighlighterBase {
         } else if (ATTRIBUTE_LIST.contains(tokenType)) {
             return new TextAttributesKey[]{ATTRIBUTES_HIGHLIGHTER};
 
+        } else if (NUMBER_LIST.contains(tokenType)) {
+            return new TextAttributesKey[]{NUMBER_VALUE_HIGHLIGHTER};
+
         } else if (STRING.equals(tokenType)) {
             return new TextAttributesKey[]{STRING_VALUE_HIGHLIGHTER};
-
-        } else if (NUMBER.equals(tokenType)) {
-            return new TextAttributesKey[]{NUMBER_VALUE_HIGHLIGHTER};
 
         } else if (COMMENT.equals(tokenType)) {
             return new TextAttributesKey[]{COMMENT_HIGHLIGHTER};
