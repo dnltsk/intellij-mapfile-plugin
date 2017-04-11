@@ -41,7 +41,10 @@
   ]
 }
 
-mapfile ::= (MapObject | LayerObject)
+mapfile ::= (MapObject | WebObject | LayerObject | ClassObject | SymbolObject | LabelObject | StyleObject
+             | LeaderObject | LegendObject | FeatureObject | ClusterObject | CompositeObject | GridObject
+             | JoinObject | QuerymapObject | ReferenceObject | ScalebarObject | PatternObject ValidationObject
+             | MetadataObject | PointsObject | ProjectionObject )
 
 //
 // OBJECTS

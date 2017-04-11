@@ -4173,14 +4173,46 @@ public class MapfileParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
-  // MapObject | LayerObject
+  // MapObject | WebObject | LayerObject | ClassObject | SymbolObject | LabelObject | StyleObject 
+  //              | LeaderObject | LegendObject | FeatureObject | ClusterObject | CompositeObject | GridObject
+  //              | JoinObject | QuerymapObject | ReferenceObject | ScalebarObject | PatternObject ValidationObject
+  //              | MetadataObject | PointsObject | ProjectionObject
   static boolean mapfile(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "mapfile")) return false;
-    if (!nextTokenIs(b, "", LAYER, MAP)) return false;
     boolean r;
     Marker m = enter_section_(b);
     r = MapObject(b, l + 1);
+    if (!r) r = WebObject(b, l + 1);
     if (!r) r = LayerObject(b, l + 1);
+    if (!r) r = ClassObject(b, l + 1);
+    if (!r) r = SymbolObject(b, l + 1);
+    if (!r) r = LabelObject(b, l + 1);
+    if (!r) r = StyleObject(b, l + 1);
+    if (!r) r = LeaderObject(b, l + 1);
+    if (!r) r = LegendObject(b, l + 1);
+    if (!r) r = FeatureObject(b, l + 1);
+    if (!r) r = ClusterObject(b, l + 1);
+    if (!r) r = CompositeObject(b, l + 1);
+    if (!r) r = GridObject(b, l + 1);
+    if (!r) r = JoinObject(b, l + 1);
+    if (!r) r = QuerymapObject(b, l + 1);
+    if (!r) r = ReferenceObject(b, l + 1);
+    if (!r) r = ScalebarObject(b, l + 1);
+    if (!r) r = mapfile_17(b, l + 1);
+    if (!r) r = MetadataObject(b, l + 1);
+    if (!r) r = PointsObject(b, l + 1);
+    if (!r) r = ProjectionObject(b, l + 1);
+    exit_section_(b, m, null, r);
+    return r;
+  }
+
+  // PatternObject ValidationObject
+  private static boolean mapfile_17(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "mapfile_17")) return false;
+    boolean r;
+    Marker m = enter_section_(b);
+    r = PatternObject(b, l + 1);
+    r = r && ValidationObject(b, l + 1);
     exit_section_(b, m, null, r);
     return r;
   }
