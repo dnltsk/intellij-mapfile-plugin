@@ -53,6 +53,7 @@ public interface MapfileTypes {
   IElementType DEBUG = new MapfileTokenType("DEBUG");
   IElementType DEFAULT = new MapfileTokenType("default");
   IElementType DEFRESOLUTION = new MapfileTokenType("DEFRESOLUTION");
+  IElementType DOUBLE = new MapfileTokenType("double");
   IElementType DUMP = new MapfileTokenType("DUMP");
   IElementType ELLIPSE = new MapfileTokenType("ellipse");
   IElementType EMPTY = new MapfileTokenType("EMPTY");
@@ -95,6 +96,7 @@ public interface MapfileTypes {
   IElementType IMAGEURL = new MapfileTokenType("IMAGEURL");
   IElementType INCHES = new MapfileTokenType("inches");
   IElementType INITIALGAP = new MapfileTokenType("INITIALGAP");
+  IElementType INTEGER = new MapfileTokenType("integer");
   IElementType INTERLACE = new MapfileTokenType("INTERLACE");
   IElementType ITEMS = new MapfileTokenType("ITEMS");
   IElementType JOIN = new MapfileTokenType("JOIN");

@@ -26,12 +26,14 @@ import static org.dnltsk.mapfileplugin.psi.MapfileTypes.*;
 EOL=\R
 WHITE_SPACE=\s+
 
+ATTRIBUTETOKEN=\[[a-zA-Z_0-9]+\]
+INTEGER=[+-]{0,1}[0-9]+
+DOUBLE=[+-]{0,1}[0-9]+(\.[0-9]*)?
 SPACE=[ \t\n\x0B\f\r]+
 COMMENT=#.*
 NUMBER=[+-]{0,1}[0-9]+(\.[0-9]*)?
 ID=[:letter:][a-zA-Z_0-9]*
 STRING=('([^'\\]|\\.)*'|\"([^\"\\]|\\.)*\")
-ATTRIBUTETOKEN=\[[a-zA-Z_0-9]+\]
 
 %%
 <YYINITIAL> {
@@ -306,12 +308,14 @@ ATTRIBUTETOKEN=\[[a-zA-Z_0-9]+\]
   "yes"                   { return YES; }
   "no"                    { return NO; }
 
+  {ATTRIBUTETOKEN}        { return ATTRIBUTETOKEN; }
+  {INTEGER}               { return INTEGER; }
+  {DOUBLE}                { return DOUBLE; }
   {SPACE}                 { return SPACE; }
   {COMMENT}               { return COMMENT; }
   {NUMBER}                { return NUMBER; }
   {ID}                    { return ID; }
   {STRING}                { return STRING; }
-  {ATTRIBUTETOKEN}        { return ATTRIBUTETOKEN; }
 
 }
 

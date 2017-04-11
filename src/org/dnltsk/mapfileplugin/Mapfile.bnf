@@ -20,13 +20,15 @@
     LP='('
     RP=')'
 
+    attributeToken="regexp:\[\w+\]"
+    integer='regexp:[+-]{0,1}\d+'
+    double='regexp:[+-]{0,1}\d+(\.\d*)?'
+
     space='regexp:\s+'
     comment='regexp:#.*'
     number='regexp:[+-]{0,1}\d+(\.\d*)?'
     id='regexp:\p{Alpha}\w*'
     string="regexp:('([^'\\]|\\.)*'|\"([^\"\\]|\\.)*\")"
-
-    attributeToken="regexp:\[\w+\]"
 
     op_1='+'
     op_2='-'
@@ -231,7 +233,7 @@ private EmptyAttr ::= EMPTY string // TODO: url
 private EncodingAttr ::= ENCODING string
 private ErrorAttr ::= ERROR string // TODO: url
 private ExpressionAttr ::= EXPRESSION string // TODO four types of expression: String comparisons, regular expressions, logical expressions, and string functions
-private ExtentAttr ::= EXTENT number number number number
+private ExtentAttr ::= EXTENT double double double double
 private FilledAttr ::= FILLED BooleanEnum
 private FilterAttr ::= FILTER string // TODO: expression!
 private FilteritemAttr ::= FILTERITEM string
@@ -280,7 +282,7 @@ private MaxintervalAttr ::= MAXINTERVAL number
 private MaxlengthAttr ::= MAXLENGTH number // TODO int
 private MaxoverlapangleAttr ::= MAXOVERLAPANGLE number
 private MaxscaledenomAttr ::= MAXSCALEDENOM number
-private MaxsizeAttr ::= MAXSIZE number // TODO: int
+private MaxsizeAttr ::= MAXSIZE integer // TODO: int
 private MaxsubdivideAttr ::= MAXSUBDIVIDE number
 private MaxtemplateAttr ::= MAXTEMPLATE string // TODO: [file/url]
 private MaxwidthAttr ::= MAXWIDTH number
@@ -319,8 +321,8 @@ private ScaledenomAttr ::= SCALEDENOM number
 private ShadowcolorAttr ::= SHADOWCOLOR ColorEnum
 private ShadowsizeAttr ::= SHADOWSIZE ( ( number | attributeToken ) ( number | attributeToken ) )
 private ShapepathAttr ::= SHAPEPATH string // TODO: directory
-private SizeAttr ::= SIZE number number // TODO: int
-private SizeClassAttr ::= SIZE ( number | attributeToken ) // TODO: int
+private SizeAttr ::= SIZE integer integer
+private SizeClassAttr ::= SIZE ( number | attributeToken )
 private SizeLabelAttr ::= SIZE SizeLabelEnum
 private SizeunitsAttr ::= SIZEUNITS SizeUnitEnum
 private StatusAttr ::= STATUS StatusEnum

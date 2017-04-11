@@ -794,13 +794,13 @@ public class MapfileParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
-  // EXTENT number number number number
+  // EXTENT double double double double
   static boolean ExtentAttr(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "ExtentAttr")) return false;
     if (!nextTokenIs(b, EXTENT)) return false;
     boolean r;
     Marker m = enter_section_(b);
-    r = consumeTokens(b, 0, EXTENT, NUMBER, NUMBER, NUMBER, NUMBER);
+    r = consumeTokens(b, 0, EXTENT, DOUBLE, DOUBLE, DOUBLE, DOUBLE);
     exit_section_(b, m, null, r);
     return r;
   }
@@ -2050,13 +2050,13 @@ public class MapfileParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
-  // MAXSIZE number
+  // MAXSIZE integer
   static boolean MaxsizeAttr(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "MaxsizeAttr")) return false;
     if (!nextTokenIs(b, MAXSIZE)) return false;
     boolean r;
     Marker m = enter_section_(b);
-    r = consumeTokens(b, 0, MAXSIZE, NUMBER);
+    r = consumeTokens(b, 0, MAXSIZE, INTEGER);
     exit_section_(b, m, null, r);
     return r;
   }
@@ -3005,13 +3005,13 @@ public class MapfileParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
-  // SIZE number number
+  // SIZE integer integer
   static boolean SizeAttr(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "SizeAttr")) return false;
     if (!nextTokenIs(b, SIZE)) return false;
     boolean r;
     Marker m = enter_section_(b);
-    r = consumeTokens(b, 0, SIZE, NUMBER, NUMBER);
+    r = consumeTokens(b, 0, SIZE, INTEGER, INTEGER);
     exit_section_(b, m, null, r);
     return r;
   }
