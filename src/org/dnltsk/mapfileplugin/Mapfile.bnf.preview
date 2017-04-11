@@ -1,20 +1,29 @@
-MAP 
-    NAME "foo_1"
-    TITLE "BAR-1"
+MAP
+    NAME "sample"
+    STATUS ON
+    SIZE 600 400
+    SYMBOLSET "../etc/symbols.txt"
+    EXTENT -180 -90 180 90
+    UNITS DD
+    SHAPEPATH "../data"
+    IMAGECOLOR 255 255 255
+    FONTSET "../etc/fonts.txt"
+
+    #
+    # Start of web interface definition
+    #
+    WEB
+        IMAGEPATH "/ms4w/tmp/ms_tmp/"
+        IMAGEURL "/ms_tmp/"
+    END # WEB
+
+    #
+    # Start of layer definitions
+    #
     LAYER
-      NAME "inline_circles"
-      TYPE CIRCLE
-      STATUS ON
-      FEATURE
-        POINTS
-          74.01 -53.8
-          110.7 -22.16
-        END
-      END
-      CLASS
-        STYLE
-          COLOR 0 0 255
-        END
-      END
-    END
-END
+        NAME 'global-raster'
+        TYPE RASTER
+        STATUS DEFAULT
+        DATA 'bluemarble.gif'
+    END # LAYER
+END # MAP
