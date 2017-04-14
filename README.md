@@ -32,7 +32,7 @@ Editor support for UMN Mapserver Mapfiles. Supported Mapserver version is 7.0.4
 * ![not started](https://img.shields.io/badge/status-not%20started-lightgray.svg) Advanced Syntax Highlighting
 * ![not started](https://img.shields.io/badge/status-not%20started-lightgray.svg) Color Picker
 * ![not started](https://img.shields.io/badge/status-not%20started-lightgray.svg) Helpers and Utilities
-* ![not started](https://img.shields.io/badge/status-not%20started-lightgray.svg) Autocompletion (Ctrl+Space)
+* ![in progress](https://img.shields.io/badge/status-in--progress-yellow.svg) Autocompletion (Ctrl+Space)
 * ![not started](https://img.shields.io/badge/status-not%20started-lightgray.svg) References
 * ![not started](https://img.shields.io/badge/status-not%20started-lightgray.svg) Find Usages (Alt+F7)
 * ![not started](https://img.shields.io/badge/status-not%20started-lightgray.svg) Folding
@@ -46,7 +46,7 @@ Editor support for UMN Mapserver Mapfiles. Supported Mapserver version is 7.0.4
 
 (tbd - not yet uploaded to https://plugins.jetbrains.com/)
 
-## Run
+## Development
 
 1. comply the [basic prerequisites](http://www.jetbrains.org/intellij/sdk/docs/tutorials/custom_language_support/prerequisites.html) 
 2. clone the repository and import the project into IntelliJ
