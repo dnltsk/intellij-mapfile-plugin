@@ -17,7 +17,7 @@ Editor support for UMN Mapserver Mapfiles. Supported Mapserver version is 7.0.4
 * ![not started](https://img.shields.io/badge/status-not%20started-lightgray.svg) Folding
 * ![not started](https://img.shields.io/badge/status-not%20started-lightgray.svg) Structure View
 * ![not started](https://img.shields.io/badge/status-not%20started-lightgray.svg) Formatter (Cmd+Shift+L)
-* ![not started](https://img.shields.io/badge/status-not%20started-lightgray.svg) Quick Fix (Cmd+Return)
+* ![not started](https://img.shields.io/badge/status-not%20started-lightgray.svg) Quick Fix (Alt+Return)
  
 ![very early state](resources/META-INF/sneak-preview-screenshot.png "very early state")
 
