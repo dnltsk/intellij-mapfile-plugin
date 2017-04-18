@@ -39,8 +39,10 @@ Editor support for UMN Mapserver Mapfiles. Supported Mapserver version is 7.0.4
 * Mapfile Documentation<br/>
 http://mapserver.org/mapfile/index.html
 
-* Custom Language Support Tutorial<br/>
+* Custom Language Support - Tutorial<br/>
 http://www.jetbrains.org/intellij/sdk/docs/tutorials/custom_language_support_tutorial.html
+
+* Custom Language Support - Architecture Reference Guide<br/> http://www.jetbrains.org/intellij/sdk/docs/reference_guide/custom_language_support.html
 
 * Backus-Naur Form (BNF) to define the Mapfile's grammar<br/>
 https://en.wikipedia.org/wiki/Backus%E2%80%93Naur_form
