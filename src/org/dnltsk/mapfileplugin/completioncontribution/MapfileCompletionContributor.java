@@ -32,15 +32,22 @@ public class MapfileCompletionContributor extends CompletionContributor {
                                                @NotNull CompletionResultSet resultSet) {
                         PsiElement element = parameters.getPosition().getParent();
                         String genericErrorDescription = ((PsiErrorElementImpl) element).getErrorDescription();
-                        String[] suggestedTokens = extractTokensFromErrorDescription(genericErrorDescription);
-                        for (String suggestedToken : suggestedTokens) {
-                            //TODO ordering and styling (END on top, common keywords on top)
+                        String[] suggestions = extractTokensFromErrorDescription(genericErrorDescription);
+                        //TODO order (END on top, common keywords on top)
+                        String[] orderedSuggestions = orderSuggestions(suggestions);
+                        for (String suggestedToken : suggestions) {
+                            //TODO styling (common keywords bold)
                             resultSet.addElement(LookupElementBuilder.create(suggestedToken.toUpperCase()));
                         }
                     }
 
                 }
         );
+    }
+
+    private String[] orderSuggestions(String[] suggestions) {
+//        MapfileSyntaxHighlighter.OBJECT_KEYWORD_LIST;
+        return new String[0];
     }
 
     String[] extractTokensFromErrorDescription(String errorDescription) {
