@@ -7,32 +7,11 @@ Editor support for UMN Mapserver Mapfiles. Supported Mapserver version is 7.0.4
 ## Features
 
 * ![done](https://img.shields.io/badge/status-done-green.svg) Basic Syntax Validation and Highlighting
-  * ![done](https://img.shields.io/badge/status-done-green.svg) CLASS
-  * ![done](https://img.shields.io/badge/status-done-green.svg) CLUSTER
-  * ![done](https://img.shields.io/badge/status-done-green.svg) COMPOSITE
-  * ![done](https://img.shields.io/badge/status-done-green.svg) EXPRESSION
-  * ![done](https://img.shields.io/badge/status-done-green.svg) FEATURE
-  * ![done](https://img.shields.io/badge/status-done-green.svg) GRID
-  * ![done](https://img.shields.io/badge/status-done-green.svg) JOIN
-  * ![done](https://img.shields.io/badge/status-done-green.svg) LAYER
-  * ![done](https://img.shields.io/badge/status-done-green.svg) LABEL
-  * ![done](https://img.shields.io/badge/status-done-green.svg) LEADER
-  * ![done](https://img.shields.io/badge/status-done-green.svg) LEGEND
-  * ![done](https://img.shields.io/badge/status-done-green.svg) MAP
-  * ![done](https://img.shields.io/badge/status-done-green.svg) METADATA
-  * ![done](https://img.shields.io/badge/status-done-green.svg) PROJECTION
-  * ![done](https://img.shields.io/badge/status-done-green.svg) QUERYMAP
-  * ![done](https://img.shields.io/badge/status-done-green.svg) REFERENCE
-  * ![done](https://img.shields.io/badge/status-done-green.svg) SCALEBAR
-  * ![done](https://img.shields.io/badge/status-done-green.svg) STYLE
-  * ![done](https://img.shields.io/badge/status-done-green.svg) SYMBOL
-  * ![done](https://img.shields.io/badge/status-done-green.svg) VALIDATION
-  * ![done](https://img.shields.io/badge/status-done-green.svg) WEB
-* ![not started](https://img.shields.io/badge/status-not%20started-lightgray.svg) Annotations (Error Messages)
 * ![not started](https://img.shields.io/badge/status-not%20started-lightgray.svg) Advanced Syntax Highlighting
+* ![in progress](https://img.shields.io/badge/status-in--progress-yellow.svg) Autocompletion (Ctrl+Space)
+* ![not started](https://img.shields.io/badge/status-not%20started-lightgray.svg) Annotations (Error Messages)
 * ![not started](https://img.shields.io/badge/status-not%20started-lightgray.svg) Color Picker
 * ![not started](https://img.shields.io/badge/status-not%20started-lightgray.svg) Helpers and Utilities
-* ![in progress](https://img.shields.io/badge/status-in--progress-yellow.svg) Autocompletion (Ctrl+Space)
 * ![not started](https://img.shields.io/badge/status-not%20started-lightgray.svg) References
 * ![not started](https://img.shields.io/badge/status-not%20started-lightgray.svg) Find Usages (Alt+F7)
 * ![not started](https://img.shields.io/badge/status-not%20started-lightgray.svg) Folding
