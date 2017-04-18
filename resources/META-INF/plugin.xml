@@ -47,10 +47,10 @@
     <lang.parserDefinition language="Mapfile" implementationClass="org.dnltsk.mapfileplugin.MapfileParserDefinition"/>
     <lang.syntaxHighlighterFactory language="Mapfile" implementationClass="org.dnltsk.mapfileplugin.highlighter.MapfileSyntaxHighlighterFactory"/>
     <colorSettingsPage implementation="org.dnltsk.mapfileplugin.highlighter.MapfileColorSettingsPage"/>
+    <completion.contributor language="Mapfile" implementationClass="org.dnltsk.mapfileplugin.completioncontribution.MapfileCompletionContributor"/>
     <!--
     <annotator language="JAVA" implementationClass="org.dnltsk.mapfileplugin.MapfileAnnotator"/>
     <codeInsight.lineMarkerProvider language="JAVA" implementationClass="org.dnltsk.mapfileplugin.MapfileLineMarkerProvider"/>
-    <completion.contributor language="Mapfile" implementationClass="org.dnltsk.mapfileplugin.MapfileCompletionContributor"/>
     <psi.referenceContributor implementation="org.dnltsk.mapfileplugin.MapfileReferenceContributor"/>
     <lang.findUsagesProvider language="Mapfile" implementationClass="org.dnltsk.mapfileplugin.MapfileFindUsagesProvider"/>
     <lang.refactoringSupport language="Mapfile" implementationClass="org.dnltsk.mapfileplugin.MapfileRefactoringSupportProvider"/>
