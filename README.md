@@ -26,7 +26,7 @@ Editor support for UMN Mapserver Mapfiles. Supported Mapserver version is 7.0.4
 ## Install
 
 1. in your IntelliJ go to _Preferences_ ⌘,
-2. in _Plugins- search for "Mapfile"
+2. in _Plugins_ search for "Mapfile"
 3. select _Search in repositories_
 4. there you should find the _Mapfile Plugin_
 5. restart IntelliJ
