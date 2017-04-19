@@ -10,7 +10,7 @@ Editor support for UMN Mapserver Mapfiles. Supported Mapserver version is 7.0.4
 
 * ![done](https://img.shields.io/badge/status-done-green.svg) Basic Syntax Validation and Highlighting
 * ![not started](https://img.shields.io/badge/status-not%20started-lightgray.svg) Advanced Syntax Highlighting
-* ![done](https://img.shields.io/badge/status-in--progress-yellow.svg) Autocompletion (Ctrl+Space)
+* ![done](https://img.shields.io/badge/status-done-green.svg) Autocompletion (Ctrl+Space)
 * ![not started](https://img.shields.io/badge/status-not%20started-lightgray.svg) Annotations (Error Messages)
 * ![not started](https://img.shields.io/badge/status-not%20started-lightgray.svg) Color Picker
 * ![not started](https://img.shields.io/badge/status-not%20started-lightgray.svg) Helpers and Utilities
