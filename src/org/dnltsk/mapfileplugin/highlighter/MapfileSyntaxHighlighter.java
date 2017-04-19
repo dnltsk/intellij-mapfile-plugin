@@ -34,7 +34,7 @@ public class MapfileSyntaxHighlighter extends SyntaxHighlighterBase {
     public static final TextAttributesKey BAD_CHARACTER_HIGHLIGHTER =
             createTextAttributesKey("MAPFILE_BAD_CHARACTER_HIGHLIGHTER", HighlighterColors.BAD_CHARACTER);
 
-    private static final List<IElementType> OBJECT_KEYWORD_LIST = Arrays.asList(
+    public static final List<IElementType> OBJECT_KEYWORD_LIST = Arrays.asList(
             CLASS,
             CLUSTER,
             COMPOSITE,
@@ -60,7 +60,7 @@ public class MapfileSyntaxHighlighter extends SyntaxHighlighterBase {
             WEB
     );
 
-    private static final List<IElementType> CORE_ATTRIBUTE_LIST = Arrays.asList(
+    public static final List<IElementType> CORE_ATTRIBUTE_LIST = Arrays.asList(
             CONFIG,
             CONNECTION,
             DATA,
@@ -200,7 +200,7 @@ public class MapfileSyntaxHighlighter extends SyntaxHighlighterBase {
             WRAP
     );
 
-    private static final List<IElementType> KEYWORD_LIST = Arrays.asList(
+    public static final List<IElementType> KEYWORD_LIST = Arrays.asList(
             AUTO,
             AUTO2,
             BEVEL,
