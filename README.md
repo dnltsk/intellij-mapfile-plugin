@@ -1,4 +1,4 @@
-[![waiting for user feedback](https://img.shields.io/badge/status-waiting--for--user--feedback-yellow.svg)](https://github.com/dnltsk/intellij-mapfile-plugin/issues)
+[![waiting for user feedback](https://img.shields.io/badge/status-waiting_for_user_feedback-yellow.svg)](https://github.com/dnltsk/intellij-mapfile-plugin/issues)
 
 # IntelliJ Mapfile Plugin
 
