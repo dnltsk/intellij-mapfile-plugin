@@ -1,3 +1,5 @@
+[![waiting for user feedback](https://img.shields.io/badge/status-waiting--for--user--feedback-yellow.svg)](https://github.com/dnltsk/intellij-mapfile-plugin/issues)
+
 # IntelliJ Mapfile Plugin
 
 https://plugins.jetbrains.com/plugin/9626-mapfile
@@ -8,7 +10,7 @@ Editor support for UMN Mapserver Mapfiles. Supported Mapserver version is 7.0.4
 
 * ![done](https://img.shields.io/badge/status-done-green.svg) Basic Syntax Validation and Highlighting
 * ![not started](https://img.shields.io/badge/status-not%20started-lightgray.svg) Advanced Syntax Highlighting
-* ![in progress](https://img.shields.io/badge/status-in--progress-yellow.svg) Autocompletion (Ctrl+Space)
+* ![done](https://img.shields.io/badge/status-in--progress-yellow.svg) Autocompletion (Ctrl+Space)
 * ![not started](https://img.shields.io/badge/status-not%20started-lightgray.svg) Annotations (Error Messages)
 * ![not started](https://img.shields.io/badge/status-not%20started-lightgray.svg) Color Picker
 * ![not started](https://img.shields.io/badge/status-not%20started-lightgray.svg) Helpers and Utilities
@@ -19,11 +21,15 @@ Editor support for UMN Mapserver Mapfiles. Supported Mapserver version is 7.0.4
 * ![not started](https://img.shields.io/badge/status-not%20started-lightgray.svg) Formatter (Cmd+Shift+L)
 * ![not started](https://img.shields.io/badge/status-not%20started-lightgray.svg) Quick Fix (Alt+Return)
  
-![very early state](resources/META-INF/sneak-preview-screenshot.png "very early state")
+![preview](resources/META-INF/preview-screenshot.png "preview")
 
 ## Install
 
-(tbd - not yet uploaded to https://plugins.jetbrains.com/)
+1. in your IntelliJ go to _Preferences_ ⌘,
+2. in _Plugins- search for "Mapfile"
+3. select _Search in repositories_
+4. there you should find the _Mapfile Plugin_
+5. restart IntelliJ
 
 ## Development
 
