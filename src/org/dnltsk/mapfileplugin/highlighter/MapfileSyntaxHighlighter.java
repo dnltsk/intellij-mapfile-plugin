@@ -1,9 +1,9 @@
 package org.dnltsk.mapfileplugin.highlighter;
 
 import com.intellij.lexer.Lexer;
-import com.intellij.openapi.editor.DefaultLanguageHighlighterColors;
 import com.intellij.openapi.editor.HighlighterColors;
 import com.intellij.openapi.editor.colors.TextAttributesKey;
+import com.intellij.openapi.editor.markup.TextAttributes;
 import com.intellij.openapi.fileTypes.SyntaxHighlighterBase;
 import com.intellij.psi.TokenType;
 import com.intellij.psi.tree.IElementType;
@@ -11,6 +11,7 @@ import org.dnltsk.mapfileplugin.MapfileLexerAdapter;
 import org.dnltsk.mapfileplugin.psi.MapfileTypes;
 import org.jetbrains.annotations.NotNull;
 
+import java.awt.*;
 import java.util.Arrays;
 import java.util.List;
 
@@ -19,18 +20,21 @@ import static org.dnltsk.mapfileplugin.psi.MapfileTypes.*;
 
 public class MapfileSyntaxHighlighter extends SyntaxHighlighterBase {
 
-    public static final TextAttributesKey OBJECT_KEYWORD_HIGHLIGHTER =
-            createTextAttributesKey("MAPFILE_OBJECT_KEYWORD_HIGHLIGHTER", DefaultLanguageHighlighterColors.KEYWORD);
-    public static final TextAttributesKey ATTRIBUTES_HIGHLIGHTER =
-            createTextAttributesKey("MAPFILE_ATTRIBUTES_HIGHLIGHTER", DefaultLanguageHighlighterColors.IDENTIFIER);
-    public static final TextAttributesKey CORE_ATTRIBUTE_HIGHLIGHTER =
-            createTextAttributesKey("MAPFILE_CORE_ATTRIBUTES_HIGHLIGHTER", DefaultLanguageHighlighterColors.CONSTANT);
-    public static final TextAttributesKey STRING_VALUE_HIGHLIGHTER =
-            createTextAttributesKey("STRING_VALUE_HIGHLIGHTER", DefaultLanguageHighlighterColors.STRING);
-    public static final TextAttributesKey NUMBER_VALUE_HIGHLIGHTER =
-            createTextAttributesKey("NUMBER_VALUE_HIGHLIGHTER", DefaultLanguageHighlighterColors.NUMBER);
-    public static final TextAttributesKey COMMENT_HIGHLIGHTER =
-            createTextAttributesKey("MAPFILE_COMMENT_HIGHLIGHTER", DefaultLanguageHighlighterColors.LINE_COMMENT);
+    static final TextAttributesKey KEYWORD_HIGHLIGHTER = createTextAttributesKey("KEYWORD_HIGHLIGHTER",
+            new TextAttributes(new Color(0, 112, 32), null, null, null, Font.BOLD));
+
+    static final TextAttributesKey ENUM_HIGHLIGHTER = createTextAttributesKey("ENUM_HIGHLIGHTER",
+            new TextAttributes(new Color(0, 112, 32), null, null, null, Font.PLAIN));
+
+    static final TextAttributesKey NUMBERS_HIGHLIGHTER = createTextAttributesKey("NUMBERS_HIGHLIGHTER",
+            new TextAttributes(new Color(32, 128, 80), null, null, null, Font.PLAIN));
+
+    static final TextAttributesKey STRING_HIGHLIGHTER = createTextAttributesKey("STRING_HIGHLIGHTER",
+            new TextAttributes(new Color(64, 112, 160), null, null, null, Font.PLAIN));
+
+    static final TextAttributesKey COMMENT_HIGHLIGHTER = createTextAttributesKey("COMMENT_HIGHLIGHTER",
+            new TextAttributes(new Color(64, 128, 144), null, null, null, Font.ITALIC));
+
     public static final TextAttributesKey BAD_CHARACTER_HIGHLIGHTER =
             createTextAttributesKey("MAPFILE_BAD_CHARACTER_HIGHLIGHTER", HighlighterColors.BAD_CHARACTER);
 
@@ -314,7 +318,8 @@ public class MapfileSyntaxHighlighter extends SyntaxHighlighterBase {
     @NotNull
     @Override
     public TextAttributesKey[] getTokenHighlights(IElementType tokenType) {
-        if (OBJECT_KEYWORD_LIST.contains(tokenType)) {
+
+        /*if (OBJECT_KEYWORD_LIST.contains(tokenType)) {
             return new TextAttributesKey[]{OBJECT_KEYWORD_HIGHLIGHTER};
 
         } else if (CORE_ATTRIBUTE_LIST.contains(tokenType)) {
@@ -337,8 +342,33 @@ public class MapfileSyntaxHighlighter extends SyntaxHighlighterBase {
 
         } else if (TokenType.BAD_CHARACTER.equals(tokenType)) {
             return new TextAttributesKey[]{BAD_CHARACTER_HIGHLIGHTER};
+        */
 
-        } else {
+        if (OBJECT_KEYWORD_LIST.contains(tokenType)) {
+            return new TextAttributesKey[]{KEYWORD_HIGHLIGHTER};
+
+        } else if (CORE_ATTRIBUTE_LIST.contains(tokenType)) {
+            return new TextAttributesKey[]{KEYWORD_HIGHLIGHTER};
+
+        } else if (KEYWORD_LIST.contains(tokenType)) {
+            return new TextAttributesKey[]{ENUM_HIGHLIGHTER};
+
+        } else if (ATTRIBUTE_LIST.contains(tokenType)) {
+            return new TextAttributesKey[]{KEYWORD_HIGHLIGHTER};
+
+        } else if (NUMBER_LIST.contains(tokenType)) {
+            return new TextAttributesKey[]{NUMBERS_HIGHLIGHTER};
+
+        } else if (STRING.equals(tokenType)) {
+            return new TextAttributesKey[]{STRING_HIGHLIGHTER};
+
+        } else if (COMMENT.equals(tokenType)) {
+            return new TextAttributesKey[]{COMMENT_HIGHLIGHTER};
+
+        } else if (TokenType.BAD_CHARACTER.equals(tokenType)) {
+            return new TextAttributesKey[]{BAD_CHARACTER_HIGHLIGHTER};
+
+        }else {
             return new TextAttributesKey[0];
         }
     }
