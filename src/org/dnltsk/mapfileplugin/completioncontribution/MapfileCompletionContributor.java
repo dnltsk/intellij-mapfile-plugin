@@ -31,13 +31,15 @@ public class MapfileCompletionContributor extends CompletionContributor {
                                                ProcessingContext context,
                                                @NotNull CompletionResultSet resultSet) {
                         PsiElement element = parameters.getPosition().getParent();
-                        String genericErrorDescription = ((PsiErrorElementImpl) element).getErrorDescription();
-                        String[] suggestions = extractTokensFromErrorDescription(genericErrorDescription);
-                        //TODO order (END on top, common keywords on top)
-                        String[] orderedSuggestions = orderSuggestions(suggestions);
-                        for (String suggestedToken : suggestions) {
-                            //TODO styling (common keywords bold)
-                            resultSet.addElement(LookupElementBuilder.create(suggestedToken.toUpperCase()));
+                        if(element instanceof PsiErrorElementImpl) {
+                            String genericErrorDescription = ((PsiErrorElementImpl) element).getErrorDescription();
+                            String[] suggestions = extractTokensFromErrorDescription(genericErrorDescription);
+                            //TODO order (END on top, common keywords on top)
+                            String[] orderedSuggestions = orderSuggestions(suggestions);
+                            for (String suggestedToken : suggestions) {
+                                //TODO styling (common keywords bold)
+                                resultSet.addElement(LookupElementBuilder.create(suggestedToken.toUpperCase()));
+                            }
                         }
                     }
 
