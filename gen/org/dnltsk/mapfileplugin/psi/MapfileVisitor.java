@@ -15,11 +15,7 @@ public class MapfileVisitor extends PsiElementVisitor {
     visitPsiElement(o);
   }
 
-  public void visitNameAttr(@NotNull MapfileNameAttr o) {
-    visitPsiElement(o);
-  }
-
-  public void visitStatusAttr(@NotNull MapfileStatusAttr o) {
+  public void visitMapObjectEntry(@NotNull MapfileMapObjectEntry o) {
     visitPsiElement(o);
   }
 

@@ -4,14 +4,16 @@ package org.dnltsk.mapfileplugin.psi;
 import com.intellij.lang.ASTNode;
 import com.intellij.psi.PsiElement;
 import com.intellij.psi.tree.IElementType;
-import org.dnltsk.mapfileplugin.psi.impl.*;
+import org.dnltsk.mapfileplugin.psi.impl.MapfileLayerObjectImpl;
+import org.dnltsk.mapfileplugin.psi.impl.MapfileMapObjectEntryImpl;
+import org.dnltsk.mapfileplugin.psi.impl.MapfileMapObjectImpl;
+import org.dnltsk.mapfileplugin.psi.impl.MapfileWebObjectImpl;
 
 public interface MapfileTypes {
 
   IElementType LAYER_OBJECT = new MapfileElementType("LAYER_OBJECT");
   IElementType MAP_OBJECT = new MapfileElementType("MAP_OBJECT");
-  IElementType NAME_ATTR = new MapfileElementType("NAME_ATTR");
-  IElementType STATUS_ATTR = new MapfileElementType("STATUS_ATTR");
+  IElementType MAP_OBJECT_ENTRY = new MapfileElementType("MAP_OBJECT_ENTRY");
   IElementType WEB_OBJECT = new MapfileElementType("WEB_OBJECT");
 
   IElementType ALIGN = new MapfileTokenType("ALIGN");
@@ -302,11 +304,8 @@ public interface MapfileTypes {
       else if (type == MAP_OBJECT) {
         return new MapfileMapObjectImpl(node);
       }
-      else if (type == NAME_ATTR) {
-        return new MapfileNameAttrImpl(node);
-      }
-      else if (type == STATUS_ATTR) {
-        return new MapfileStatusAttrImpl(node);
+      else if (type == MAP_OBJECT_ENTRY) {
+        return new MapfileMapObjectEntryImpl(node);
       }
       else if (type == WEB_OBJECT) {
         return new MapfileWebObjectImpl(node);
