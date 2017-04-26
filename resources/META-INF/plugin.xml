@@ -2,7 +2,7 @@
   <id>org.dnltsk.mapfileplugin</id>
   <name>Mapfile</name>
   <version>7.0.4#0.2.0</version>
-  <vendor email="daniel.teske@gmail.com">dnltsk</vendor>
+  <vendor email="daniel.teske@gmail.com" url="https://github.com/dnltsk/intellij-mapfile-plugin">dnltsk</vendor>
 
   <description><![CDATA[
       <p>
@@ -23,7 +23,7 @@
       ]]></change-notes>
 
   <!-- please see http://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/build_number_ranges.html for description -->
-  <idea-version since-build="107.105"/>
+  <idea-version since-build="131"/>
 
   <!-- please see http://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/plugin_compatibility.html
        on how to target different products -->
