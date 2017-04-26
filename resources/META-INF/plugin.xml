@@ -16,6 +16,7 @@
 
   <change-notes><![CDATA[
       <ul>
+        <li>7.0.4#0.2.1 enabled more idea versions</li>
         <li>7.0.4#0.2.0 highlight multiple errors; classic (green) syntax highlighting based on Mapserver website</li>
         <li>7.0.4#0.1.0 basic autocompletion</li>
         <li>7.0.4#0.0.1 basic syntax validation and syntax highlighting</li>
@@ -23,7 +24,7 @@
       ]]></change-notes>
 
   <!-- please see http://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/build_number_ranges.html for description -->
-  <idea-version since-build="131"/>
+  <idea-version since-build="123"/> <!--123=IntelliJ IDEA 12-->
 
   <!-- please see http://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/plugin_compatibility.html
        on how to target different products -->
