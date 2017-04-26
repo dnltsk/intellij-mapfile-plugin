@@ -4,16 +4,26 @@ package org.dnltsk.mapfileplugin.psi;
 import com.intellij.lang.ASTNode;
 import com.intellij.psi.PsiElement;
 import com.intellij.psi.tree.IElementType;
-import org.dnltsk.mapfileplugin.psi.impl.MapfileLayerObjectImpl;
-import org.dnltsk.mapfileplugin.psi.impl.MapfileMapObjectEntryImpl;
-import org.dnltsk.mapfileplugin.psi.impl.MapfileMapObjectImpl;
-import org.dnltsk.mapfileplugin.psi.impl.MapfileWebObjectImpl;
+import org.dnltsk.mapfileplugin.psi.impl.*;
 
 public interface MapfileTypes {
 
+  IElementType CLASS_OBJECT = new MapfileElementType("CLASS_OBJECT");
+  IElementType CLUSTER_OBJECT = new MapfileElementType("CLUSTER_OBJECT");
+  IElementType COMPOSITE_OBJECT = new MapfileElementType("COMPOSITE_OBJECT");
+  IElementType FEATURE_OBJECT = new MapfileElementType("FEATURE_OBJECT");
+  IElementType GRID_OBJECT = new MapfileElementType("GRID_OBJECT");
+  IElementType JOIN_OBJECT = new MapfileElementType("JOIN_OBJECT");
+  IElementType LABEL_OBJECT = new MapfileElementType("LABEL_OBJECT");
   IElementType LAYER_OBJECT = new MapfileElementType("LAYER_OBJECT");
+  IElementType LEADER_OBJECT = new MapfileElementType("LEADER_OBJECT");
+  IElementType LEGEND_OBJECT = new MapfileElementType("LEGEND_OBJECT");
   IElementType MAP_OBJECT = new MapfileElementType("MAP_OBJECT");
-  IElementType MAP_OBJECT_ENTRY = new MapfileElementType("MAP_OBJECT_ENTRY");
+  IElementType QUERYMAP_OBJECT = new MapfileElementType("QUERYMAP_OBJECT");
+  IElementType REFERENCE_OBJECT = new MapfileElementType("REFERENCE_OBJECT");
+  IElementType SCALEBAR_OBJECT = new MapfileElementType("SCALEBAR_OBJECT");
+  IElementType STYLE_OBJECT = new MapfileElementType("STYLE_OBJECT");
+  IElementType SYMBOL_OBJECT = new MapfileElementType("SYMBOL_OBJECT");
   IElementType WEB_OBJECT = new MapfileElementType("WEB_OBJECT");
 
   IElementType ALIGN = new MapfileTokenType("ALIGN");
@@ -66,7 +76,7 @@ public interface MapfileTypes {
   IElementType ELLIPSE = new MapfileTokenType("ellipse");
   IElementType EMPTY = new MapfileTokenType("EMPTY");
   IElementType ENCODING = new MapfileTokenType("ENCODING");
-  IElementType END = new MapfileTokenType("end");
+  IElementType END = new MapfileTokenType("END");
   IElementType EQ = new MapfileTokenType("=");
   IElementType ERROR = new MapfileTokenType("ERROR");
   IElementType EXPRESSION = new MapfileTokenType("EXPRESSION");
@@ -298,14 +308,53 @@ public interface MapfileTypes {
   class Factory {
     public static PsiElement createElement(ASTNode node) {
       IElementType type = node.getElementType();
-       if (type == LAYER_OBJECT) {
+       if (type == CLASS_OBJECT) {
+        return new MapfileClassObjectImpl(node);
+      }
+      else if (type == CLUSTER_OBJECT) {
+        return new MapfileClusterObjectImpl(node);
+      }
+      else if (type == COMPOSITE_OBJECT) {
+        return new MapfileCompositeObjectImpl(node);
+      }
+      else if (type == FEATURE_OBJECT) {
+        return new MapfileFeatureObjectImpl(node);
+      }
+      else if (type == GRID_OBJECT) {
+        return new MapfileGridObjectImpl(node);
+      }
+      else if (type == JOIN_OBJECT) {
+        return new MapfileJoinObjectImpl(node);
+      }
+      else if (type == LABEL_OBJECT) {
+        return new MapfileLabelObjectImpl(node);
+      }
+      else if (type == LAYER_OBJECT) {
         return new MapfileLayerObjectImpl(node);
+      }
+      else if (type == LEADER_OBJECT) {
+        return new MapfileLeaderObjectImpl(node);
+      }
+      else if (type == LEGEND_OBJECT) {
+        return new MapfileLegendObjectImpl(node);
       }
       else if (type == MAP_OBJECT) {
         return new MapfileMapObjectImpl(node);
       }
-      else if (type == MAP_OBJECT_ENTRY) {
-        return new MapfileMapObjectEntryImpl(node);
+      else if (type == QUERYMAP_OBJECT) {
+        return new MapfileQuerymapObjectImpl(node);
+      }
+      else if (type == REFERENCE_OBJECT) {
+        return new MapfileReferenceObjectImpl(node);
+      }
+      else if (type == SCALEBAR_OBJECT) {
+        return new MapfileScalebarObjectImpl(node);
+      }
+      else if (type == STYLE_OBJECT) {
+        return new MapfileStyleObjectImpl(node);
+      }
+      else if (type == SYMBOL_OBJECT) {
+        return new MapfileSymbolObjectImpl(node);
       }
       else if (type == WEB_OBJECT) {
         return new MapfileWebObjectImpl(node);

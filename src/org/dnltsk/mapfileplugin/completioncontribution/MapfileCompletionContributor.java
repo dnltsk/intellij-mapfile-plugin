@@ -53,7 +53,9 @@ public class MapfileCompletionContributor extends CompletionContributor {
     }
 
     String[] extractTokensFromErrorDescription(String errorDescription) {
-        errorDescription = errorDescription.substring(0, errorDescription.indexOf(" expected, got "));
+        if(errorDescription.contains(" expected, got ")) {
+            errorDescription = errorDescription.substring(0, errorDescription.indexOf(" expected, got "));
+        }
         errorDescription = errorDescription.replaceAll("MapfileTokenType\\.", "");
         String[] tokens = errorDescription.split("(, )|( or )");
         return tokens;

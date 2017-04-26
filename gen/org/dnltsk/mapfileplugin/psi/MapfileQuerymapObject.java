@@ -2,11 +2,7 @@
 package org.dnltsk.mapfileplugin.psi;
 
 import com.intellij.psi.PsiElement;
-import org.jetbrains.annotations.Nullable;
 
-public interface MapfileNameAttr extends PsiElement {
-
-  @Nullable
-  PsiElement getString();
+public interface MapfileQuerymapObject extends PsiElement {
 
 }

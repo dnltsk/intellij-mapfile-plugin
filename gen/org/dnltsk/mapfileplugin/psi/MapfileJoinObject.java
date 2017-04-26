@@ -3,6 +3,6 @@ package org.dnltsk.mapfileplugin.psi;
 
 import com.intellij.psi.PsiElement;
 
-public interface MapfileStatusAttr extends PsiElement {
+public interface MapfileJoinObject extends PsiElement {
 
 }

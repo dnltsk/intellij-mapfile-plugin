@@ -1,0 +1,31 @@
+{
+  tokens=[
+    SEMI=';'
+    EQ='='
+    LP='('
+    RP=')'
+    space='regexp:\s+'
+    comment='regexp://.*'
+    number='regexp:\d+(\.\d*)?'
+    id='regexp:\p{Alpha}\w*'
+    string="regexp:('([^'\\]|\\.)*'|\"([^\"\\]|\\.)*\")"
+    op_1='+'
+    op_2='-'
+    op_3='*'
+    op_4='/'
+    op_5='!'
+  ]
+}
+root ::= FooObject *
+
+FooObject ::= FOO FooObject_entry * END {pin=1}
+FooObject_entry ::= !END ( BarObject | TitleAttr | NameAttr ) {pin=1}
+
+BarObject ::= BAR BarObject_entry * END {pin=1}
+BarObject_entry ::= !END ( TitleAttr | NameAttr ) {pin=1}
+
+private NameAttr ::= NAME string {pin=1 recoverWhile=global_attribute_recover}
+
+private TitleAttr ::= TITLE string {pin=1 recoverWhile=global_attribute_recover}
+
+private global_attribute_recover ::= !(END | NAME | TITLE | BAR | FOO)

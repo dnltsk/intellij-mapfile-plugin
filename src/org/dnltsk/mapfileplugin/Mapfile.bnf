@@ -40,19 +40,28 @@
     op_5='!'
   ]
 }
+/*
+root ::= MapObject2 *
+MapObject2 ::= MAP MapObject2_entry * END { pin=1 }
+MapObject2_entry ::= !END ( TitleAttr2 | NameAttr2 ) {pin=1}
+private TitleAttr2 ::= NAME string {pin=1 recoverWhile=global_attribute_recover2}
+private NameAttr2 ::= TITLE string {pin=1 recoverWhile=global_attribute_recover2}
+private global_attribute_recover2 ::= !(END | NAME | TITLE | MAP)
+*/
 
-root ::= MapObject *
 
-//private mapfile ::= ( MapObject | WebObject | LayerObject | ClassObject | SymbolObject | LabelObject | StyleObject
-//             | LeaderObject | LegendObject | FeatureObject | ClusterObject | CompositeObject | GridObject
-//             | JoinObject | QuerymapObject | ReferenceObject | ScalebarObject | PatternObject ValidationObject
-//             | MetadataObject | PointsObject | ProjectionObject )
+root ::= mapfile
+private mapfile ::= ( MapObject | WebObject | LayerObject | ClassObject | SymbolObject | LabelObject | StyleObject
+             | LeaderObject | LegendObject | FeatureObject | ClusterObject | CompositeObject | GridObject
+             | JoinObject | QuerymapObject | ReferenceObject | ScalebarObject | PatternObject ValidationObject
+             | MetadataObject | PointsObject | ProjectionObject )
 
 //
 // OBJECTS
 //
-MapObject ::= MAP MapObject_entry* END { pin=1 }
-MapObject_entry ::=
+
+MapObject ::= MAP MapObject_entry * END { pin=1 }
+private MapObject_entry ::=
     !END (
         LayerObject | LegendObject | ProjectionObject | QuerymapObject | ReferenceObject | ScalebarObject
         | SymbolObject | WebObject
@@ -61,7 +70,7 @@ MapObject_entry ::=
         | ScaledenomAttr | ShapepathAttr | SizeAttr | StatusAttr | SymbolsetAttr | TemplatepatternAttr | UnitsAttr
     ) { pin=1 }
 
-WebObject ::= WEB WebObjectChildren* END { pin=1 }
+WebObject ::= WEB WebObjectChildren * END { pin=1 }
 private WebObjectChildren ::=
     !END (
         MetadataObject | ValidationObject
@@ -70,7 +79,7 @@ private WebObjectChildren ::=
         | QueryformatAttr | TemplateAttr | TemppathAttr
     ) { pin=1 }
 
-LayerObject ::= LAYER LayerObjectChildren* END { pin=1 }
+LayerObject ::= LAYER LayerObjectChildren * END { pin=1 }
 private LayerObjectChildren ::=
     !END (
         ClassObject | ClusterObject | CompositeObject | FeatureObject | GridObject | JoinObject | MetadataObject
@@ -85,7 +94,7 @@ private LayerObjectChildren ::=
         | UnitsAttr | UtfdataAttr | UtfitemAttr
     ) { pin=1 }
 
-private ClassObject ::= CLASS ClassObjectChildren* END { pin=1 }
+ClassObject ::= CLASS ClassObjectChildren * END { pin=1 }
 private ClassObjectChildren ::=
     !END (
         LabelObject | LeaderObject | StyleObject | ValidationObject
@@ -93,7 +102,7 @@ private ClassObjectChildren ::=
         | MaxscaledenomAttr | MinscaledenomAttr | NameAttr | StatusAttr | TemplateAttr | TextAttr
     ) { pin=1 }
 
-private SymbolObject ::= SYMBOL SymbolObjectChildren* END { pin=1 }
+SymbolObject ::= SYMBOL SymbolObjectChildren * END { pin=1 }
 private SymbolObjectChildren ::=
     !END (
         PointsObject
@@ -101,7 +110,7 @@ private SymbolObjectChildren ::=
         | TransparentAttr | TypeSymbolAttr
     ) { pin=1 }
 
-private LabelObject ::= LABEL LabelObjectChildren* END { pin=1 }
+LabelObject ::= LABEL LabelObjectChildren * END { pin=1 }
 private LabelObjectChildren ::=
     !END (
         StyleObject
@@ -112,7 +121,7 @@ private LabelObjectChildren ::=
         | SizeLabelAttr | TextAttr | TypeLabelAttr | WrapAttr
     ) { pin=1 }
 
-private StyleObject ::= STYLE StyleObjectChildren* END { pin=1 }
+StyleObject ::= STYLE StyleObjectChildren * END { pin=1 }
 private StyleObjectChildren ::=
     !END (
         PatternObject
@@ -122,14 +131,14 @@ private StyleObjectChildren ::=
         | OutlinewidthAttr | PolaroffsetAttr | SizeClassAttr | SymbolClassAttr | WidthClassAttr
     ) { pin=1 }
 
-private LeaderObject ::= LEADER LeaderObjectChildren* END { pin=1 } // TODO supported layer type: Polygon
+LeaderObject ::= LEADER LeaderObjectChildren * END { pin=1 } // TODO supported layer type: Polygon
 private LeaderObjectChildren ::=
     !END (
         StyleObject
         | GridstepAttr | MaxdistanceAttr
     ) { pin=1 }
 
-private LegendObject ::= LEGEND LegendObjectChildren* END { pin=1 }
+LegendObject ::= LEGEND LegendObjectChildren * END { pin=1 }
 private LegendObjectChildren ::=
     !END (
         LabelObject
@@ -137,53 +146,53 @@ private LegendObjectChildren ::=
         | PostlabelcacheAttr | StatusAttr | TemplateAttr
     ) { pin=1 }
 
-private FeatureObject ::= FEATURE FeatureObjectChildren* END { pin=1 }
+FeatureObject ::= FEATURE FeatureObjectChildren * END { pin=1 }
 private FeatureObjectChildren ::=
     !END (
         PointsObject
         | ItemsAttr | TextAttr | WktAttr
     ) { pin=1 }
 
-private ClusterObject ::= CLUSTER ClusterObjectChildren* END { pin=1 } // TODO: only within POINT layers
+ClusterObject ::= CLUSTER ClusterObjectChildren * END { pin=1 } // TODO: only within POINT layers
 private ClusterObjectChildren ::=
     !END (
         MaxdistanceAttr | RegionAttr | BufferAttr | GroupAttr | FilterAttr | ProcessingAttr
     ) { pin=1 }
 
-private CompositeObject ::= COMPOSITE CompositeObjectChildren* END { pin=1 }
+CompositeObject ::= COMPOSITE CompositeObjectChildren * END { pin=1 }
 private CompositeObjectChildren ::=
     !END (
         OpacityAttr | CompopAttr
     ) { pin=1 }
 
-private GridObject ::= GRID GridObjectChildren* END { pin=1 }
+GridObject ::= GRID GridObjectChildren * END { pin=1 }
 private GridObjectChildren ::=
     !END (
         LabelformatAttr | MinarcsAttr | MaxarcsAttr | MinintervalAttr | MaxintervalAttr | MinsubdivideAttr
         | MaxsubdivideAttr
     ) { pin=1 }
 
-private JoinObject ::= JOIN JoinObjectChildren* END { pin=1 }
+JoinObject ::= JOIN JoinObjectChildren * END { pin=1 }
 private JoinObjectChildren ::=
     !END (
         ConnectionAttr | ConnectiontypeJoinAttr | FooterAttr |  FromAttr | HeaderAttr | NameAttr | TableAttr
         | TemplateAttr | ToAttr | TypeJoinAttr
     ) { pin=1 }
 
-private QuerymapObject ::= QUERYMAP QuerymapObjectChildren* END { pin=1 }
+QuerymapObject ::= QUERYMAP QuerymapObjectChildren * END { pin=1 }
 private QuerymapObjectChildren ::=
     !END (
         ColorAttr | SizeAttr | StatusAttr | StyleQuerymapAttr
     ) { pin=1 }
 
-private ReferenceObject ::= REFERENCE ReferenceObjectChildren* END { pin=1 }
+ReferenceObject ::= REFERENCE ReferenceObjectChildren * END { pin=1 }
 private ReferenceObjectChildren ::=
     !END (
         ColorAttr | ExtentAttr | ImageAttr | MarkerAttr | MarkersizeAttr | MinboxsizeAttr | MaxboxsizeAttr
         | OutlinecolorAttr | SizeAttr | StatusAttr
     ) { pin=1 }
 
-private ScalebarObject ::= SCALEBAR ScalebarObjectChildren* END { pin=1 }
+ScalebarObject ::= SCALEBAR ScalebarObjectChildren * END { pin=1 }
 private ScalebarObjectChildren ::=
     !END (
         LabelObject
@@ -191,467 +200,338 @@ private ScalebarObjectChildren ::=
         | PostlabelcacheAttr | SizeAttr | StatusAttr | StyleScalebarAttr | UnitsAttr
     ) { pin=1 }
 
-private PatternObject ::= PATTERN PatternObjectChildren* END { pin=1 }
+private PatternObject ::= PATTERN PatternObjectChildren * END { pin=1 }
 private PatternObjectChildren ::= !END ( integer integer ) { pin=1 }
 
-private ValidationObject ::= VALIDATION ValidationObjectChildren* END
+private ValidationObject ::= VALIDATION ValidationObjectChildren * END
 private ValidationObjectChildren ::= !END ( string string ) { pin=1 }
 
-private MetadataObject ::= METADATA MetadataObjectChildren* END { pin=1 }
+private MetadataObject ::= METADATA MetadataObjectChildren * END { pin=1 }
 private MetadataObjectChildren ::= !END ( string string ) { pin=1 }
 
-private PointsObject ::= POINTS PointsObjectChildren* END { pin=1 }
+private PointsObject ::= POINTS PointsObjectChildren * END { pin=1 }
 private PointsObjectChildren ::= !END ( double double ) { pin=1 }
 
-private ProjectionObject ::= PROJECTION ProjectionObjectChildren* END { pin=1 }
+private ProjectionObject ::= PROJECTION ProjectionObjectChildren * END { pin=1 }
 private ProjectionObjectChildren ::= !END string { pin=1 }
 
 //
 // ATTRIBUTES
 //
-private AlignAttr ::= ALIGN AlignEnum {pin=1 recoverWhile=AlignAttr_recover}
-private AlignAttr_recover ::= !( END | ALIGN )
+private AlignAttr ::= ALIGN AlignEnum {pin=1 recoverWhile=global_attribute_recover}
 
-private AnchorpointAttr ::= ANCHORPOINT double double {pin=1 recoverWhile=AnchorpointAttr_recover} // double 0-1
-private AnchorpointAttr_recover ::= !(END | ANCHORPOINT)
+private AnchorpointAttr ::= ANCHORPOINT double double {pin=1 recoverWhile=global_attribute_recover} // double 0-1
 
-private AngleAttr ::= ANGLE ( integer | double ) {pin=1 recoverWhile=AngleAttr_recover}
-private AngleAttr_recover ::= !(END | ANGLE)
-private AngleClassAttr ::= ANGLE AngleClassEnum {pin=1 recoverWhile=AngleClassAttr_recover}
-private AngleClassAttr_recover ::= !(END | ANGLE)
-private AngleLabelAttr ::= ANGLE AngleLabelEnum {pin=1 recoverWhile=AngleLabelAttr_recover}
-private AngleLabelAttr_recover ::= !(END | ANGLE)
+private AngleAttr ::= ANGLE ( integer | double ) {pin=1 recoverWhile=global_attribute_recover}
+private AngleClassAttr ::= ANGLE AngleClassEnum {pin=1 recoverWhile=global_attribute_recover}
+private AngleLabelAttr ::= ANGLE AngleLabelEnum {pin=1 recoverWhile=global_attribute_recover}
 
-private AntialiasAttr ::= ANTIALIAS BooleanEnum {pin=1 recoverWhile=AntialiasAttr_recover}
-private AntialiasAttr_recover ::= !(END | ANTIALIAS)
+private AntialiasAttr ::= ANTIALIAS BooleanEnum {pin=1 recoverWhile=global_attribute_recover}
 
-private BackgroundcolorAttr ::= BACKGROUNDCOLOR ColorEnum {pin=1 recoverWhile=BackgroundcolorAttr_recover} //TODO color
-private BackgroundcolorAttr_recover ::= !(END | BACKGROUNDCOLOR)
+private BackgroundcolorAttr ::= BACKGROUNDCOLOR ColorEnum {pin=1 recoverWhile=global_attribute_recover} //TODO color
 
-private BrowseformatAttr ::= BROWSEFORMAT string {pin=1 recoverWhile=BrowseformatAttr_recover}
-private BrowseformatAttr_recover ::= !(END | BROWSEFORMAT)
+private BrowseformatAttr ::= BROWSEFORMAT string {pin=1 recoverWhile=global_attribute_recover}
 
-private BufferAttr ::= BUFFER ( integer | double ) {pin=1 recoverWhile=BufferAttr_recover}
-private BufferAttr_recover ::= !(END | BUFFER)
+private BufferAttr ::= BUFFER ( integer | double ) {pin=1 recoverWhile=global_attribute_recover}
 
-private CharacterAttr ::= CHARACTER string {pin=1 recoverWhile=CharacterAttr_recover} // TODO char
-private CharacterAttr_recover ::= !(END | CHARACTER)
+private CharacterAttr ::= CHARACTER string {pin=1 recoverWhile=global_attribute_recover} // TODO char
 
-private ClassgroupAttr ::= CLASSGROUP string {pin=1 recoverWhile=ClassgroupAttr_recover}
-private ClassgroupAttr_recover ::= !(END | CLASSGROUP)
+private ClassgroupAttr ::= CLASSGROUP string {pin=1 recoverWhile=global_attribute_recover}
 
-private ClassitemAttr ::= CLASSITEM string {pin=1 recoverWhile=ClassitemAttr_recover}
-private ClassitemAttr_recover ::= !(END | CLASSITEM)
+private ClassitemAttr ::= CLASSITEM string {pin=1 recoverWhile=global_attribute_recover}
 
-private ColorAttr ::= COLOR ColorEnum {pin=1 recoverWhile=ColorAttr_recover} //TODO color
-private ColorAttr_recover ::= !(END | COLOR)
-private ColorClassAttr ::= COLOR ColorClassEnum {pin=1 recoverWhile=ColorClassAttr_recover}
-private ColorClassAttr_recover ::= !(END | COLOR)
+private ColorAttr ::= COLOR ColorEnum {pin=1 recoverWhile=global_attribute_recover} //TODO color
+private ColorClassAttr ::= COLOR ColorClassEnum {pin=1 recoverWhile=global_attribute_recover}
 
 private ConfigAttr ::= CONFIG (
     ( CGI_CONTEXT_URL string ) | ( MS_ENCRYPTION_KEY string ) | ( MS_ERRORFILE string ) | ( MS_NONSQUARE YesNoEnum )
-    | ( ON_MISSING_DATA OnMissingDataEnum ) | ( PROJ_LIB string ) )  {pin=1 recoverWhile=ConfigAttr_recover}
-    private ConfigAttr_recover ::= !(END | CONFIG)
+    | ( ON_MISSING_DATA OnMissingDataEnum ) | ( PROJ_LIB string ) )  {pin=1 recoverWhile=global_attribute_recover}
 
-private CompopAttr ::= COMPOP string {pin=1 recoverWhile=CompopAttr_recover} // TODO: keywords in string
-private CompopAttr_recover ::= !(END | COMPOP)
-private ConnectionAttr ::= CONNECTION string {pin=1 recoverWhile=ConnectionAttr_recover}
-private ConnectionAttr_recover ::= !(END | CONNECTION)
+private CompopAttr ::= COMPOP string {pin=1 recoverWhile=global_attribute_recover} // TODO: keywords in string
 
-private ConnectiontypeAttr ::= CONNECTIONTYPE ConnectiontypeEnum {pin=1 recoverWhile=ConnectiontypeAttr_recover}
-private ConnectiontypeAttr_recover ::= !(END | CONNECTIONTYPE)
-private ConnectiontypeJoinAttr ::= CONNECTIONTYPE ConnectiontypeJoinEnum {pin=1 recoverWhile=ConnectiontypeJoinAttr_recover}
-private ConnectiontypeJoinAttr_recover ::= !(END | CONNECTIONTYPE)
+private ConnectionAttr ::= CONNECTION string {pin=1 recoverWhile=global_attribute_recover}
 
-private DataAttr ::= DATA string {pin=1 recoverWhile=DataAttr_recover}
-private DataAttr_recover ::= !(END | DATA)
+private ConnectiontypeAttr ::= CONNECTIONTYPE ConnectiontypeEnum {pin=1 recoverWhile=global_attribute_recover}
+private ConnectiontypeJoinAttr ::= CONNECTIONTYPE ConnectiontypeJoinEnum {pin=1 recoverWhile=global_attribute_recover}
 
-private DatapatternAttr ::= DATAPATTERN string {pin=1 recoverWhile=DatapatternAttr_recover} // TODO: regular expression
-private DatapatternAttr_recover ::= !(END | DATAPATTERN)
+private DataAttr ::= DATA string {pin=1 recoverWhile=global_attribute_recover}
 
-private DebugAttr ::= DEBUG DebugEnum {pin=1 recoverWhile=DebugAttr_recover}
-private DebugAttr_recover ::= !(END | DEBUG)
-private DebugClassAttr ::= DEBUG BooleanEnum {pin=1 recoverWhile=DebugClassAttr_recover}
-private DebugClassAttr_recover ::= !(END | DEBUG)
+private DatapatternAttr ::= DATAPATTERN string {pin=1 recoverWhile=global_attribute_recover} // TODO: regular expression
 
-private DefresolutionAttr ::= DEFRESOLUTION integer {pin=1 recoverWhile=DefresolutionAttr_recover}
-private DefresolutionAttr_recover ::= !(END | DEFRESOLUTION)
+private DebugAttr ::= DEBUG DebugEnum {pin=1 recoverWhile=global_attribute_recover}
+private DebugClassAttr ::= DEBUG BooleanEnum {pin=1 recoverWhile=global_attribute_recover}
 
-private DumpAttr ::= DUMP BooleanEnum {pin=1 recoverWhile=DumpAttr_recover}
-private DumpAttr_recover ::= !(END | DUMP)
+private DefresolutionAttr ::= DEFRESOLUTION integer {pin=1 recoverWhile=global_attribute_recover}
 
-private EmptyAttr ::= EMPTY string {pin=1 recoverWhile=EmptyAttr_recover} // TODO: url
-private EmptyAttr_recover ::= !(END | EMPTY)
+private DumpAttr ::= DUMP BooleanEnum {pin=1 recoverWhile=global_attribute_recover}
 
-private EncodingAttr ::= ENCODING string {pin=1 recoverWhile=EncodingAttr_recover}
-private EncodingAttr_recover ::= !(END | ENCODING)
+private EmptyAttr ::= EMPTY string {pin=1 recoverWhile=global_attribute_recover} // TODO: url
 
-private ErrorAttr ::= ERROR string {pin=1 recoverWhile=ErrorAttr_recover} // TODO: url
-private ErrorAttr_recover ::= !(END | ERROR)
+private EncodingAttr ::= ENCODING string {pin=1 recoverWhile=global_attribute_recover}
 
-private ExpressionAttr ::= EXPRESSION ExpressionEnum {pin=1 recoverWhile=ExpressionAttr_recover}
-private ExpressionAttr_recover ::= !(END | EXPRESSION)
+private ErrorAttr ::= ERROR string {pin=1 recoverWhile=global_attribute_recover} // TODO: url
+
+private ExpressionAttr ::= EXPRESSION ExpressionEnum {pin=1 recoverWhile=global_attribute_recover}
 
 private ExtentAttr ::= EXTENT ( integer | double ) ( integer | double ) ( integer | double ) ( integer | double ) {pin=1 recoverWhile=ExtentAttr_recover}
-private ExtentAttr_recover ::= !(END | EXTENT)
 
-private FilledAttr ::= FILLED BooleanEnum {pin=1 recoverWhile=FilledAttr_recover}
-private FilledAttr_recover ::= !(END | FILLED)
-private FilterAttr ::= FILTER ExpressionEnum {pin=1 recoverWhile=FilterAttr_recover} // TODO: expression!
-private FilterAttr_recover ::= !(END | FILTER)
-private FilteritemAttr ::= FILTERITEM string {pin=1 recoverWhile=FilteritemAttr_recover}
-private FilteritemAttr_recover ::= !(END | FILTERITEM)
+private FilledAttr ::= FILLED BooleanEnum {pin=1 recoverWhile=global_attribute_recover}
+private FilterAttr ::= FILTER ExpressionEnum {pin=1 recoverWhile=global_attribute_recover} // TODO: expression!
+private FilteritemAttr ::= FILTERITEM string {pin=1 recoverWhile=global_attribute_recover}
 
-private FontAttr ::= FONT string {pin=1 recoverWhile=FontAttr_recover} // TODO must be defined in fontset!
-private FontAttr_recover ::= !(END | FONT)
-private FontLabelAttr ::= FONT ( string | attributeToken ) {pin=1 recoverWhile=FontLabelAttr_recover} // TODO must be defined in fontset!
-private FontLabelAttr_recover ::= !(END | FONT)
+private FontAttr ::= FONT string {pin=1 recoverWhile=global_attribute_recover} // TODO must be defined in fontset!
+private FontLabelAttr ::= FONT ( string | attributeToken ) {pin=1 recoverWhile=global_attribute_recover} // TODO must be defined in fontset!
 
-private FontsetAttr ::= FONTSET string {pin=1 recoverWhile=FontsetAttr_recover} // TODO: file
-private FontsetAttr_recover ::= !(END | FONTSET)
+private FontsetAttr ::= FONTSET string {pin=1 recoverWhile=global_attribute_recover} // TODO: file
 
-private FooterAttr ::= FOOTER string {pin=1 recoverWhile=FooterAttr_recover} // TODO: filename
-private FooterAttr_recover ::= !(END | END)
+private FooterAttr ::= FOOTER string {pin=1 recoverWhile=global_attribute_recover} // TODO: filename
 
-private ForceAttr ::= FORCE BooleanEnum {pin=1 recoverWhile=ForceAttr_recover}
-private ForceAttr_recover ::= !(END | FORCE)
+private ForceAttr ::= FORCE BooleanEnum {pin=1 recoverWhile=global_attribute_recover}
 
-private FromAttr ::= FROM string {pin=1 recoverWhile=FromAttr_recover}
-private FromAttr_recover ::= !(END | FROM)
+private FromAttr ::= FROM string {pin=1 recoverWhile=global_attribute_recover}
 
-private GapAttr ::= GAP double {pin=1 recoverWhile=GapAttr_recover}
-private GapAttr_recover ::= !(END | GAP)
+private GapAttr ::= GAP double {pin=1 recoverWhile=global_attribute_recover}
 
-private GeomtransformAttr ::= GEOMTRANSFORM string {pin=1 recoverWhile=GeomtransformAttr_recover} // TODO: [<expression>|<Javascript file>]
-private GeomtransformAttr_recover ::= !(END | GEOMTRANSFORM)
-private GeomtransformClassAttr ::= GEOMTRANSFORM GeomtransformClassEnum {pin=1 recoverWhile=GeomtransformClassAttr_recover}
-private GeomtransformClassAttr_recover ::= !(END | GEOMTRANSFORM)
+private GeomtransformAttr ::= GEOMTRANSFORM string {pin=1 recoverWhile=global_attribute_recover} // TODO: [<expression>|<Javascript file>]
+private GeomtransformClassAttr ::= GEOMTRANSFORM GeomtransformClassEnum {pin=1 recoverWhile=global_attribute_recover}
 
-private GridstepAttr ::= GRIDSTEP integer {pin=1 recoverWhile=GridstepAttr_recover}
-private GridstepAttr_recover ::= !(END | GRIDSTEP)
+private GridstepAttr ::= GRIDSTEP integer {pin=1 recoverWhile=global_attribute_recover}
 
-private GroupAttr ::= GROUP string {pin=1 recoverWhile=GroupAttr_recover}
-private GroupAttr_recover ::= !(END | GROUP)
+private GroupAttr ::= GROUP string {pin=1 recoverWhile=global_attribute_recover}
 
-private HeaderAttr ::= HEADER string {pin=1 recoverWhile=HeaderAttr_recover} // TODO: filename
-private HeaderAttr_recover ::= !(END | HEADER)
+private HeaderAttr ::= HEADER string {pin=1 recoverWhile=global_attribute_recover} // TODO: filename
 
-private ImageAttr ::= IMAGE string {pin=1 recoverWhile=ImageAttr_recover}
-private ImageAttr_recover ::= !(END | IMAGE)
+private ImageAttr ::= IMAGE string {pin=1 recoverWhile=global_attribute_recover}
 
-private ImagecolorAttr ::= IMAGECOLOR ColorEnum {pin=1 recoverWhile=ImagecolorAttr_recover} // TODO: hex or RGB
-private ImagecolorAttr_recover ::= !(END | IMAGECOLOR)
+private ImagecolorAttr ::= IMAGECOLOR ColorEnum {pin=1 recoverWhile=global_attribute_recover} // TODO: hex or RGB
 
-private ImagepathAttr ::= IMAGEPATH string {pin=1 recoverWhile=ImagepathAttr_recover} // TODO: path
-private ImagepathAttr_recover ::= !(END | IMAGEPATH)
+private ImagepathAttr ::= IMAGEPATH string {pin=1 recoverWhile=global_attribute_recover} // TODO: path
 
-private ImagetypeAttr ::= IMAGETYPE ImagetypeEnum {pin=1 recoverWhile=ImagetypeAttr_recover} // TODO: must match one of the defined ones in OutputfomatObject
-private ImagetypeAttr_recover ::= !(END | IMAGETYPE)
+private ImagetypeAttr ::= IMAGETYPE ImagetypeEnum {pin=1 recoverWhile=global_attribute_recover} // TODO: must match one of the defined ones in OutputfomatObject
 
-private ImageurlAttr ::= IMAGEURL string {pin=1 recoverWhile=ImageurlAttr_recover} // TODO path? url?
-private ImageurlAttr_recover ::= !(END | IMAGEURL)
+private ImageurlAttr ::= IMAGEURL string {pin=1 recoverWhile=global_attribute_recover} // TODO path? url?
 
-private InitialgapAttr ::= INITIALGAP integer {pin=1 recoverWhile=InitialgapAttr_recover}
-private InitialgapAttr_recover ::= !(END | INITIALGAP)
+private InitialgapAttr ::= INITIALGAP integer {pin=1 recoverWhile=global_attribute_recover}
 
-private InterlaceAttr ::= INTERLACE OnOffEnum {pin=1 recoverWhile=InterlaceAttr_recover}
-private InterlaceAttr_recover ::= !(END | INTERLACE)
+private InterlaceAttr ::= INTERLACE OnOffEnum {pin=1 recoverWhile=global_attribute_recover}
 
-private ItemsAttr ::= ITEMS string {pin=1 recoverWhile=ItemsAttr_recover} // TODO: comma separated list
-private ItemsAttr_recover ::= !(END | ITEMS)
+private ItemsAttr ::= ITEMS string {pin=1 recoverWhile=global_attribute_recover} // TODO: comma separated list
 
-private KeyimageAttr ::= KEYIMAGE string {pin=1 recoverWhile=KeyimageAttr_recover} // TODO filename
-private KeyimageAttr_recover ::= !(END | KEYIMAGE)
+private KeyimageAttr ::= KEYIMAGE string {pin=1 recoverWhile=global_attribute_recover} // TODO filename
 
-private KeysizeAttr ::= KEYSIZE integer integer {pin=1 recoverWhile=KeysizeAttr_recover}
-private KeysizeAttr_recover ::= !(END | KEYSIZE)
+private KeysizeAttr ::= KEYSIZE integer integer {pin=1 recoverWhile=global_attribute_recover}
 
-private KeyspacingAttr ::= KEYSPACING integer integer {pin=1 recoverWhile=KeyspacingAttr_recover}
-private KeyspacingAttr_recover ::= !(END | KEYSPACING)
+private KeyspacingAttr ::= KEYSPACING integer integer {pin=1 recoverWhile=global_attribute_recover}
 
-private LabelcacheAttr ::= LABELCACHE OnOffEnum {pin=1 recoverWhile=LabelcacheAttr_recover}
-private LabelcacheAttr_recover ::= !(END | LABELCACHE)
+private LabelcacheAttr ::= LABELCACHE OnOffEnum {pin=1 recoverWhile=global_attribute_recover}
 
-private LabelformatAttr ::= LABELFORMAT LabelFormatEnum {pin=1 recoverWhile=LabelformatAttr_recover}
-private LabelformatAttr_recover ::= !(END | LABELFORMAT)
+private LabelformatAttr ::= LABELFORMAT LabelFormatEnum {pin=1 recoverWhile=global_attribute_recover}
 
-private LabelitemAttr ::= LABELITEM string {pin=1 recoverWhile=LabelitemAttr_recover}
-private LabelitemAttr_recover ::= !(END | LABELITEM)
+private LabelitemAttr ::= LABELITEM string {pin=1 recoverWhile=global_attribute_recover}
 
-private LabelmaxscaledenomAttr ::= LABELMAXSCALEDENOM ( integer | double ) {pin=1 recoverWhile=LabelmaxscaledenomAttr_recover}
-private LabelmaxscaledenomAttr_recover ::= !(END | LABELMAXSCALEDENOM)
+private LabelmaxscaledenomAttr ::= LABELMAXSCALEDENOM ( integer | double ) {pin=1 recoverWhile=global_attribute_recover}
 
-private LabelminscaledenomAttr ::= LABELMINSCALEDENOM ( integer | double ) {pin=1 recoverWhile=LabelminscaledenomAttr_recover}
-private LabelminscaledenomAttr_recover ::= !(END | LABELMINSCALEDENOM)
+private LabelminscaledenomAttr ::= LABELMINSCALEDENOM ( integer | double ) {pin=1 recoverWhile=global_attribute_recover}
 
-private LabelrequiresAttr ::= LABELREQUIRES string {pin=1 recoverWhile=LabelrequiresAttr_recover} // TODO: expression
-private LabelrequiresAttr_recover ::= !(END | LABELREQUIRES)
+private LabelrequiresAttr ::= LABELREQUIRES string {pin=1 recoverWhile=global_attribute_recover} // TODO: expression
 
-private LegendformatAttr ::= LEGENDFORMAT string {pin=1 recoverWhile=LegendformatAttr_recover}
-private LegendformatAttr_recover ::= !(END | LEGENDFORMAT)
+private LegendformatAttr ::= LEGENDFORMAT string {pin=1 recoverWhile=global_attribute_recover}
 
-private LinecapAttr ::= LINECAP LinecapEnum {pin=1 recoverWhile=LinecapAttr_recover}
-private LinecapAttr_recover ::= !(END | LINECAP)
+private LinecapAttr ::= LINECAP LinecapEnum {pin=1 recoverWhile=global_attribute_recover}
 
-private LinejoinAttr ::= LINEJOIN LinejoinEnum {pin=1 recoverWhile=LinejoinAttr_recover}
-private LinejoinAttr_recover ::= !(END | LINEJOIN)
+private LinejoinAttr ::= LINEJOIN LinejoinEnum {pin=1 recoverWhile=global_attribute_recover}
 
-private LinejoinmaxsizeAttr ::= LINEJOINMAXSIZE integer {pin=1 recoverWhile=LinejoinmaxsizeAttr_recover}
-private LinejoinmaxsizeAttr_recover ::= !(END | LINEJOINMAXSIZE)
+private LinejoinmaxsizeAttr ::= LINEJOINMAXSIZE integer {pin=1 recoverWhile=global_attribute_recover}
 
-private MarkerAttr ::= MARKER ( integer | string) {pin=1 recoverWhile=MarkerAttr_recover}
-private MarkerAttr_recover ::= !(END | MARKER)
+private MarkerAttr ::= MARKER ( integer | string) {pin=1 recoverWhile=global_attribute_recover}
 
-private MarkersizeAttr ::= MARKERSIZE integer {pin=1 recoverWhile=MarkersizeAttr_recover}
-private MarkersizeAttr_recover ::= !(END | MARKERSIZE)
+private MarkersizeAttr ::= MARKERSIZE integer {pin=1 recoverWhile=global_attribute_recover}
 
-private MaskAttr ::= MASK string {pin=1 recoverWhile=MaskAttr_recover} // TODO: layername validation
-private MaskAttr_recover ::= !(END | MASK)
+private MaskAttr ::= MASK string {pin=1 recoverWhile=global_attribute_recover} // TODO: layername validation
 
-private MaxarcsAttr ::= MAXARCS double {pin=1 recoverWhile=MaxarcsAttr_recover}
-private MaxarcsAttr_recover ::= !(END | MAXARCS)
+private MaxarcsAttr ::= MAXARCS double {pin=1 recoverWhile=global_attribute_recover}
 
-private MaxboxsizeAttr ::= MAXBOXSIZE integer {pin=1 recoverWhile=MaxboxsizeAttr_recover}
-private MaxboxsizeAttr_recover ::= !(END | MAXBOXSIZE)
+private MaxboxsizeAttr ::= MAXBOXSIZE integer {pin=1 recoverWhile=global_attribute_recover}
 
-private MaxdistanceAttr ::= MAXDISTANCE ( integer | double ) {pin=1 recoverWhile=MaxdistanceAttr_recover}
-private MaxdistanceAttr_recover ::= !(END | MAXDISTANCE)
+private MaxdistanceAttr ::= MAXDISTANCE ( integer | double ) {pin=1 recoverWhile=global_attribute_recover}
 
-private MaxfeaturesAttr ::= MAXFEATURES integer {pin=1 recoverWhile=MaxfeaturesAttr_recover}
-private MaxfeaturesAttr_recover ::= !(END | MAXFEATURES)
+private MaxfeaturesAttr ::= MAXFEATURES integer {pin=1 recoverWhile=global_attribute_recover}
 
-private MaxgeowidthAttr ::= MAXGEOWIDTH ( integer | double ) {pin=1 recoverWhile=MaxgeowidthAttr_recover}
-private MaxgeowidthAttr_recover ::= !(END | MAXGEOWIDTH)
+private MaxgeowidthAttr ::= MAXGEOWIDTH ( integer | double ) {pin=1 recoverWhile=global_attribute_recover}
 
-private MaxintervalAttr ::= MAXINTERVAL ( integer | double ) {pin=1 recoverWhile=MaxintervalAttr_recover}
-private MaxintervalAttr_recover ::= !(END | MAXINTERVAL)
+private MaxintervalAttr ::= MAXINTERVAL ( integer | double ) {pin=1 recoverWhile=global_attribute_recover}
 
-private MaxlengthAttr ::= MAXLENGTH integer {pin=1 recoverWhile=MaxlengthAttr_recover}
-private MaxlengthAttr_recover ::= !(END | MAXLENGTH)
+private MaxlengthAttr ::= MAXLENGTH integer {pin=1 recoverWhile=global_attribute_recover}
 
-private MaxoverlapangleAttr ::= MAXOVERLAPANGLE ( integer | double ) {pin=1 recoverWhile=MaxoverlapangleAttr_recover}
-private MaxoverlapangleAttr_recover ::= !(END | MAXOVERLAPANGLE)
+private MaxoverlapangleAttr ::= MAXOVERLAPANGLE ( integer | double ) {pin=1 recoverWhile=global_attribute_recover}
 
-private MaxscaledenomAttr ::= MAXSCALEDENOM ( integer | double ) {pin=1 recoverWhile=MaxscaledenomAttr_recover}
-private MaxscaledenomAttr_recover ::= !(END | MAXSCALEDENOM)
+private MaxscaledenomAttr ::= MAXSCALEDENOM ( integer | double ) {pin=1 recoverWhile=global_attribute_recover}
 
-private MaxsizeAttr ::= MAXSIZE integer {pin=1 recoverWhile=MaxsizeAttr_recover}
-private MaxsizeAttr_recover ::= !(END | MAXSIZE)
+private MaxsizeAttr ::= MAXSIZE integer {pin=1 recoverWhile=global_attribute_recover}
 
-private MaxsubdivideAttr ::= MAXSUBDIVIDE ( integer | double ) {pin=1 recoverWhile=MaxsubdivideAttr_recover}
-private MaxsubdivideAttr_recover ::= !(END | MAXSUBDIVIDE)
+private MaxsubdivideAttr ::= MAXSUBDIVIDE ( integer | double ) {pin=1 recoverWhile=global_attribute_recover}
 
-private MaxtemplateAttr ::= MAXTEMPLATE string {pin=1 recoverWhile=MaxtemplateAttr_recover} // TODO: [file/url]
-private MaxtemplateAttr_recover ::= !(END | MAXTEMPLATE)
+private MaxtemplateAttr ::= MAXTEMPLATE string {pin=1 recoverWhile=global_attribute_recover} // TODO: [file/url]
 
-private MaxwidthAttr ::= MAXWIDTH ( integer | double ) {pin=1 recoverWhile=MaxwidthAttr_recover}
-private MaxwidthAttr_recover ::= !(END | MAXWIDTH)
+private MaxwidthAttr ::= MAXWIDTH ( integer | double ) {pin=1 recoverWhile=global_attribute_recover}
 
-private MinarcsAttr ::= MINARCS ( integer | double ) {pin=1 recoverWhile=MinarcsAttr_recover}
-private MinarcsAttr_recover ::= !(END | MINARCS)
+private MinarcsAttr ::= MINARCS ( integer | double ) {pin=1 recoverWhile=global_attribute_recover}
 
-private MinboxsizeAttr ::= MINBOXSIZE integer {pin=1 recoverWhile=MinboxsizeAttr_recover}
-private MinboxsizeAttr_recover ::= !(END | MINBOXSIZE)
+private MinboxsizeAttr ::= MINBOXSIZE integer {pin=1 recoverWhile=global_attribute_recover}
 
-private MindistanceAttr ::= MINDISTANCE ( integer | double ) {pin=1 recoverWhile=MindistanceAttr_recover}
-private MindistanceAttr_recover ::= !(END | MINDISTANCE)
+private MindistanceAttr ::= MINDISTANCE ( integer | double ) {pin=1 recoverWhile=global_attribute_recover}
 
-private MinfeaturesizeAttr ::= MINFEATURESIZE MinfeaturesizeEnum {pin=1 recoverWhile=MinfeaturesizeAttr_recover}
-private MinfeaturesizeAttr_recover ::= !(END | MINFEATURESIZE)
+private MinfeaturesizeAttr ::= MINFEATURESIZE MinfeaturesizeEnum {pin=1 recoverWhile=global_attribute_recover}
 
-private MingeowidthAttr ::= MINGEOWIDTH ( integer | double ) {pin=1 recoverWhile=MingeowidthAttr_recover}
-private MingeowidthAttr_recover ::= !(END | MINGEOWIDTH)
+private MingeowidthAttr ::= MINGEOWIDTH ( integer | double ) {pin=1 recoverWhile=global_attribute_recover}
 
-private MinintervalAttr ::= MININTERVAL ( integer | double ) {pin=1 recoverWhile=MinintervalAttr_recover}
-private MinintervalAttr_recover ::= !(END | MININTERVAL)
+private MinintervalAttr ::= MININTERVAL ( integer | double ) {pin=1 recoverWhile=global_attribute_recover}
 
-private MinscaledenomAttr ::= MINSCALEDENOM ( integer | double ) {pin=1 recoverWhile=MinscaledenomAttr_recover}
-private MinscaledenomAttr_recover ::= !(END | MINSCALEDENOM)
+private MinscaledenomAttr ::= MINSCALEDENOM ( integer | double ) {pin=1 recoverWhile=global_attribute_recover}
 
-private MinsizeAttr ::= MINSIZE integer {pin=1 recoverWhile=MinsizeAttr_recover}
-private MinsizeAttr_recover ::= !(END | MINSIZE)
+private MinsizeAttr ::= MINSIZE integer {pin=1 recoverWhile=global_attribute_recover}
 
-private MinsubdivideAttr ::= MINSUBDIVIDE ( integer | double ) {pin=1 recoverWhile=MinsubdivideAttr_recover}
-private MinsubdivideAttr_recover ::= !(END | MINSUBDIVIDE)
+private MinsubdivideAttr ::= MINSUBDIVIDE ( integer | double ) {pin=1 recoverWhile=global_attribute_recover}
 
-private MintemplateAttr ::= MINTEMPLATE string {pin=1 recoverWhile=MintemplateAttr_recover} // TODO: [file/url]
-private MintemplateAttr_recover ::= !(END | MINTEMPLATE)
+private MintemplateAttr ::= MINTEMPLATE string {pin=1 recoverWhile=global_attribute_recover} // TODO: [file/url]
 
-private MinwidthAttr ::= MINWIDTH ( integer | double ) {pin=1 recoverWhile=MinwidthAttr_recover}
-private MinwidthAttr_recover ::= !(END | MINWIDTH)
+private MinwidthAttr ::= MINWIDTH ( integer | double ) {pin=1 recoverWhile=global_attribute_recover}
 
-private NameAttr ::= NAME string {pin=1 recoverWhile=NameAttr_recover} // TODO: Unique check
-private NameAttr_recover ::= !(END | NAME)
+private NameAttr ::= NAME string {pin=1 recoverWhile=global_attribute_recover} // TODO: Unique check
 
-private OffsetAttr ::= OFFSET ( integer | double ) ( integer | double ) {pin=1 recoverWhile=OffsetAttr_recover}
-private OffsetAttr_recover ::= !(END | OFFSET)
+private OffsetAttr ::= OFFSET ( integer | double ) ( integer | double ) {pin=1 recoverWhile=global_attribute_recover}
 
-private OffsiteAttr ::= OFFSITE ColorEnum {pin=1 recoverWhile=OffsiteAttr_recover}
-private OffsiteAttr_recover ::= !(END | OFFSITE)
+private OffsiteAttr ::= OFFSITE ColorEnum {pin=1 recoverWhile=global_attribute_recover}
 
-private OpacityAttr ::= OPACITY integer {pin=1 recoverWhile=OpacityAttr_recover} // TODO: 0-100
-private OpacityAttr_recover ::= !(END | OPACITY)
-private OpacityClassAttr ::= OPACITY ( integer | attributeToken ) {pin=1 recoverWhile=OpacityClassAttr_recover}
-private OpacityClassAttr_recover ::= !(END | OPACITY)
+private OpacityAttr ::= OPACITY integer {pin=1 recoverWhile=global_attribute_recover} // TODO: 0-100
+private OpacityClassAttr ::= OPACITY ( integer | attributeToken ) {pin=1 recoverWhile=global_attribute_recover}
 
-private OutlinecolorAttr ::= OUTLINECOLOR ColorEnum {pin=1 recoverWhile=OutlinecolorAttr_recover} // TODO color
-private OutlinecolorAttr_recover ::= !(END | OUTLINECOLOR)
-private OutlinecolorClassAttr ::= OUTLINECOLOR ColorClassEnum {pin=1 recoverWhile=OutlinecolorClassAttr_recover}
-private OutlinecolorClassAttr_recover ::= !(END | OUTLINECOLOR)
+private OutlinecolorAttr ::= OUTLINECOLOR ColorEnum {pin=1 recoverWhile=global_attribute_recover} // TODO color
+private OutlinecolorClassAttr ::= OUTLINECOLOR ColorClassEnum {pin=1 recoverWhile=global_attribute_recover}
 
-private OutlinewidthAttr ::= OUTLINEWIDTH ( double | attributeToken ) {pin=1 recoverWhile=OutlinewidthAttr_recover}
-private OutlinewidthAttr_recover ::= !(END | OUTLINEWIDTH)
+private OutlinewidthAttr ::= OUTLINEWIDTH ( double | attributeToken ) {pin=1 recoverWhile=global_attribute_recover}
 
-private PartialsAttr ::= PARTIALS BooleanEnum {pin=1 recoverWhile=PartialsAttr_recover}
-private PartialsAttr_recover ::= !(END | PARTIALS)
+private PartialsAttr ::= PARTIALS BooleanEnum {pin=1 recoverWhile=global_attribute_recover}
 
-private PluginAttr ::= PLUGIN string {pin=1 recoverWhile=PluginAttr_recover} // TODO: filename
-private PluginAttr_recover ::= !(END | PLUGIN)
+private PluginAttr ::= PLUGIN string {pin=1 recoverWhile=global_attribute_recover} // TODO: filename
 
-private PolaroffsetAttr ::= POLAROFFSET ( ( double | attributeToken ) ( double | attributeToken ) ) {pin=1 recoverWhile=PolaroffsetAttr_recover}
-private PolaroffsetAttr_recover ::= !(END | POLAROFFSET)
+private PolaroffsetAttr ::= POLAROFFSET ( ( double | attributeToken ) ( double | attributeToken ) ) {pin=1 recoverWhile=global_attribute_recover}
 
-private PositionAttr ::= POSITION PositionEnum {pin=1 recoverWhile=PositionAttr_recover}
-private PositionAttr_recover ::= !(END | POSITION)
+private PositionAttr ::= POSITION PositionEnum {pin=1 recoverWhile=global_attribute_recover}
 
-private PostlabelcacheAttr ::= POSTLABELCACHE BooleanEnum {pin=1 recoverWhile=PostlabelcacheAttr_recover}
-private PostlabelcacheAttr_recover ::= !(END | POSTLABELCACHE)
+private PostlabelcacheAttr ::= POSTLABELCACHE BooleanEnum {pin=1 recoverWhile=global_attribute_recover}
 
-private PriorityAttr ::= PRIORITY ( integer | string | attributeToken ) {pin=1 recoverWhile=PriorityAttr_recover}
-private PriorityAttr_recover ::= !(END | PRIORITY)
+private PriorityAttr ::= PRIORITY ( integer | string | attributeToken ) {pin=1 recoverWhile=global_attribute_recover}
 
-private ProcessingAttr ::= PROCESSING string {pin=1 recoverWhile=ProcessingAttr_recover} // TODO: keywords in string!!
-private ProcessingAttr_recover ::= !(END | PROCESSING)
+private ProcessingAttr ::= PROCESSING string {pin=1 recoverWhile=global_attribute_recover} // TODO: keywords in string!!
 
-private QueryformatAttr ::= QUERYFORMAT string {pin=1 recoverWhile=QueryformatAttr_recover}
-private QueryformatAttr_recover ::= !(END | QUERYFORMAT)
+private QueryformatAttr ::= QUERYFORMAT string {pin=1 recoverWhile=global_attribute_recover}
 
-private RegionAttr ::= REGION string {pin=1 recoverWhile=RegionAttr_recover}
-private RegionAttr_recover ::= !(END | REGION)
+private RegionAttr ::= REGION string {pin=1 recoverWhile=global_attribute_recover}
 
-private RepeatdistanceAttr ::= REPEATDISTANCE integer {pin=1 recoverWhile=RepeatdistanceAttr_recover}
-private RepeatdistanceAttr_recover ::= !(END | REPEATDISTANCE)
+private RepeatdistanceAttr ::= REPEATDISTANCE integer {pin=1 recoverWhile=global_attribute_recover}
 
-private RequiresAttr ::= REQUIRES string {pin=1 recoverWhile=RequiresAttr_recover} // TODO: expression
-private RequiresAttr_recover ::= !(END | REQUIRES)
+private RequiresAttr ::= REQUIRES string {pin=1 recoverWhile=global_attribute_recover} // TODO: expression
 
-private ResolutionAttr ::= RESOLUTION integer {pin=1 recoverWhile=ResolutionAttr_recover}
-private ResolutionAttr_recover ::= !(END | RESOLUTION)
+private ResolutionAttr ::= RESOLUTION integer {pin=1 recoverWhile=global_attribute_recover}
 
-private ScaledenomAttr ::= SCALEDENOM ( integer | double ) {pin=1 recoverWhile=ScaledenomAttr_recover}
-private ScaledenomAttr_recover ::= !(END | SCALEDENOM)
+private ScaledenomAttr ::= SCALEDENOM ( integer | double ) {pin=1 recoverWhile=global_attribute_recover}
 
-private ShadowcolorAttr ::= SHADOWCOLOR ColorEnum {pin=1 recoverWhile=ShadowcolorAttr_recover}
-private ShadowcolorAttr_recover ::= !(END | SHADOWCOLOR)
+private ShadowcolorAttr ::= SHADOWCOLOR ColorEnum {pin=1 recoverWhile=global_attribute_recover}
 
-private ShadowsizeAttr ::= SHADOWSIZE ( ( integer | attributeToken ) ( integer | attributeToken ) ) {pin=1 recoverWhile=ShadowsizeAttr_recover}
-private ShadowsizeAttr_recover ::= !(END | SHADOWSIZE)
+private ShadowsizeAttr ::= SHADOWSIZE ( ( integer | attributeToken ) ( integer | attributeToken ) ) {pin=1 recoverWhile=global_attribute_recover}
 
-private ShapepathAttr ::= SHAPEPATH string {pin=1 recoverWhile=ShapepathAttr_recover} // TODO: directory
-private ShapepathAttr_recover ::= !(END | SHAPEPATH)
+private ShapepathAttr ::= SHAPEPATH string {pin=1 recoverWhile=global_attribute_recover} // TODO: directory
 
-private SizeAttr ::= SIZE integer integer {pin=1 recoverWhile=SizeAttr_recover}
-private SizeAttr_recover ::= !(END | SIZE)
-private SizeClassAttr ::= SIZE ( double | attributeToken ) {pin=1 recoverWhile=SizeClassAttr_recover}
-private SizeClassAttr_recover ::= !(END | SIZE)
-private SizeLabelAttr ::= SIZE SizeLabelEnum {pin=1 recoverWhile=SizeLabelAttr_recover}
-private SizeLabelAttr_recover ::= !(END | SIZE)
+private SizeAttr ::= SIZE integer integer {pin=1 recoverWhile=global_attribute_recover}
+private SizeClassAttr ::= SIZE ( double | attributeToken ) {pin=1 recoverWhile=global_attribute_recover}
+private SizeLabelAttr ::= SIZE SizeLabelEnum {pin=1 recoverWhile=global_attribute_recover}
 
-private SizeunitsAttr ::= SIZEUNITS SizeUnitEnum {pin=1 recoverWhile=SizeunitsAttr_recover}
-private SizeunitsAttr_recover ::= !(END | SIZEUNITS)
+private SizeunitsAttr ::= SIZEUNITS SizeUnitEnum {pin=1 recoverWhile=global_attribute_recover}
 
-private StatusAttr ::= STATUS StatusEnum {pin=1 recoverWhile=StatusAttr_recover}
-private StatusAttr_recover ::= !(END | STATUS)
+private StatusAttr ::= STATUS StatusEnum {pin=1 recoverWhile=global_attribute_recover}
 
-private StyleitemAttr ::= STYLEITEM string {pin=1 recoverWhile=StyleitemAttr_recover} // TODO: [<attribute>|auto|<javascript file>]
-private StyleitemAttr_recover ::= !(END | STYLEITEM)
+private StyleitemAttr ::= STYLEITEM string {pin=1 recoverWhile=global_attribute_recover} // TODO: [<attribute>|auto|<javascript file>]
 
-private StyleQuerymapAttr ::= STYLE StyleQuerymapEnum {pin=1 recoverWhile=StyleQuerymapAttr_recover}
-private StyleQuerymapAttr_recover ::= !(END | STYLE)
-private StyleScalebarAttr ::= STYLE ( 0 | 1) {pin=1 recoverWhile=StyleScalebarAttr_recover}
-private StyleScalebarAttr_recover ::= !(END | STYLE)
+private StyleQuerymapAttr ::= STYLE StyleQuerymapEnum {pin=1 recoverWhile=global_attribute_recover}
+private StyleScalebarAttr ::= STYLE ( 0 | 1) {pin=1 recoverWhile=global_attribute_recover}
 
-private SymbolClassAttr ::= SYMBOL (integer | string | attributeToken) {pin=1 recoverWhile=SymbolClassAttr_recover}
-private SymbolClassAttr_recover ::= !(END | SYMBOL)
+private SymbolClassAttr ::= SYMBOL (integer | string | attributeToken) {pin=1 recoverWhile=global_attribute_recover}
 
-private SymbolscaledenomAttr ::= SYMBOLSCALEDENOM double {pin=1 recoverWhile=SymbolscaledenomAttr_recover}
-private SymbolscaledenomAttr_recover ::= !(END | SYMBOLSCALEDENOM)
+private SymbolscaledenomAttr ::= SYMBOLSCALEDENOM double {pin=1 recoverWhile=global_attribute_recover}
 
-private SymbolsetAttr ::= SYMBOLSET string {pin=1 recoverWhile=SymbolsetAttr_recover} // TODO: file
-private SymbolsetAttr_recover ::= !(END | SYMBOLSET)
+private SymbolsetAttr ::= SYMBOLSET string {pin=1 recoverWhile=global_attribute_recover} // TODO: file
 
-private TableAttr ::= TABLE string {pin=1 recoverWhile=TableAttr_recover}
-private TableAttr_recover ::= !(END | TABLE)
+private TableAttr ::= TABLE string {pin=1 recoverWhile=global_attribute_recover}
 
-private TemplateAttr ::= TEMPLATE string {pin=1 recoverWhile=TemplateAttr_recover} // TODO: [file|url]
-private TemplateAttr_recover ::= !(END | TEMPLATE)
+private TemplateAttr ::= TEMPLATE string {pin=1 recoverWhile=global_attribute_recover} // TODO: [file|url]
 
-private TemplatepatternAttr ::= TEMPLATEPATTERN string {pin=1 recoverWhile=TemplatepatternAttr_recover} // TODO regex
-private TemplatepatternAttr_recover ::= !(END | TEMPLATEPATTERN)
+private TemplatepatternAttr ::= TEMPLATEPATTERN string {pin=1 recoverWhile=global_attribute_recover} // TODO regex
 
-private TemppathAttr ::= TEMPPATH string {pin=1 recoverWhile=TemppathAttr_recover} // TODO: path
-private TemppathAttr_recover ::= !(END | TEMPPATH)
+private TemppathAttr ::= TEMPPATH string {pin=1 recoverWhile=global_attribute_recover} // TODO: path
 
-private TextAttr ::= TEXT string {pin=1 recoverWhile=TextAttr_recover} // TODO string,expression
-private TextAttr_recover ::= !(END | TEXT)
+private TextAttr ::= TEXT string {pin=1 recoverWhile=global_attribute_recover} // TODO string,expression
 
-private TileindexAttr ::= TILEINDEX string {pin=1 recoverWhile=TileindexAttr_recover} // TODO: [filename|layername]
-private TileindexAttr_recover ::= !(END | TILEINDEX)
+private TileindexAttr ::= TILEINDEX string {pin=1 recoverWhile=global_attribute_recover} // TODO: [filename|layername]
 
-private TileitemAttr ::= TILEITEM string {pin=1 recoverWhile=TileitemAttr_recover} // TODO: [attribute]
-private TileitemAttr_recover ::= !(END | TILEITEM)
+private TileitemAttr ::= TILEITEM string {pin=1 recoverWhile=global_attribute_recover} // TODO: [attribute]
 
-private TilesrsAttr ::= TILESRS string {pin=1 recoverWhile=TilesrsAttr_recover} // TODO: [attribute]
-private TilesrsAttr_recover ::= !(END | TILESRS)
+private TilesrsAttr ::= TILESRS string {pin=1 recoverWhile=global_attribute_recover} // TODO: [attribute]
 
-private TitleAttr ::= TITLE string {pin=1 recoverWhile=TitleAttr_recover}
-private TitleAttr_recover ::= !(END | TITLE)
+private TitleAttr ::= TITLE string {pin=1 recoverWhile=global_attribute_recover}
 
-private ToAttr ::= TO string {pin=1 recoverWhile=ToAttr_recover}
-private ToAttr_recover ::= !(END | TO)
+private ToAttr ::= TO string {pin=1 recoverWhile=global_attribute_recover}
 
-private ToleranceAttr ::= TOLERANCE ( integer | double ) {pin=1 recoverWhile=ToleranceAttr_recover}
-private ToleranceAttr_recover ::= !(END | TOLERANCE)
+private ToleranceAttr ::= TOLERANCE ( integer | double ) {pin=1 recoverWhile=global_attribute_recover}
 
-private ToleranceunitsAttr ::= TOLERANCEUNITS ToleranceUnitEnum {pin=1 recoverWhile=ToleranceunitsAttr_recover}
-private ToleranceunitsAttr_recover ::= !(END | TOLERANCEUNITS)
+private ToleranceunitsAttr ::= TOLERANCEUNITS ToleranceUnitEnum {pin=1 recoverWhile=global_attribute_recover}
 
-private TransformAttr ::= TRANSFORM TransformEnum {pin=1 recoverWhile=TransformAttr_recover}
-private TransformAttr_recover ::= !(END | TRANSFORM)
+private TransformAttr ::= TRANSFORM TransformEnum {pin=1 recoverWhile=global_attribute_recover}
 
-private TransparentAttr ::= TRANSPARENT integer {pin=1 recoverWhile=TransparentAttr_recover} // TODO color-index
-private TransparentAttr_recover ::= !(END | TRANSPARENT)
+private TransparentAttr ::= TRANSPARENT integer {pin=1 recoverWhile=global_attribute_recover} // TODO color-index
 
-private TypeAttr ::= TYPE TypeEnum {pin=1 recoverWhile=TypeAttr_recover}
-private TypeAttr_recover ::= !(END | TYPE)
-private TypeJoinAttr ::= TYPE TypeJoinEnum {pin=1 recoverWhile=TypeJoinAttr_recover}
-private TypeJoinAttr_recover ::= !(END | TYPE)
-private TypeLabelAttr ::= TYPE TypeLabelEnum {pin=1 recoverWhile=TypeLabelAttr_recover}
-private TypeLabelAttr_recover ::= !(END | TYPE)
-private TypeSymbolAttr ::= TYPE TypeSymbolEnum {pin=1 recoverWhile=TypeSymbolAttr_recover}
-private TypeSymbolAttr_recover ::= !(END | TYPE)
+private TypeAttr ::= TYPE TypeEnum {pin=1 recoverWhile=global_attribute_recover}
+private TypeJoinAttr ::= TYPE TypeJoinEnum {pin=1 recoverWhile=global_attribute_recover}
+private TypeLabelAttr ::= TYPE TypeLabelEnum {pin=1 recoverWhile=global_attribute_recover}
+private TypeSymbolAttr ::= TYPE TypeSymbolEnum {pin=1 recoverWhile=global_attribute_recover}
 
-private UnitsAttr ::= UNITS UnitsEnum {pin=1 recoverWhile=UnitsAttr_recover}
-private UnitsAttr_recover ::= !(END | UNITS)
+private UnitsAttr ::= UNITS UnitsEnum {pin=1 recoverWhile=global_attribute_recover}
 
-private UtfdataAttr ::= UTFDATA string {pin=1 recoverWhile=UtfdataAttr_recover}
-private UtfdataAttr_recover ::= !(END | UTFDATA)
+private UtfdataAttr ::= UTFDATA string {pin=1 recoverWhile=global_attribute_recover}
 
-private UtfitemAttr ::= UTFITEM string {pin=1 recoverWhile=UtfitemAttr_recover}
-private UtfitemAttr_recover ::= !(END | UTFITEM)
+private UtfitemAttr ::= UTFITEM string {pin=1 recoverWhile=global_attribute_recover}
 
-private WidthClassAttr ::= WIDTH ( ( integer | double ) | attributeToken ) {pin=1 recoverWhile=WidthClassAttr_recover}
-private WidthClassAttr_recover ::= !(END | WIDTH)
+private WidthClassAttr ::= WIDTH ( ( integer | double ) | attributeToken ) {pin=1 recoverWhile=global_attribute_recover}
 
-private WktAttr ::= WKT string {pin=1 recoverWhile=WktAttr_recover} // TODO wkt standard
-private WktAttr_recover ::= !(END | WKT)
+private WktAttr ::= WKT string {pin=1 recoverWhile=global_attribute_recover} // TODO wkt standard
 
-private WrapAttr ::= WRAP string {pin=1 recoverWhile=WrapAttr_recover} // TODO character
-private WrapAttr_recover ::= !(END | WRAP)
+private WrapAttr ::= WRAP string {pin=1 recoverWhile=global_attribute_recover} // TODO character
+
+private global_attribute_recover ::=
+    !(
+        END
+        | MAP | WEB | LAYER | CLASS | SYMBOL | LABEL | STYLE | LEADER | LEGEND | FEATURE | CLUSTER | COMPOSITE | GRID
+        | JOIN | QUERYMAP | REFERENCE | SCALEBAR | PATTERN | VALIDATION | METADATA | POINTS | PROJECTION
+        | ALIGN | ANCHORPOINT | ANGLE | ANTIALIAS | BACKGROUNDCOLOR | BROWSEFORMAT | BUFFER | CHARACTER | CLASSGROUP
+        | CLASSITEM | COLOR | CONFIG | COMPOP | CONNECTION | CONNECTIONTYPE | DATA | DATAPATTERN | DEBUG | DEFRESOLUTION
+        | DUMP | EMPTY | ENCODING | ERROR | EXPRESSION | EXTENT | FILLED | FILTER | FILTERITEM | FONT | FONTSET | FOOTER
+        | FORCE | FROM | GAP | GEOMTRANSFORM | GRIDSTEP | GROUP | HEADER | IMAGE | IMAGECOLOR | IMAGEPATH | IMAGETYPE
+        | IMAGEURL | INITIALGAP | INTERLACE | ITEMS | KEYIMAGE | KEYSIZE | KEYSPACING | LABELCACHE | LABELFORMAT
+        | LABELITEM | LABELMAXSCALEDENOM | LABELMINSCALEDENOM | LABELREQUIRES | LEGENDFORMAT | LINECAP | LINEJOIN
+        | LINEJOINMAXSIZE | MARKER | MARKERSIZE | MASK | MAXARCS | MAXBOXSIZE | MAXDISTANCE | MAXFEATURES | MAXGEOWIDTH
+        | MAXINTERVAL | MAXLENGTH | MAXOVERLAPANGLE | MAXSCALEDENOM | MAXSIZE | MAXSUBDIVIDE | MAXTEMPLATE | MAXWIDTH
+        | MINARCS | MINBOXSIZE | MINDISTANCE | MINFEATURESIZE | MINGEOWIDTH | MININTERVAL | MINSCALEDENOM | MINSIZE
+        | MINSUBDIVIDE | MINTEMPLATE | MINWIDTH | NAME | OFFSET | OFFSITE | OPACITY | OUTLINECOLOR | OUTLINEWIDTH
+        | PARTIALS | PLUGIN | POLAROFFSET | POSITION | POSTLABELCACHE | PRIORITY | PROCESSING | QUERYFORMAT | REGION
+        | REPEATDISTANCE | REQUIRES | RESOLUTION | SCALEDENOM | SHADOWCOLOR | SHADOWSIZE | SHAPEPATH | SIZE | SIZEUNITS
+        | STATUS | STYLEITEM | SYMBOLSCALEDENOM | SYMBOLSET | TABLE | TEMPLATE | TEMPLATEPATTERN
+        | TEMPPATH | TEXT | TILEINDEX | TILEITEM | TILESRS | TITLE | TO | TOLERANCE | TOLERANCEUNITS | TRANSFORM
+        | TRANSPARENT | TYPE | UNITS | UTFDATA | UTFITEM | WIDTH | WKT | WRAP)
 
 //
 // ENUMERATIONS
 //
+
 private AlignEnum ::= left|center|right
 private AngleClassEnum ::= integer|double|attributeToken|auto
 private AngleLabelEnum ::= AngleClassEnum|auto2|follow
@@ -662,7 +542,7 @@ private ConnectiontypeEnum ::= contour|kerneldensity|local|ogr|oraclespatial|plu
 private ConnectiontypeJoinEnum ::= csv|mysql|postgresql
 private DebugEnum ::= OnOffEnum|0|1|2|3|4|5
 private ExpressionEnum ::= ( string | logicalExpressionToken | regexToken | listExpressionToken ) // TODO string functions
-private GeomtransformClassEnum ::= bbox|centroid|end|labelpnt|labelpoly|start|vertices|string // TODO string = expression!
+private GeomtransformClassEnum ::= bbox|centroid|"end"|labelpnt|labelpoly|start|vertices|string // TODO string = expression!
 private ImagetypeEnum ::= png|gif|png8|jpeg|svg|pdf|gtiff|kml|kmz|cairopng|string
 private LabelFormatEnum ::= dd|ddmm|ddmmss|string // TODO string=cformat-string
 private LinecapEnum ::= butt|round|square
