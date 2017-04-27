@@ -52,6 +52,7 @@
     <colorSettingsPage implementation="org.dnltsk.mapfileplugin.highlighter.MapfileColorSettingsPage"/>
     <completion.contributor language="Mapfile" implementationClass="org.dnltsk.mapfileplugin.completioncontribution.MapfileCompletionContributor"/>
     <lang.foldingBuilder language="Mapfile" implementationClass="org.dnltsk.mapfileplugin.folding.MapfileFoldingGroups"/>
+    <applicationService serviceInterface="com.intellij.ui.ColorChooserService" serviceImplementation="org.dnltsk.mapfileplugin.colorchooser.MapfileColorChooser" overrides="true"/>
     <!--
     <annotator language="JAVA" implementationClass="org.dnltsk.mapfileplugin.MapfileAnnotator"/>
     <codeInsight.lineMarkerProvider language="JAVA" implementationClass="org.dnltsk.mapfileplugin.MapfileLineMarkerProvider"/>
