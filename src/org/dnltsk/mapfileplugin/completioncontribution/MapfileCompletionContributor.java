@@ -31,7 +31,19 @@ public class MapfileCompletionContributor extends CompletionContributor {
                                                ProcessingContext context,
                                                @NotNull CompletionResultSet resultSet) {
                         PsiElement element = parameters.getPosition().getParent();
-                        if(element instanceof PsiErrorElementImpl) {
+
+                        /*if (element.getContext() instanceof MapfileMapObject) {
+                            System.out.println("MAP!!!");
+                        } else if (element.getContext() instanceof MapfileLayerObject) {
+                            System.out.println("LAYER!!!");
+                        } else {
+                            System.out.println("!!!FILE!!!");
+                        }
+                        //root
+                        //MAP
+                        //OTHER
+                        */
+                        if (element instanceof PsiErrorElementImpl) {
                             String genericErrorDescription = ((PsiErrorElementImpl) element).getErrorDescription();
                             String[] suggestions = extractTokensFromErrorDescription(genericErrorDescription);
                             //TODO order (END on top, common keywords on top)
@@ -53,7 +65,7 @@ public class MapfileCompletionContributor extends CompletionContributor {
     }
 
     String[] extractTokensFromErrorDescription(String errorDescription) {
-        if(errorDescription.contains(" expected, got ")) {
+        if (errorDescription.contains(" expected, got ")) {
             errorDescription = errorDescription.substring(0, errorDescription.indexOf(" expected, got "));
         }
         errorDescription = errorDescription.replaceAll("MapfileTokenType\\.", "");

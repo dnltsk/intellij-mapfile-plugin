@@ -2121,7 +2121,7 @@ public class MapfileParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
-  // MAP MapObject_entry * END
+  // MAP MapObjectChildren * END
   public static boolean MapObject(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "MapObject")) return false;
     if (!nextTokenIs(b, MAP)) return false;
@@ -2135,12 +2135,12 @@ public class MapfileParser implements PsiParser, LightPsiParser {
     return r || p;
   }
 
-  // MapObject_entry *
+  // MapObjectChildren *
   private static boolean MapObject_1(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "MapObject_1")) return false;
     int c = current_position_(b);
     while (true) {
-      if (!MapObject_entry(b, l + 1)) break;
+      if (!MapObjectChildren(b, l + 1)) break;
       if (!empty_element_parsed_guard_(b, "MapObject_1", c)) break;
       c = current_position_(b);
     }
@@ -2155,20 +2155,20 @@ public class MapfileParser implements PsiParser, LightPsiParser {
   //         | ImagecolorAttr | ImagetypeAttr | InterlaceAttr | MaxsizeAttr | NameAttr | ResolutionAttr
   //         | ScaledenomAttr | ShapepathAttr | SizeAttr | StatusAttr | SymbolsetAttr | TemplatepatternAttr | UnitsAttr
   //     )
-  static boolean MapObject_entry(PsiBuilder b, int l) {
-    if (!recursion_guard_(b, l, "MapObject_entry")) return false;
+  static boolean MapObjectChildren(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "MapObjectChildren")) return false;
     boolean r, p;
     Marker m = enter_section_(b, l, _NONE_);
-    r = MapObject_entry_0(b, l + 1);
+    r = MapObjectChildren_0(b, l + 1);
     p = r; // pin = 1
-    r = r && MapObject_entry_1(b, l + 1);
+    r = r && MapObjectChildren_1(b, l + 1);
     exit_section_(b, l, m, r, p, null);
     return r || p;
   }
 
   // !END
-  private static boolean MapObject_entry_0(PsiBuilder b, int l) {
-    if (!recursion_guard_(b, l, "MapObject_entry_0")) return false;
+  private static boolean MapObjectChildren_0(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "MapObjectChildren_0")) return false;
     boolean r;
     Marker m = enter_section_(b, l, _NOT_);
     r = !consumeToken(b, END);
@@ -2181,8 +2181,8 @@ public class MapfileParser implements PsiParser, LightPsiParser {
   //         | AngleAttr | ConfigAttr | DatapatternAttr | DebugAttr | DefresolutionAttr | ExtentAttr | FontsetAttr
   //         | ImagecolorAttr | ImagetypeAttr | InterlaceAttr | MaxsizeAttr | NameAttr | ResolutionAttr
   //         | ScaledenomAttr | ShapepathAttr | SizeAttr | StatusAttr | SymbolsetAttr | TemplatepatternAttr | UnitsAttr
-  private static boolean MapObject_entry_1(PsiBuilder b, int l) {
-    if (!recursion_guard_(b, l, "MapObject_entry_1")) return false;
+  private static boolean MapObjectChildren_1(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "MapObjectChildren_1")) return false;
     boolean r;
     Marker m = enter_section_(b);
     r = LayerObject(b, l + 1);
@@ -4670,7 +4670,8 @@ public class MapfileParser implements PsiParser, LightPsiParser {
   //         | REPEATDISTANCE | REQUIRES | RESOLUTION | SCALEDENOM | SHADOWCOLOR | SHADOWSIZE | SHAPEPATH | SIZE | SIZEUNITS
   //         | STATUS | STYLEITEM | SYMBOLSCALEDENOM | SYMBOLSET | TABLE | TEMPLATE | TEMPLATEPATTERN
   //         | TEMPPATH | TEXT | TILEINDEX | TILEITEM | TILESRS | TITLE | TO | TOLERANCE | TOLERANCEUNITS | TRANSFORM
-  //         | TRANSPARENT | TYPE | UNITS | UTFDATA | UTFITEM | WIDTH | WKT | WRAP)
+  //         | TRANSPARENT | TYPE | UNITS | UTFDATA | UTFITEM | WIDTH | WKT | WRAP
+  //     )
   static boolean global_attribute_recover(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "global_attribute_recover")) return false;
     boolean r;

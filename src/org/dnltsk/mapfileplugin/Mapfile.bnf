@@ -60,8 +60,8 @@ private mapfile ::= ( MapObject | WebObject | LayerObject | ClassObject | Symbol
 // OBJECTS
 //
 
-MapObject ::= MAP MapObject_entry * END { pin=1 }
-private MapObject_entry ::=
+MapObject ::= MAP MapObjectChildren * END { pin=1 }
+private MapObjectChildren ::=
     !END (
         LayerObject | LegendObject | ProjectionObject | QuerymapObject | ReferenceObject | ScalebarObject
         | SymbolObject | WebObject
@@ -526,7 +526,8 @@ private global_attribute_recover ::=
         | REPEATDISTANCE | REQUIRES | RESOLUTION | SCALEDENOM | SHADOWCOLOR | SHADOWSIZE | SHAPEPATH | SIZE | SIZEUNITS
         | STATUS | STYLEITEM | SYMBOLSCALEDENOM | SYMBOLSET | TABLE | TEMPLATE | TEMPLATEPATTERN
         | TEMPPATH | TEXT | TILEINDEX | TILEITEM | TILESRS | TITLE | TO | TOLERANCE | TOLERANCEUNITS | TRANSFORM
-        | TRANSPARENT | TYPE | UNITS | UTFDATA | UTFITEM | WIDTH | WKT | WRAP)
+        | TRANSPARENT | TYPE | UNITS | UTFDATA | UTFITEM | WIDTH | WKT | WRAP
+    )
 
 //
 // ENUMERATIONS
