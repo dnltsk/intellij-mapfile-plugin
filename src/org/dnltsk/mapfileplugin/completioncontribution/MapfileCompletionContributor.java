@@ -32,6 +32,9 @@ public class MapfileCompletionContributor extends CompletionContributor {
                                                @NotNull CompletionResultSet resultSet) {
                         PsiElement element = parameters.getPosition().getParent();
 
+                        //PsiElement parent = element.getParent();
+                        //PsiTreeUtil.getChildrenOfTypeAsList(parent, PsiElement.class);
+
                         /*if (element.getContext() instanceof MapfileMapObject) {
                             System.out.println("MAP!!!");
                         } else if (element.getContext() instanceof MapfileLayerObject) {

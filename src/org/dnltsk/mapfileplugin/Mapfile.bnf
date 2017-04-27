@@ -1,5 +1,6 @@
 {
     parserClass="org.dnltsk.mapfileplugin.parser.MapfileParser"
+    parserUtilClass="org.dnltsk.mapfileplugin.parser.MapfileParserUtil"
 
     extends="com.intellij.extapi.psi.ASTWrapperPsiElement"
 
