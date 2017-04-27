@@ -24,15 +24,17 @@ public class MapfileFoldingGroups extends FoldingBuilderEx {
     @Override
     public FoldingDescriptor[] buildFoldRegions(@NotNull PsiElement root, @NotNull Document document, boolean quick) {
         final List<FoldingDescriptor> descriptors = new ArrayList<FoldingDescriptor>();
-        if (root instanceof MapfileFile)
-            for (PsiElement rule : PsiTreeUtil.getChildrenOfTypeAsList(root, PsiElement.class)) {
-                registerRecursively(rule, descriptors);
-            }
+        if (root instanceof MapfileFile) {
+            registerRecursively(root, descriptors);
+        }
         return descriptors.toArray(new FoldingDescriptor[descriptors.size()]);
     }
 
     private void registerRecursively(@NotNull PsiElement currentElement, List<FoldingDescriptor> descriptors) {
-        descriptors.add(new FoldingDescriptor(currentElement, currentElement.getTextRange()));
+        if (!(currentElement instanceof MapfileFile)) {
+            //don't fold the file!
+            descriptors.add(new FoldingDescriptor(currentElement, currentElement.getTextRange()));
+        }
         for (PsiElement childElement : PsiTreeUtil.getChildrenOfTypeAsList(currentElement, PsiElement.class)) {
             if (childElement instanceof MapfileClassObject
                     || childElement instanceof MapfileClusterObject
@@ -61,7 +63,11 @@ public class MapfileFoldingGroups extends FoldingBuilderEx {
     @Nullable
     @Override
     public String getPlaceholderText(@NotNull ASTNode node) {
-        return node.getText().replaceAll("\\s+", " ");
+        String oneLineText = node.getText().replaceAll("\\s+", " ");
+        if(oneLineText.length() >= 75){
+            return oneLineText.substring(0, 75)+"..";
+        }
+        return oneLineText;
     }
 
     @Override
