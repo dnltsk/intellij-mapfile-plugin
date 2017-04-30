@@ -24,7 +24,7 @@
       ]]></change-notes>
 
   <!-- please see http://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/build_number_ranges.html for description -->
-  <idea-version since-build="123"/> <!--123=IntelliJ IDEA 12-->
+  <idea-version since-build="131"/> <!--131=PhpStorm 7, PyCharm 3.0, WebStorm 7-->
 
   <!-- please see http://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/plugin_compatibility.html
        on how to target different products -->
@@ -52,10 +52,9 @@
     <colorSettingsPage implementation="org.dnltsk.mapfileplugin.highlighter.MapfileColorSettingsPage"/>
     <completion.contributor language="Mapfile" implementationClass="org.dnltsk.mapfileplugin.completioncontribution.MapfileCompletionContributor"/>
     <lang.foldingBuilder language="Mapfile" implementationClass="org.dnltsk.mapfileplugin.folding.MapfileFoldingGroups"/>
-    <applicationService serviceInterface="com.intellij.ui.ColorChooserService" serviceImplementation="org.dnltsk.mapfileplugin.colorchooser.MapfileColorChooser" overrides="true"/>
+    <codeInsight.lineMarkerProvider language="Mapfile" implementationClass="org.dnltsk.mapfileplugin.colorchooser.MapfileLineMarkerProvider"/>
     <!--
     <annotator language="JAVA" implementationClass="org.dnltsk.mapfileplugin.MapfileAnnotator"/>
-    <codeInsight.lineMarkerProvider language="JAVA" implementationClass="org.dnltsk.mapfileplugin.MapfileLineMarkerProvider"/>
     <psi.referenceContributor implementation="org.dnltsk.mapfileplugin.MapfileReferenceContributor"/>
     <lang.findUsagesProvider language="Mapfile" implementationClass="org.dnltsk.mapfileplugin.MapfileFindUsagesProvider"/>
     <lang.refactoringSupport language="Mapfile" implementationClass="org.dnltsk.mapfileplugin.MapfileRefactoringSupportProvider"/>
