@@ -9,14 +9,15 @@ Editor support for UMN Mapserver Mapfiles. Supported Mapserver version is 7.0
 ## Features
 
 * ![done](https://img.shields.io/badge/status-done-green.svg) Basic Syntax Validation and Highlighting
-* ![not started](https://img.shields.io/badge/status-not_started-lightgray.svg) Advanced Syntax Highlighting
 * ![done](https://img.shields.io/badge/status-done-green.svg) Autocompletion (Ctrl+Space)
-* ![not started](https://img.shields.io/badge/status-not_started-lightgray.svg) Annotations (Error Messages)
 * ![done](https://img.shields.io/badge/status-done-green.svg) Color Picker
+* ![done](https://img.shields.io/badge/status-done-green.svg) Folding
+* ![not started](https://img.shields.io/badge/status-not_started-lightgray.svg) Advanced Syntax Highlighting
+* ![not started](https://img.shields.io/badge/status-not_started-lightgray.svg) Templates
+* ![not started](https://img.shields.io/badge/status-not_started-lightgray.svg) Annotations (Error Messages)
 * ![not started](https://img.shields.io/badge/status-not_started-lightgray.svg) Helpers and Utilities
 * ![not started](https://img.shields.io/badge/status-not_started-lightgray.svg) References
 * ![not started](https://img.shields.io/badge/status-not_started-lightgray.svg) Find Usages (Alt+F7)
-* ![done](https://img.shields.io/badge/status-done-green.svg) Folding
 * ![not started](https://img.shields.io/badge/status-not_started-lightgray.svg) Structure View
 * ![not started](https://img.shields.io/badge/status-not_started-lightgray.svg) Formatter (Cmd+Shift+L)
 * ![not started](https://img.shields.io/badge/status-not_started-lightgray.svg) Quick Fix (Alt+Return)
