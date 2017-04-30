@@ -4,22 +4,22 @@
 
 https://plugins.jetbrains.com/plugin/9626-mapfile
 
-Editor support for UMN Mapserver Mapfiles. Supported Mapserver version is 7.0.4
+Editor support for UMN Mapserver Mapfiles. Supported Mapserver version is 7.0
 
 ## Features
 
 * ![done](https://img.shields.io/badge/status-done-green.svg) Basic Syntax Validation and Highlighting
-* ![not started](https://img.shields.io/badge/status-not%20started-lightgray.svg) Advanced Syntax Highlighting
+* ![not started](https://img.shields.io/badge/status-not_started-lightgray.svg) Advanced Syntax Highlighting
 * ![done](https://img.shields.io/badge/status-done-green.svg) Autocompletion (Ctrl+Space)
-* ![not started](https://img.shields.io/badge/status-not%20started-lightgray.svg) Annotations (Error Messages)
-* ![not started](https://img.shields.io/badge/status-not%20started-lightgray.svg) Color Picker
-* ![not started](https://img.shields.io/badge/status-not%20started-lightgray.svg) Helpers and Utilities
-* ![not started](https://img.shields.io/badge/status-not%20started-lightgray.svg) References
-* ![not started](https://img.shields.io/badge/status-not%20started-lightgray.svg) Find Usages (Alt+F7)
-* ![not started](https://img.shields.io/badge/status-not%20started-lightgray.svg) Folding
-* ![not started](https://img.shields.io/badge/status-not%20started-lightgray.svg) Structure View
-* ![not started](https://img.shields.io/badge/status-not%20started-lightgray.svg) Formatter (Cmd+Shift+L)
-* ![not started](https://img.shields.io/badge/status-not%20started-lightgray.svg) Quick Fix (Alt+Return)
+* ![not started](https://img.shields.io/badge/status-not_started-lightgray.svg) Annotations (Error Messages)
+* ![done](https://img.shields.io/badge/status-done-green.svg) Color Picker
+* ![not started](https://img.shields.io/badge/status-not_started-lightgray.svg) Helpers and Utilities
+* ![not started](https://img.shields.io/badge/status-not_started-lightgray.svg) References
+* ![not started](https://img.shields.io/badge/status-not_started-lightgray.svg) Find Usages (Alt+F7)
+* ![done](https://img.shields.io/badge/status-done-green.svg) Folding
+* ![not started](https://img.shields.io/badge/status-not_started-lightgray.svg) Structure View
+* ![not started](https://img.shields.io/badge/status-not_started-lightgray.svg) Formatter (Cmd+Shift+L)
+* ![not started](https://img.shields.io/badge/status-not_started-lightgray.svg) Quick Fix (Alt+Return)
  
 ![preview](resources/META-INF/preview-screenshot.png "preview")
 
