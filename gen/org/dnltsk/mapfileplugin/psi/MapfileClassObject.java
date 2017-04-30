@@ -17,4 +17,7 @@ public interface MapfileClassObject extends PsiElement {
   @NotNull
   List<MapfileStyleObject> getStyleObjectList();
 
+  @NotNull
+  List<MapfileValidationObject> getValidationObjectList();
+
 }

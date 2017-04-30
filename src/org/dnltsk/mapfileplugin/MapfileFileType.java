@@ -6,9 +6,6 @@ import org.jetbrains.annotations.Nullable;
 
 import javax.swing.*;
 
-/**
- * Created by danielt on 07.04.17.
- */
 public class MapfileFileType  extends LanguageFileType {
     public static final MapfileFileType INSTANCE = new MapfileFileType();
 

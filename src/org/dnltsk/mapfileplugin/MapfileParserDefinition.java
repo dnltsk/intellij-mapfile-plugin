@@ -16,9 +16,6 @@ import org.dnltsk.mapfileplugin.psi.MapfileFile;
 import org.dnltsk.mapfileplugin.psi.MapfileTypes;
 import org.jetbrains.annotations.NotNull;
 
-/**
- * Created by danielt on 07.04.17.
- */
 public class MapfileParserDefinition  implements ParserDefinition {
     public static final TokenSet WHITE_SPACES = TokenSet.create(TokenType.WHITE_SPACE);
     public static final TokenSet COMMENTS = TokenSet.create(MapfileTypes.COMMENT);

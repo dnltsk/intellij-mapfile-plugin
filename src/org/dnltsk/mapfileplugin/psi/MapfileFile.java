@@ -9,10 +9,6 @@ import org.jetbrains.annotations.NotNull;
 
 import javax.swing.*;
 
-
-/**
- * Created by danielt on 07.04.17.
- */
 public class MapfileFile extends PsiFileBase {
     public MapfileFile(@NotNull FileViewProvider viewProvider) {
         super(viewProvider, MapfileLanguage.INSTANCE);

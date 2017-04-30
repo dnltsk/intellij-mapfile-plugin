@@ -51,6 +51,22 @@ public class MapfileVisitor extends PsiElementVisitor {
     visitPsiElement(o);
   }
 
+  public void visitMetadataObject(@NotNull MapfileMetadataObject o) {
+    visitPsiElement(o);
+  }
+
+  public void visitPatternObject(@NotNull MapfilePatternObject o) {
+    visitPsiElement(o);
+  }
+
+  public void visitPointsObject(@NotNull MapfilePointsObject o) {
+    visitPsiElement(o);
+  }
+
+  public void visitProjectionObject(@NotNull MapfileProjectionObject o) {
+    visitPsiElement(o);
+  }
+
   public void visitQuerymapObject(@NotNull MapfileQuerymapObject o) {
     visitPsiElement(o);
   }
@@ -68,6 +84,10 @@ public class MapfileVisitor extends PsiElementVisitor {
   }
 
   public void visitSymbolObject(@NotNull MapfileSymbolObject o) {
+    visitPsiElement(o);
+  }
+
+  public void visitValidationObject(@NotNull MapfileValidationObject o) {
     visitPsiElement(o);
   }
 

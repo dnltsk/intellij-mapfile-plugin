@@ -39,6 +39,12 @@ public class MapfileMapObjectImpl extends ASTWrapperPsiElement implements Mapfil
 
   @Override
   @NotNull
+  public List<MapfileProjectionObject> getProjectionObjectList() {
+    return PsiTreeUtil.getChildrenOfTypeAsList(this, MapfileProjectionObject.class);
+  }
+
+  @Override
+  @NotNull
   public List<MapfileQuerymapObject> getQuerymapObjectList() {
     return PsiTreeUtil.getChildrenOfTypeAsList(this, MapfileQuerymapObject.class);
   }

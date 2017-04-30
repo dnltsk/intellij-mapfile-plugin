@@ -5,9 +5,6 @@ import org.dnltsk.mapfileplugin.MapfileLanguage;
 import org.jetbrains.annotations.NonNls;
 import org.jetbrains.annotations.NotNull;
 
-/**
- * Created by danielt on 07.04.17.
- */
 public class MapfileTokenType  extends IElementType {
 
     public MapfileTokenType(@NotNull @NonNls String debugName) {

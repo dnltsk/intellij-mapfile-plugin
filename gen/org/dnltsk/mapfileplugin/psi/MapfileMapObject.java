@@ -15,6 +15,9 @@ public interface MapfileMapObject extends PsiElement {
   List<MapfileLegendObject> getLegendObjectList();
 
   @NotNull
+  List<MapfileProjectionObject> getProjectionObjectList();
+
+  @NotNull
   List<MapfileQuerymapObject> getQuerymapObjectList();
 
   @NotNull

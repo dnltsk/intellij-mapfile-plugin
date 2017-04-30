@@ -43,4 +43,10 @@ public class MapfileClassObjectImpl extends ASTWrapperPsiElement implements Mapf
     return PsiTreeUtil.getChildrenOfTypeAsList(this, MapfileStyleObject.class);
   }
 
+  @Override
+  @NotNull
+  public List<MapfileValidationObject> getValidationObjectList() {
+    return PsiTreeUtil.getChildrenOfTypeAsList(this, MapfileValidationObject.class);
+  }
+
 }

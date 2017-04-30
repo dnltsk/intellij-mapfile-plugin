@@ -61,4 +61,22 @@ public class MapfileLayerObjectImpl extends ASTWrapperPsiElement implements Mapf
     return PsiTreeUtil.getChildrenOfTypeAsList(this, MapfileJoinObject.class);
   }
 
+  @Override
+  @NotNull
+  public List<MapfileMetadataObject> getMetadataObjectList() {
+    return PsiTreeUtil.getChildrenOfTypeAsList(this, MapfileMetadataObject.class);
+  }
+
+  @Override
+  @NotNull
+  public List<MapfileProjectionObject> getProjectionObjectList() {
+    return PsiTreeUtil.getChildrenOfTypeAsList(this, MapfileProjectionObject.class);
+  }
+
+  @Override
+  @NotNull
+  public List<MapfileValidationObject> getValidationObjectList() {
+    return PsiTreeUtil.getChildrenOfTypeAsList(this, MapfileValidationObject.class);
+  }
+
 }

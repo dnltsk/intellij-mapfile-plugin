@@ -26,4 +26,13 @@ public interface MapfileLayerObject extends PsiElement {
   @NotNull
   List<MapfileJoinObject> getJoinObjectList();
 
+  @NotNull
+  List<MapfileMetadataObject> getMetadataObjectList();
+
+  @NotNull
+  List<MapfileProjectionObject> getProjectionObjectList();
+
+  @NotNull
+  List<MapfileValidationObject> getValidationObjectList();
+
 }

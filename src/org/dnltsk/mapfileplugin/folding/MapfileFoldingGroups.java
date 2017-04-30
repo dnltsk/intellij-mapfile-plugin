@@ -74,4 +74,5 @@ public class MapfileFoldingGroups extends FoldingBuilderEx {
     public boolean isCollapsedByDefault(@NotNull ASTNode node) {
         return true;
     }
+
 }

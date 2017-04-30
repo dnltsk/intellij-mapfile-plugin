@@ -201,19 +201,19 @@ private ScalebarObjectChildren ::=
         | PostlabelcacheAttr | SizeAttr | StatusAttr | StyleScalebarAttr | UnitsAttr
     ) { pin=1 }
 
-private PatternObject ::= PATTERN PatternObjectChildren * END { pin=1 }
+PatternObject ::= PATTERN PatternObjectChildren * END { pin=1 }
 private PatternObjectChildren ::= !END ( integer integer ) { pin=1 }
 
-private ValidationObject ::= VALIDATION ValidationObjectChildren * END
+ValidationObject ::= VALIDATION ValidationObjectChildren * END
 private ValidationObjectChildren ::= !END ( string string ) { pin=1 }
 
-private MetadataObject ::= METADATA MetadataObjectChildren * END { pin=1 }
+MetadataObject ::= METADATA MetadataObjectChildren * END { pin=1 }
 private MetadataObjectChildren ::= !END ( string string ) { pin=1 }
 
-private PointsObject ::= POINTS PointsObjectChildren * END { pin=1 }
+PointsObject ::= POINTS PointsObjectChildren * END { pin=1 }
 private PointsObjectChildren ::= !END ( double double ) { pin=1 }
 
-private ProjectionObject ::= PROJECTION ProjectionObjectChildren * END { pin=1 }
+ProjectionObject ::= PROJECTION ProjectionObjectChildren * END { pin=1 }
 private ProjectionObjectChildren ::= !END string { pin=1 }
 
 //

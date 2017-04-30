@@ -19,11 +19,16 @@ public interface MapfileTypes {
   IElementType LEADER_OBJECT = new MapfileElementType("LEADER_OBJECT");
   IElementType LEGEND_OBJECT = new MapfileElementType("LEGEND_OBJECT");
   IElementType MAP_OBJECT = new MapfileElementType("MAP_OBJECT");
+  IElementType METADATA_OBJECT = new MapfileElementType("METADATA_OBJECT");
+  IElementType PATTERN_OBJECT = new MapfileElementType("PATTERN_OBJECT");
+  IElementType POINTS_OBJECT = new MapfileElementType("POINTS_OBJECT");
+  IElementType PROJECTION_OBJECT = new MapfileElementType("PROJECTION_OBJECT");
   IElementType QUERYMAP_OBJECT = new MapfileElementType("QUERYMAP_OBJECT");
   IElementType REFERENCE_OBJECT = new MapfileElementType("REFERENCE_OBJECT");
   IElementType SCALEBAR_OBJECT = new MapfileElementType("SCALEBAR_OBJECT");
   IElementType STYLE_OBJECT = new MapfileElementType("STYLE_OBJECT");
   IElementType SYMBOL_OBJECT = new MapfileElementType("SYMBOL_OBJECT");
+  IElementType VALIDATION_OBJECT = new MapfileElementType("VALIDATION_OBJECT");
   IElementType WEB_OBJECT = new MapfileElementType("WEB_OBJECT");
 
   IElementType ALIGN = new MapfileTokenType("ALIGN");
@@ -341,6 +346,18 @@ public interface MapfileTypes {
       else if (type == MAP_OBJECT) {
         return new MapfileMapObjectImpl(node);
       }
+      else if (type == METADATA_OBJECT) {
+        return new MapfileMetadataObjectImpl(node);
+      }
+      else if (type == PATTERN_OBJECT) {
+        return new MapfilePatternObjectImpl(node);
+      }
+      else if (type == POINTS_OBJECT) {
+        return new MapfilePointsObjectImpl(node);
+      }
+      else if (type == PROJECTION_OBJECT) {
+        return new MapfileProjectionObjectImpl(node);
+      }
       else if (type == QUERYMAP_OBJECT) {
         return new MapfileQuerymapObjectImpl(node);
       }
@@ -355,6 +372,9 @@ public interface MapfileTypes {
       }
       else if (type == SYMBOL_OBJECT) {
         return new MapfileSymbolObjectImpl(node);
+      }
+      else if (type == VALIDATION_OBJECT) {
+        return new MapfileValidationObjectImpl(node);
       }
       else if (type == WEB_OBJECT) {
         return new MapfileWebObjectImpl(node);

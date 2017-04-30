@@ -56,6 +56,18 @@ public class MapfileParser implements PsiParser, LightPsiParser {
     else if (t == MAP_OBJECT) {
       r = MapObject(b, 0);
     }
+    else if (t == METADATA_OBJECT) {
+      r = MetadataObject(b, 0);
+    }
+    else if (t == PATTERN_OBJECT) {
+      r = PatternObject(b, 0);
+    }
+    else if (t == POINTS_OBJECT) {
+      r = PointsObject(b, 0);
+    }
+    else if (t == PROJECTION_OBJECT) {
+      r = ProjectionObject(b, 0);
+    }
     else if (t == QUERYMAP_OBJECT) {
       r = QuerymapObject(b, 0);
     }
@@ -70,6 +82,9 @@ public class MapfileParser implements PsiParser, LightPsiParser {
     }
     else if (t == SYMBOL_OBJECT) {
       r = SymbolObject(b, 0);
+    }
+    else if (t == VALIDATION_OBJECT) {
+      r = ValidationObject(b, 0);
     }
     else if (t == WEB_OBJECT) {
       r = WebObject(b, 0);
@@ -2507,11 +2522,11 @@ public class MapfileParser implements PsiParser, LightPsiParser {
 
   /* ********************************************************** */
   // METADATA MetadataObjectChildren * END
-  static boolean MetadataObject(PsiBuilder b, int l) {
+  public static boolean MetadataObject(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "MetadataObject")) return false;
     if (!nextTokenIs(b, METADATA)) return false;
     boolean r, p;
-    Marker m = enter_section_(b, l, _NONE_);
+    Marker m = enter_section_(b, l, _NONE_, METADATA_OBJECT, null);
     r = consumeToken(b, METADATA);
     p = r; // pin = 1
     r = r && report_error_(b, MetadataObject_1(b, l + 1));
@@ -2983,11 +2998,11 @@ public class MapfileParser implements PsiParser, LightPsiParser {
 
   /* ********************************************************** */
   // PATTERN PatternObjectChildren * END
-  static boolean PatternObject(PsiBuilder b, int l) {
+  public static boolean PatternObject(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "PatternObject")) return false;
     if (!nextTokenIs(b, PATTERN)) return false;
     boolean r, p;
-    Marker m = enter_section_(b, l, _NONE_);
+    Marker m = enter_section_(b, l, _NONE_, PATTERN_OBJECT, null);
     r = consumeToken(b, PATTERN);
     p = r; // pin = 1
     r = r && report_error_(b, PatternObject_1(b, l + 1));
@@ -3055,11 +3070,11 @@ public class MapfileParser implements PsiParser, LightPsiParser {
 
   /* ********************************************************** */
   // POINTS PointsObjectChildren * END
-  static boolean PointsObject(PsiBuilder b, int l) {
+  public static boolean PointsObject(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "PointsObject")) return false;
     if (!nextTokenIs(b, POINTS)) return false;
     boolean r, p;
-    Marker m = enter_section_(b, l, _NONE_);
+    Marker m = enter_section_(b, l, _NONE_, POINTS_OBJECT, null);
     r = consumeToken(b, POINTS);
     p = r; // pin = 1
     r = r && report_error_(b, PointsObject_1(b, l + 1));
@@ -3243,11 +3258,11 @@ public class MapfileParser implements PsiParser, LightPsiParser {
 
   /* ********************************************************** */
   // PROJECTION ProjectionObjectChildren * END
-  static boolean ProjectionObject(PsiBuilder b, int l) {
+  public static boolean ProjectionObject(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "ProjectionObject")) return false;
     if (!nextTokenIs(b, PROJECTION)) return false;
     boolean r, p;
-    Marker m = enter_section_(b, l, _NONE_);
+    Marker m = enter_section_(b, l, _NONE_, PROJECTION_OBJECT, null);
     r = consumeToken(b, PROJECTION);
     p = r; // pin = 1
     r = r && report_error_(b, ProjectionObject_1(b, l + 1));
@@ -4438,7 +4453,7 @@ public class MapfileParser implements PsiParser, LightPsiParser {
 
   /* ********************************************************** */
   // VALIDATION ValidationObjectChildren * END
-  static boolean ValidationObject(PsiBuilder b, int l) {
+  public static boolean ValidationObject(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "ValidationObject")) return false;
     if (!nextTokenIs(b, VALIDATION)) return false;
     boolean r;
@@ -4446,7 +4461,7 @@ public class MapfileParser implements PsiParser, LightPsiParser {
     r = consumeToken(b, VALIDATION);
     r = r && ValidationObject_1(b, l + 1);
     r = r && consumeToken(b, END);
-    exit_section_(b, m, null, r);
+    exit_section_(b, m, VALIDATION_OBJECT, r);
     return r;
   }
 
