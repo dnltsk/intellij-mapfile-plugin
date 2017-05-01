@@ -12,6 +12,7 @@ Editor support for UMN Mapserver Mapfiles. Supported Mapserver version is 7.0
 * ![done](https://img.shields.io/badge/status-done-green.svg) Autocompletion (Ctrl+Space)
 * ![done](https://img.shields.io/badge/status-done-green.svg) Color Picker
 * ![done](https://img.shields.io/badge/status-done-green.svg) Folding
+* ![in progress](https://img.shields.io/badge/status-in_progress-yellow.svg) Formatter (Cmd+Shift+L)
 * ![not started](https://img.shields.io/badge/status-not_started-lightgray.svg) Advanced Syntax Highlighting
 * ![not started](https://img.shields.io/badge/status-not_started-lightgray.svg) Templates
 * ![not started](https://img.shields.io/badge/status-not_started-lightgray.svg) Annotations (Error Messages)
@@ -19,7 +20,6 @@ Editor support for UMN Mapserver Mapfiles. Supported Mapserver version is 7.0
 * ![not started](https://img.shields.io/badge/status-not_started-lightgray.svg) References
 * ![not started](https://img.shields.io/badge/status-not_started-lightgray.svg) Find Usages (Alt+F7)
 * ![not started](https://img.shields.io/badge/status-not_started-lightgray.svg) Structure View
-* ![not started](https://img.shields.io/badge/status-not_started-lightgray.svg) Formatter (Cmd+Shift+L)
 * ![not started](https://img.shields.io/badge/status-not_started-lightgray.svg) Quick Fix (Alt+Return)
  
 ![preview](resources/META-INF/preview-screenshot.png "preview")
