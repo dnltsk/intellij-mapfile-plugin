@@ -36,6 +36,9 @@ public class MapfileCompletionContributor extends CompletionContributor {
                         if (isOnPrimitiveType(position)) {
                             return;
                         }
+                        if (gotHintsFromErrorMessage(position, element, parent, resultSet)) {
+                            return;
+                        }
                         handleMapfileObject(element, parent, resultSet);
                     }
                 });
@@ -48,18 +51,68 @@ public class MapfileCompletionContributor extends CompletionContributor {
                 || position.toString().equalsIgnoreCase("PsiElement(MapfileTokenType.integer)"));
     }
 
+    private boolean gotHintsFromErrorMessage(PsiElement position, PsiElement element, PsiElement parent, CompletionResultSet resultSet) {
+        if (position instanceof PsiErrorElementImpl) {
+            extractKeywordsFromPsiErrorElement(resultSet, (PsiErrorElementImpl) position);
+            return true;
+
+        } else if (position.getPrevSibling() != null
+                && position.getPrevSibling() instanceof PsiErrorElementImpl) {
+            extractKeywordsFromPsiErrorElement(resultSet, (PsiErrorElementImpl) position.getPrevSibling());
+            return true;
+
+        } else if (position.getNextSibling() != null
+                && position.getNextSibling() instanceof PsiErrorElementImpl) {
+            extractKeywordsFromPsiErrorElement(resultSet, (PsiErrorElementImpl) position.getNextSibling());
+            return true;
+
+        }
+        /* else if (element instanceof PsiErrorElementImpl) {
+            extractKeywordsFromPsiErrorElement(resultSet, (PsiErrorElementImpl) element);
+            return true;
+
+        } else if (parent instanceof PsiErrorElementImpl) {
+            extractKeywordsFromPsiErrorElement(resultSet, (PsiErrorElementImpl) parent);
+            return true;
+        }*/
+        return false;
+    }
+
+    //
+    // KeywordsFromErrorMessage
+    //
+    private void extractKeywordsFromPsiErrorElement(@NotNull CompletionResultSet resultSet, PsiErrorElementImpl element) {
+        String genericErrorDescription = element.getErrorDescription();
+        String[] suggestions = extracKeywordsFromErrorDescription(genericErrorDescription);
+        for (String suggestedToken : suggestions) {
+            //TODO styling (common keywords bold)
+            if (suggestedToken.contains(".")) {
+                suggestedToken = suggestedToken.substring(suggestedToken.lastIndexOf(".") + 1, suggestedToken.length());
+            }
+            resultSet.addElement(LookupElementBuilder.create(suggestedToken.toUpperCase()));
+        }
+    }
+
+    String[] extracKeywordsFromErrorDescription(String errorDescription) {
+        if (errorDescription.contains(" expected, got ")) {
+            errorDescription = errorDescription.substring(0, errorDescription.indexOf(" expected, got "));
+        }
+        errorDescription = errorDescription.replaceAll("MapfileTokenType\\.", "");
+        String[] tokens = errorDescription.split("(, )|( or )");
+        return tokens;
+    }
+
     //
     // MapfileObject
     //
-    private boolean handleMapfileObject(PsiElement element, PsiElement parent, CompletionResultSet resultSet) {
-        //ELEMENT
+    private void handleMapfileObject(PsiElement element, PsiElement parent, CompletionResultSet resultSet) {
         Set<Class<? extends PsiElement>> classes = MapfileKeywordDependencies.dependencyMap.keySet();
 
-        if(!(element instanceof PsiErrorElementImpl)) {
+        //ELEMENT
+        if (!(element instanceof PsiErrorElementImpl)) {
             for (Class<? extends PsiElement> clazz : classes) {
                 if (clazz.isInstance(element)) {
                     addKeywords(resultSet, MapfileKeywordDependencies.dependencyMap.get(clazz));
-                    return true;
                 }
             }
         }
@@ -67,10 +120,8 @@ public class MapfileCompletionContributor extends CompletionContributor {
         for (Class<? extends PsiElement> clazz : classes) {
             if (clazz.isInstance(parent)) {
                 addKeywords(resultSet, MapfileKeywordDependencies.dependencyMap.get(clazz));
-                return true;
             }
         }
-        return false;
     }
 
     private void addKeywords(@NotNull CompletionResultSet resultSet, PossibleKeywords possibleKeywords) {
