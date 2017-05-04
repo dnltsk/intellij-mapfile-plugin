@@ -37,9 +37,9 @@ public class MapfileCompletionContributor extends CompletionContributor {
                         if (isOnPrimitiveType(position)) {
                             return;
                         }
-                        if (gotHintsFromErrorMessage(position, element, parent, resultSet)) {
-                            return;
-                        }
+                        //if (gotHintsFromErrorMessage(position, element, parent, resultSet)) {
+                        //    return;
+                        //}
                         gotMapfileObject(element, parent, resultSet);
                         //System.out.println("WHAT?");
                     }
@@ -62,22 +62,22 @@ public class MapfileCompletionContributor extends CompletionContributor {
                 && position.getPrevSibling() instanceof PsiErrorElementImpl) {
             extractKeywordsFromErrorMessage(resultSet, (PsiErrorElementImpl) position.getPrevSibling());
             return true;
-        } else if (position.getPrevSibling() != null
+        /*} else if (position.getPrevSibling() != null
                 && position.getPrevSibling().getPrevSibling() != null
                 && position.getPrevSibling().getPrevSibling() instanceof PsiErrorElementImpl) {
             extractKeywordsFromErrorMessage(resultSet, (PsiErrorElementImpl) position.getPrevSibling().getPrevSibling());
             return true;
-
+        */
         } else if (position.getNextSibling() != null
                 && position.getNextSibling() instanceof PsiErrorElementImpl) {
             extractKeywordsFromErrorMessage(resultSet, (PsiErrorElementImpl) position.getNextSibling());
             return true;
-        } else if (position.getNextSibling() != null
+        /*} else if (position.getNextSibling() != null
                 && position.getNextSibling().getNextSibling() != null
                 && position.getNextSibling().getNextSibling() instanceof PsiErrorElementImpl) {
             extractKeywordsFromErrorMessage(resultSet, (PsiErrorElementImpl) position.getNextSibling().getNextSibling());
             return true;
-
+        */
         } else if (element instanceof PsiErrorElementImpl) {
             extractKeywordsFromErrorMessage(resultSet, (PsiErrorElementImpl) element);
             return true;
@@ -119,10 +119,13 @@ public class MapfileCompletionContributor extends CompletionContributor {
     private boolean gotMapfileObject(PsiElement element, PsiElement parent, CompletionResultSet resultSet) {
         //ELEMENT
         Set<Class<? extends PsiElement>> classes = MapfileKeywordDependencies.dependencyMap.keySet();
-        for (Class<? extends PsiElement> clazz : classes) {
-            if (clazz.isInstance(element)) {
-                addEntries(resultSet, MapfileKeywordDependencies.dependencyMap.get(clazz));
-                return true;
+
+        if(!(element instanceof PsiErrorElementImpl)) {
+            for (Class<? extends PsiElement> clazz : classes) {
+                if (clazz.isInstance(element)) {
+                    addEntries(resultSet, MapfileKeywordDependencies.dependencyMap.get(clazz));
+                    return true;
+                }
             }
         }
         //PARENT

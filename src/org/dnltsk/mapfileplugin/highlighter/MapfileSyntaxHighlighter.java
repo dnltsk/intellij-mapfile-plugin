@@ -71,6 +71,7 @@ public class MapfileSyntaxHighlighter extends SyntaxHighlighterBase {
             EXPRESSION,
             FONTSET,
             FROM,
+            INCLUDE,
             IMAGEPATH,
             IMAGEURL,
             MAXTEMPLATE,

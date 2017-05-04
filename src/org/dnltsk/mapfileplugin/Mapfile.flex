@@ -123,6 +123,7 @@ STRING=('([^'\\]|\\.)*'|\"([^\"\\]|\\.)*\")
   "IMAGEPATH"                   { return IMAGEPATH; }
   "IMAGETYPE"                   { return IMAGETYPE; }
   "IMAGEURL"                    { return IMAGEURL; }
+  "INCLUDE"                     { return INCLUDE; }
   "INITIALGAP"                  { return INITIALGAP; }
   "INTERLACE"                   { return INTERLACE; }
   "ITEMS"                       { return ITEMS; }

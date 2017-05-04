@@ -50,12 +50,13 @@ private NameAttr2 ::= TITLE string {pin=1 recoverWhile=global_attribute_recover2
 private global_attribute_recover2 ::= !(END | NAME | TITLE | MAP)
 */
 
-
 root ::= mapfile
-private mapfile ::= ( MapObject | WebObject | LayerObject | ClassObject | SymbolObject | LabelObject | StyleObject
-             | LeaderObject | LegendObject | FeatureObject | ClusterObject | CompositeObject | GridObject
-             | JoinObject | QuerymapObject | ReferenceObject | ScalebarObject | PatternObject ValidationObject
-             | MetadataObject | PointsObject | ProjectionObject )
+
+private mapfile ::= MapObject | WebObject | ScalebarObject | ProjectionObject | MetadataObject | QuerymapObject | ReferenceObject
+             | ( LayerObject | ClassObject | SymbolObject | LabelObject | StyleObject
+                | LeaderObject | LegendObject | FeatureObject | ClusterObject | CompositeObject | GridObject
+                | JoinObject | PatternObject ValidationObject
+                | PointsObject )
 
 //
 // OBJECTS
@@ -69,6 +70,7 @@ private MapObjectChildren ::=
         | AngleAttr | ConfigAttr | DatapatternAttr | DebugAttr | DefresolutionAttr | ExtentAttr | FontsetAttr
         | ImagecolorAttr | ImagetypeAttr | InterlaceAttr | MaxsizeAttr | NameAttr | ResolutionAttr
         | ScaledenomAttr | ShapepathAttr | SizeAttr | StatusAttr | SymbolsetAttr | TemplatepatternAttr | UnitsAttr
+        | IncludeAttr
     ) { pin=1 }
 
 WebObject ::= WEB WebObjectChildren * END { pin=1 }
@@ -78,6 +80,7 @@ private WebObjectChildren ::=
         | BrowseformatAttr | EmptyAttr | ErrorAttr | FooterAttr | HeaderAttr | ImagepathAttr | ImageurlAttr
         | LegendformatAttr | MaxscaledenomAttr | MaxtemplateAttr | MinscaledenomAttr | MintemplateAttr
         | QueryformatAttr | TemplateAttr | TemppathAttr
+        | IncludeAttr
     ) { pin=1 }
 
 LayerObject ::= LAYER LayerObjectChildren * END { pin=1 }
@@ -93,6 +96,7 @@ private LayerObjectChildren ::=
         | RequiresAttr | StatusAttr | StyleitemAttr | SymbolscaledenomAttr | TemplateAttr | TileindexAttr
         | TileitemAttr | TilesrsAttr | TitleAttr | ToleranceunitsAttr | ToleranceAttr | TransformAttr | TypeAttr
         | UnitsAttr | UtfdataAttr | UtfitemAttr
+        | IncludeAttr
     ) { pin=1 }
 
 ClassObject ::= CLASS ClassObjectChildren * END { pin=1 }
@@ -101,6 +105,7 @@ private ClassObjectChildren ::=
         LabelObject | LeaderObject | StyleObject | ValidationObject
         | DebugClassAttr | ExpressionAttr | GroupAttr | KeyimageAttr
         | MaxscaledenomAttr | MinscaledenomAttr | NameAttr | StatusAttr | TemplateAttr | TextAttr
+        | IncludeAttr
     ) { pin=1 }
 
 SymbolObject ::= SYMBOL SymbolObjectChildren * END { pin=1 }
@@ -109,6 +114,7 @@ private SymbolObjectChildren ::=
         PointsObject
         | AnchorpointAttr | AntialiasAttr | CharacterAttr | FilledAttr | FontAttr | ImageAttr | NameAttr
         | TransparentAttr | TypeSymbolAttr
+        | IncludeAttr
     ) { pin=1 }
 
 LabelObject ::= LABEL LabelObjectChildren * END { pin=1 }
@@ -120,6 +126,7 @@ private LabelObjectChildren ::=
         | MinfeaturesizeAttr | MinscaledenomAttr | MinsizeAttr | OffsetAttr | OutlinecolorClassAttr | OutlinewidthAttr
         | PartialsAttr | PositionAttr | PriorityAttr | RepeatdistanceAttr | ShadowcolorAttr | ShadowsizeAttr
         | SizeLabelAttr | TextAttr | TypeLabelAttr | WrapAttr
+        | IncludeAttr
     ) { pin=1 }
 
 StyleObject ::= STYLE StyleObjectChildren * END { pin=1 }
@@ -130,6 +137,7 @@ private StyleObjectChildren ::=
         | LinecapAttr | LinejoinAttr | LinejoinmaxsizeAttr | MaxscaledenomAttr | MaxsizeAttr | MaxwidthAttr
         | MinscaledenomAttr | MinsizeAttr | MinwidthAttr | OffsetAttr | OpacityClassAttr | OutlinecolorClassAttr
         | OutlinewidthAttr | PolaroffsetAttr | SizeClassAttr | SymbolClassAttr | WidthClassAttr
+        | IncludeAttr
     ) { pin=1 }
 
 LeaderObject ::= LEADER LeaderObjectChildren * END { pin=1 } // TODO supported layer type: Polygon
@@ -137,6 +145,7 @@ private LeaderObjectChildren ::=
     !END (
         StyleObject
         | GridstepAttr | MaxdistanceAttr
+        | IncludeAttr
     ) { pin=1 }
 
 LegendObject ::= LEGEND LegendObjectChildren * END { pin=1 }
@@ -145,6 +154,7 @@ private LegendObjectChildren ::=
         LabelObject
         | ImagecolorAttr | InterlaceAttr | KeysizeAttr | KeyspacingAttr | OutlinecolorAttr | PositionAttr
         | PostlabelcacheAttr | StatusAttr | TemplateAttr
+        | IncludeAttr
     ) { pin=1 }
 
 FeatureObject ::= FEATURE FeatureObjectChildren * END { pin=1 }
@@ -152,18 +162,21 @@ private FeatureObjectChildren ::=
     !END (
         PointsObject
         | ItemsAttr | TextAttr | WktAttr
+        | IncludeAttr
     ) { pin=1 }
 
 ClusterObject ::= CLUSTER ClusterObjectChildren * END { pin=1 } // TODO: only within POINT layers
 private ClusterObjectChildren ::=
     !END (
         MaxdistanceAttr | RegionAttr | BufferAttr | GroupAttr | FilterAttr | ProcessingAttr
+        | IncludeAttr
     ) { pin=1 }
 
 CompositeObject ::= COMPOSITE CompositeObjectChildren * END { pin=1 }
 private CompositeObjectChildren ::=
     !END (
         OpacityAttr | CompopAttr
+        | IncludeAttr
     ) { pin=1 }
 
 GridObject ::= GRID GridObjectChildren * END { pin=1 }
@@ -171,6 +184,7 @@ private GridObjectChildren ::=
     !END (
         LabelformatAttr | MinarcsAttr | MaxarcsAttr | MinintervalAttr | MaxintervalAttr | MinsubdivideAttr
         | MaxsubdivideAttr
+        | IncludeAttr
     ) { pin=1 }
 
 JoinObject ::= JOIN JoinObjectChildren * END { pin=1 }
@@ -178,12 +192,14 @@ private JoinObjectChildren ::=
     !END (
         ConnectionAttr | ConnectiontypeJoinAttr | FooterAttr |  FromAttr | HeaderAttr | NameAttr | TableAttr
         | TemplateAttr | ToAttr | TypeJoinAttr
+        | IncludeAttr
     ) { pin=1 }
 
 QuerymapObject ::= QUERYMAP QuerymapObjectChildren * END { pin=1 }
 private QuerymapObjectChildren ::=
     !END (
         ColorAttr | SizeAttr | StatusAttr | StyleQuerymapAttr
+        | IncludeAttr
     ) { pin=1 }
 
 ReferenceObject ::= REFERENCE ReferenceObjectChildren * END { pin=1 }
@@ -191,6 +207,7 @@ private ReferenceObjectChildren ::=
     !END (
         ColorAttr | ExtentAttr | ImageAttr | MarkerAttr | MarkersizeAttr | MinboxsizeAttr | MaxboxsizeAttr
         | OutlinecolorAttr | SizeAttr | StatusAttr
+        | IncludeAttr
     ) { pin=1 }
 
 ScalebarObject ::= SCALEBAR ScalebarObjectChildren * END { pin=1 }
@@ -199,22 +216,23 @@ private ScalebarObjectChildren ::=
         LabelObject
         | AlignAttr | BackgroundcolorAttr | ColorAttr | ImagecolorAttr | InterlaceAttr | OutlinecolorAttr | PositionAttr
         | PostlabelcacheAttr | SizeAttr | StatusAttr | StyleScalebarAttr | UnitsAttr
+        | IncludeAttr
     ) { pin=1 }
 
 PatternObject ::= PATTERN PatternObjectChildren * END { pin=1 }
-private PatternObjectChildren ::= !END ( integer integer ) { pin=1 }
+private PatternObjectChildren ::= !END ( ( integer integer ) | IncludeAttr) { pin=1 }
 
 ValidationObject ::= VALIDATION ValidationObjectChildren * END
-private ValidationObjectChildren ::= !END ( string string ) { pin=1 }
+private ValidationObjectChildren ::= !END ( ( string string ) | IncludeAttr ) { pin=1 }
 
 MetadataObject ::= METADATA MetadataObjectChildren * END { pin=1 }
-private MetadataObjectChildren ::= !END ( string string ) { pin=1 }
+private MetadataObjectChildren ::= !END ( ( string string ) | IncludeAttr ) { pin=1 }
 
 PointsObject ::= POINTS PointsObjectChildren * END { pin=1 }
-private PointsObjectChildren ::= !END ( double double ) { pin=1 }
+private PointsObjectChildren ::= !END ( ( double double ) | IncludeAttr ) { pin=1 }
 
 ProjectionObject ::= PROJECTION ProjectionObjectChildren * END { pin=1 }
-private ProjectionObjectChildren ::= !END string { pin=1 }
+private ProjectionObjectChildren ::= !END ( string | IncludeAttr ) { pin=1 }
 
 //
 // ATTRIBUTES
@@ -246,7 +264,8 @@ private ColorClassAttr ::= COLOR ColorClassEnum {pin=1 recoverWhile=global_attri
 
 private ConfigAttr ::= CONFIG (
     ( CGI_CONTEXT_URL string ) | ( MS_ENCRYPTION_KEY string ) | ( MS_ERRORFILE string ) | ( MS_NONSQUARE YesNoEnum )
-    | ( ON_MISSING_DATA OnMissingDataEnum ) | ( PROJ_LIB string ) )  {pin=1 recoverWhile=global_attribute_recover}
+    | ( ON_MISSING_DATA OnMissingDataEnum ) | ( PROJ_LIB string )
+    | ( string string ))  {pin=1 recoverWhile=global_attribute_recover}
 
 private CompopAttr ::= COMPOP string {pin=1 recoverWhile=global_attribute_recover} // TODO: keywords in string
 
@@ -311,6 +330,8 @@ private ImagepathAttr ::= IMAGEPATH string {pin=1 recoverWhile=global_attribute_
 private ImagetypeAttr ::= IMAGETYPE ImagetypeEnum {pin=1 recoverWhile=global_attribute_recover} // TODO: must match one of the defined ones in OutputfomatObject
 
 private ImageurlAttr ::= IMAGEURL string {pin=1 recoverWhile=global_attribute_recover} // TODO path? url?
+
+private IncludeAttr ::= INCLUDE string {pin=1 recoverWhile=global_attribute_recover} // TODO path? url?
 
 private InitialgapAttr ::= INITIALGAP integer {pin=1 recoverWhile=global_attribute_recover}
 
@@ -528,6 +549,7 @@ private global_attribute_recover ::=
         | STATUS | STYLEITEM | SYMBOLSCALEDENOM | SYMBOLSET | TABLE | TEMPLATE | TEMPLATEPATTERN
         | TEMPPATH | TEXT | TILEINDEX | TILEITEM | TILESRS | TITLE | TO | TOLERANCE | TOLERANCEUNITS | TRANSFORM
         | TRANSPARENT | TYPE | UNITS | UTFDATA | UTFITEM | WIDTH | WKT | WRAP
+        | INCLUDE
     )
 
 //

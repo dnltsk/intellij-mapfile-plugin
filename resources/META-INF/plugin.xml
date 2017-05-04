@@ -54,6 +54,7 @@
     <completion.contributor language="Mapfile" implementationClass="org.dnltsk.mapfileplugin.completioncontribution.MapfileCompletionContributor"/>
     <lang.foldingBuilder language="Mapfile" implementationClass="org.dnltsk.mapfileplugin.folding.MapfileFoldingGroups"/>
     <codeInsight.lineMarkerProvider language="Mapfile" implementationClass="org.dnltsk.mapfileplugin.colorchooser.MapfileLineMarkerProvider"/>
+    <lang.formatter language="Mapfile" implementationClass="org.dnltsk.mapfileplugin.formatter.MapfileFormattingModelBuilder"/>
     <!--
     <annotator language="JAVA" implementationClass="org.dnltsk.mapfileplugin.MapfileAnnotator"/>
     <psi.referenceContributor implementation="org.dnltsk.mapfileplugin.MapfileReferenceContributor"/>
@@ -61,7 +62,6 @@
     <lang.refactoringSupport language="Mapfile" implementationClass="org.dnltsk.mapfileplugin.MapfileRefactoringSupportProvider"/>
     <gotoSymbolContributor implementation="org.dnltsk.mapfileplugin.MapfileChooseByNameContributor"/>
     <lang.psiStructureViewFactory language="Mapfile" implementationClass="org.dnltsk.mapfileplugin.MapfileStructureViewFactory"/>
-    <lang.formatter language="Mapfile" implementationClass="org.dnltsk.mapfileplugin.MapfileFormattingModelBuilder"/>
     <codeStyleSettingsProvider implementation="org.dnltsk.mapfileplugin.MapfileCodeStyleSettingsProvider"/>
     <langCodeStyleSettingsProvider implementation="org.dnltsk.mapfileplugin.MapfileLanguageCodeStyleSettingsProvider"/>
     <lang.commenter language="Mapfile" implementationClass="org.dnltsk.mapfileplugin.MapfileCommenter"/>

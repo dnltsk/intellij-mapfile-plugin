@@ -118,6 +118,7 @@ public interface MapfileTypes {
   IElementType IMAGETYPE = new MapfileTokenType("IMAGETYPE");
   IElementType IMAGEURL = new MapfileTokenType("IMAGEURL");
   IElementType INCHES = new MapfileTokenType("inches");
+  IElementType INCLUDE = new MapfileTokenType("INCLUDE");
   IElementType INITIALGAP = new MapfileTokenType("INITIALGAP");
   IElementType INTEGER = new MapfileTokenType("integer");
   IElementType INTERLACE = new MapfileTokenType("INTERLACE");
