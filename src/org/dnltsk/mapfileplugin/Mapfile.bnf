@@ -56,7 +56,7 @@ private mapfile ::= MapObject | WebObject | ScalebarObject | ProjectionObject | 
              | ( LayerObject | ClassObject | SymbolObject | LabelObject | StyleObject
                 | LeaderObject | LegendObject | FeatureObject | ClusterObject | CompositeObject | GridObject
                 | JoinObject | PatternObject ValidationObject
-                | PointsObject )
+                | PointsObject ) *
 
 //
 // OBJECTS

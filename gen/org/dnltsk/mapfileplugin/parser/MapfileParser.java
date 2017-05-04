@@ -5020,7 +5020,7 @@ public class MapfileParser implements PsiParser, LightPsiParser {
   //              | ( LayerObject | ClassObject | SymbolObject | LabelObject | StyleObject
   //                 | LeaderObject | LegendObject | FeatureObject | ClusterObject | CompositeObject | GridObject
   //                 | JoinObject | PatternObject ValidationObject
-  //                 | PointsObject )
+  //                 | PointsObject ) *
   static boolean mapfile(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "mapfile")) return false;
     boolean r;
@@ -5037,12 +5037,27 @@ public class MapfileParser implements PsiParser, LightPsiParser {
     return r;
   }
 
+  // ( LayerObject | ClassObject | SymbolObject | LabelObject | StyleObject
+  //                 | LeaderObject | LegendObject | FeatureObject | ClusterObject | CompositeObject | GridObject
+  //                 | JoinObject | PatternObject ValidationObject
+  //                 | PointsObject ) *
+  private static boolean mapfile_7(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "mapfile_7")) return false;
+    int c = current_position_(b);
+    while (true) {
+      if (!mapfile_7_0(b, l + 1)) break;
+      if (!empty_element_parsed_guard_(b, "mapfile_7", c)) break;
+      c = current_position_(b);
+    }
+    return true;
+  }
+
   // LayerObject | ClassObject | SymbolObject | LabelObject | StyleObject
   //                 | LeaderObject | LegendObject | FeatureObject | ClusterObject | CompositeObject | GridObject
   //                 | JoinObject | PatternObject ValidationObject
   //                 | PointsObject
-  private static boolean mapfile_7(PsiBuilder b, int l) {
-    if (!recursion_guard_(b, l, "mapfile_7")) return false;
+  private static boolean mapfile_7_0(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "mapfile_7_0")) return false;
     boolean r;
     Marker m = enter_section_(b);
     r = LayerObject(b, l + 1);
@@ -5057,15 +5072,15 @@ public class MapfileParser implements PsiParser, LightPsiParser {
     if (!r) r = CompositeObject(b, l + 1);
     if (!r) r = GridObject(b, l + 1);
     if (!r) r = JoinObject(b, l + 1);
-    if (!r) r = mapfile_7_12(b, l + 1);
+    if (!r) r = mapfile_7_0_12(b, l + 1);
     if (!r) r = PointsObject(b, l + 1);
     exit_section_(b, m, null, r);
     return r;
   }
 
   // PatternObject ValidationObject
-  private static boolean mapfile_7_12(PsiBuilder b, int l) {
-    if (!recursion_guard_(b, l, "mapfile_7_12")) return false;
+  private static boolean mapfile_7_0_12(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "mapfile_7_0_12")) return false;
     boolean r;
     Marker m = enter_section_(b);
     r = PatternObject(b, l + 1);
