@@ -316,34 +316,11 @@ public class MapfileSyntaxHighlighter extends SyntaxHighlighterBase {
         return new MapfileLexerAdapter();
     }
 
+
+
     @NotNull
     @Override
     public TextAttributesKey[] getTokenHighlights(IElementType tokenType) {
-
-        /*if (OBJECT_KEYWORD_LIST.contains(tokenType)) {
-            return new TextAttributesKey[]{OBJECT_KEYWORD_HIGHLIGHTER};
-
-        } else if (CORE_ATTRIBUTE_LIST.contains(tokenType)) {
-            return new TextAttributesKey[]{CORE_ATTRIBUTE_HIGHLIGHTER};
-
-        } else if (KEYWORD_LIST.contains(tokenType)) {
-            return new TextAttributesKey[]{OBJECT_KEYWORD_HIGHLIGHTER};
-
-        } else if (ATTRIBUTE_LIST.contains(tokenType)) {
-            return new TextAttributesKey[]{ATTRIBUTES_HIGHLIGHTER};
-
-        } else if (NUMBER_LIST.contains(tokenType)) {
-            return new TextAttributesKey[]{NUMBER_VALUE_HIGHLIGHTER};
-
-        } else if (STRING.equals(tokenType)) {
-            return new TextAttributesKey[]{STRING_VALUE_HIGHLIGHTER};
-
-        } else if (COMMENT.equals(tokenType)) {
-            return new TextAttributesKey[]{COMMENT_HIGHLIGHTER};
-
-        } else if (TokenType.BAD_CHARACTER.equals(tokenType)) {
-            return new TextAttributesKey[]{BAD_CHARACTER_HIGHLIGHTER};
-        */
 
         if (OBJECT_KEYWORD_LIST.contains(tokenType)) {
             return new TextAttributesKey[]{KEYWORD_HIGHLIGHTER};

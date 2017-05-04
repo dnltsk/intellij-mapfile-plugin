@@ -466,7 +466,7 @@ private ShadowsizeAttr ::= SHADOWSIZE ( ( integer | attributeToken ) ( integer |
 private ShapepathAttr ::= SHAPEPATH string {pin=1 recoverWhile=global_attribute_recover} // TODO: directory
 
 private SizeAttr ::= SIZE integer integer {pin=1 recoverWhile=global_attribute_recover}
-private SizeClassAttr ::= SIZE ( double | attributeToken ) {pin=1 recoverWhile=global_attribute_recover}
+private SizeClassAttr ::= SIZE ( integer | double | attributeToken ) {pin=1 recoverWhile=global_attribute_recover}
 private SizeLabelAttr ::= SIZE SizeLabelEnum {pin=1 recoverWhile=global_attribute_recover}
 
 private SizeunitsAttr ::= SIZEUNITS SizeUnitEnum {pin=1 recoverWhile=global_attribute_recover}

@@ -8,9 +8,9 @@ import com.intellij.psi.tree.IElementType;
 import com.intellij.util.ProcessingContext;
 import org.dnltsk.mapfileplugin.MapfileLanguage;
 import org.dnltsk.mapfileplugin.psi.MapfileKeywordDependencies;
+import org.dnltsk.mapfileplugin.psi.PossibleKeywords;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.List;
 import java.util.Set;
 
 import static com.intellij.patterns.PlatformPatterns.psiElement;
@@ -58,7 +58,7 @@ public class MapfileCompletionContributor extends CompletionContributor {
         if(!(element instanceof PsiErrorElementImpl)) {
             for (Class<? extends PsiElement> clazz : classes) {
                 if (clazz.isInstance(element)) {
-                    addEntries(resultSet, MapfileKeywordDependencies.dependencyMap.get(clazz));
+                    addKeywords(resultSet, MapfileKeywordDependencies.dependencyMap.get(clazz));
                     return true;
                 }
             }
@@ -66,20 +66,28 @@ public class MapfileCompletionContributor extends CompletionContributor {
         //PARENT
         for (Class<? extends PsiElement> clazz : classes) {
             if (clazz.isInstance(parent)) {
-                addEntries(resultSet, MapfileKeywordDependencies.dependencyMap.get(clazz));
+                addKeywords(resultSet, MapfileKeywordDependencies.dependencyMap.get(clazz));
                 return true;
             }
         }
         return false;
     }
 
-    private void addEntries(@NotNull CompletionResultSet resultSet, List<IElementType> allowedEntries) {
-        for (IElementType allowedEntry : allowedEntries) {
-            String name = allowedEntry.toString();
+    private void addKeywords(@NotNull CompletionResultSet resultSet, PossibleKeywords possibleKeywords) {
+        for (IElementType keyword : possibleKeywords.getKeywords()) {
+            String name = keyword.toString();
             if (name.contains(".")) {
                 name = name.substring(name.lastIndexOf(".") + 1, name.length());
             }
             resultSet.addElement(LookupElementBuilder.create(name).bold());
+        }
+
+        for (IElementType deprecatedKeyword : possibleKeywords.getDeprecatedKeywords()) {
+            String name = deprecatedKeyword.toString();
+            if (name.contains(".")) {
+                name = name.substring(name.lastIndexOf(".") + 1, name.length());
+            }
+            resultSet.addElement(LookupElementBuilder.create(name).bold().strikeout());
         }
     }
 

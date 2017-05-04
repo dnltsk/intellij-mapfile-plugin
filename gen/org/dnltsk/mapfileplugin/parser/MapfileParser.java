@@ -3801,7 +3801,7 @@ public class MapfileParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
-  // SIZE ( double | attributeToken )
+  // SIZE ( integer | double | attributeToken )
   static boolean SizeClassAttr(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "SizeClassAttr")) return false;
     boolean r, p;
@@ -3813,12 +3813,13 @@ public class MapfileParser implements PsiParser, LightPsiParser {
     return r || p;
   }
 
-  // double | attributeToken
+  // integer | double | attributeToken
   private static boolean SizeClassAttr_1(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "SizeClassAttr_1")) return false;
     boolean r;
     Marker m = enter_section_(b);
-    r = consumeToken(b, DOUBLE);
+    r = consumeToken(b, INTEGER);
+    if (!r) r = consumeToken(b, DOUBLE);
     if (!r) r = consumeToken(b, ATTRIBUTETOKEN);
     exit_section_(b, m, null, r);
     return r;
