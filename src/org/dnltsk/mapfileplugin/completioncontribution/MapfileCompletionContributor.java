@@ -33,15 +33,10 @@ public class MapfileCompletionContributor extends CompletionContributor {
                         PsiElement position = parameters.getOriginalPosition();
                         PsiElement element = position.getParent();
                         PsiElement parent = element.getParent();
-
                         if (isOnPrimitiveType(position)) {
                             return;
                         }
-                        //if (gotHintsFromErrorMessage(position, element, parent, resultSet)) {
-                        //    return;
-                        //}
-                        gotMapfileObject(element, parent, resultSet);
-                        //System.out.println("WHAT?");
+                        handleMapfileObject(element, parent, resultSet);
                     }
                 });
     }
@@ -53,70 +48,10 @@ public class MapfileCompletionContributor extends CompletionContributor {
                 || position.toString().equalsIgnoreCase("PsiElement(MapfileTokenType.integer)"));
     }
 
-    private boolean gotHintsFromErrorMessage(PsiElement position, PsiElement element, PsiElement parent, CompletionResultSet resultSet) {
-        if (position instanceof PsiErrorElementImpl) {
-            extractKeywordsFromErrorMessage(resultSet, (PsiErrorElementImpl) position);
-            return true;
-
-        } else if (position.getPrevSibling() != null
-                && position.getPrevSibling() instanceof PsiErrorElementImpl) {
-            extractKeywordsFromErrorMessage(resultSet, (PsiErrorElementImpl) position.getPrevSibling());
-            return true;
-        /*} else if (position.getPrevSibling() != null
-                && position.getPrevSibling().getPrevSibling() != null
-                && position.getPrevSibling().getPrevSibling() instanceof PsiErrorElementImpl) {
-            extractKeywordsFromErrorMessage(resultSet, (PsiErrorElementImpl) position.getPrevSibling().getPrevSibling());
-            return true;
-        */
-        } else if (position.getNextSibling() != null
-                && position.getNextSibling() instanceof PsiErrorElementImpl) {
-            extractKeywordsFromErrorMessage(resultSet, (PsiErrorElementImpl) position.getNextSibling());
-            return true;
-        /*} else if (position.getNextSibling() != null
-                && position.getNextSibling().getNextSibling() != null
-                && position.getNextSibling().getNextSibling() instanceof PsiErrorElementImpl) {
-            extractKeywordsFromErrorMessage(resultSet, (PsiErrorElementImpl) position.getNextSibling().getNextSibling());
-            return true;
-        */
-        } else if (element instanceof PsiErrorElementImpl) {
-            extractKeywordsFromErrorMessage(resultSet, (PsiErrorElementImpl) element);
-            return true;
-
-        } else if (parent instanceof PsiErrorElementImpl) {
-            extractKeywordsFromErrorMessage(resultSet, (PsiErrorElementImpl) parent);
-            return true;
-        }
-        return false;
-    }
-
-    //
-    // KeywordsFromErrorMessage
-    //
-    private void extractKeywordsFromErrorMessage(@NotNull CompletionResultSet resultSet, PsiErrorElementImpl element) {
-        String genericErrorDescription = element.getErrorDescription();
-        String[] suggestions = extractTokensFromErrorDescription(genericErrorDescription);
-        for (String suggestedToken : suggestions) {
-            //TODO styling (common keywords bold)
-            if (suggestedToken.contains(".")) {
-                suggestedToken = suggestedToken.substring(suggestedToken.lastIndexOf(".") + 1, suggestedToken.length());
-            }
-            resultSet.addElement(LookupElementBuilder.create(suggestedToken.toUpperCase()));
-        }
-    }
-
-    String[] extractTokensFromErrorDescription(String errorDescription) {
-        if (errorDescription.contains(" expected, got ")) {
-            errorDescription = errorDescription.substring(0, errorDescription.indexOf(" expected, got "));
-        }
-        errorDescription = errorDescription.replaceAll("MapfileTokenType\\.", "");
-        String[] tokens = errorDescription.split("(, )|( or )");
-        return tokens;
-    }
-
     //
     // MapfileObject
     //
-    private boolean gotMapfileObject(PsiElement element, PsiElement parent, CompletionResultSet resultSet) {
+    private boolean handleMapfileObject(PsiElement element, PsiElement parent, CompletionResultSet resultSet) {
         //ELEMENT
         Set<Class<? extends PsiElement>> classes = MapfileKeywordDependencies.dependencyMap.keySet();
 
