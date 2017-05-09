@@ -9,27 +9,49 @@ import org.dnltsk.mapfileplugin.psi.impl.*;
 public interface MapfileTypes {
 
   IElementType CLASS_OBJECT = new MapfileElementType("CLASS_OBJECT");
+  IElementType CLASS_OBJECT_CHILDREN = new MapfileElementType("CLASS_OBJECT_CHILDREN");
   IElementType CLUSTER_OBJECT = new MapfileElementType("CLUSTER_OBJECT");
+  IElementType CLUSTER_OBJECT_CHILDREN = new MapfileElementType("CLUSTER_OBJECT_CHILDREN");
   IElementType COMPOSITE_OBJECT = new MapfileElementType("COMPOSITE_OBJECT");
+  IElementType COMPOSITE_OBJECT_CHILDREN = new MapfileElementType("COMPOSITE_OBJECT_CHILDREN");
   IElementType FEATURE_OBJECT = new MapfileElementType("FEATURE_OBJECT");
+  IElementType FEATURE_OBJECT_CHILDREN = new MapfileElementType("FEATURE_OBJECT_CHILDREN");
   IElementType GRID_OBJECT = new MapfileElementType("GRID_OBJECT");
+  IElementType GRID_OBJECT_CHILDREN = new MapfileElementType("GRID_OBJECT_CHILDREN");
   IElementType JOIN_OBJECT = new MapfileElementType("JOIN_OBJECT");
+  IElementType JOIN_OBJECT_CHILDREN = new MapfileElementType("JOIN_OBJECT_CHILDREN");
   IElementType LABEL_OBJECT = new MapfileElementType("LABEL_OBJECT");
+  IElementType LABEL_OBJECT_CHILDREN = new MapfileElementType("LABEL_OBJECT_CHILDREN");
   IElementType LAYER_OBJECT = new MapfileElementType("LAYER_OBJECT");
+  IElementType LAYER_OBJECT_CHILDREN = new MapfileElementType("LAYER_OBJECT_CHILDREN");
   IElementType LEADER_OBJECT = new MapfileElementType("LEADER_OBJECT");
+  IElementType LEADER_OBJECT_CHILDREN = new MapfileElementType("LEADER_OBJECT_CHILDREN");
   IElementType LEGEND_OBJECT = new MapfileElementType("LEGEND_OBJECT");
+  IElementType LEGEND_OBJECT_CHILDREN = new MapfileElementType("LEGEND_OBJECT_CHILDREN");
   IElementType MAP_OBJECT = new MapfileElementType("MAP_OBJECT");
+  IElementType MAP_OBJECT_CHILDREN = new MapfileElementType("MAP_OBJECT_CHILDREN");
   IElementType METADATA_OBJECT = new MapfileElementType("METADATA_OBJECT");
+  IElementType METADATA_OBJECT_CHILDREN = new MapfileElementType("METADATA_OBJECT_CHILDREN");
   IElementType PATTERN_OBJECT = new MapfileElementType("PATTERN_OBJECT");
+  IElementType PATTERN_OBJECT_CHILDREN = new MapfileElementType("PATTERN_OBJECT_CHILDREN");
   IElementType POINTS_OBJECT = new MapfileElementType("POINTS_OBJECT");
+  IElementType POINTS_OBJECT_CHILDREN = new MapfileElementType("POINTS_OBJECT_CHILDREN");
   IElementType PROJECTION_OBJECT = new MapfileElementType("PROJECTION_OBJECT");
+  IElementType PROJECTION_OBJECT_CHILDREN = new MapfileElementType("PROJECTION_OBJECT_CHILDREN");
   IElementType QUERYMAP_OBJECT = new MapfileElementType("QUERYMAP_OBJECT");
+  IElementType QUERYMAP_OBJECT_CHILDREN = new MapfileElementType("QUERYMAP_OBJECT_CHILDREN");
   IElementType REFERENCE_OBJECT = new MapfileElementType("REFERENCE_OBJECT");
+  IElementType REFERENCE_OBJECT_CHILDREN = new MapfileElementType("REFERENCE_OBJECT_CHILDREN");
   IElementType SCALEBAR_OBJECT = new MapfileElementType("SCALEBAR_OBJECT");
+  IElementType SCALEBAR_OBJECT_CHILDREN = new MapfileElementType("SCALEBAR_OBJECT_CHILDREN");
   IElementType STYLE_OBJECT = new MapfileElementType("STYLE_OBJECT");
+  IElementType STYLE_OBJECT_CHILDREN = new MapfileElementType("STYLE_OBJECT_CHILDREN");
   IElementType SYMBOL_OBJECT = new MapfileElementType("SYMBOL_OBJECT");
+  IElementType SYMBOL_OBJECT_CHILDREN = new MapfileElementType("SYMBOL_OBJECT_CHILDREN");
   IElementType VALIDATION_OBJECT = new MapfileElementType("VALIDATION_OBJECT");
+  IElementType VALIDATION_OBJECT_CHILDREN = new MapfileElementType("VALIDATION_OBJECT_CHILDREN");
   IElementType WEB_OBJECT = new MapfileElementType("WEB_OBJECT");
+  IElementType WEB_OBJECT_CHILDREN = new MapfileElementType("WEB_OBJECT_CHILDREN");
 
   IElementType ALIGN = new MapfileTokenType("ALIGN");
   IElementType ANCHORPOINT = new MapfileTokenType("ANCHORPOINT");
@@ -317,68 +339,134 @@ public interface MapfileTypes {
        if (type == CLASS_OBJECT) {
         return new MapfileClassObjectImpl(node);
       }
+      else if (type == CLASS_OBJECT_CHILDREN) {
+        return new MapfileClassObjectChildrenImpl(node);
+      }
       else if (type == CLUSTER_OBJECT) {
         return new MapfileClusterObjectImpl(node);
+      }
+      else if (type == CLUSTER_OBJECT_CHILDREN) {
+        return new MapfileClusterObjectChildrenImpl(node);
       }
       else if (type == COMPOSITE_OBJECT) {
         return new MapfileCompositeObjectImpl(node);
       }
+      else if (type == COMPOSITE_OBJECT_CHILDREN) {
+        return new MapfileCompositeObjectChildrenImpl(node);
+      }
       else if (type == FEATURE_OBJECT) {
         return new MapfileFeatureObjectImpl(node);
+      }
+      else if (type == FEATURE_OBJECT_CHILDREN) {
+        return new MapfileFeatureObjectChildrenImpl(node);
       }
       else if (type == GRID_OBJECT) {
         return new MapfileGridObjectImpl(node);
       }
+      else if (type == GRID_OBJECT_CHILDREN) {
+        return new MapfileGridObjectChildrenImpl(node);
+      }
       else if (type == JOIN_OBJECT) {
         return new MapfileJoinObjectImpl(node);
+      }
+      else if (type == JOIN_OBJECT_CHILDREN) {
+        return new MapfileJoinObjectChildrenImpl(node);
       }
       else if (type == LABEL_OBJECT) {
         return new MapfileLabelObjectImpl(node);
       }
+      else if (type == LABEL_OBJECT_CHILDREN) {
+        return new MapfileLabelObjectChildrenImpl(node);
+      }
       else if (type == LAYER_OBJECT) {
         return new MapfileLayerObjectImpl(node);
+      }
+      else if (type == LAYER_OBJECT_CHILDREN) {
+        return new MapfileLayerObjectChildrenImpl(node);
       }
       else if (type == LEADER_OBJECT) {
         return new MapfileLeaderObjectImpl(node);
       }
+      else if (type == LEADER_OBJECT_CHILDREN) {
+        return new MapfileLeaderObjectChildrenImpl(node);
+      }
       else if (type == LEGEND_OBJECT) {
         return new MapfileLegendObjectImpl(node);
+      }
+      else if (type == LEGEND_OBJECT_CHILDREN) {
+        return new MapfileLegendObjectChildrenImpl(node);
       }
       else if (type == MAP_OBJECT) {
         return new MapfileMapObjectImpl(node);
       }
+      else if (type == MAP_OBJECT_CHILDREN) {
+        return new MapfileMapObjectChildrenImpl(node);
+      }
       else if (type == METADATA_OBJECT) {
         return new MapfileMetadataObjectImpl(node);
+      }
+      else if (type == METADATA_OBJECT_CHILDREN) {
+        return new MapfileMetadataObjectChildrenImpl(node);
       }
       else if (type == PATTERN_OBJECT) {
         return new MapfilePatternObjectImpl(node);
       }
+      else if (type == PATTERN_OBJECT_CHILDREN) {
+        return new MapfilePatternObjectChildrenImpl(node);
+      }
       else if (type == POINTS_OBJECT) {
         return new MapfilePointsObjectImpl(node);
+      }
+      else if (type == POINTS_OBJECT_CHILDREN) {
+        return new MapfilePointsObjectChildrenImpl(node);
       }
       else if (type == PROJECTION_OBJECT) {
         return new MapfileProjectionObjectImpl(node);
       }
+      else if (type == PROJECTION_OBJECT_CHILDREN) {
+        return new MapfileProjectionObjectChildrenImpl(node);
+      }
       else if (type == QUERYMAP_OBJECT) {
         return new MapfileQuerymapObjectImpl(node);
+      }
+      else if (type == QUERYMAP_OBJECT_CHILDREN) {
+        return new MapfileQuerymapObjectChildrenImpl(node);
       }
       else if (type == REFERENCE_OBJECT) {
         return new MapfileReferenceObjectImpl(node);
       }
+      else if (type == REFERENCE_OBJECT_CHILDREN) {
+        return new MapfileReferenceObjectChildrenImpl(node);
+      }
       else if (type == SCALEBAR_OBJECT) {
         return new MapfileScalebarObjectImpl(node);
+      }
+      else if (type == SCALEBAR_OBJECT_CHILDREN) {
+        return new MapfileScalebarObjectChildrenImpl(node);
       }
       else if (type == STYLE_OBJECT) {
         return new MapfileStyleObjectImpl(node);
       }
+      else if (type == STYLE_OBJECT_CHILDREN) {
+        return new MapfileStyleObjectChildrenImpl(node);
+      }
       else if (type == SYMBOL_OBJECT) {
         return new MapfileSymbolObjectImpl(node);
+      }
+      else if (type == SYMBOL_OBJECT_CHILDREN) {
+        return new MapfileSymbolObjectChildrenImpl(node);
       }
       else if (type == VALIDATION_OBJECT) {
         return new MapfileValidationObjectImpl(node);
       }
+      else if (type == VALIDATION_OBJECT_CHILDREN) {
+        return new MapfileValidationObjectChildrenImpl(node);
+      }
       else if (type == WEB_OBJECT) {
         return new MapfileWebObjectImpl(node);
+      }
+      else if (type == WEB_OBJECT_CHILDREN) {
+        return new MapfileWebObjectChildrenImpl(node);
       }
       throw new AssertionError("Unknown element type: " + type);
     }

@@ -9,30 +9,6 @@ import java.util.List;
 public interface MapfileLayerObject extends PsiElement {
 
   @NotNull
-  List<MapfileClassObject> getClassObjectList();
-
-  @NotNull
-  List<MapfileClusterObject> getClusterObjectList();
-
-  @NotNull
-  List<MapfileCompositeObject> getCompositeObjectList();
-
-  @NotNull
-  List<MapfileFeatureObject> getFeatureObjectList();
-
-  @NotNull
-  List<MapfileGridObject> getGridObjectList();
-
-  @NotNull
-  List<MapfileJoinObject> getJoinObjectList();
-
-  @NotNull
-  List<MapfileMetadataObject> getMetadataObjectList();
-
-  @NotNull
-  List<MapfileProjectionObject> getProjectionObjectList();
-
-  @NotNull
-  List<MapfileValidationObject> getValidationObjectList();
+  List<MapfileLayerObjectChildren> getLayerObjectChildrenList();
 
 }

@@ -5,8 +5,8 @@ import com.intellij.extapi.psi.ASTWrapperPsiElement;
 import com.intellij.lang.ASTNode;
 import com.intellij.psi.PsiElementVisitor;
 import com.intellij.psi.util.PsiTreeUtil;
-import org.dnltsk.mapfileplugin.psi.MapfilePatternObject;
 import org.dnltsk.mapfileplugin.psi.MapfileStyleObject;
+import org.dnltsk.mapfileplugin.psi.MapfileStyleObjectChildren;
 import org.dnltsk.mapfileplugin.psi.MapfileVisitor;
 import org.jetbrains.annotations.NotNull;
 
@@ -29,8 +29,8 @@ public class MapfileStyleObjectImpl extends ASTWrapperPsiElement implements Mapf
 
   @Override
   @NotNull
-  public List<MapfilePatternObject> getPatternObjectList() {
-    return PsiTreeUtil.getChildrenOfTypeAsList(this, MapfilePatternObject.class);
+  public List<MapfileStyleObjectChildren> getStyleObjectChildrenList() {
+    return PsiTreeUtil.getChildrenOfTypeAsList(this, MapfileStyleObjectChildren.class);
   }
 
 }

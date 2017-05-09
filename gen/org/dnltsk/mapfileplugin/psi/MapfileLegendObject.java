@@ -9,6 +9,6 @@ import java.util.List;
 public interface MapfileLegendObject extends PsiElement {
 
   @NotNull
-  List<MapfileLabelObject> getLabelObjectList();
+  List<MapfileLegendObjectChildren> getLegendObjectChildrenList();
 
 }

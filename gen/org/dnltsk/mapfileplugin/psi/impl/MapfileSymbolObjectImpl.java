@@ -5,8 +5,8 @@ import com.intellij.extapi.psi.ASTWrapperPsiElement;
 import com.intellij.lang.ASTNode;
 import com.intellij.psi.PsiElementVisitor;
 import com.intellij.psi.util.PsiTreeUtil;
-import org.dnltsk.mapfileplugin.psi.MapfilePointsObject;
 import org.dnltsk.mapfileplugin.psi.MapfileSymbolObject;
+import org.dnltsk.mapfileplugin.psi.MapfileSymbolObjectChildren;
 import org.dnltsk.mapfileplugin.psi.MapfileVisitor;
 import org.jetbrains.annotations.NotNull;
 
@@ -29,8 +29,8 @@ public class MapfileSymbolObjectImpl extends ASTWrapperPsiElement implements Map
 
   @Override
   @NotNull
-  public List<MapfilePointsObject> getPointsObjectList() {
-    return PsiTreeUtil.getChildrenOfTypeAsList(this, MapfilePointsObject.class);
+  public List<MapfileSymbolObjectChildren> getSymbolObjectChildrenList() {
+    return PsiTreeUtil.getChildrenOfTypeAsList(this, MapfileSymbolObjectChildren.class);
   }
 
 }

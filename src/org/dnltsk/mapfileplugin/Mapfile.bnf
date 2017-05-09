@@ -63,7 +63,7 @@ private mapfile ::= MapObject | WebObject | ScalebarObject | ProjectionObject | 
 //
 
 MapObject ::= MAP MapObjectChildren * END { pin=1 }
-private MapObjectChildren ::=
+MapObjectChildren ::=
     !END (
         LayerObject | LegendObject | ProjectionObject | QuerymapObject | ReferenceObject | ScalebarObject
         | SymbolObject | WebObject
@@ -74,7 +74,7 @@ private MapObjectChildren ::=
     ) { pin=1 }
 
 WebObject ::= WEB WebObjectChildren * END { pin=1 }
-private WebObjectChildren ::=
+WebObjectChildren ::=
     !END (
         MetadataObject | ValidationObject
         | BrowseformatAttr | EmptyAttr | ErrorAttr | FooterAttr | HeaderAttr | ImagepathAttr | ImageurlAttr
@@ -84,7 +84,7 @@ private WebObjectChildren ::=
     ) { pin=1 }
 
 LayerObject ::= LAYER LayerObjectChildren * END { pin=1 }
-private LayerObjectChildren ::=
+LayerObjectChildren ::=
     !END (
         ClassObject | ClusterObject | CompositeObject | FeatureObject | GridObject | JoinObject | MetadataObject
         | ProjectionObject | ValidationObject
@@ -100,7 +100,7 @@ private LayerObjectChildren ::=
     ) { pin=1 }
 
 ClassObject ::= CLASS ClassObjectChildren * END { pin=1 }
-private ClassObjectChildren ::=
+ClassObjectChildren ::=
     !END (
         LabelObject | LeaderObject | StyleObject | ValidationObject
         | DebugClassAttr | ExpressionAttr | GroupAttr | KeyimageAttr
@@ -109,7 +109,7 @@ private ClassObjectChildren ::=
     ) { pin=1 }
 
 SymbolObject ::= SYMBOL SymbolObjectChildren * END { pin=1 }
-private SymbolObjectChildren ::=
+SymbolObjectChildren ::=
     !END (
         PointsObject
         | AnchorpointAttr | AntialiasAttr | CharacterAttr | FilledAttr | FontAttr | ImageAttr | NameAttr
@@ -118,7 +118,7 @@ private SymbolObjectChildren ::=
     ) { pin=1 }
 
 LabelObject ::= LABEL LabelObjectChildren * END { pin=1 }
-private LabelObjectChildren ::=
+LabelObjectChildren ::=
     !END (
         StyleObject
         | AlignAttr | AngleLabelAttr | AntialiasAttr | BufferAttr | ColorClassEnum | ExpressionAttr | FontLabelAttr
@@ -130,7 +130,7 @@ private LabelObjectChildren ::=
     ) { pin=1 }
 
 StyleObject ::= STYLE StyleObjectChildren * END { pin=1 }
-private StyleObjectChildren ::=
+StyleObjectChildren ::=
     !END (
         PatternObject
         | AngleClassAttr | AntialiasAttr | ColorClassAttr | GapAttr | GeomtransformClassAttr | InitialgapAttr
@@ -141,7 +141,7 @@ private StyleObjectChildren ::=
     ) { pin=1 }
 
 LeaderObject ::= LEADER LeaderObjectChildren * END { pin=1 } // TODO supported layer type: Polygon
-private LeaderObjectChildren ::=
+LeaderObjectChildren ::=
     !END (
         StyleObject
         | GridstepAttr | MaxdistanceAttr
@@ -149,7 +149,7 @@ private LeaderObjectChildren ::=
     ) { pin=1 }
 
 LegendObject ::= LEGEND LegendObjectChildren * END { pin=1 }
-private LegendObjectChildren ::=
+LegendObjectChildren ::=
     !END (
         LabelObject
         | ImagecolorAttr | InterlaceAttr | KeysizeAttr | KeyspacingAttr | OutlinecolorAttr | PositionAttr
@@ -158,7 +158,7 @@ private LegendObjectChildren ::=
     ) { pin=1 }
 
 FeatureObject ::= FEATURE FeatureObjectChildren * END { pin=1 }
-private FeatureObjectChildren ::=
+FeatureObjectChildren ::=
     !END (
         PointsObject
         | ItemsAttr | TextAttr | WktAttr
@@ -166,21 +166,21 @@ private FeatureObjectChildren ::=
     ) { pin=1 }
 
 ClusterObject ::= CLUSTER ClusterObjectChildren * END { pin=1 } // TODO: only within POINT layers
-private ClusterObjectChildren ::=
+ClusterObjectChildren ::=
     !END (
         MaxdistanceAttr | RegionAttr | BufferAttr | GroupAttr | FilterAttr | ProcessingAttr
         | IncludeAttr
     ) { pin=1 }
 
 CompositeObject ::= COMPOSITE CompositeObjectChildren * END { pin=1 }
-private CompositeObjectChildren ::=
+CompositeObjectChildren ::=
     !END (
         OpacityAttr | CompopAttr
         | IncludeAttr
     ) { pin=1 }
 
 GridObject ::= GRID GridObjectChildren * END { pin=1 }
-private GridObjectChildren ::=
+GridObjectChildren ::=
     !END (
         LabelformatAttr | MinarcsAttr | MaxarcsAttr | MinintervalAttr | MaxintervalAttr | MinsubdivideAttr
         | MaxsubdivideAttr
@@ -188,7 +188,7 @@ private GridObjectChildren ::=
     ) { pin=1 }
 
 JoinObject ::= JOIN JoinObjectChildren * END { pin=1 }
-private JoinObjectChildren ::=
+JoinObjectChildren ::=
     !END (
         ConnectionAttr | ConnectiontypeJoinAttr | FooterAttr |  FromAttr | HeaderAttr | NameAttr | TableAttr
         | TemplateAttr | ToAttr | TypeJoinAttr
@@ -196,14 +196,14 @@ private JoinObjectChildren ::=
     ) { pin=1 }
 
 QuerymapObject ::= QUERYMAP QuerymapObjectChildren * END { pin=1 }
-private QuerymapObjectChildren ::=
+QuerymapObjectChildren ::=
     !END (
         ColorAttr | SizeAttr | StatusAttr | StyleQuerymapAttr
         | IncludeAttr
     ) { pin=1 }
 
 ReferenceObject ::= REFERENCE ReferenceObjectChildren * END { pin=1 }
-private ReferenceObjectChildren ::=
+ReferenceObjectChildren ::=
     !END (
         ColorAttr | ExtentAttr | ImageAttr | MarkerAttr | MarkersizeAttr | MinboxsizeAttr | MaxboxsizeAttr
         | OutlinecolorAttr | SizeAttr | StatusAttr
@@ -211,7 +211,7 @@ private ReferenceObjectChildren ::=
     ) { pin=1 }
 
 ScalebarObject ::= SCALEBAR ScalebarObjectChildren * END { pin=1 }
-private ScalebarObjectChildren ::=
+ScalebarObjectChildren ::=
     !END (
         LabelObject
         | AlignAttr | BackgroundcolorAttr | ColorAttr | ImagecolorAttr | InterlaceAttr | OutlinecolorAttr | PositionAttr
@@ -220,19 +220,19 @@ private ScalebarObjectChildren ::=
     ) { pin=1 }
 
 PatternObject ::= PATTERN PatternObjectChildren * END { pin=1 }
-private PatternObjectChildren ::= !END ( ( integer integer ) | IncludeAttr) { pin=1 }
+PatternObjectChildren ::= !END ( ( integer integer ) | IncludeAttr) { pin=1 }
 
 ValidationObject ::= VALIDATION ValidationObjectChildren * END
-private ValidationObjectChildren ::= !END ( ( string string ) | IncludeAttr ) { pin=1 }
+ValidationObjectChildren ::= !END ( ( string string ) | IncludeAttr ) { pin=1 }
 
 MetadataObject ::= METADATA MetadataObjectChildren * END { pin=1 }
-private MetadataObjectChildren ::= !END ( ( string string ) | IncludeAttr ) { pin=1 }
+MetadataObjectChildren ::= !END ( ( string string ) | IncludeAttr ) { pin=1 }
 
 PointsObject ::= POINTS PointsObjectChildren * END { pin=1 }
-private PointsObjectChildren ::= !END ( ( double double ) | IncludeAttr ) { pin=1 }
+PointsObjectChildren ::= !END ( ( double double ) | IncludeAttr ) { pin=1 }
 
 ProjectionObject ::= PROJECTION ProjectionObjectChildren * END { pin=1 }
-private ProjectionObjectChildren ::= !END ( string | IncludeAttr ) { pin=1 }
+ProjectionObjectChildren ::= !END ( string | IncludeAttr ) { pin=1 }
 
 //
 // ATTRIBUTES

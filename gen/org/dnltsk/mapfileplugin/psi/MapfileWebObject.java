@@ -9,9 +9,6 @@ import java.util.List;
 public interface MapfileWebObject extends PsiElement {
 
   @NotNull
-  List<MapfileMetadataObject> getMetadataObjectList();
-
-  @NotNull
-  List<MapfileValidationObject> getValidationObjectList();
+  List<MapfileWebObjectChildren> getWebObjectChildrenList();
 
 }

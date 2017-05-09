@@ -6,7 +6,7 @@ import com.intellij.lang.ASTNode;
 import com.intellij.psi.PsiElementVisitor;
 import com.intellij.psi.util.PsiTreeUtil;
 import org.dnltsk.mapfileplugin.psi.MapfileFeatureObject;
-import org.dnltsk.mapfileplugin.psi.MapfilePointsObject;
+import org.dnltsk.mapfileplugin.psi.MapfileFeatureObjectChildren;
 import org.dnltsk.mapfileplugin.psi.MapfileVisitor;
 import org.jetbrains.annotations.NotNull;
 
@@ -29,8 +29,8 @@ public class MapfileFeatureObjectImpl extends ASTWrapperPsiElement implements Ma
 
   @Override
   @NotNull
-  public List<MapfilePointsObject> getPointsObjectList() {
-    return PsiTreeUtil.getChildrenOfTypeAsList(this, MapfilePointsObject.class);
+  public List<MapfileFeatureObjectChildren> getFeatureObjectChildrenList() {
+    return PsiTreeUtil.getChildrenOfTypeAsList(this, MapfileFeatureObjectChildren.class);
   }
 
 }

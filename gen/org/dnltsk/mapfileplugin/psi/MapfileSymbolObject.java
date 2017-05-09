@@ -9,6 +9,6 @@ import java.util.List;
 public interface MapfileSymbolObject extends PsiElement {
 
   @NotNull
-  List<MapfilePointsObject> getPointsObjectList();
+  List<MapfileSymbolObjectChildren> getSymbolObjectChildrenList();
 
 }

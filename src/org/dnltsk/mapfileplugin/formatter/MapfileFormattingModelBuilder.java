@@ -27,12 +27,16 @@ public class MapfileFormattingModelBuilder implements FormattingModelBuilder {
     }
 
     private static SpacingBuilder createSpaceBuilder(CodeStyleSettings settings) {
-        return new SpacingBuilder(settings, MapfileLanguage.INSTANCE).
-                around(MapfileTypes.INTEGER)
-                .spaceIf(settings.SPACE_AROUND_ASSIGNMENT_OPERATORS)
-                .before(MapfileTypes.DOUBLE)
-                .none();
+        return new SpacingBuilder(settings, MapfileLanguage.INSTANCE)
+                .before(MapfileTypes.COMMENT).spaceIf(true)
+                .before(MapfileTypes.EXPRESSION).spaceIf(true)
+                .before(MapfileTypes.STRING).spaceIf(true)
+                .before(MapfileTypes.INTEGER).spaceIf(true)
+                .before(MapfileTypes.DOUBLE).spaceIf(true);
+
     }
+
+
 
     @Nullable
     @Override

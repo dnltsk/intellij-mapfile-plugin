@@ -9,6 +9,6 @@ import java.util.List;
 public interface MapfileScalebarObject extends PsiElement {
 
   @NotNull
-  List<MapfileLabelObject> getLabelObjectList();
+  List<MapfileScalebarObjectChildren> getScalebarObjectChildrenList();
 
 }

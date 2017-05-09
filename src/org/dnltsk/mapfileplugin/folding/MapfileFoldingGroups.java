@@ -31,12 +31,28 @@ public class MapfileFoldingGroups extends FoldingBuilderEx {
     }
 
     private void registerRecursively(@NotNull PsiElement currentElement, List<FoldingDescriptor> descriptors) {
-        if (!(currentElement instanceof MapfileFile)) {
-            //don't fold the file!
-            descriptors.add(new FoldingDescriptor(currentElement, currentElement.getTextRange()));
-        }
+
         for (PsiElement childElement : PsiTreeUtil.getChildrenOfTypeAsList(currentElement, PsiElement.class)) {
-            if (childElement instanceof MapfileClassObject
+            if (childElement instanceof MapfileClassObjectChildren
+                    || childElement instanceof MapfileClusterObjectChildren
+                    || childElement instanceof MapfileCompositeObjectChildren
+                    || childElement instanceof MapfileFeatureObjectChildren
+                    || childElement instanceof MapfileGridObjectChildren
+                    || childElement instanceof MapfileJoinObjectChildren
+                    || childElement instanceof MapfileLabelObjectChildren
+                    || childElement instanceof MapfileLayerObjectChildren
+                    || childElement instanceof MapfileLeaderObjectChildren
+                    || childElement instanceof MapfileLegendObjectChildren
+                    || childElement instanceof MapfileMapObjectChildren
+                    || childElement instanceof MapfileQuerymapObjectChildren
+                    || childElement instanceof MapfileReferenceObjectChildren
+                    || childElement instanceof MapfileScalebarObjectChildren
+                    || childElement instanceof MapfileStyleObjectChildren
+                    || childElement instanceof MapfileSymbolObjectChildren
+                    || childElement instanceof MapfileWebObjectChildren) {
+                //GO DEEPER but do not add
+                registerRecursively(childElement, descriptors);
+            } else if (childElement instanceof MapfileClassObject
                     || childElement instanceof MapfileClusterObject
                     || childElement instanceof MapfileCompositeObject
                     || childElement instanceof MapfileFeatureObject
@@ -55,6 +71,9 @@ public class MapfileFoldingGroups extends FoldingBuilderEx {
                     || childElement instanceof MapfileTypes
                     || childElement instanceof MapfileVisitor
                     || childElement instanceof MapfileWebObject) {
+                //ADD
+                descriptors.add(new FoldingDescriptor(currentElement, currentElement.getTextRange()));
+                //GO DEEPER
                 registerRecursively(childElement, descriptors);
             }
         }

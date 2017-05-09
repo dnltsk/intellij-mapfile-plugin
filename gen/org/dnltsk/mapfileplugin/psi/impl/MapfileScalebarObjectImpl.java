@@ -5,8 +5,8 @@ import com.intellij.extapi.psi.ASTWrapperPsiElement;
 import com.intellij.lang.ASTNode;
 import com.intellij.psi.PsiElementVisitor;
 import com.intellij.psi.util.PsiTreeUtil;
-import org.dnltsk.mapfileplugin.psi.MapfileLabelObject;
 import org.dnltsk.mapfileplugin.psi.MapfileScalebarObject;
+import org.dnltsk.mapfileplugin.psi.MapfileScalebarObjectChildren;
 import org.dnltsk.mapfileplugin.psi.MapfileVisitor;
 import org.jetbrains.annotations.NotNull;
 
@@ -29,8 +29,8 @@ public class MapfileScalebarObjectImpl extends ASTWrapperPsiElement implements M
 
   @Override
   @NotNull
-  public List<MapfileLabelObject> getLabelObjectList() {
-    return PsiTreeUtil.getChildrenOfTypeAsList(this, MapfileLabelObject.class);
+  public List<MapfileScalebarObjectChildren> getScalebarObjectChildrenList() {
+    return PsiTreeUtil.getChildrenOfTypeAsList(this, MapfileScalebarObjectChildren.class);
   }
 
 }

@@ -26,68 +26,134 @@ public class MapfileParser implements PsiParser, LightPsiParser {
     if (t == CLASS_OBJECT) {
       r = ClassObject(b, 0);
     }
+    else if (t == CLASS_OBJECT_CHILDREN) {
+      r = ClassObjectChildren(b, 0);
+    }
     else if (t == CLUSTER_OBJECT) {
       r = ClusterObject(b, 0);
+    }
+    else if (t == CLUSTER_OBJECT_CHILDREN) {
+      r = ClusterObjectChildren(b, 0);
     }
     else if (t == COMPOSITE_OBJECT) {
       r = CompositeObject(b, 0);
     }
+    else if (t == COMPOSITE_OBJECT_CHILDREN) {
+      r = CompositeObjectChildren(b, 0);
+    }
     else if (t == FEATURE_OBJECT) {
       r = FeatureObject(b, 0);
+    }
+    else if (t == FEATURE_OBJECT_CHILDREN) {
+      r = FeatureObjectChildren(b, 0);
     }
     else if (t == GRID_OBJECT) {
       r = GridObject(b, 0);
     }
+    else if (t == GRID_OBJECT_CHILDREN) {
+      r = GridObjectChildren(b, 0);
+    }
     else if (t == JOIN_OBJECT) {
       r = JoinObject(b, 0);
+    }
+    else if (t == JOIN_OBJECT_CHILDREN) {
+      r = JoinObjectChildren(b, 0);
     }
     else if (t == LABEL_OBJECT) {
       r = LabelObject(b, 0);
     }
+    else if (t == LABEL_OBJECT_CHILDREN) {
+      r = LabelObjectChildren(b, 0);
+    }
     else if (t == LAYER_OBJECT) {
       r = LayerObject(b, 0);
+    }
+    else if (t == LAYER_OBJECT_CHILDREN) {
+      r = LayerObjectChildren(b, 0);
     }
     else if (t == LEADER_OBJECT) {
       r = LeaderObject(b, 0);
     }
+    else if (t == LEADER_OBJECT_CHILDREN) {
+      r = LeaderObjectChildren(b, 0);
+    }
     else if (t == LEGEND_OBJECT) {
       r = LegendObject(b, 0);
+    }
+    else if (t == LEGEND_OBJECT_CHILDREN) {
+      r = LegendObjectChildren(b, 0);
     }
     else if (t == MAP_OBJECT) {
       r = MapObject(b, 0);
     }
+    else if (t == MAP_OBJECT_CHILDREN) {
+      r = MapObjectChildren(b, 0);
+    }
     else if (t == METADATA_OBJECT) {
       r = MetadataObject(b, 0);
+    }
+    else if (t == METADATA_OBJECT_CHILDREN) {
+      r = MetadataObjectChildren(b, 0);
     }
     else if (t == PATTERN_OBJECT) {
       r = PatternObject(b, 0);
     }
+    else if (t == PATTERN_OBJECT_CHILDREN) {
+      r = PatternObjectChildren(b, 0);
+    }
     else if (t == POINTS_OBJECT) {
       r = PointsObject(b, 0);
+    }
+    else if (t == POINTS_OBJECT_CHILDREN) {
+      r = PointsObjectChildren(b, 0);
     }
     else if (t == PROJECTION_OBJECT) {
       r = ProjectionObject(b, 0);
     }
+    else if (t == PROJECTION_OBJECT_CHILDREN) {
+      r = ProjectionObjectChildren(b, 0);
+    }
     else if (t == QUERYMAP_OBJECT) {
       r = QuerymapObject(b, 0);
+    }
+    else if (t == QUERYMAP_OBJECT_CHILDREN) {
+      r = QuerymapObjectChildren(b, 0);
     }
     else if (t == REFERENCE_OBJECT) {
       r = ReferenceObject(b, 0);
     }
+    else if (t == REFERENCE_OBJECT_CHILDREN) {
+      r = ReferenceObjectChildren(b, 0);
+    }
     else if (t == SCALEBAR_OBJECT) {
       r = ScalebarObject(b, 0);
+    }
+    else if (t == SCALEBAR_OBJECT_CHILDREN) {
+      r = ScalebarObjectChildren(b, 0);
     }
     else if (t == STYLE_OBJECT) {
       r = StyleObject(b, 0);
     }
+    else if (t == STYLE_OBJECT_CHILDREN) {
+      r = StyleObjectChildren(b, 0);
+    }
     else if (t == SYMBOL_OBJECT) {
       r = SymbolObject(b, 0);
+    }
+    else if (t == SYMBOL_OBJECT_CHILDREN) {
+      r = SymbolObjectChildren(b, 0);
     }
     else if (t == VALIDATION_OBJECT) {
       r = ValidationObject(b, 0);
     }
+    else if (t == VALIDATION_OBJECT_CHILDREN) {
+      r = ValidationObjectChildren(b, 0);
+    }
     else if (t == WEB_OBJECT) {
       r = WebObject(b, 0);
+    }
+    else if (t == WEB_OBJECT_CHILDREN) {
+      r = WebObjectChildren(b, 0);
     }
     else {
       r = parse_root_(t, b, 0);
@@ -335,10 +401,10 @@ public class MapfileParser implements PsiParser, LightPsiParser {
   //         | MaxscaledenomAttr | MinscaledenomAttr | NameAttr | StatusAttr | TemplateAttr | TextAttr
   //         | IncludeAttr
   //     )
-  static boolean ClassObjectChildren(PsiBuilder b, int l) {
+  public static boolean ClassObjectChildren(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "ClassObjectChildren")) return false;
     boolean r, p;
-    Marker m = enter_section_(b, l, _NONE_);
+    Marker m = enter_section_(b, l, _NONE_, CLASS_OBJECT_CHILDREN, "<class object children>");
     r = ClassObjectChildren_0(b, l + 1);
     p = r; // pin = 1
     r = r && ClassObjectChildren_1(b, l + 1);
@@ -439,10 +505,10 @@ public class MapfileParser implements PsiParser, LightPsiParser {
   //         MaxdistanceAttr | RegionAttr | BufferAttr | GroupAttr | FilterAttr | ProcessingAttr
   //         | IncludeAttr
   //     )
-  static boolean ClusterObjectChildren(PsiBuilder b, int l) {
+  public static boolean ClusterObjectChildren(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "ClusterObjectChildren")) return false;
     boolean r, p;
-    Marker m = enter_section_(b, l, _NONE_);
+    Marker m = enter_section_(b, l, _NONE_, CLUSTER_OBJECT_CHILDREN, "<cluster object children>");
     r = ClusterObjectChildren_0(b, l + 1);
     p = r; // pin = 1
     r = r && ClusterObjectChildren_1(b, l + 1);
@@ -582,10 +648,10 @@ public class MapfileParser implements PsiParser, LightPsiParser {
   //         OpacityAttr | CompopAttr
   //         | IncludeAttr
   //     )
-  static boolean CompositeObjectChildren(PsiBuilder b, int l) {
+  public static boolean CompositeObjectChildren(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "CompositeObjectChildren")) return false;
     boolean r, p;
-    Marker m = enter_section_(b, l, _NONE_);
+    Marker m = enter_section_(b, l, _NONE_, COMPOSITE_OBJECT_CHILDREN, "<composite object children>");
     r = CompositeObjectChildren_0(b, l + 1);
     p = r; // pin = 1
     r = r && CompositeObjectChildren_1(b, l + 1);
@@ -1043,10 +1109,10 @@ public class MapfileParser implements PsiParser, LightPsiParser {
   //         | ItemsAttr | TextAttr | WktAttr
   //         | IncludeAttr
   //     )
-  static boolean FeatureObjectChildren(PsiBuilder b, int l) {
+  public static boolean FeatureObjectChildren(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "FeatureObjectChildren")) return false;
     boolean r, p;
-    Marker m = enter_section_(b, l, _NONE_);
+    Marker m = enter_section_(b, l, _NONE_, FEATURE_OBJECT_CHILDREN, "<feature object children>");
     r = FeatureObjectChildren_0(b, l + 1);
     p = r; // pin = 1
     r = r && FeatureObjectChildren_1(b, l + 1);
@@ -1291,10 +1357,10 @@ public class MapfileParser implements PsiParser, LightPsiParser {
   //         | MaxsubdivideAttr
   //         | IncludeAttr
   //     )
-  static boolean GridObjectChildren(PsiBuilder b, int l) {
+  public static boolean GridObjectChildren(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "GridObjectChildren")) return false;
     boolean r, p;
-    Marker m = enter_section_(b, l, _NONE_);
+    Marker m = enter_section_(b, l, _NONE_, GRID_OBJECT_CHILDREN, "<grid object children>");
     r = GridObjectChildren_0(b, l + 1);
     p = r; // pin = 1
     r = r && GridObjectChildren_1(b, l + 1);
@@ -1532,10 +1598,10 @@ public class MapfileParser implements PsiParser, LightPsiParser {
   //         | TemplateAttr | ToAttr | TypeJoinAttr
   //         | IncludeAttr
   //     )
-  static boolean JoinObjectChildren(PsiBuilder b, int l) {
+  public static boolean JoinObjectChildren(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "JoinObjectChildren")) return false;
     boolean r, p;
-    Marker m = enter_section_(b, l, _NONE_);
+    Marker m = enter_section_(b, l, _NONE_, JOIN_OBJECT_CHILDREN, "<join object children>");
     r = JoinObjectChildren_0(b, l + 1);
     p = r; // pin = 1
     r = r && JoinObjectChildren_1(b, l + 1);
@@ -1662,10 +1728,10 @@ public class MapfileParser implements PsiParser, LightPsiParser {
   //         | SizeLabelAttr | TextAttr | TypeLabelAttr | WrapAttr
   //         | IncludeAttr
   //     )
-  static boolean LabelObjectChildren(PsiBuilder b, int l) {
+  public static boolean LabelObjectChildren(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "LabelObjectChildren")) return false;
     boolean r, p;
-    Marker m = enter_section_(b, l, _NONE_);
+    Marker m = enter_section_(b, l, _NONE_, LABEL_OBJECT_CHILDREN, "<label object children>");
     r = LabelObjectChildren_0(b, l + 1);
     p = r; // pin = 1
     r = r && LabelObjectChildren_1(b, l + 1);
@@ -1868,10 +1934,10 @@ public class MapfileParser implements PsiParser, LightPsiParser {
   //         | UnitsAttr | UtfdataAttr | UtfitemAttr
   //         | IncludeAttr
   //     )
-  static boolean LayerObjectChildren(PsiBuilder b, int l) {
+  public static boolean LayerObjectChildren(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "LayerObjectChildren")) return false;
     boolean r, p;
-    Marker m = enter_section_(b, l, _NONE_);
+    Marker m = enter_section_(b, l, _NONE_, LAYER_OBJECT_CHILDREN, "<layer object children>");
     r = LayerObjectChildren_0(b, l + 1);
     p = r; // pin = 1
     r = r && LayerObjectChildren_1(b, l + 1);
@@ -1999,10 +2065,10 @@ public class MapfileParser implements PsiParser, LightPsiParser {
   //         | GridstepAttr | MaxdistanceAttr
   //         | IncludeAttr
   //     )
-  static boolean LeaderObjectChildren(PsiBuilder b, int l) {
+  public static boolean LeaderObjectChildren(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "LeaderObjectChildren")) return false;
     boolean r, p;
-    Marker m = enter_section_(b, l, _NONE_);
+    Marker m = enter_section_(b, l, _NONE_, LEADER_OBJECT_CHILDREN, "<leader object children>");
     r = LeaderObjectChildren_0(b, l + 1);
     p = r; // pin = 1
     r = r && LeaderObjectChildren_1(b, l + 1);
@@ -2069,10 +2135,10 @@ public class MapfileParser implements PsiParser, LightPsiParser {
   //         | PostlabelcacheAttr | StatusAttr | TemplateAttr
   //         | IncludeAttr
   //     )
-  static boolean LegendObjectChildren(PsiBuilder b, int l) {
+  public static boolean LegendObjectChildren(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "LegendObjectChildren")) return false;
     boolean r, p;
-    Marker m = enter_section_(b, l, _NONE_);
+    Marker m = enter_section_(b, l, _NONE_, LEGEND_OBJECT_CHILDREN, "<legend object children>");
     r = LegendObjectChildren_0(b, l + 1);
     p = r; // pin = 1
     r = r && LegendObjectChildren_1(b, l + 1);
@@ -2226,10 +2292,10 @@ public class MapfileParser implements PsiParser, LightPsiParser {
   //         | ScaledenomAttr | ShapepathAttr | SizeAttr | StatusAttr | SymbolsetAttr | TemplatepatternAttr | UnitsAttr
   //         | IncludeAttr
   //     )
-  static boolean MapObjectChildren(PsiBuilder b, int l) {
+  public static boolean MapObjectChildren(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "MapObjectChildren")) return false;
     boolean r, p;
-    Marker m = enter_section_(b, l, _NONE_);
+    Marker m = enter_section_(b, l, _NONE_, MAP_OBJECT_CHILDREN, "<map object children>");
     r = MapObjectChildren_0(b, l + 1);
     p = r; // pin = 1
     r = r && MapObjectChildren_1(b, l + 1);
@@ -2607,10 +2673,10 @@ public class MapfileParser implements PsiParser, LightPsiParser {
 
   /* ********************************************************** */
   // !END ( ( string string ) | IncludeAttr )
-  static boolean MetadataObjectChildren(PsiBuilder b, int l) {
+  public static boolean MetadataObjectChildren(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "MetadataObjectChildren")) return false;
     boolean r, p;
-    Marker m = enter_section_(b, l, _NONE_);
+    Marker m = enter_section_(b, l, _NONE_, METADATA_OBJECT_CHILDREN, "<metadata object children>");
     r = MetadataObjectChildren_0(b, l + 1);
     p = r; // pin = 1
     r = r && MetadataObjectChildren_1(b, l + 1);
@@ -3094,10 +3160,10 @@ public class MapfileParser implements PsiParser, LightPsiParser {
 
   /* ********************************************************** */
   // !END ( ( integer integer ) | IncludeAttr)
-  static boolean PatternObjectChildren(PsiBuilder b, int l) {
+  public static boolean PatternObjectChildren(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "PatternObjectChildren")) return false;
     boolean r, p;
-    Marker m = enter_section_(b, l, _NONE_);
+    Marker m = enter_section_(b, l, _NONE_, PATTERN_OBJECT_CHILDREN, "<pattern object children>");
     r = PatternObjectChildren_0(b, l + 1);
     p = r; // pin = 1
     r = r && PatternObjectChildren_1(b, l + 1);
@@ -3177,10 +3243,10 @@ public class MapfileParser implements PsiParser, LightPsiParser {
 
   /* ********************************************************** */
   // !END ( ( double double ) | IncludeAttr )
-  static boolean PointsObjectChildren(PsiBuilder b, int l) {
+  public static boolean PointsObjectChildren(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "PointsObjectChildren")) return false;
     boolean r, p;
-    Marker m = enter_section_(b, l, _NONE_);
+    Marker m = enter_section_(b, l, _NONE_, POINTS_OBJECT_CHILDREN, "<points object children>");
     r = PointsObjectChildren_0(b, l + 1);
     p = r; // pin = 1
     r = r && PointsObjectChildren_1(b, l + 1);
@@ -3376,10 +3442,10 @@ public class MapfileParser implements PsiParser, LightPsiParser {
 
   /* ********************************************************** */
   // !END ( string | IncludeAttr )
-  static boolean ProjectionObjectChildren(PsiBuilder b, int l) {
+  public static boolean ProjectionObjectChildren(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "ProjectionObjectChildren")) return false;
     boolean r, p;
-    Marker m = enter_section_(b, l, _NONE_);
+    Marker m = enter_section_(b, l, _NONE_, PROJECTION_OBJECT_CHILDREN, "<projection object children>");
     r = ProjectionObjectChildren_0(b, l + 1);
     p = r; // pin = 1
     r = r && ProjectionObjectChildren_1(b, l + 1);
@@ -3452,10 +3518,10 @@ public class MapfileParser implements PsiParser, LightPsiParser {
   //         ColorAttr | SizeAttr | StatusAttr | StyleQuerymapAttr
   //         | IncludeAttr
   //     )
-  static boolean QuerymapObjectChildren(PsiBuilder b, int l) {
+  public static boolean QuerymapObjectChildren(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "QuerymapObjectChildren")) return false;
     boolean r, p;
-    Marker m = enter_section_(b, l, _NONE_);
+    Marker m = enter_section_(b, l, _NONE_, QUERYMAP_OBJECT_CHILDREN, "<querymap object children>");
     r = QuerymapObjectChildren_0(b, l + 1);
     p = r; // pin = 1
     r = r && QuerymapObjectChildren_1(b, l + 1);
@@ -3521,10 +3587,10 @@ public class MapfileParser implements PsiParser, LightPsiParser {
   //         | OutlinecolorAttr | SizeAttr | StatusAttr
   //         | IncludeAttr
   //     )
-  static boolean ReferenceObjectChildren(PsiBuilder b, int l) {
+  public static boolean ReferenceObjectChildren(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "ReferenceObjectChildren")) return false;
     boolean r, p;
-    Marker m = enter_section_(b, l, _NONE_);
+    Marker m = enter_section_(b, l, _NONE_, REFERENCE_OBJECT_CHILDREN, "<reference object children>");
     r = ReferenceObjectChildren_0(b, l + 1);
     p = r; // pin = 1
     r = r && ReferenceObjectChildren_1(b, l + 1);
@@ -3646,10 +3712,10 @@ public class MapfileParser implements PsiParser, LightPsiParser {
   //         | PostlabelcacheAttr | SizeAttr | StatusAttr | StyleScalebarAttr | UnitsAttr
   //         | IncludeAttr
   //     )
-  static boolean ScalebarObjectChildren(PsiBuilder b, int l) {
+  public static boolean ScalebarObjectChildren(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "ScalebarObjectChildren")) return false;
     boolean r, p;
-    Marker m = enter_section_(b, l, _NONE_);
+    Marker m = enter_section_(b, l, _NONE_, SCALEBAR_OBJECT_CHILDREN, "<scalebar object children>");
     r = ScalebarObjectChildren_0(b, l + 1);
     p = r; // pin = 1
     r = r && ScalebarObjectChildren_1(b, l + 1);
@@ -3946,10 +4012,10 @@ public class MapfileParser implements PsiParser, LightPsiParser {
   //         | OutlinewidthAttr | PolaroffsetAttr | SizeClassAttr | SymbolClassAttr | WidthClassAttr
   //         | IncludeAttr
   //     )
-  static boolean StyleObjectChildren(PsiBuilder b, int l) {
+  public static boolean StyleObjectChildren(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "StyleObjectChildren")) return false;
     boolean r, p;
-    Marker m = enter_section_(b, l, _NONE_);
+    Marker m = enter_section_(b, l, _NONE_, STYLE_OBJECT_CHILDREN, "<style object children>");
     r = StyleObjectChildren_0(b, l + 1);
     p = r; // pin = 1
     r = r && StyleObjectChildren_1(b, l + 1);
@@ -4127,10 +4193,10 @@ public class MapfileParser implements PsiParser, LightPsiParser {
   //         | TransparentAttr | TypeSymbolAttr
   //         | IncludeAttr
   //     )
-  static boolean SymbolObjectChildren(PsiBuilder b, int l) {
+  public static boolean SymbolObjectChildren(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "SymbolObjectChildren")) return false;
     boolean r, p;
-    Marker m = enter_section_(b, l, _NONE_);
+    Marker m = enter_section_(b, l, _NONE_, SYMBOL_OBJECT_CHILDREN, "<symbol object children>");
     r = SymbolObjectChildren_0(b, l + 1);
     p = r; // pin = 1
     r = r && SymbolObjectChildren_1(b, l + 1);
@@ -4597,10 +4663,10 @@ public class MapfileParser implements PsiParser, LightPsiParser {
 
   /* ********************************************************** */
   // !END ( ( string string ) | IncludeAttr )
-  static boolean ValidationObjectChildren(PsiBuilder b, int l) {
+  public static boolean ValidationObjectChildren(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "ValidationObjectChildren")) return false;
     boolean r, p;
-    Marker m = enter_section_(b, l, _NONE_);
+    Marker m = enter_section_(b, l, _NONE_, VALIDATION_OBJECT_CHILDREN, "<validation object children>");
     r = ValidationObjectChildren_0(b, l + 1);
     p = r; // pin = 1
     r = r && ValidationObjectChildren_1(b, l + 1);
@@ -4674,10 +4740,10 @@ public class MapfileParser implements PsiParser, LightPsiParser {
   //         | QueryformatAttr | TemplateAttr | TemppathAttr
   //         | IncludeAttr
   //     )
-  static boolean WebObjectChildren(PsiBuilder b, int l) {
+  public static boolean WebObjectChildren(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "WebObjectChildren")) return false;
     boolean r, p;
-    Marker m = enter_section_(b, l, _NONE_);
+    Marker m = enter_section_(b, l, _NONE_, WEB_OBJECT_CHILDREN, "<web object children>");
     r = WebObjectChildren_0(b, l + 1);
     p = r; // pin = 1
     r = r && WebObjectChildren_1(b, l + 1);

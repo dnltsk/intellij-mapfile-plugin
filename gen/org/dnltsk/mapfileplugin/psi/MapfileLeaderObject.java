@@ -9,6 +9,6 @@ import java.util.List;
 public interface MapfileLeaderObject extends PsiElement {
 
   @NotNull
-  List<MapfileStyleObject> getStyleObjectList();
+  List<MapfileLeaderObjectChildren> getLeaderObjectChildrenList();
 
 }

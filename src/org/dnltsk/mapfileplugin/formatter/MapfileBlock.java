@@ -2,7 +2,7 @@ package org.dnltsk.mapfileplugin.formatter;
 
 import com.intellij.formatting.*;
 import com.intellij.lang.ASTNode;
-import com.intellij.psi.PsiElement;
+import com.intellij.psi.TokenType;
 import com.intellij.psi.formatter.common.AbstractBlock;
 import org.dnltsk.mapfileplugin.psi.MapfileTypes;
 import org.jetbrains.annotations.NotNull;
@@ -22,20 +22,17 @@ public class MapfileBlock extends AbstractBlock {
 
     @Override
     protected List<Block> buildChildren() {
-        List<Block> blocks = new ArrayList<Block>();
+        List<Block> blocks = new ArrayList<>();
         ASTNode child = myNode.getFirstChildNode();
-        PsiElement childPsi = child.getPsi();
         while (child != null) {
-
-            if (child.getElementType() == MapfileTypes.MAP_OBJECT
-                    || child.getElementType() == MapfileTypes.WEB_OBJECT
-                    || child.getElementType() == MapfileTypes.LAYER_OBJECT) {
-                Block block = new MapfileBlock(
-                        child,
-                        Wrap.createWrap(WrapType.NORMAL, false),
-                        Alignment.createAlignment(),
-                        spacingBuilder);
-                blocks.add(block);
+            if (child.getElementType() != TokenType.WHITE_SPACE) {
+                blocks.add(
+                        new MapfileBlock(
+                                child,
+                                Wrap.createWrap(WrapType.NORMAL, true),
+                                Alignment.createAlignment(),
+                                spacingBuilder)
+                );
             }
             child = child.getTreeNext();
         }
@@ -44,6 +41,24 @@ public class MapfileBlock extends AbstractBlock {
 
     @Override
     public Indent getIndent() {
+        if (this.getNode().getElementType() == MapfileTypes.CLASS_OBJECT_CHILDREN
+                || this.getNode().getElementType() == MapfileTypes.COMPOSITE_OBJECT_CHILDREN
+                || this.getNode().getElementType() == MapfileTypes.FEATURE_OBJECT_CHILDREN
+                || this.getNode().getElementType() == MapfileTypes.GRID_OBJECT_CHILDREN
+                || this.getNode().getElementType() == MapfileTypes.JOIN_OBJECT_CHILDREN
+                || this.getNode().getElementType() == MapfileTypes.LABEL_OBJECT_CHILDREN
+                || this.getNode().getElementType() == MapfileTypes.LAYER_OBJECT_CHILDREN
+                || this.getNode().getElementType() == MapfileTypes.LEADER_OBJECT_CHILDREN
+                || this.getNode().getElementType() == MapfileTypes.LEGEND_OBJECT_CHILDREN
+                || this.getNode().getElementType() == MapfileTypes.MAP_OBJECT_CHILDREN
+                || this.getNode().getElementType() == MapfileTypes.QUERYMAP_OBJECT_CHILDREN
+                || this.getNode().getElementType() == MapfileTypes.REFERENCE_OBJECT_CHILDREN
+                || this.getNode().getElementType() == MapfileTypes.SCALEBAR_OBJECT_CHILDREN
+                || this.getNode().getElementType() == MapfileTypes.STYLE_OBJECT_CHILDREN
+                || this.getNode().getElementType() == MapfileTypes.SYMBOL_OBJECT_CHILDREN
+                || this.getNode().getElementType() == MapfileTypes.WEB_OBJECT_CHILDREN) {
+            return Indent.getNormalIndent();
+        }
         return Indent.getNoneIndent();
     }
 

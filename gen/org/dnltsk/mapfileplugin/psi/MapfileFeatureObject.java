@@ -9,6 +9,6 @@ import java.util.List;
 public interface MapfileFeatureObject extends PsiElement {
 
   @NotNull
-  List<MapfilePointsObject> getPointsObjectList();
+  List<MapfileFeatureObjectChildren> getFeatureObjectChildrenList();
 
 }

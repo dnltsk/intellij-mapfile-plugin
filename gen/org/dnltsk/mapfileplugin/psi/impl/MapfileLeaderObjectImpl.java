@@ -6,7 +6,7 @@ import com.intellij.lang.ASTNode;
 import com.intellij.psi.PsiElementVisitor;
 import com.intellij.psi.util.PsiTreeUtil;
 import org.dnltsk.mapfileplugin.psi.MapfileLeaderObject;
-import org.dnltsk.mapfileplugin.psi.MapfileStyleObject;
+import org.dnltsk.mapfileplugin.psi.MapfileLeaderObjectChildren;
 import org.dnltsk.mapfileplugin.psi.MapfileVisitor;
 import org.jetbrains.annotations.NotNull;
 
@@ -29,8 +29,8 @@ public class MapfileLeaderObjectImpl extends ASTWrapperPsiElement implements Map
 
   @Override
   @NotNull
-  public List<MapfileStyleObject> getStyleObjectList() {
-    return PsiTreeUtil.getChildrenOfTypeAsList(this, MapfileStyleObject.class);
+  public List<MapfileLeaderObjectChildren> getLeaderObjectChildrenList() {
+    return PsiTreeUtil.getChildrenOfTypeAsList(this, MapfileLeaderObjectChildren.class);
   }
 
 }

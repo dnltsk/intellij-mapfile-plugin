@@ -5,8 +5,8 @@ import com.intellij.extapi.psi.ASTWrapperPsiElement;
 import com.intellij.lang.ASTNode;
 import com.intellij.psi.PsiElementVisitor;
 import com.intellij.psi.util.PsiTreeUtil;
-import org.dnltsk.mapfileplugin.psi.MapfileLabelObject;
 import org.dnltsk.mapfileplugin.psi.MapfileLegendObject;
+import org.dnltsk.mapfileplugin.psi.MapfileLegendObjectChildren;
 import org.dnltsk.mapfileplugin.psi.MapfileVisitor;
 import org.jetbrains.annotations.NotNull;
 
@@ -29,8 +29,8 @@ public class MapfileLegendObjectImpl extends ASTWrapperPsiElement implements Map
 
   @Override
   @NotNull
-  public List<MapfileLabelObject> getLabelObjectList() {
-    return PsiTreeUtil.getChildrenOfTypeAsList(this, MapfileLabelObject.class);
+  public List<MapfileLegendObjectChildren> getLegendObjectChildrenList() {
+    return PsiTreeUtil.getChildrenOfTypeAsList(this, MapfileLegendObjectChildren.class);
   }
 
 }

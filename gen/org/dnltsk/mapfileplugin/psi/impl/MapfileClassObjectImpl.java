@@ -5,7 +5,9 @@ import com.intellij.extapi.psi.ASTWrapperPsiElement;
 import com.intellij.lang.ASTNode;
 import com.intellij.psi.PsiElementVisitor;
 import com.intellij.psi.util.PsiTreeUtil;
-import org.dnltsk.mapfileplugin.psi.*;
+import org.dnltsk.mapfileplugin.psi.MapfileClassObject;
+import org.dnltsk.mapfileplugin.psi.MapfileClassObjectChildren;
+import org.dnltsk.mapfileplugin.psi.MapfileVisitor;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
@@ -27,26 +29,8 @@ public class MapfileClassObjectImpl extends ASTWrapperPsiElement implements Mapf
 
   @Override
   @NotNull
-  public List<MapfileLabelObject> getLabelObjectList() {
-    return PsiTreeUtil.getChildrenOfTypeAsList(this, MapfileLabelObject.class);
-  }
-
-  @Override
-  @NotNull
-  public List<MapfileLeaderObject> getLeaderObjectList() {
-    return PsiTreeUtil.getChildrenOfTypeAsList(this, MapfileLeaderObject.class);
-  }
-
-  @Override
-  @NotNull
-  public List<MapfileStyleObject> getStyleObjectList() {
-    return PsiTreeUtil.getChildrenOfTypeAsList(this, MapfileStyleObject.class);
-  }
-
-  @Override
-  @NotNull
-  public List<MapfileValidationObject> getValidationObjectList() {
-    return PsiTreeUtil.getChildrenOfTypeAsList(this, MapfileValidationObject.class);
+  public List<MapfileClassObjectChildren> getClassObjectChildrenList() {
+    return PsiTreeUtil.getChildrenOfTypeAsList(this, MapfileClassObjectChildren.class);
   }
 
 }
