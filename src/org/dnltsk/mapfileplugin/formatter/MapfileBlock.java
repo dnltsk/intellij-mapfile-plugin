@@ -14,9 +14,11 @@ import java.util.List;
 public class MapfileBlock extends AbstractBlock {
 
     private SpacingBuilder spacingBuilder;
+    private int depth;
 
-    protected MapfileBlock(@NotNull ASTNode node, @Nullable Wrap wrap, @Nullable Alignment alignment, SpacingBuilder spacingBuilder) {
+    protected MapfileBlock(int depth, @NotNull ASTNode node, @Nullable Wrap wrap, @Nullable Alignment alignment, SpacingBuilder spacingBuilder) {
         super(node, wrap, alignment);
+        this.depth = depth;
         this.spacingBuilder = spacingBuilder;
     }
 
@@ -26,17 +28,40 @@ public class MapfileBlock extends AbstractBlock {
         ASTNode child = myNode.getFirstChildNode();
         while (child != null) {
             if (child.getElementType() != TokenType.WHITE_SPACE) {
-                blocks.add(
-                        new MapfileBlock(
-                                child,
-                                Wrap.createWrap(WrapType.NORMAL, true),
-                                Alignment.createAlignment(),
-                                spacingBuilder)
-                );
+                int newDepth = calcChildDepth(depth);
+                MapfileBlock childBlock = new MapfileBlock(
+                        newDepth,
+                        child,
+                        Wrap.createWrap(WrapType.NORMAL, true),
+                        Alignment.createAlignment(),
+                        spacingBuilder);
+                blocks.add(childBlock);
             }
             child = child.getTreeNext();
         }
         return blocks;
+    }
+
+    private int calcChildDepth(int depth) {
+        if (this.getNode().getElementType() == MapfileTypes.CLASS_OBJECT
+                || this.getNode().getElementType() == MapfileTypes.COMPOSITE_OBJECT
+                || this.getNode().getElementType() == MapfileTypes.FEATURE_OBJECT
+                || this.getNode().getElementType() == MapfileTypes.GRID_OBJECT
+                || this.getNode().getElementType() == MapfileTypes.JOIN_OBJECT
+                || this.getNode().getElementType() == MapfileTypes.LABEL_OBJECT
+                || this.getNode().getElementType() == MapfileTypes.LAYER_OBJECT
+                || this.getNode().getElementType() == MapfileTypes.LEADER_OBJECT
+                || this.getNode().getElementType() == MapfileTypes.LEGEND_OBJECT
+                || this.getNode().getElementType() == MapfileTypes.MAP_OBJECT
+                || this.getNode().getElementType() == MapfileTypes.QUERYMAP_OBJECT
+                || this.getNode().getElementType() == MapfileTypes.REFERENCE_OBJECT
+                || this.getNode().getElementType() == MapfileTypes.SCALEBAR_OBJECT
+                || this.getNode().getElementType() == MapfileTypes.STYLE_OBJECT
+                || this.getNode().getElementType() == MapfileTypes.SYMBOL_OBJECT
+                || this.getNode().getElementType() == MapfileTypes.WEB_OBJECT) {
+            return depth + 1;
+        }
+        return depth;
     }
 
     @Override
@@ -56,7 +81,9 @@ public class MapfileBlock extends AbstractBlock {
                 || this.getNode().getElementType() == MapfileTypes.SCALEBAR_OBJECT_CHILDREN
                 || this.getNode().getElementType() == MapfileTypes.STYLE_OBJECT_CHILDREN
                 || this.getNode().getElementType() == MapfileTypes.SYMBOL_OBJECT_CHILDREN
-                || this.getNode().getElementType() == MapfileTypes.WEB_OBJECT_CHILDREN) {
+                || this.getNode().getElementType() == MapfileTypes.WEB_OBJECT_CHILDREN
+                || (this.depth > 0 && this.getNode().getElementType() == MapfileTypes.COMMENT)
+                ) {
             return Indent.getNormalIndent();
         }
         return Indent.getNoneIndent();

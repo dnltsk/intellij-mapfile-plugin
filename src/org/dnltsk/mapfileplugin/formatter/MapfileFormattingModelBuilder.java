@@ -18,8 +18,9 @@ public class MapfileFormattingModelBuilder implements FormattingModelBuilder {
         return FormattingModelProvider.createFormattingModelForPsiFile(
                 element.getContainingFile(),
                 new MapfileBlock(
+                        0,
                         element.getNode(),
-                        Wrap.createWrap(WrapType.NONE,
+                        Wrap.createWrap(WrapType.NORMAL,
                                 false),
                         Alignment.createAlignment(),
                         createSpaceBuilder(settings)),
