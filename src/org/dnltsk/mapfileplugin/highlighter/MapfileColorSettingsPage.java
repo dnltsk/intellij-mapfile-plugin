@@ -17,7 +17,7 @@ public class MapfileColorSettingsPage  implements ColorSettingsPage {
     private static final AttributesDescriptor[] DESCRIPTORS = new AttributesDescriptor[]{
             new AttributesDescriptor("Keywords", MapfileSyntaxHighlighter.KEYWORD_HIGHLIGHTER),
             new AttributesDescriptor("Enum Values", MapfileSyntaxHighlighter.ENUM_HIGHLIGHTER),
-            new AttributesDescriptor("Nunmbers", MapfileSyntaxHighlighter.NUMBERS_HIGHLIGHTER),
+            new AttributesDescriptor("Numbers", MapfileSyntaxHighlighter.NUMBERS_HIGHLIGHTER),
             new AttributesDescriptor("Strings", MapfileSyntaxHighlighter.STRING_HIGHLIGHTER),
             new AttributesDescriptor("Comments", MapfileSyntaxHighlighter.COMMENT_HIGHLIGHTER),
             new AttributesDescriptor("Bad Characters", MapfileSyntaxHighlighter.BAD_CHARACTER_HIGHLIGHTER),
@@ -38,7 +38,11 @@ public class MapfileColorSettingsPage  implements ColorSettingsPage {
     @NotNull
     @Override
     public String getDemoText() {
-        return "MAP\n" +
+        return "#\n" +
+                "# preview adopted from\n" +
+                "# http://mapserver.org/introduction.html\n" +
+                "#\n" +
+                "MAP\n" +
                 "    NAME \"sample\"\n" +
                 "    STATUS ON\n" +
                 "    SIZE 600 400\n" +
