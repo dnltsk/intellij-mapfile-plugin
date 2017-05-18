@@ -38,15 +38,6 @@ public class MapfileLineMarkerProvider implements LineMarkerProvider {
             NavigateAction.setNavigateAction(info, "Choose color", null);
             return info;
         }
-        /*for (ElementColorProvider colorProvider : myExtensions) {
-            final Color color = colorProvider.getColorFrom(element);
-            if (color != null) {
-                MyInfo info = new MyInfo(element, color, colorProvider);
-                NavigateAction.setNavigateAction(info, "Choose color", null);
-                return info;
-            }
-        }
-        */
         return null;
     }
 
@@ -58,7 +49,7 @@ public class MapfileLineMarkerProvider implements LineMarkerProvider {
 
         private final Color myColor;
 
-        public MyInfo(@NotNull final PsiElement element, final Color color, final ElementColorProvider colorProvider) {
+        MyInfo(@NotNull final PsiElement element, final Color color, final ElementColorProvider colorProvider) {
             super(element,
                     element.getTextRange(),
                     new ColorIcon(12, color),
@@ -71,7 +62,7 @@ public class MapfileLineMarkerProvider implements LineMarkerProvider {
 
                             final Editor editor = PsiUtilBase.findEditor(element);
                             assert editor != null;
-                            final Color c = ColorChooser.chooseColor(editor.getComponent(), "Choose Color", color, true);
+                            final Color c = ColorChooser.chooseColor(editor.getComponent(), "Choose Color", color, false);
                             if (c != null) {
                                 AccessToken token = ApplicationManager.getApplication().acquireWriteActionLock(MapfileLineMarkerProvider.class);
                                 try {
@@ -106,4 +97,5 @@ public class MapfileLineMarkerProvider implements LineMarkerProvider {
             return FunctionUtil.nullConstant();
         }
     }
+
 }
