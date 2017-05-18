@@ -38,6 +38,9 @@ public class MapfileElementColorProvider implements ElementColorProvider {
             currentSibling = currentSibling.getNextSibling();
             if (currentSibling.getNode().getElementType() == MapfileTypes.INTEGER) {
                 Integer rgbComponent = Integer.parseInt(currentSibling.getText());
+                if(rgbComponent < 0 || rgbComponent > 255){
+                    return null;//invalid rgb component!
+                }
                 rgb.add(rgbComponent);
                 if (rgb.size() == 3) {
                     return new Color(rgb.get(0), rgb.get(1), rgb.get(2));
@@ -69,15 +72,21 @@ public class MapfileElementColorProvider implements ElementColorProvider {
         PsiElement currentSibling = psiElement;
         while (true) {
             currentSibling = currentSibling.getNextSibling();
+            if (currentSibling == null) {
+                break;
+            }
             if (currentSibling.getNode().getElementType() == MapfileTypes.INTEGER) {
                 rgbElements.add(currentSibling);
+                if (rgbElements.size() == 3) {
+                    break;
+                }
                 continue;
             }
             if (rgbElements.size() == 0 && currentSibling.getNode().getElementType() == MapfileTypes.STRING) {
                 String hex = currentSibling.getText();// '#00ff00'
                 hex = hex.replaceAll("\\s", "");
                 char quote = hex.charAt(0);
-                String newColor = quote + String.format("#%02x%02x%02x", color.getRed(), color.getGreen(), color.getBlue())+quote;
+                String newColor = quote + String.format("#%02x%02x%02x", color.getRed(), color.getGreen(), color.getBlue()) + quote;
                 ((LeafPsiElement) currentSibling).replaceWithText(newColor);
                 return;
             }
