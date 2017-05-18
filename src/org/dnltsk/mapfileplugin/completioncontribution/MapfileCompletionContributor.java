@@ -7,11 +7,8 @@ import com.intellij.psi.impl.source.tree.PsiErrorElementImpl;
 import com.intellij.psi.tree.IElementType;
 import com.intellij.util.ProcessingContext;
 import org.dnltsk.mapfileplugin.MapfileLanguage;
-import org.dnltsk.mapfileplugin.psi.MapfileKeywordDependencies;
 import org.dnltsk.mapfileplugin.psi.PossibleKeywords;
 import org.jetbrains.annotations.NotNull;
-
-import java.util.Set;
 
 import static com.intellij.patterns.PlatformPatterns.psiElement;
 
@@ -67,11 +64,14 @@ public class MapfileCompletionContributor extends CompletionContributor {
             return true;
 
         }
-        /* else if (element instanceof PsiErrorElementImpl) {
-            extractKeywordsFromPsiErrorElement(resultSet, (PsiErrorElementImpl) element);
-            return true;
-
-        } else if (parent instanceof PsiErrorElementImpl) {
+        else if (element instanceof PsiErrorElementImpl) {
+            //use it only if there is a real suggestion.
+            if(!((PsiErrorElementImpl) element).getErrorDescription().endsWith(" unexpected")) {
+                extractKeywordsFromPsiErrorElement(resultSet, (PsiErrorElementImpl) element);
+                return true;
+            }
+        }
+        /*else if (parent instanceof PsiErrorElementImpl) {
             extractKeywordsFromPsiErrorElement(resultSet, (PsiErrorElementImpl) parent);
             return true;
         }*/
@@ -106,20 +106,27 @@ public class MapfileCompletionContributor extends CompletionContributor {
     // MapfileObject
     //
     private void handleMapfileObject(PsiElement element, PsiElement parent, CompletionResultSet resultSet) {
-        Set<Class<? extends PsiElement>> classes = MapfileKeywordDependencies.dependencyMap.keySet();
 
         //ELEMENT
         if (!(element instanceof PsiErrorElementImpl)) {
-            for (Class<? extends PsiElement> clazz : classes) {
-                if (clazz.isInstance(element)) {
-                    addKeywords(resultSet, MapfileKeywordDependencies.dependencyMap.get(clazz));
+            for (ObjectsKeywords objectsKeywords : ObjectsKeywordsRepository.objectsKeywords) {
+                for (int i = 0; i < objectsKeywords.objects.size(); i++) {
+                    Class<? extends PsiElement> clazz = objectsKeywords.objects.get(i);
+                    if (clazz.isInstance(element)) {
+                        addKeywords(resultSet, objectsKeywords.possibleKeywords);
+                        return;
+                    }
                 }
             }
         }
         //PARENT
-        for (Class<? extends PsiElement> clazz : classes) {
-            if (clazz.isInstance(parent)) {
-                addKeywords(resultSet, MapfileKeywordDependencies.dependencyMap.get(clazz));
+        for (ObjectsKeywords objectsKeywords : ObjectsKeywordsRepository.objectsKeywords) {
+            for (int i = 0; i < objectsKeywords.objects.size(); i++) {
+                Class<? extends PsiElement> clazz = objectsKeywords.objects.get(i);
+                if (clazz.isInstance(parent)) {
+                    addKeywords(resultSet, objectsKeywords.possibleKeywords);
+                    return;
+                }
             }
         }
     }
