@@ -69,6 +69,7 @@ STRING=('([^'\\]|\\.)*'|\"([^\"\\]|\\.)*\")
   "QUERYMAP"                    { return QUERYMAP; }
   "REFERENCE"                   { return REFERENCE; }
   "SCALEBAR"                    { return SCALEBAR; }
+  "OUTPUTFORMAT"                { return OUTPUTFORMAT; }
   "PATTERN"                     { return PATTERN; }
   "VALIDATION"                  { return VALIDATION; }
   "METADATA"                    { return METADATA; }
@@ -99,11 +100,13 @@ STRING=('([^'\\]|\\.)*'|\"([^\"\\]|\\.)*\")
   "DATAPATTERN"                 { return DATAPATTERN; }
   "DEBUG"                       { return DEBUG; }
   "DEFRESOLUTION"               { return DEFRESOLUTION; }
+  "DRIVER"                      { return DRIVER; }
   "DUMP"                        { return DUMP; }
   "EMPTY"                       { return EMPTY; }
   "ENCODING"                    { return ENCODING; }
   "ERROR"                       { return ERROR; }
   "EXPRESSION"                  { return EXPRESSION; }
+  "EXTENSION"                   { return EXTENSION; }
   "EXTENT"                      { return EXTENT; }
   "FILLED"                      { return FILLED; }
   "FILTER"                      { return FILTER; }
@@ -112,6 +115,7 @@ STRING=('([^'\\]|\\.)*'|\"([^\"\\]|\\.)*\")
   "FONTSET"                     { return FONTSET; }
   "FOOTER"                      { return FOOTER; }
   "FORCE"                       { return FORCE; }
+  "FORMATOPTION"                { return FORMATOPTION; }
   "FROM"                        { return FROM; }
   "GAP"                         { return GAP; }
   "GEOMTRANSFORM"               { return GEOMTRANSFORM; }
@@ -120,6 +124,7 @@ STRING=('([^'\\]|\\.)*'|\"([^\"\\]|\\.)*\")
   "HEADER"                      { return HEADER; }
   "IMAGE"                       { return IMAGE; }
   "IMAGECOLOR"                  { return IMAGECOLOR; }
+  "IMAGEMODE"                   { return IMAGEMODE; }
   "IMAGEPATH"                   { return IMAGEPATH; }
   "IMAGETYPE"                   { return IMAGETYPE; }
   "IMAGEURL"                    { return IMAGEURL; }
@@ -156,6 +161,7 @@ STRING=('([^'\\]|\\.)*'|\"([^\"\\]|\\.)*\")
   "MAXSUBDIVIDE"                { return MAXSUBDIVIDE; }
   "MAXTEMPLATE"                 { return MAXTEMPLATE; }
   "MAXWIDTH"                    { return MAXWIDTH; }
+  "MIMETYPE"                    { return MIMETYPE; }
   "MINARCS"                     { return MINARCS; }
   "MINBOXSIZE"                  { return MINBOXSIZE; }
   "MINDISTANCE"                 { return MINDISTANCE; }
@@ -238,12 +244,21 @@ STRING=('([^'\\]|\\.)*'|\"([^\"\\]|\\.)*\")
   "csv"                         { return CSV; }
   "mysql"                       { return MYSQL; }
   "postgresql"                  { return POSTGRESQL; }
+  "KML"                         { return KML; }
+  "KMZ"                         { return KMZ; }
+  "UTFGRID"                     { return UTFGRID; }
   "bbox"                        { return BBOX; }
   "centroid"                    { return CENTROID; }
   "labelpnt"                    { return LABELPNT; }
   "labelpoly"                   { return LABELPOLY; }
   "start"                       { return START; }
   "vertices"                    { return VERTICES; }
+  "PC256"                       { return PC256; }
+  "RGB"                         { return RGB; }
+  "RGBA"                        { return RGBA; }
+  "BYTE"                        { return BYTE; }
+  "INT16"                       { return INT16; }
+  "FLOAT32"                     { return FLOAT32; }
   "png"                         { return PNG; }
   "gif"                         { return GIF; }
   "png8"                        { return PNG8; }
@@ -251,8 +266,6 @@ STRING=('([^'\\]|\\.)*'|\"([^\"\\]|\\.)*\")
   "svg"                         { return SVG; }
   "pdf"                         { return PDF; }
   "gtiff"                       { return GTIFF; }
-  "kml"                         { return KML; }
-  "kmz"                         { return KMZ; }
   "cairopng"                    { return CAIROPNG; }
   "dd"                          { return DD; }
   "ddmm"                        { return DDMM; }

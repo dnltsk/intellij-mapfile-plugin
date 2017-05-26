@@ -1,0 +1,47 @@
+#
+# preview adopted from
+# http://mapserver.org/introduction.html
+#
+MAP
+    NAME x"sample"
+    STATUS xON
+    SIZE 600.0 400
+    SYMBOLSET "../etc/symbols.txt"
+    EXTENT -180 -90 180 90
+    UNITS DD
+    SHAPEPATH "../data"
+    IMAGECOLOR 255 0 255
+    FONTSET "../etc/fonts.txt"
+
+    #
+    # Start of web interface definition
+    #
+    WEB
+        IMAGEPATH "/ms4w/tmp/ms_tmp/"
+        IMAGEURL "/ms_tmp/"
+    END # WEB
+
+    #
+    # Start of layer definitions
+    #
+    LAYER
+        NAME "global-raster-foo"
+        TYPE RASTER
+        STATUS DEFAULT
+        DATA "bluemarble.gif"
+    END # LAYER
+
+    LAYER
+        NAME "global-raster-bar"
+        TYPE RASTER
+        STATUS DEFAULT
+        DATA "bluemarble.gif"
+    END # LAYER
+
+    LAYER
+        NAME "global-raster"
+        TYPE r
+        STATUS DEFAULT
+        DATA "bluemarble.gif"
+    END # LAYER
+END # MAP

@@ -52,10 +52,10 @@ private global_attribute_recover2 ::= !(END | NAME | TITLE | MAP)
 
 root ::= mapfile
 
-private mapfile ::= MapObject | WebObject | ScalebarObject | ProjectionObject | MetadataObject | QuerymapObject | ReferenceObject
-             | ( LayerObject | ClassObject | SymbolObject | LabelObject | StyleObject
-                | LeaderObject | LegendObject | FeatureObject | ClusterObject | CompositeObject | GridObject
-                | JoinObject | PatternObject ValidationObject
+private mapfile ::= MapObject | WebObject | ScalebarObject | ProjectionObject | MetadataObject | QuerymapObject | ReferenceObject | GridObject
+             | ( LayerObject | ClassObject | SymbolObject | LabelObject | StyleObject | OutputformatObject
+                | LeaderObject | LegendObject | FeatureObject | ClusterObject | CompositeObject
+                | JoinObject | PatternObject | ValidationObject
                 | PointsObject ) *
 
 //
@@ -219,6 +219,12 @@ ScalebarObjectChildren ::=
         | IncludeAttr
     ) { pin=1 }
 
+OutputformatObject ::= OUTPUTFORMAT OutputformatObjectChildren * END { pin=1}
+OutputformatObjectChildren ::=
+    !END (
+        DriverAttr | ExtensionAttr | FormatoptionAttr | ImagemodeAttr | MimetypeAttr | NameAttr | TransparentOutputformatAttr
+    ) { pin=1 }
+
 PatternObject ::= PATTERN PatternObjectChildren * END { pin=1 }
 PatternObjectChildren ::= !END ( ( integer integer ) | IncludeAttr) { pin=1 }
 
@@ -283,6 +289,8 @@ private DebugClassAttr ::= DEBUG BooleanEnum {pin=1 recoverWhile=global_attribut
 
 private DefresolutionAttr ::= DEFRESOLUTION integer {pin=1 recoverWhile=global_attribute_recover}
 
+private DriverAttr ::= DRIVER DriverEnum {pin=1 recoverWhile=global_attribute_recover}
+
 private DumpAttr ::= DUMP BooleanEnum {pin=1 recoverWhile=global_attribute_recover}
 
 private EmptyAttr ::= EMPTY string {pin=1 recoverWhile=global_attribute_recover} // TODO: url
@@ -292,6 +300,8 @@ private EncodingAttr ::= ENCODING string {pin=1 recoverWhile=global_attribute_re
 private ErrorAttr ::= ERROR string {pin=1 recoverWhile=global_attribute_recover} // TODO: url
 
 private ExpressionAttr ::= EXPRESSION ExpressionEnum {pin=1 recoverWhile=global_attribute_recover}
+
+private ExtensionAttr ::= EXTENSION string {pin=1 recoverWhile=global_attribute_recover}
 
 private ExtentAttr ::= EXTENT ( integer | double ) ( integer | double ) ( integer | double ) ( integer | double ) {pin=1 recoverWhile=ExtentAttr_recover}
 
@@ -307,6 +317,8 @@ private FontsetAttr ::= FONTSET string {pin=1 recoverWhile=global_attribute_reco
 private FooterAttr ::= FOOTER string {pin=1 recoverWhile=global_attribute_recover} // TODO: filename
 
 private ForceAttr ::= FORCE BooleanEnum {pin=1 recoverWhile=global_attribute_recover}
+
+private FormatoptionAttr ::= FORMATOPTION string  {pin=1 recoverWhile=global_attribute_recover}
 
 private FromAttr ::= FROM string {pin=1 recoverWhile=global_attribute_recover}
 
@@ -324,6 +336,8 @@ private HeaderAttr ::= HEADER string {pin=1 recoverWhile=global_attribute_recove
 private ImageAttr ::= IMAGE string {pin=1 recoverWhile=global_attribute_recover}
 
 private ImagecolorAttr ::= IMAGECOLOR ColorEnum {pin=1 recoverWhile=global_attribute_recover} // TODO: hex or RGB
+
+private ImagemodeAttr ::= IMAGEMODE ImagemodeEnum {pin=1 recoverWhile=global_attribute_recover} // TODO: hex or RGB
 
 private ImagepathAttr ::= IMAGEPATH string {pin=1 recoverWhile=global_attribute_recover} // TODO: path
 
@@ -396,6 +410,8 @@ private MaxsubdivideAttr ::= MAXSUBDIVIDE ( integer | double ) {pin=1 recoverWhi
 private MaxtemplateAttr ::= MAXTEMPLATE string {pin=1 recoverWhile=global_attribute_recover} // TODO: [file/url]
 
 private MaxwidthAttr ::= MAXWIDTH ( integer | double ) {pin=1 recoverWhile=global_attribute_recover}
+
+private MimetypeAttr ::= MIMETYPE string  {pin=1 recoverWhile=global_attribute_recover}
 
 private MinarcsAttr ::= MINARCS ( integer | double ) {pin=1 recoverWhile=global_attribute_recover}
 
@@ -511,6 +527,7 @@ private ToleranceunitsAttr ::= TOLERANCEUNITS ToleranceUnitEnum {pin=1 recoverWh
 private TransformAttr ::= TRANSFORM TransformEnum {pin=1 recoverWhile=global_attribute_recover}
 
 private TransparentAttr ::= TRANSPARENT integer {pin=1 recoverWhile=global_attribute_recover} // TODO color-index
+private TransparentOutputformatAttr ::= TRANSPARENT OnOffEnum  {pin=1 recoverWhile=global_attribute_recover}
 
 private TypeAttr ::= TYPE TypeEnum {pin=1 recoverWhile=global_attribute_recover}
 private TypeJoinAttr ::= TYPE TypeJoinEnum {pin=1 recoverWhile=global_attribute_recover}
@@ -536,13 +553,13 @@ private global_attribute_recover ::=
         | JOIN | QUERYMAP | REFERENCE | SCALEBAR | PATTERN | VALIDATION | METADATA | POINTS | PROJECTION
         | ALIGN | ANCHORPOINT | ANGLE | ANTIALIAS | BACKGROUNDCOLOR | BROWSEFORMAT | BUFFER | CHARACTER | CLASSGROUP
         | CLASSITEM | COLOR | CONFIG | COMPOP | CONNECTION | CONNECTIONTYPE | DATA | DATAPATTERN | DEBUG | DEFRESOLUTION
-        | DUMP | EMPTY | ENCODING | ERROR | EXPRESSION | EXTENT | FILLED | FILTER | FILTERITEM | FONT | FONTSET | FOOTER
-        | FORCE | FROM | GAP | GEOMTRANSFORM | GRIDSTEP | GROUP | HEADER | IMAGE | IMAGECOLOR | IMAGEPATH | IMAGETYPE
+        | DRIVER | DUMP | EMPTY | ENCODING | ERROR | EXPRESSION | EXTENSION | EXTENT | FILLED | FILTER | FILTERITEM | FONT | FONTSET | FOOTER
+        | FORCE | FORMATOPTION | FROM | GAP | GEOMTRANSFORM | GRIDSTEP | GROUP | HEADER | IMAGE | IMAGECOLOR | IMAGEMODE | IMAGEPATH | IMAGETYPE
         | IMAGEURL | INITIALGAP | INTERLACE | ITEMS | KEYIMAGE | KEYSIZE | KEYSPACING | LABELCACHE | LABELFORMAT
         | LABELITEM | LABELMAXSCALEDENOM | LABELMINSCALEDENOM | LABELREQUIRES | LEGENDFORMAT | LINECAP | LINEJOIN
         | LINEJOINMAXSIZE | MARKER | MARKERSIZE | MASK | MAXARCS | MAXBOXSIZE | MAXDISTANCE | MAXFEATURES | MAXGEOWIDTH
         | MAXINTERVAL | MAXLENGTH | MAXOVERLAPANGLE | MAXSCALEDENOM | MAXSIZE | MAXSUBDIVIDE | MAXTEMPLATE | MAXWIDTH
-        | MINARCS | MINBOXSIZE | MINDISTANCE | MINFEATURESIZE | MINGEOWIDTH | MININTERVAL | MINSCALEDENOM | MINSIZE
+        | MIMETYPE | MINARCS | MINBOXSIZE | MINDISTANCE | MINFEATURESIZE | MINGEOWIDTH | MININTERVAL | MINSCALEDENOM | MINSIZE
         | MINSUBDIVIDE | MINTEMPLATE | MINWIDTH | NAME | OFFSET | OFFSITE | OPACITY | OUTLINECOLOR | OUTLINEWIDTH
         | PARTIALS | PLUGIN | POLAROFFSET | POSITION | POSTLABELCACHE | PRIORITY | PROCESSING | QUERYFORMAT | REGION
         | REPEATDISTANCE | REQUIRES | RESOLUTION | SCALEDENOM | SHADOWCOLOR | SHADOWSIZE | SHAPEPATH | SIZE | SIZEUNITS
@@ -565,8 +582,10 @@ private ColorEnum ::= string | ( integer integer integer )
 private ConnectiontypeEnum ::= contour|kerneldensity|local|ogr|oraclespatial|plugin|postgis|sde|union|uvraster|wfs|wms // TODO check for completeness
 private ConnectiontypeJoinEnum ::= csv|mysql|postgresql
 private DebugEnum ::= OnOffEnum|0|1|2|3|4|5
+private DriverEnum ::= string|"AGG/PNG"|"GD/GIF"|"AGG/PNG8"|"AGG/JPEG"|"CAIRO/SVG"|"CAIRO/PDF"|"GDAL/GTiff"|KML|KMZ|"CAIRO/PNG"|UTFGRID
 private ExpressionEnum ::= ( string | logicalExpressionToken | regexToken | listExpressionToken ) // TODO string functions
 private GeomtransformClassEnum ::= bbox|centroid|"end"|labelpnt|labelpoly|start|vertices|string // TODO string = expression!
+private ImagemodeEnum ::= PC256|RGB|RGBA|BYTE|INT16|FLOAT32|FEATURE
 private ImagetypeEnum ::= png|gif|png8|jpeg|svg|pdf|gtiff|kml|kmz|cairopng|string
 private LabelFormatEnum ::= dd|ddmm|ddmmss|string // TODO string=cformat-string
 private LinecapEnum ::= butt|round|square

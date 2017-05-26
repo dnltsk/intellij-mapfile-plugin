@@ -201,6 +201,19 @@ public class ObjectsKeywordsRepository {
         );
         map.add(
                 new ObjectsKeywords(
+                        Arrays.asList(MapfileOutputformatObject.class, MapfileOutputformatObjectChildren.class),
+                        new PossibleKeywords(
+                                Arrays.asList(
+                                        END,
+                                        DRIVER, EXTENSION, FORMATOPTION, IMAGEMODE, MIMETYPE, NAME, TRANSPARENT,
+                                        INCLUDE
+                                ),
+                                Collections.emptyList()
+                        )
+                )
+        );
+        map.add(
+                new ObjectsKeywords(
                         Arrays.asList(MapfileQuerymapObject.class, MapfileQuerymapObjectChildren.class),
                         new PossibleKeywords(
                                 Arrays.asList(

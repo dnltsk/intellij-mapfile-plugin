@@ -1,7 +1,7 @@
 <idea-plugin>
   <id>org.dnltsk.mapfileplugin</id>
   <name>Mapfile</name>
-  <version>7.0#0.4.2</version>
+  <version>7.0#0.5.0</version>
   <vendor email="daniel.teske@gmail.com" url="https://github.com/dnltsk/intellij-mapfile-plugin">dnltsk</vendor>
 
   <description><![CDATA[
@@ -16,10 +16,11 @@
 
   <change-notes><![CDATA[
       <ul>
+        <li>7.0#0.5.0 autoformatting, rgb validation</li>
         <li>7.0#0.4.2 improved autocompletion</li>
         <li>7.0#0.4.1 improved autocompletion</li>
         <li>7.0#0.4.0 introduced INCLUDE; some objects can be defined multiple times; improved autocompletion</li>
-        <li>7.0#0.3.0 folding groups, color picker, improved autocompletion</li>
+        <li>7.0#0.3.0 folding, color picker, improved autocompletion</li>
         <li>7.0#0.2.1 enabled more idea versions</li>
         <li>7.0#0.2.0 highlight multiple errors; classic (green) syntax highlighting based on Mapserver website</li>
         <li>7.0#0.1.0 basic autocompletion</li>

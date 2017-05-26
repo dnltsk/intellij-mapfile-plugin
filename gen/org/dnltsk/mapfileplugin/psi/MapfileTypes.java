@@ -32,6 +32,8 @@ public interface MapfileTypes {
   IElementType MAP_OBJECT_CHILDREN = new MapfileElementType("MAP_OBJECT_CHILDREN");
   IElementType METADATA_OBJECT = new MapfileElementType("METADATA_OBJECT");
   IElementType METADATA_OBJECT_CHILDREN = new MapfileElementType("METADATA_OBJECT_CHILDREN");
+  IElementType OUTPUTFORMAT_OBJECT = new MapfileElementType("OUTPUTFORMAT_OBJECT");
+  IElementType OUTPUTFORMAT_OBJECT_CHILDREN = new MapfileElementType("OUTPUTFORMAT_OBJECT_CHILDREN");
   IElementType PATTERN_OBJECT = new MapfileElementType("PATTERN_OBJECT");
   IElementType PATTERN_OBJECT_CHILDREN = new MapfileElementType("PATTERN_OBJECT_CHILDREN");
   IElementType POINTS_OBJECT = new MapfileElementType("POINTS_OBJECT");
@@ -67,6 +69,7 @@ public interface MapfileTypes {
   IElementType BROWSEFORMAT = new MapfileTokenType("BROWSEFORMAT");
   IElementType BUFFER = new MapfileTokenType("BUFFER");
   IElementType BUTT = new MapfileTokenType("butt");
+  IElementType BYTE = new MapfileTokenType("BYTE");
   IElementType CAIROPNG = new MapfileTokenType("cairopng");
   IElementType CC = new MapfileTokenType("cc");
   IElementType CENTER = new MapfileTokenType("center");
@@ -99,6 +102,7 @@ public interface MapfileTypes {
   IElementType DEFAULT = new MapfileTokenType("default");
   IElementType DEFRESOLUTION = new MapfileTokenType("DEFRESOLUTION");
   IElementType DOUBLE = new MapfileTokenType("double");
+  IElementType DRIVER = new MapfileTokenType("DRIVER");
   IElementType DUMP = new MapfileTokenType("DUMP");
   IElementType ELLIPSE = new MapfileTokenType("ellipse");
   IElementType EMPTY = new MapfileTokenType("EMPTY");
@@ -107,6 +111,7 @@ public interface MapfileTypes {
   IElementType EQ = new MapfileTokenType("=");
   IElementType ERROR = new MapfileTokenType("ERROR");
   IElementType EXPRESSION = new MapfileTokenType("EXPRESSION");
+  IElementType EXTENSION = new MapfileTokenType("EXTENSION");
   IElementType EXTENT = new MapfileTokenType("EXTENT");
   IElementType FAIL = new MapfileTokenType("fail");
   IElementType FALSE = new MapfileTokenType("false");
@@ -115,11 +120,13 @@ public interface MapfileTypes {
   IElementType FILLED = new MapfileTokenType("FILLED");
   IElementType FILTER = new MapfileTokenType("FILTER");
   IElementType FILTERITEM = new MapfileTokenType("FILTERITEM");
+  IElementType FLOAT32 = new MapfileTokenType("FLOAT32");
   IElementType FOLLOW = new MapfileTokenType("follow");
   IElementType FONT = new MapfileTokenType("FONT");
   IElementType FONTSET = new MapfileTokenType("FONTSET");
   IElementType FOOTER = new MapfileTokenType("FOOTER");
   IElementType FORCE = new MapfileTokenType("FORCE");
+  IElementType FORMATOPTION = new MapfileTokenType("FORMATOPTION");
   IElementType FROM = new MapfileTokenType("FROM");
   IElementType GAP = new MapfileTokenType("GAP");
   IElementType GEOMTRANSFORM = new MapfileTokenType("GEOMTRANSFORM");
@@ -136,12 +143,14 @@ public interface MapfileTypes {
   IElementType IGNORE = new MapfileTokenType("ignore");
   IElementType IMAGE = new MapfileTokenType("IMAGE");
   IElementType IMAGECOLOR = new MapfileTokenType("IMAGECOLOR");
+  IElementType IMAGEMODE = new MapfileTokenType("IMAGEMODE");
   IElementType IMAGEPATH = new MapfileTokenType("IMAGEPATH");
   IElementType IMAGETYPE = new MapfileTokenType("IMAGETYPE");
   IElementType IMAGEURL = new MapfileTokenType("IMAGEURL");
   IElementType INCHES = new MapfileTokenType("inches");
   IElementType INCLUDE = new MapfileTokenType("INCLUDE");
   IElementType INITIALGAP = new MapfileTokenType("INITIALGAP");
+  IElementType INT16 = new MapfileTokenType("INT16");
   IElementType INTEGER = new MapfileTokenType("integer");
   IElementType INTERLACE = new MapfileTokenType("INTERLACE");
   IElementType ITEMS = new MapfileTokenType("ITEMS");
@@ -202,6 +211,7 @@ public interface MapfileTypes {
   IElementType METADATA = new MapfileTokenType("METADATA");
   IElementType METERS = new MapfileTokenType("meters");
   IElementType MILES = new MapfileTokenType("miles");
+  IElementType MIMETYPE = new MapfileTokenType("MIMETYPE");
   IElementType MINARCS = new MapfileTokenType("MINARCS");
   IElementType MINBOXSIZE = new MapfileTokenType("MINBOXSIZE");
   IElementType MINDISTANCE = new MapfileTokenType("MINDISTANCE");
@@ -241,8 +251,10 @@ public interface MapfileTypes {
   IElementType ORACLESPATIAL = new MapfileTokenType("oraclespatial");
   IElementType OUTLINECOLOR = new MapfileTokenType("OUTLINECOLOR");
   IElementType OUTLINEWIDTH = new MapfileTokenType("OUTLINEWIDTH");
+  IElementType OUTPUTFORMAT = new MapfileTokenType("OUTPUTFORMAT");
   IElementType PARTIALS = new MapfileTokenType("PARTIALS");
   IElementType PATTERN = new MapfileTokenType("PATTERN");
+  IElementType PC256 = new MapfileTokenType("PC256");
   IElementType PDF = new MapfileTokenType("pdf");
   IElementType PERCENTAGES = new MapfileTokenType("percentages");
   IElementType PIXELS = new MapfileTokenType("pixels");
@@ -272,6 +284,8 @@ public interface MapfileTypes {
   IElementType REPEATDISTANCE = new MapfileTokenType("REPEATDISTANCE");
   IElementType REQUIRES = new MapfileTokenType("REQUIRES");
   IElementType RESOLUTION = new MapfileTokenType("RESOLUTION");
+  IElementType RGB = new MapfileTokenType("RGB");
+  IElementType RGBA = new MapfileTokenType("RGBA");
   IElementType RIGHT = new MapfileTokenType("right");
   IElementType ROUND = new MapfileTokenType("round");
   IElementType RP = new MapfileTokenType(")");
@@ -320,6 +334,7 @@ public interface MapfileTypes {
   IElementType UNITS = new MapfileTokenType("UNITS");
   IElementType UR = new MapfileTokenType("ur");
   IElementType UTFDATA = new MapfileTokenType("UTFDATA");
+  IElementType UTFGRID = new MapfileTokenType("UTFGRID");
   IElementType UTFITEM = new MapfileTokenType("UTFITEM");
   IElementType UVRASTER = new MapfileTokenType("uvraster");
   IElementType VALIDATION = new MapfileTokenType("VALIDATION");
@@ -407,6 +422,12 @@ public interface MapfileTypes {
       }
       else if (type == METADATA_OBJECT_CHILDREN) {
         return new MapfileMetadataObjectChildrenImpl(node);
+      }
+      else if (type == OUTPUTFORMAT_OBJECT) {
+        return new MapfileOutputformatObjectImpl(node);
+      }
+      else if (type == OUTPUTFORMAT_OBJECT_CHILDREN) {
+        return new MapfileOutputformatObjectChildrenImpl(node);
       }
       else if (type == PATTERN_OBJECT) {
         return new MapfilePatternObjectImpl(node);

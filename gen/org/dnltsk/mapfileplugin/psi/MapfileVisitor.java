@@ -103,6 +103,14 @@ public class MapfileVisitor extends PsiElementVisitor {
     visitPsiElement(o);
   }
 
+  public void visitOutputformatObject(@NotNull MapfileOutputformatObject o) {
+    visitPsiElement(o);
+  }
+
+  public void visitOutputformatObjectChildren(@NotNull MapfileOutputformatObjectChildren o) {
+    visitPsiElement(o);
+  }
+
   public void visitPatternObject(@NotNull MapfilePatternObject o) {
     visitPsiElement(o);
   }

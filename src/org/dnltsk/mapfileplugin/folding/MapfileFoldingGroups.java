@@ -44,6 +44,8 @@ public class MapfileFoldingGroups extends FoldingBuilderEx {
                     || childElement instanceof MapfileLeaderObjectChildren
                     || childElement instanceof MapfileLegendObjectChildren
                     || childElement instanceof MapfileMapObjectChildren
+                    || childElement instanceof MapfileMetadataObjectChildren
+                    || childElement instanceof MapfileOutputformatObjectChildren
                     || childElement instanceof MapfileQuerymapObjectChildren
                     || childElement instanceof MapfileReferenceObjectChildren
                     || childElement instanceof MapfileScalebarObjectChildren
@@ -63,6 +65,8 @@ public class MapfileFoldingGroups extends FoldingBuilderEx {
                     || childElement instanceof MapfileLeaderObject
                     || childElement instanceof MapfileLegendObject
                     || childElement instanceof MapfileMapObject
+                    || childElement instanceof MapfileMetadataObject
+                    || childElement instanceof MapfileOutputformatObject
                     || childElement instanceof MapfileQuerymapObject
                     || childElement instanceof MapfileReferenceObject
                     || childElement instanceof MapfileScalebarObject
