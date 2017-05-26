@@ -2,9 +2,9 @@
 
 # IntelliJ Mapfile Plugin
 
-https://plugins.jetbrains.com/plugin/9626-mapfile
-
 Editor support for UMN Mapserver Mapfiles. Supported Mapserver version is 7.0
+
+https://plugins.jetbrains.com/plugin/9626-mapfile
 
 ## Features
 
@@ -12,7 +12,7 @@ Editor support for UMN Mapserver Mapfiles. Supported Mapserver version is 7.0
 * ![done](https://img.shields.io/badge/status-done-green.svg) Autocompletion (Ctrl+Space)
 * ![done](https://img.shields.io/badge/status-done-green.svg) Color Picker
 * ![done](https://img.shields.io/badge/status-done-green.svg) Folding
-* ![in progress](https://img.shields.io/badge/status-in_progress-yellow.svg) Formatter (Cmd+Shift+L)
+* ![done](https://img.shields.io/badge/status-done-green.svg) Formatter (Cmd+Shift+L)
 * ![not started](https://img.shields.io/badge/status-not_started-lightgray.svg) Advanced Syntax Highlighting
 * ![not started](https://img.shields.io/badge/status-not_started-lightgray.svg) Templates
 * ![not started](https://img.shields.io/badge/status-not_started-lightgray.svg) Annotations (Error Messages)
