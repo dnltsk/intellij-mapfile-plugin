@@ -2380,7 +2380,7 @@ public class MapfileParser implements PsiParser, LightPsiParser {
 
   /* ********************************************************** */
   // !END (
-  //         LayerObject | LegendObject | ProjectionObject | QuerymapObject | ReferenceObject | ScalebarObject
+  //         LayerObject | LegendObject | ProjectionObject | OutputformatObject | QuerymapObject | ReferenceObject | ScalebarObject
   //         | SymbolObject | WebObject
   //         | AngleAttr | ConfigAttr | DatapatternAttr | DebugAttr | DefresolutionAttr | ExtentAttr | FontsetAttr
   //         | ImagecolorAttr | ImagetypeAttr | InterlaceAttr | MaxsizeAttr | NameAttr | ResolutionAttr
@@ -2408,7 +2408,7 @@ public class MapfileParser implements PsiParser, LightPsiParser {
     return r;
   }
 
-  // LayerObject | LegendObject | ProjectionObject | QuerymapObject | ReferenceObject | ScalebarObject
+  // LayerObject | LegendObject | ProjectionObject | OutputformatObject | QuerymapObject | ReferenceObject | ScalebarObject
   //         | SymbolObject | WebObject
   //         | AngleAttr | ConfigAttr | DatapatternAttr | DebugAttr | DefresolutionAttr | ExtentAttr | FontsetAttr
   //         | ImagecolorAttr | ImagetypeAttr | InterlaceAttr | MaxsizeAttr | NameAttr | ResolutionAttr
@@ -2421,6 +2421,7 @@ public class MapfileParser implements PsiParser, LightPsiParser {
     r = LayerObject(b, l + 1);
     if (!r) r = LegendObject(b, l + 1);
     if (!r) r = ProjectionObject(b, l + 1);
+    if (!r) r = OutputformatObject(b, l + 1);
     if (!r) r = QuerymapObject(b, l + 1);
     if (!r) r = ReferenceObject(b, l + 1);
     if (!r) r = ScalebarObject(b, l + 1);
@@ -5276,7 +5277,7 @@ public class MapfileParser implements PsiParser, LightPsiParser {
 
   /* ********************************************************** */
   // MapObject | WebObject | ScalebarObject | ProjectionObject | MetadataObject | QuerymapObject | ReferenceObject | GridObject
-  //              | ( LayerObject | ClassObject | SymbolObject | LabelObject | StyleObject | OutputformatObject
+  //                 | ( LayerObject | ClassObject | SymbolObject | LabelObject | StyleObject | OutputformatObject
   //                 | LeaderObject | LegendObject | FeatureObject | ClusterObject | CompositeObject
   //                 | JoinObject | PatternObject | ValidationObject
   //                 | PointsObject ) *

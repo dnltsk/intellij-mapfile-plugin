@@ -78,7 +78,7 @@ public class MapfileBlock extends AbstractBlock {
                 || this.getNode().getElementType() == MapfileTypes.LEADER_OBJECT_CHILDREN
                 || this.getNode().getElementType() == MapfileTypes.LEGEND_OBJECT_CHILDREN
                 || this.getNode().getElementType() == MapfileTypes.MAP_OBJECT_CHILDREN
-                || this.getNode().getElementType() == MapfileTypes.METADATA_OBJECT
+                || this.getNode().getElementType() == MapfileTypes.METADATA_OBJECT_CHILDREN
                 || this.getNode().getElementType() == MapfileTypes.OUTPUTFORMAT_OBJECT_CHILDREN
                 || this.getNode().getElementType() == MapfileTypes.QUERYMAP_OBJECT_CHILDREN
                 || this.getNode().getElementType() == MapfileTypes.REFERENCE_OBJECT_CHILDREN

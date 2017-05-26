@@ -53,7 +53,7 @@ private global_attribute_recover2 ::= !(END | NAME | TITLE | MAP)
 root ::= mapfile
 
 private mapfile ::= MapObject | WebObject | ScalebarObject | ProjectionObject | MetadataObject | QuerymapObject | ReferenceObject | GridObject
-             | ( LayerObject | ClassObject | SymbolObject | LabelObject | StyleObject | OutputformatObject
+                | ( LayerObject | ClassObject | SymbolObject | LabelObject | StyleObject | OutputformatObject
                 | LeaderObject | LegendObject | FeatureObject | ClusterObject | CompositeObject
                 | JoinObject | PatternObject | ValidationObject
                 | PointsObject ) *
@@ -65,7 +65,7 @@ private mapfile ::= MapObject | WebObject | ScalebarObject | ProjectionObject | 
 MapObject ::= MAP MapObjectChildren * END { pin=1 }
 MapObjectChildren ::=
     !END (
-        LayerObject | LegendObject | ProjectionObject | QuerymapObject | ReferenceObject | ScalebarObject
+        LayerObject | LegendObject | ProjectionObject | OutputformatObject | QuerymapObject | ReferenceObject | ScalebarObject
         | SymbolObject | WebObject
         | AngleAttr | ConfigAttr | DatapatternAttr | DebugAttr | DefresolutionAttr | ExtentAttr | FontsetAttr
         | ImagecolorAttr | ImagetypeAttr | InterlaceAttr | MaxsizeAttr | NameAttr | ResolutionAttr

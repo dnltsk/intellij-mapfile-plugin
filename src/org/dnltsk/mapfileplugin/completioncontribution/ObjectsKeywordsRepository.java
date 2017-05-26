@@ -19,7 +19,7 @@ public class ObjectsKeywordsRepository {
                         Arrays.asList(MapfileMapObject.class, MapfileMapObjectChildren.class),
                         new PossibleKeywords(
                                 Arrays.asList(
-                                        END, LAYER, LEGEND, PROJECTION, QUERYMAP, REFERENCE, SCALEBAR, SYMBOL, WEB,
+                                        END, LAYER, LEGEND, PROJECTION, OUTPUTFORMAT, QUERYMAP, REFERENCE, SCALEBAR, SYMBOL, WEB,
                                         ANGLE, CONFIG, DATAPATTERN, DEBUG, DEFRESOLUTION, EXTENT, FONTSET, IMAGECOLOR, IMAGETYPE, INTERLACE, MAXSIZE, NAME, RESOLUTION, SCALEDENOM, SHAPEPATH, SIZE, STATUS, SYMBOLSET, TEMPLATEPATTERN, UNITS,
                                         INCLUDE
                                 ),
