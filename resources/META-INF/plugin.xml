@@ -1,7 +1,7 @@
 <idea-plugin>
   <id>org.dnltsk.mapfileplugin</id>
   <name>Mapfile</name>
-  <version>7.0#0.5.1</version>
+  <version>7.0#0.5.2</version>
   <vendor email="daniel.teske@gmail.com" url="https://github.com/dnltsk/intellij-mapfile-plugin">dnltsk</vendor>
 
   <description><![CDATA[
@@ -16,6 +16,7 @@
 
   <change-notes><![CDATA[
       <ul>
+        <li>7.0#0.5.2 block formatting for VALIDATION, CLUSTER, PATTERN, POINTS and PROJECTION</li>
         <li>7.0#0.5.1 outputformat added, metadata formatting fixed</li>
         <li>7.0#0.5.0 auto formatting, rgb validation</li>
         <li>7.0#0.4.2 improved autocompletion</li>
