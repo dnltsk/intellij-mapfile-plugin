@@ -54,12 +54,17 @@ public class MapfileBlock extends AbstractBlock {
                 || this.getNode().getElementType() == MapfileTypes.LEGEND_OBJECT
                 || this.getNode().getElementType() == MapfileTypes.MAP_OBJECT
                 || this.getNode().getElementType() == MapfileTypes.METADATA_OBJECT
+                || this.getNode().getElementType() == MapfileTypes.VALIDATION_OBJECT
                 || this.getNode().getElementType() == MapfileTypes.OUTPUTFORMAT_OBJECT
                 || this.getNode().getElementType() == MapfileTypes.QUERYMAP_OBJECT
                 || this.getNode().getElementType() == MapfileTypes.REFERENCE_OBJECT
                 || this.getNode().getElementType() == MapfileTypes.SCALEBAR_OBJECT
                 || this.getNode().getElementType() == MapfileTypes.STYLE_OBJECT
                 || this.getNode().getElementType() == MapfileTypes.SYMBOL_OBJECT
+                || this.getNode().getElementType() == MapfileTypes.CLUSTER_OBJECT
+                || this.getNode().getElementType() == MapfileTypes.PATTERN_OBJECT
+                || this.getNode().getElementType() == MapfileTypes.POINTS_OBJECT
+                || this.getNode().getElementType() == MapfileTypes.PROJECTION_OBJECT
                 || this.getNode().getElementType() == MapfileTypes.WEB_OBJECT) {
             return depth + 1;
         }
@@ -79,12 +84,17 @@ public class MapfileBlock extends AbstractBlock {
                 || this.getNode().getElementType() == MapfileTypes.LEGEND_OBJECT_CHILDREN
                 || this.getNode().getElementType() == MapfileTypes.MAP_OBJECT_CHILDREN
                 || this.getNode().getElementType() == MapfileTypes.METADATA_OBJECT_CHILDREN
+                || this.getNode().getElementType() == MapfileTypes.VALIDATION_OBJECT_CHILDREN
                 || this.getNode().getElementType() == MapfileTypes.OUTPUTFORMAT_OBJECT_CHILDREN
                 || this.getNode().getElementType() == MapfileTypes.QUERYMAP_OBJECT_CHILDREN
                 || this.getNode().getElementType() == MapfileTypes.REFERENCE_OBJECT_CHILDREN
                 || this.getNode().getElementType() == MapfileTypes.SCALEBAR_OBJECT_CHILDREN
                 || this.getNode().getElementType() == MapfileTypes.STYLE_OBJECT_CHILDREN
                 || this.getNode().getElementType() == MapfileTypes.SYMBOL_OBJECT_CHILDREN
+                || this.getNode().getElementType() == MapfileTypes.CLUSTER_OBJECT_CHILDREN
+                || this.getNode().getElementType() == MapfileTypes.PATTERN_OBJECT_CHILDREN
+                || this.getNode().getElementType() == MapfileTypes.POINTS_OBJECT_CHILDREN
+                || this.getNode().getElementType() == MapfileTypes.PROJECTION_OBJECT_CHILDREN
                 || this.getNode().getElementType() == MapfileTypes.WEB_OBJECT_CHILDREN
                 || (this.depth > 0 && this.getNode().getElementType() == MapfileTypes.COMMENT)
                 ) {
